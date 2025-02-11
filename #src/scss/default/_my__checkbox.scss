@@ -1,0 +1,76 @@
+.check-box {
+	& input {
+		display: none;
+	}
+	& label {
+		position: relative;
+		padding-left: 35px;
+		@include use-font($I-r, 400);
+		@include use-size(16px, 19px);
+		color: #646464;
+		display: inline-block;
+		cursor: pointer;
+		width: max-content;
+		& span {
+			color: #646464;
+		}
+		&:hover {
+			&:after{
+				border-color: #521422;
+			}
+		}
+	}
+	& label:before {
+		content: '';
+		position: absolute;
+		top: calc(50% - 5px);
+		left: 5px;
+		width: 13px;
+		height: 8px;
+		border-bottom: 3px solid transparent;
+		border-left: 3px solid transparent;
+		border-radius: 1px;
+		transform: rotateZ(-45deg);
+		z-index: 10;
+		display: none;
+	}
+	& label:after {
+		content: '';
+		position: absolute;
+		top: calc(50% - 11px);
+		left: 0;
+		display: block;
+		width: 22px;
+		height: 22px;
+		border: 1px solid #D9D9D9;
+		border-radius: 5px;
+		background-color: #ffffff;
+	}
+	& input:checked + label:before {
+		border-color: #fff;
+		display: block;
+	}
+	& input:checked + label:after {
+		border-color: #646464;
+		background-color:  #646464;
+	}
+	&.blue {
+		& label {
+			color: #141414;
+			& span {
+				color: #646464;
+			}
+		}
+		& label:after {
+			border-color: #141414;
+			background-color: transparent;
+		}
+		& input:checked + label:before {
+			border-color: #FEFEFE;
+		}
+		& input:checked + label:after {
+			border-color: #015B90;
+			background-color:  #015B90;
+		}
+	}
+}

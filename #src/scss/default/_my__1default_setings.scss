@@ -1,0 +1,63 @@
+*,
+:before,
+:after {
+	box-sizing: border-box;
+}
+path,
+textarea,
+input,
+a,
+button {
+	transition: all .1s linear;
+	outline: none;
+}
+a {
+	text-decoration: none;
+}
+html {
+	scroll-behavior: smooth;
+}
+img {
+	width: 100%;
+	height: auto;
+}
+textarea {
+	resize: none;
+}
+body.lock {
+	overflow: hidden !important;
+}
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+	display: none;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+/*---контейнер сайта ---*/
+.container {
+	margin: 0 auto;
+	padding: 0 15px;
+	width: 100%;
+	max-width: 1270px;
+	@media screen and (max-width: 768px) {
+		padding: 0 8px;
+	}
+}
+.d-n {
+	display: none;
+}
+.required {
+	&:after {
+		content: '*';
+		color: #BF1616;
+		@include use-font($I-r, 400);
+		@include use-size(16px, 19px);
+		margin-left: 5px;
+	}
+}

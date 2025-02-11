@@ -1,0 +1,426 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	grid-gap: 10px;
+	&-bg {
+
+		padding: 17px 0;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1000;
+		&.fix {
+			background-color: $black;
+			position: fixed;
+		}
+	}
+	&-container {
+		margin: 0 auto;
+		padding: 0 15px;
+		width: 100%;
+		max-width: 1440px;
+		@media screen and (max-width: 768px) {
+			padding: 0 8px;
+		}
+	}
+	&-burger {
+		height: 26px;
+		width: 35px;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		@media screen and (max-width: 1024px) {
+			display: flex;
+		}
+		& button {
+			height: 100%;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			& span {
+				display: inline-block;
+				width: 35px;
+				height: 4px;
+				background-color: $white3;
+				&:before{
+					top: 0;
+				}
+				&:after {
+					bottom: 0;
+				}
+				&:before,
+				&:after {
+					content: '';
+					display: block;
+					width: 35px;
+					height: 4px;
+					background-color: $white3;
+					position: absolute;
+				}
+			}
+		}
+	}
+	&-logo {
+		margin-right: 10px;
+		@media screen and (max-width: 1024px) {
+			margin-right: 0;
+		}
+	}
+	&-nav {
+		width: 100%;
+		max-width: 950px;
+		@media screen and (max-width: 1024px) {
+			display: none;
+		}
+		&-list {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		&-item {
+			color: $white3;
+			margin-right: 10px;
+			position: relative;
+			&:last-child {
+				margin-right: 0;
+			}
+			&:hover {
+				color: $blue;
+			}
+			& .t-3,
+			& .t-7 {
+				@media screen and (max-width: 1280px) {
+					font-size: 14px;
+				}
+			}
+			& > a,
+			& > button {
+				color: inherit;
+				cursor: pointer;
+			}
+			&.lang .drop-list{
+				left: 5px;
+			}
+		}
+	}
+	&-buttons {
+		display: flex;
+		align-items: center;
+		grid-gap: 15px;
+		margin-left: 10px;
+		@media screen and (max-width: 1024px) {
+			margin-left: 0;
+		}
+		&-user {
+			position: relative;
+			@media screen and (max-width: 1024px) {
+				display: none;
+			}
+			& button {
+				cursor: pointer;
+				&.active svg {
+					transform: rotateX(0deg);
+				}
+			}
+			& .drop-list {
+				left: auto;
+				right: 0;
+			}
+		}
+		& .icons-bar {
+			&-list {
+				display: flex;
+				align-items: center;
+				grid-gap: 15px;
+			}
+			&-item {
+				position: relative;
+				& span:first-of-type {
+					cursor: pointer;
+				}
+				& .count {
+					position: absolute;
+					left: 11px;
+					top: -11px;
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					min-width: 22px;
+					height: 22px;
+					background: #184E79;
+					border-radius: 11px;
+					color: $white;
+					padding: 2px 7px 1px;
+					line-height: 14px;
+				}
+			}
+		}
+		& a.l {
+			width: 196px;
+			grid-gap: 10px;
+			@media screen and (max-width: 1250px) {
+				font-size: 0;
+				width: 35px;
+				grid-gap: 0;
+			}
+			&.small {
+				font-size: 0;
+				width: 35px;
+				grid-gap: 0;
+			}
+		}
+		& > div {
+			@media screen and (max-width: 1024px) {
+				display: none;
+			}
+		}
+		& form {
+			@media screen and (max-width: 1024px) {
+				display: none;
+			}
+		}
+	}
+}
+.drop-btn {
+	display:flex;
+	align-items: center;
+	grid-gap: 10px;
+	&.active {
+		color:  $blue;
+		& + .drop-list {
+			display: block;
+		}
+		& svg {
+			transform: rotateX(180deg);
+		}
+	}
+	& span {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 14px;
+		height: 14px;
+		background: $blue;
+		border-radius: 50%;
+		color: $white;
+		padding: 0 2px 2px;
+	}
+}
+.drop-list {
+	display: none;
+	position: absolute;
+	z-index: 10;
+	top: 30px;
+	left: -15px;
+	&-item {
+		&:first-of-type a,
+		&:first-of-type span {
+			border-radius: 7px 7px 0 0;
+		}
+		&:last-of-type a,
+		&:last-of-type span {
+			border-radius: 0 0 7px 7px;
+		}
+		& span,
+		& a {
+			background: $white3;
+			width: 100%;
+			color: $black_new;
+			padding: 6px 9px;
+			display: inline-block;
+			&:hover {
+				cursor: pointer;
+				background: #184E79;
+				color: $white3;
+			}
+		}
+	}
+}
+.header-mob {
+	display: none;
+	height: 100vh;
+	background-color: $black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+	overflow: auto;
+	transform: translateX(-1000px);
+	transition: all .3s linear;
+	padding-bottom: 80px;
+	@media screen and (max-width: 1024px) {
+		display: block;
+		width: 40%;
+	}
+	@media screen and (max-width: 580px) {
+		width: 50%;
+	}
+	@media screen and (max-width: 425px) {
+		width: 75%;
+	}
+	&.active {
+		transform: translateX(0);
+		& ~ .bg-mob {
+			display: block;
+		}
+	}
+	&-bar {
+		padding: 16px;
+		border-bottom: 1px solid $white3;
+		& form {
+			& button {
+				margin-bottom: 16px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+		&-user {
+			margin-top: 20px;
+			display: flex;
+			align-items: center;
+			grid-gap: 10px;
+			&:hover .user-name{
+				color: $blue;
+			}
+			& .user-avatar {
+				width: 40px;
+				height: 40px;
+				display: inline-block;
+			}
+			& .user-name {
+				color: $white;
+			}
+		}
+		& .icons-bar-list {
+			margin-top: 20px;
+		}
+		& .icons-bar-item {
+			margin-bottom: 16px;
+			position: relative;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			& a {
+				display: flex;
+				align-items: center;
+				grid-gap: 10px;
+				color: $white3;
+				&:hover {
+					color: $blue;
+					& path {
+						stroke: $blue;
+						fill: $blue;
+					}
+				}
+				& span:first-of-type {
+					flex: 0 1 20px;
+					width: 20px;
+				}
+				& .count {
+					position: absolute;
+					right: 0;
+					top: calc(50% - 8px);
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					min-width: 22px;
+					height: 22px;
+					background: #184E79;
+					border-radius: 11px;
+					color: $white3;
+					padding: 2px 7px;
+				}
+			}
+		}
+	}
+	&-nav {
+		&-list {
+			padding: 16px;
+			border-bottom: 1px solid $white3;
+		}
+		&-item {
+			color: $white3;
+			margin-bottom: 16px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			& a {
+				color: inherit;
+				display: block;
+				&:hover {
+					color: $blue;
+				}
+			}
+		}
+	}
+	&-lang {
+		padding: 16px;
+		& .lang {
+			position: relative;
+			&-text {
+				color: $white3;
+				cursor: pointer;
+				width: 100%;
+				text-align: left;
+				&.active + .lang-drop-mob{
+					display: block;
+				}
+				&-ico {
+					position: absolute;
+					top: calc(50% - 8px);
+					right: 0;
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					min-width: 22px;
+					height: 22px;
+					background: #184E79;
+					border-radius: 11px;
+					color: $white;
+					padding: 2px 7px;
+					margin-left: 10px;
+				}
+			}
+			&-drop-mob {
+				display: none;
+				position: absolute;
+				top: 20px;
+				width: 100%;
+				&-item {
+					& a {
+						width: 100%;
+						color: $black_new;
+						padding: 6px 9px;
+						display: block;
+						background-color: $white3;
+						&:hover {
+							color: $white;
+							background: #184E79;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.bg-mob {
+	display: none;
+	&:before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1500;
+		background-color: $heavy_black-45;
+	}
+}
+[dir="rtl"] {
+	text-align: right;
+}

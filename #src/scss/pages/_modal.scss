@@ -1,0 +1,14 @@
+.modal-body {
+
+}
+.modal {
+	--bs-modal-width: 1040px;
+	--bs-modal-padding: 47px 75px 46px;
+	--bs-modal-bg: #EEF5FB;
+	@media screen and (max-width: 850px) {
+		--bs-modal-padding: 40px;
+	}
+	@media screen and (max-width: 520px) {
+		--bs-modal-padding: 15px;
+	}
+}

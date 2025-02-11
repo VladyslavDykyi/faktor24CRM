@@ -1,0 +1,121 @@
+/*--- стили кнопок ---*/
+.reset-btn {
+	background-color: transparent;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+}
+
+.btn {
+	width: 100%;
+	padding: 0 7px;
+	border-radius: 7px;
+	border: none;
+	@include use-font($I-r, 400);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	&:disabled {
+		cursor: auto;
+	}
+
+	&.red {
+		height: 47px;
+		background-color: $red;
+		color: $white;
+		@include use-size(16px, 19px);
+		&:hover {
+			background-color: $burgundy;
+		}
+	}
+	&.white {
+		background-color: transparent;
+		color: $white3;
+		@include use-size(16px, 19px);
+		border: 1px solid $white3;
+	}
+	&.blue {
+		background-color: $heavy_blue;
+		color: $white3;
+		@include use-size(16px, 19px);
+		&:hover {
+			background-color: $blue;
+		}
+		&:active {
+			background-color: $blue2;
+		}
+		&:disabled {
+			background-color: #666666;
+		}
+	}
+	&.white-blue {
+		background-color: #F0F0F0;
+		color: #015B90;
+		@include use-size(12px, 15px);
+		&:hover {
+			background-color: #015B90;
+			color: $white3;
+			& path {
+				fill: $white3;
+			}
+		}
+		&:active {
+			background-color: #015B90;
+			color: $white3;
+			& path {
+				fill: $white3;
+			}
+		}
+		&:disabled {
+			background-color: #666666;
+		}
+		&.active {
+			background-color: #015B90;
+			color: $white3;
+			& path {
+				fill: $white3;
+			}
+		}
+	}
+	&.lite-blue {
+		background-color: #DEE7ED;
+		color: #141414;
+		@include use-size(16px, 19px);
+		&:hover {
+			background-color: $light_blue;
+		}
+		&:active {
+			background-color: $light_blue;
+		}
+		&:disabled {
+			background-color: #666666;
+		}
+	}
+	&.red-border {
+		border: 1px solid $red;
+		color: $red;
+		@include use-size(16px, 19px);
+		background-color: transparent;
+		&:hover {
+			border-color: $burgundy;
+		}
+	}
+	&.xs {
+		height: 47px;
+	}
+	&.s {
+		height: 40px;
+	}
+	&.m {
+		height: 37px;
+	}
+	&.l {
+		height: 32px;
+	}
+	&.ml {
+		height: 21px;
+		@include use-size(12px, 15px);
+	}
+}

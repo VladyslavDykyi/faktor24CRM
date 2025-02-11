@@ -1,0 +1,105 @@
+.M-bold {
+	@include use-font($M-b-i, 700);
+	&.t-1 {
+		@include use-size(57px, 69px);
+	}
+}
+.t-bold {
+	@include use-font($I-b, 700);
+	&.t-1 {
+		@include use-size(36px, 44px);
+	}
+	&.t-2 {
+		@include use-size(32px, 36px);
+	}
+	&.t-3 {
+		@include use-size(20px, 24px);
+	}
+	&.t-4 {
+		@include use-size(14px, 17px);
+	}
+	&.t-5 {
+		@include use-size(16px, 19px);
+	}
+}
+.t-semiBold {
+	@include use-font($I-sb, 600);
+	&.t-1 {
+		@include use-size(24px, 28px);
+	}
+	&.t-2 {
+		@include use-size(28px, 34px);
+	}
+	&.t-3 {
+		@include use-size(22px, 27px);
+	}
+	&.t-3 {
+		@include use-size(16px, 19px);
+	}
+	&.t-4 {
+		@include use-size(18px, 22px);
+	}
+}
+.t-medium {
+	@include use-font($I-m, 500);
+	&.t-1 {
+		@include use-size(16px, 24px);
+		&.s {
+			line-height: 19px;
+		}
+	}
+	&.t-2 {
+		@include use-size(12px, 16px);
+	}
+	&.t-3 {
+		@include use-size(14px, 17px);
+	}
+	&.t-4 {
+		@include use-size(20px, 24px);
+	}
+	&.t-5 {
+		@include use-size(18px, 22px);
+	}
+}
+.t-regular {
+	@include use-font($I-r, 400);
+	&.t-1 {
+		@include use-size(32px, 36px);
+	}
+	&.t-2 {
+		@include use-size(20px, 28px);
+	}
+	&.t-3 {
+		@include use-size(16px, 24px);
+		&.s {
+			line-height: 19px;
+		}
+	}
+	&.t-4 {
+		@include use-size(14px, 20px);
+		&.s {
+			line-height: 17px;
+		}
+	}
+	&.t-5 {
+		@include use-size(10px, 16px);
+		&.s {
+			line-height: 12px;
+		}
+	}
+	&.t-6 {
+		@include use-size(12px, 15px);
+	}
+	&.t-7 {
+		@include use-size(18px, 22px);
+	}
+}
+.t-light {
+	@include use-font($I-l, 300);
+	&.t-1 {
+		@include use-size(12px, 15px);
+	}
+	&.t-2 {
+		@include use-size(10px, 12px);
+	}
+}

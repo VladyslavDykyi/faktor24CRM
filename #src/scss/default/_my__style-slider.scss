@@ -1,0 +1,21 @@
+// /*--- стрелочки вернего слайдера ---*/
+
+.my-dots-bot {
+	display: flex;
+	align-items: center;
+	grid-gap: 8px;
+	justify-content: center;
+	& .slick-active button {
+		background: $green-2-100;
+	}
+	& button {
+		font-size: 0;
+		width: 12px;
+		height: 12px;
+		padding: 0;
+		border: 0;
+		background: $black-20;
+		border-radius: 3px;
+	}
+}
+// /*--- стрелочки вернего слайдера ---*/
