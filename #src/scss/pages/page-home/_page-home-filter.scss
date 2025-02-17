@@ -7,14 +7,15 @@
 		
 		& .drop-menu {
 			position: absolute;
+			z-index: 10000;
 			width: max-content;
 			display: flex;
 			align-items: flex-start;
-			
 			& .list-group {
 				max-height: 240px;
 				overflow-y: auto;
 				border-radius: 8px;
+				background-color: #FFFFFF;
 				box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.3), 0 0 2px 0 #919EAB26;
 				&::-webkit-scrollbar {
 					width: 2px;
@@ -38,7 +39,7 @@
 					border: none;
 					display: block;
 					
-					& input {
+					& input[type="radio"] {
 						display: none;
 						& + span:before {
 							content: "";
@@ -72,6 +73,43 @@
 							&:before {
 								border-color: #FFFFFF;
 								background-color: #0062FF;
+							}
+						}
+					}
+					& input[type="checkbox"] {
+						display: none;
+						& + span:before {
+							content: "";
+							position: absolute;
+							top: 14px;
+							left: 14px;
+							width: 24px;
+							height: 24px;
+							background-color: #FFFFFF;
+							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21ZM5 6C5 5.44772 5.44772 5 6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6Z' fill='%23C2CDD8'/%3e%3c/svg%3e");
+							background-repeat: no-repeat;
+						}
+						&:checked + span:after {
+							content: "";
+							position: absolute;
+							top: 14px;
+							left: 14px;
+							border-radius: 50%;
+							width: 24px;
+							height: 24px;
+							background-color: #C2CDD8;
+							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6C3 4.34315 4.34315 3 6 3ZM11.73 15.61L16.3 9.61V9.58C16.5179 9.29419 16.5668 8.91382 16.4283 8.58218C16.2897 8.25054 15.9848 8.01801 15.6283 7.97218C15.2718 7.92635 14.9179 8.07419 14.7 8.36L10.92 13.36L9.29 11.28C9.07028 10.9978 8.71668 10.8542 8.36239 10.9033C8.00811 10.9525 7.70696 11.1869 7.57239 11.5183C7.43783 11.8497 7.49028 12.2278 7.71 12.51L10.15 15.62C10.3408 15.8615 10.6322 16.0017 10.94 16C11.2495 15.9993 11.5412 15.8552 11.73 15.61Z' fill='%230062FF'/%3e%3c/svg%3e ");
+							background-repeat: no-repeat;
+						}
+						&:checked + span {
+							color: #334553;
+							background-color: #ffffff !important;
+							&:after {
+								background-color: #ffffff;
+							}
+							&:before {
+								border-color: #FFFFFF;
+								background-color: #ffffff;
 							}
 						}
 					}
@@ -118,6 +156,37 @@
 			}
 			& #city {
 				width: 100%;
+			}
+			& .list-group {
+				display: none;
+				list-style: none;
+				border: none;
+				border-radius: 8px;
+				max-height: 200px;
+				overflow-y: auto;
+			}
+			&  #list-country {
+				display: none;
+			}
+			& .list-group-item {
+				border-bottom: 1px solid #eee;
+			}
+			& .list-group-item:last-child {
+				border-bottom: none;
+			}
+			& .form-check-input {
+				display: none;
+			}
+			& .form-check-label {
+				width: 100%;
+				cursor: pointer;
+			}
+			& .list-group-item:hover {
+				background-color: #f8f9fa;
+			}
+			&  .form-check-input:checked + .form-check-label {
+				background-color: #e9ecef;
+				font-weight: bold;
 			}
 		}
 		& .js-example-responsive2 + .select2-container {
@@ -220,57 +289,9 @@
 		}
 	}
 }
-
-/* Стилі для списків */
-.mega-select .list-group {
-	display: none; /* Початково приховати всі списки */
-	list-style: none; /* Прибрати маркери */
-	padding: 0;
-	margin: 0;
-	border: 1px solid #ccc; /* Додати рамку для кращого вигляду */
-	border-radius: 4px; /* Закруглені кути */
-	max-height: 200px; /* Обмежити висоту списку */
-	overflow-y: auto; /* Додати прокрутку, якщо список занадто великий */
-}
-
-/* Показати список країн при введенні тексту */
-.mega-select #list-country {
-	display: none; /* Початково показувати список країн */
-}
-
-/* Стилі для елементів списку */
-.mega-select .list-group-item {
-	display: block;
-	padding: 8px 12px;
-	cursor: pointer;
-	border-bottom: 1px solid #eee; /* Роздільник між елементами */
-}
-
-/* Стилі для останнього елемента списку */
-.mega-select .list-group-item:last-child {
-	border-bottom: none;
-}
-
-/* Стилі для радіокнопок та чекбоксів */
-.mega-select .form-check-input {
-	display: none; /* Приховати стандартні радіокнопки та чекбокси */
-}
-
-/* Стилі для тексту радіокнопок та чекбоксів */
-.mega-select .form-check-label {
-	display: block;
-	width: 100%;
-	padding: 8px 12px;
-	cursor: pointer;
-}
-
-/* Зміна стилю при наведенні */
-.mega-select .list-group-item:hover {
-	background-color: #f8f9fa; /* Світлий фон при наведенні */
-}
-
-/* Зміна стилю для вибраного елемента */
-.mega-select .form-check-input:checked + .form-check-label {
-	background-color: #e9ecef; /* Фон для вибраного елемента */
-	font-weight: bold;
+.btn-menu-drop {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: none;
 }

@@ -7,10 +7,26 @@
 	display: flex;
 	flex-direction: column;
 }
+
 .dt-layout-row {
 	 display: flex;
 	 align-items: center;
 }
+
 .dt-layout-row:first-of-type {
 	order: 1;
+}
+
+
+div.dt-container div.dt-layout-row {
+	width: max-content;
+}
+div.dt-container div.dt-layout-row.dt-layout-table {
+	width: 100%;
+}
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-start {
+	margin-right: 0;
+}
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
+	margin-left: 0;
 }

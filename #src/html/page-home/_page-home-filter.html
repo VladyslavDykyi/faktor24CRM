@@ -2,7 +2,8 @@
 	<div class="filter-header">
 		<div class="mega-select">
 			<label for="city" class="city">
-				<input class="form-control" type="text" id="city" placeholder="Введите название города">
+				<input class="form-control" type="text" id="city" autocomplete="off"
+					   placeholder="Введите название города">
 			</label>
 			<div class="drop-menu">
 				<ul class="list-group" id="list-country">
@@ -52,23 +53,20 @@
 				<ul class="list-group" id="list-oblast">
 					<li class="list-group-item">
 						<label class="form-check-label" for="firstRadio11">
-							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio11"
-								   checked>
-							<span>область</span>
+							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio11">
+							<span>область 1</span>
 						</label>
 					</li>
 					<li class="list-group-item">
 						<label class="form-check-label" for="firstRadio22">
-							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio22"
-								   checked>
-							<span>область</span>
+							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio22">
+							<span>область 2</span>
 						</label>
 					</li>
 					<li class="list-group-item">
 						<label class="form-check-label" for="firstRadio33">
-							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio33"
-								   checked>
-							<span>область</span>
+							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio33">
+							<span>область 3</span>
 						</label>
 					</li>
 				</ul>
@@ -76,42 +74,98 @@
 					<li class="list-group-item">
 						<label class="form-check-label" for="firstCheckbox1">
 							<input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox1">
-							<span>First checkbox</span>
+							<span>
+								Одесса
+							</span>
 						</label>
 					</li>
 					<li class="list-group-item"><label class="form-check-label" for="secondCheckbox2">
 						<input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox2">
 						<span>
-							Second checkbox
+							Город 1
 						</span>
 					</label>
 					</li>
 					<li class="list-group-item"><label class="form-check-label" for="thirdCheckbox3">
 						<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox3">
-						<span>Third checkbox </span>
+						<span>
+							Город 2
+						</span>
 					</label>
 					</li>
 				</ul>
 				<ul class="list-group" id="list-street">
 					<li class="list-group-item">
-						<input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox11">
-						<label class="form-check-label" for="firstCheckbox11">First checkbox</label>
+						<label class="form-check-label" for="firstCheckbox11">
+							<input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox11">
+							<span>
+								Микрорайон 1
+						    </span>
+						</label>
 					</li>
 					<li class="list-group-item">
-						<input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox22">
-						<label class="form-check-label" for="secondCheckbox22">Second checkbox</label>
+						<label class="form-check-label" for="secondCheckbox22">
+							<input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox22">
+							<span>
+								Микрорайон 2
+							</span>
+						</label>
 					</li>
 					<li class="list-group-item">
-						<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox33">
-						<label class="form-check-label" for="thirdCheckbox33">Third checkbox</label>
+						<label class="form-check-label" for="thirdCheckbox11">
+							<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox11">
+							<span>
+								Микрорайон 3
+							</span>
+						</label>
+					</li>
+					<li class="list-group-item">
+						<label class="form-check-label" for="thirdCheckbox22">
+							<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox22">
+							<span>
+								Микрорайон 4
+							</span>
+						</label>
+					</li>
+					<li class="list-group-item">
+						<label class="form-check-label" for="thirdCheckbox33">
+							<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox33">
+							<span>
+								Микрорайон 5
+							</span>
+						</label>
 					</li>
 				</ul>
+				<button class="btn btn-primary btn-menu-drop" type="button">
+					Подтвердить
+				</button>
 			</div>
 		</div>
 		<label for="type">
 			<select id="type" class="js-example-responsive2">
-				<option selected>
+				<option selected value="apartments-for-sale">
 					Продажа квартир
+				</option>
+				<option value="houses-for-sale">
+					Продажа домов
+				</option>
+				<option value="land-sale">
+					Продажа земли
+				</option>
+				<option value="sale-of-commerce">
+					Продажа коммерции
+				</option>
+				<option value="apartment-rental">
+					Аренда квартир
+				</option>
+				<option value="houses-for-rent">
+					Аренда домов
+				</option>
+				<option value="land-rental">
+					Аренда земли
+				</option>
+				<option value="rent-of-commerce">
+					Аренда коммерции
 				</option>
 			</select>
 		</label>
@@ -130,10 +184,10 @@
 				</select>
 			</label>
 			<label class="" for="price-from">
-				<input class="form-control" type="text" id="price-from" placeholder="Цена от">
+				<input class="form-control" type="text" id="price-from" autocomplete="off" placeholder="Цена от">
 			</label>
 			<label for="price-to">
-				<input class="form-control" type="text" id="price-to" placeholder="Цена до">
+				<input class="form-control" type="text" id="price-to" autocomplete="off" placeholder="Цена до">
 			</label>
 		</div>
 		<div class="header-btn">

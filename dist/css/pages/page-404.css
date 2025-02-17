@@ -107,6 +107,7 @@ ul {
   height: 40px;
   border: 1px solid #E1E8EE;
   border-radius: 8px;
+  background-color: #F3F6FB;
 }
 
 .select2-selection__rendered {
@@ -160,7 +161,43 @@ ul {
 }
 
 .select2-container--open .select2-dropdown--below ul {
+  background-color: #FFFFFF;
   border-radius: 8px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #0062FF33;
+  color: #334553;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: #0062FF33;
+}
+
+.select2-results__option[aria-selected] {
+  background-color: #FFFFFF;
+  color: #334553;
+}
+
+.select2-dropdown {
+  border: none;
+  -webkit-box-shadow: 0 16px 32px 0 #919EAB26, 0 2px 32px 0 #919EAB26;
+          box-shadow: 0 16px 32px 0 #919EAB26, 0 2px 32px 0 #919EAB26;
+}
+
+.select2-container--default .select2-results > .select2-results__options::-webkit-scrollbar {
+  width: 2px;
+  padding-right: 8px;
+}
+
+.select2-container--default .select2-results > .select2-results__options::-webkit-scrollbar-track {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.select2-container--default .select2-results > .select2-results__options::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #C2CDD8;
 }
 
 .header-wrapper {
