@@ -4,6 +4,7 @@
 		align-items: center;
 		grid-gap: 20px;
 		padding-bottom: 12px;
+		
 		& .drop-menu {
 			position: absolute;
 			width: max-content;
@@ -218,4 +219,58 @@
 			}
 		}
 	}
+}
+
+/* Стилі для списків */
+.mega-select .list-group {
+	display: none; /* Початково приховати всі списки */
+	list-style: none; /* Прибрати маркери */
+	padding: 0;
+	margin: 0;
+	border: 1px solid #ccc; /* Додати рамку для кращого вигляду */
+	border-radius: 4px; /* Закруглені кути */
+	max-height: 200px; /* Обмежити висоту списку */
+	overflow-y: auto; /* Додати прокрутку, якщо список занадто великий */
+}
+
+/* Показати список країн при введенні тексту */
+.mega-select #list-country {
+	display: none; /* Початково показувати список країн */
+}
+
+/* Стилі для елементів списку */
+.mega-select .list-group-item {
+	display: block;
+	padding: 8px 12px;
+	cursor: pointer;
+	border-bottom: 1px solid #eee; /* Роздільник між елементами */
+}
+
+/* Стилі для останнього елемента списку */
+.mega-select .list-group-item:last-child {
+	border-bottom: none;
+}
+
+/* Стилі для радіокнопок та чекбоксів */
+.mega-select .form-check-input {
+	display: none; /* Приховати стандартні радіокнопки та чекбокси */
+}
+
+/* Стилі для тексту радіокнопок та чекбоксів */
+.mega-select .form-check-label {
+	display: block;
+	width: 100%;
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+/* Зміна стилю при наведенні */
+.mega-select .list-group-item:hover {
+	background-color: #f8f9fa; /* Світлий фон при наведенні */
+}
+
+/* Зміна стилю для вибраного елемента */
+.mega-select .form-check-input:checked + .form-check-label {
+	background-color: #e9ecef; /* Фон для вибраного елемента */
+	font-weight: bold;
 }
