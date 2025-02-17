@@ -1,3 +1,36 @@
 .header {
-
+	&-wrapper {
+		padding: 24px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&-title {
+		color: #334553;
+		font-size: 32px;
+		line-height: 40px;
+		font-weight: 800;
+		margin-bottom: 0;
+	}
+	&-tabs {
+		& .btn-outline-primary {
+			--bs-btn-border-color: #2C3443;
+			--bs-btn-color: #4B5569;
+			--bs-btn-hover-bg:#0062FF;
+			--bs-btn-hover-border-color:#0062FF;
+			--bs-btn-active-bg:#0062FF;
+			--bs-btn-active-border-color:#0062FF;
+			padding-top: 7px;
+			padding-bottom: 7px;
+		}
+	}
+	&-actions {
+		& .btn {
+			display: flex;
+			align-items: center;
+			grid-gap: 8px;
+			padding-top: 7px;
+			padding-bottom: 7px;
+		}
+	}
 }

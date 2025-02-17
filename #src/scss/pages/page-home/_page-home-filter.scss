@@ -1,0 +1,221 @@
+.filter {
+	&-header {
+		display: flex;
+		align-items: center;
+		grid-gap: 20px;
+		padding-bottom: 12px;
+		& .drop-menu {
+			position: absolute;
+			width: max-content;
+			display: flex;
+			align-items: flex-start;
+			
+			& .list-group {
+				max-height: 240px;
+				overflow-y: auto;
+				border-radius: 8px;
+				box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.3), 0 0 2px 0 #919EAB26;
+				&::-webkit-scrollbar {
+					width: 2px;
+					padding-right: 8px;
+				}
+				&::-webkit-scrollbar-track {
+					background-color: #FFFFFF;
+					border-radius: 8px;
+				}
+				&::-webkit-scrollbar-thumb {
+					border-radius: 6px;
+					background-color: #C2CDD8;
+				}
+				
+				&-item {
+					padding: 0;
+					border: none;
+					display: flex;
+				}
+				& label {
+					border: none;
+					display: block;
+					
+					& input {
+						display: none;
+						& + span:before {
+							content: "";
+							position: absolute;
+							top: 14px;
+							left: 14px;
+							width: 24px;
+							height: 24px;
+							background-color: #FFFFFF;
+							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12ZM4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12Z' fill='%23C2CDD8'/%3e%3c/svg%3e");
+							background-repeat: no-repeat;
+						}
+						&:checked + span:after {
+							content: "";
+							position: absolute;
+							top: 14px;
+							left: 14px;
+							border-radius: 50%;
+							width: 24px;
+							height: 24px;
+							background-color: #C2CDD8;
+							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 12C2 6.47715 6.47715 2 12 2C14.6522 2 17.1957 3.05357 19.0711 4.92893C20.9464 6.8043 22 9.34784 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM4 12C4 16.4183 7.58172 20 12 20C14.1217 20 16.1566 19.1571 17.6569 17.6569C19.1571 16.1566 20 14.1217 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z' fill='white'/%3e%3cpath d='M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7Z' fill='white'/%3e%3c/svg%3e");
+							background-repeat: no-repeat;
+						}
+						&:checked + span {
+							color: #FFFFFF;
+							background-color: #0062FF !important;
+							&:after {
+								background-color: #0062FF;
+							}
+							&:before {
+								border-color: #FFFFFF;
+								background-color: #0062FF;
+							}
+						}
+					}
+					& span {
+						position: relative;
+						color: #242424;
+						width: 100%;
+						display: block;
+						padding: 12px 12px 12px 44px;
+					}
+				}
+			}
+		}
+		& .mega-select {
+			min-width: 440px;
+			position: relative;
+			& .city {
+				display: block;
+				padding-left: 28px;
+				position: relative;
+				box-shadow: 0 0 0 1px #E1E8EE;
+				font-weight: 600;
+				color: #334553;
+				border-radius: 8px;
+				--bs-body-bg: transparent;
+				& input {
+					border-radius: 0 8px 8px 0;
+					border: none;
+					&:focus {
+						box-shadow: none;
+					}
+				}
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					left: 12px;
+					top: calc(50% - 12px);
+					background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M13.0719 21.7121C15.3335 19.9507 20.386 15.4492 20.386 10.3864C20.386 8.16216 19.5024 6.02906 17.9297 4.45631C16.357 2.88356 14.2238 2 11.9996 2C9.77544 2 7.64234 2.88356 6.06959 4.45631C4.49684 6.02906 3.61328 8.16216 3.61328 10.3864C3.61328 15.4492 8.66581 19.9507 10.9274 21.7121C11.5644 22.2082 12.4349 22.2082 13.0719 21.7121ZM14.9996 10C14.9996 11.6569 13.6565 13 11.9996 13C10.3428 13 8.99963 11.6569 8.99963 10C8.99963 8.34315 10.3428 7 11.9996 7C13.6565 7 14.9996 8.34315 14.9996 10Z' fill='%2351677B'/%3e%3c/svg%3e");
+					background-repeat: no-repeat;
+					width: 24px;
+					height: 24px;
+				}
+			}
+			& #city {
+				width: 100%;
+			}
+		}
+		& .js-example-responsive2 + .select2-container {
+			min-width: 212px;
+		}
+		& .js-example-responsive3 + .select2-container {
+			min-width: 96px;
+		}
+		& .header-price {
+			display: flex;
+			align-items: center;
+			grid-gap: 4px;
+			& .form-control {
+				max-width: 108px;
+				min-width: 96px;
+			}
+			& .form-control {
+				width: 100%;
+				padding: 8px 12px;
+				border: none;
+				box-shadow: 0 0 0 1px #E1E8EE;
+				font-weight: 600;
+				color: #334553;
+				border-radius: 8px;
+				--bs-body-bg: transparent;
+				&:focus {
+					box-shadow: 0 0 0 1px #0062FF;
+				}
+				
+				&::placeholder {
+					font-size: 16px;
+					line-height: 24px;
+					font-weight: 400;
+					color: #51677B;
+				}
+			}
+		}
+		& .header-btn {
+			display: flex;
+			align-items: center;
+			grid-gap: 4px;
+			&:last-child {
+				margin-left: auto;
+			}
+			.btn-primary {
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				--bs-btn-bg: #0062FF33;
+				--bs-btn-border-color: transparent;
+				--bs-btn-border-radius: 8px;
+				padding: 7px;
+				--bs-btn-hover-bg: #0062FF33;
+				--bs-btn-hover-border-color: transparent;
+				--bs-btn-active-bg: #0062FF33;
+				--bs-btn-active-border-color: transparent;
+				& svg {
+					width: 24px;
+					height: 24px;
+				}
+			}
+		}
+	}
+	&-tags {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		grid-gap: 8px;
+		padding-bottom: 16px;
+		& .badge {
+			padding: 5px 8px;
+			display: flex;
+			align-items: center;
+			grid-gap: 8px;
+			font-weight: 400;
+			height: 24px;
+			& button {
+				padding: 0;
+				border: none;
+				background: none;
+				outline: none;
+				cursor: pointer;
+			}
+		}
+		& .qwe1 {
+			background-color: #FF4842;
+			color: #FFFFFF;
+			& path {
+				fill: #FFFFFF;
+			}
+		}
+		& .qwe2 {
+			background-color: #EDEDED;
+			color: #233455;
+			& path {
+				fill: #233455;
+			}
+		}
+	}
+}
