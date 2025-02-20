@@ -289,9 +289,19 @@
 		}
 	}
 }
+#list-street {
+	display: none;
+	position: relative;
+	
+	& .list-group {
+		display: block;
+		border-radius: 8px 8px 0 0;
+	}
+}
 .btn-menu-drop {
 	position: absolute;
 	right: 0;
-	bottom: 0;
-	display: none;
+	bottom: -38px;
+	width: 100%;
+	border-radius: 0 0 8px 8px;
 }

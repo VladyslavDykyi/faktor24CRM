@@ -30,3 +30,89 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-start {
 div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 	margin-left: 0;
 }
+
+
+#example {
+	border-bottom: none;
+	& thead {
+		& tr {
+			background-color: #F3F6FB;
+			& th {
+				padding: 0;
+				border-bottom: none;
+				text-align: left;
+				&:hover {
+					outline: none;
+				}
+				& .thead-wrapper {
+					padding: 12px 16px;
+					& p {
+						margin: 0;
+					}
+				}
+			}
+		}
+	}
+	& tbody {
+		border-radius: 8px;
+		& tr {
+			background-color: #FFFFFF;
+			&:first-child {
+				border-radius: 8px 8px 0 0;
+			}
+			&:last-child {
+				border-radius: 0 0 8px 8px;
+			}
+			&:nth-child(odd) {
+				background-color: #0062FF1A;
+			}
+			& td {
+				border: none;
+				&:first-child {
+					border-radius: 8px 0 0 8px;
+				}
+				&:last-child {
+					border-radius: 0 8px 8px 0;
+				}
+				& p {
+					margin: 0;
+				}
+			}
+		}
+	}
+	& .block-actions {
+		display: flex;
+		align-items: center;
+		& .block-actions-wrapper {
+			display: flex;
+			align-items: center;
+			& > div {
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+}
+#example_wrapper {
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	& div.dt-layout-row:nth-child(1) {
+		background-color: #0062FF1A;
+		width: 50%;
+		order: 1;
+		margin: 0;
+		border-radius: 8px 0 0 8px;
+	}
+	& div.dt-layout-row:nth-child(2) {
+		width: 100%;
+		margin: 0;
+	}
+	& div.dt-layout-row:nth-child(3) {
+		background-color: #0062FF1A;
+		width: 50%;
+		order: 1;
+		margin: 0;
+		border-radius: 0 8px 8px 0;
+	}
+}

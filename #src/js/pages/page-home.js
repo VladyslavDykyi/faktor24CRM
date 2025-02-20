@@ -1,6 +1,8 @@
 "use strict";
 (function () {
-	new DataTable('#example');
+	$('#example').DataTable({
+		searching: false,
+		});
 	
 	$(".js-example-responsive2").select2({
 		width: 'resolve',
@@ -70,4 +72,7 @@
 			event.stopPropagation();
 		});
 	});
+	
+	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 })();
