@@ -257,9 +257,6 @@
 			display: flex;
 			align-items: center;
 			grid-gap: 4px;
-			&:last-child {
-				margin-left: auto;
-			}
 			.btn-primary {
 				width: 30px;
 				height: 30px;
@@ -270,7 +267,7 @@
 				--bs-btn-border-color: transparent;
 				--bs-btn-border-radius: 6px;
 				padding: 7px;
-				--bs-btn-hover-bg: #fff;
+				--bs-btn-hover-bg: #F6F8FB;
 				--bs-btn-hover-border-color: transparent;
 				--bs-btn-active-bg: #fff;
 				--bs-btn-active-border-color: transparent;
@@ -301,6 +298,8 @@
 			background-color: #FFFFFF;
 			color: #111111;
 			& button {
+				display: flex;
+				align-items: center;
 				padding: 0;
 				border: none;
 				background: none;
