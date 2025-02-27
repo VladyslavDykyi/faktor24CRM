@@ -330,6 +330,7 @@ ul {
 
 .nav-list {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .nav-list-item {
@@ -403,6 +404,7 @@ ul {
 
 .nav-info {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .nav-info-item {
