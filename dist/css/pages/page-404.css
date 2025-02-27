@@ -220,8 +220,8 @@ ul {
   --bs-btn-hover-border-color: #fff;
   --bs-btn-active-bg: #fff;
   --bs-btn-active-border-color: #fff;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   line-height: normal;
   font-weight: 700;
   font-size: 14px;
@@ -252,8 +252,8 @@ ul {
       -ms-flex-align: center;
           align-items: center;
   grid-gap: 8px;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-radius: 6px;
   background-color: #3585F5;
   font-weight: 700;
