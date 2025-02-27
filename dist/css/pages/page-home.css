@@ -574,21 +574,18 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   border-radius: 8px;
 }
 
-#example tbody tr {
-  background-color: #FFFFFF;
+#example tbody tr:first-child td:first-child {
+  border-radius: 8px 0 0 8px;
 }
 
-#example tbody tr:first-child {
-  border-radius: 8px 8px 0 0;
-}
-
-#example tbody tr:last-child {
-  border-radius: 0 0 8px 8px;
+#example tbody tr:last-child td:last-child {
+  border-radius: 0 8px 8px 0;
 }
 
 #example tbody tr td {
   border: none;
   border-bottom: 1px solid #EFEFEF;
+  background-color: #Fff;
   padding: 0;
 }
 
