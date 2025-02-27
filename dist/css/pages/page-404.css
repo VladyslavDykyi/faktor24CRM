@@ -1,95 +1,47 @@
 @font-face {
-  font-family: "Lato";
+  font-family: "PTSans";
   font-display: swap;
-  src: url("../../fonts/Lato-Thin.woff") format("woff"), url("../../fonts/Lato-Thin.woff2") format("woff2");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Lato";
-  font-display: swap;
-  src: url("../../fonts/Lato-ThinItalic.woff") format("woff"), url("../../fonts/Lato-ThinItalic.woff2") format("woff2");
-  font-weight: 100;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Lato";
-  font-display: swap;
-  src: url("../../fonts/Lato-Light.woff") format("woff"), url("../../fonts/Lato-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Lato";
-  font-display: swap;
-  src: url("../../fonts/Lato-LightItalic.woff") format("woff"), url("../../fonts/Lato-LightItalic.woff2") format("woff2");
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Lato";
-  font-display: swap;
-  src: url("../../fonts/Lato-Regular.woff") format("woff"), url("../../fonts/Lato-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Lato";
-  font-display: swap;
-  src: url("../../fonts/Lato-Italic.woff") format("woff"), url("../../fonts/Lato-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Lato";
-  font-display: swap;
-  src: url("../../fonts/Lato-Bold.woff") format("woff"), url("../../fonts/Lato-Bold.woff2") format("woff2");
+  src: url("../../fonts/PTSans-Bold.woff") format("woff"), url("../../fonts/PTSans-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "PTSans";
   font-display: swap;
-  src: url("../../fonts/Lato-BoldItalic.woff") format("woff"), url("../../fonts/Lato-BoldItalic.woff2") format("woff2");
+  src: url("../../fonts/PTSans-BoldItalic.woff") format("woff"), url("../../fonts/PTSans-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "PTSans";
   font-display: swap;
-  src: url("../../fonts/Lato-Black.woff") format("woff"), url("../../fonts/Lato-Black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
+  src: url("../../fonts/PTSans-Italick.woff") format("woff"), url("../../fonts/PTSans-Italick.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
 }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "PTSans";
   font-display: swap;
-  src: url("../../fonts/Lato-BlackItalic.woff") format("woff"), url("../../fonts/Lato-BlackItalic.woff2") format("woff2");
-  font-weight: 900;
-  font-style: italic;
+  src: url("../../fonts/PTSans-Regular.woff") format("woff"), url("../../fonts/PTSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
   overflow-x: hidden;
-  background-color: #F3F6FB;
-  font-family: 'Lato', sans-serif;
+  background: #f7f7f7;
+  font-family: 'PTSans', sans-serif;
 }
 
 :root {
   --bs-body-font-weight: 400;
   --bs-body-color: #334553;
   --bs-body-font-size: 1rem;
-  --bs-body-font-family: 'Lato', sans-serif;
-  --bs-font-sans-serif: 'Lato', sans-serif;
+  --bs-body-font-family: 'PTSans', sans-serif;
+  --bs-font-sans-serif: 'PTSans', sans-serif;
 }
 
 .wrapper {
@@ -104,23 +56,26 @@ ul {
 }
 
 .select2-container .select2-selection--single {
-  height: 40px;
-  border: 1px solid #E1E8EE;
-  border-radius: 8px;
-  background-color: #F3F6FB;
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: #fff;
 }
 
 .select2-selection__rendered {
-  padding: 7px 12px;
+  padding: 5px 10px;
+  height: 100%;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-  line-height: 24px;
-  color: #51677B;
+  line-height: normal;
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M18.3536 8.64645C18.1583 8.45118 17.8417 8.45118 17.6464 8.64645L12 14.2929L6.35355 8.64645C6.15829 8.45118 5.84171 8.45118 5.64645 8.64645C5.45118 8.84171 5.45118 9.15829 5.64645 9.35355L11.6464 15.3536C11.8417 15.5488 12.1583 15.5488 12.3536 15.3536L18.3536 9.35355C18.5488 9.15829 18.5488 8.84171 18.3536 8.64645Z' fill='%23182234'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.544461 0.207001C0.274961 0.474274 0.274961 0.905183 0.544461 1.17246L5.11496 5.70518C5.32946 5.91791 5.67596 5.91791 5.89046 5.70518L10.461 1.17246C10.7305 0.905183 10.7305 0.474274 10.461 0.207001C10.1915 -0.0602717 9.75696 -0.0602717 9.48746 0.207001L5.49996 4.15609L1.51246 0.201546C1.24846 -0.0602718 0.808461 -0.0602717 0.544461 0.207001Z' fill='%23111111' /%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: center;
   display: block;
@@ -148,7 +103,7 @@ ul {
 }
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--single {
-  border-color: #0062FF;
+  border-color: transparent;
   border-radius: 8px;
 }
 
@@ -200,8 +155,40 @@ ul {
   background-color: #C2CDD8;
 }
 
+.my-custom-input {
+  cursor: pointer;
+}
+
+.my-custom-input input {
+  display: none;
+}
+
+.my-custom-input input:checked + span:before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 8px);
+  left: calc(50% - 8px);
+  z-index: 10;
+  display: block;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.43488 10C4.43221 10 4.42968 10 4.42701 10C4.08034 9.9975 3.75167 9.83931 3.52554 9.5657L0.29072 5.65267C-0.141816 5.12947 -0.085149 4.34017 0.416987 3.88976C0.919123 3.43935 1.67686 3.49823 2.10926 4.02129L4.44661 6.84863L9.90091 0.422143C10.34 -0.095215 11.0982 -0.143687 11.5948 0.313532C12.0913 0.770752 12.138 1.56075 11.6991 2.07797L5.33368 9.57792C5.10608 9.84639 4.77861 10 4.43488 10Z' fill='%23111111' /%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 16px;
+  height: 16px;
+}
+
+.my-custom-input span {
+  position: relative;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  display: inline-block;
+}
+
 .header-wrapper {
-  padding: 24px 0;
+  padding: 10px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -214,22 +201,45 @@ ul {
 }
 
 .header-title {
-  color: #334553;
-  font-size: 32px;
-  line-height: 40px;
-  font-weight: 800;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: #111;
   margin-bottom: 0;
 }
 
 .header-tabs .btn-outline-primary {
-  --bs-btn-border-color: #2C3443;
-  --bs-btn-color: #4B5569;
-  --bs-btn-hover-bg: #0062FF;
-  --bs-btn-hover-border-color: #0062FF;
-  --bs-btn-active-bg: #0062FF;
-  --bs-btn-active-border-color: #0062FF;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: #fff;
+  --bs-btn-color: #AAAAAA;
+  --bs-btn-hover-color: #AAAAAA;
+  --bs-btn-active-color: #111111;
+  --bs-btn-hover-bg: #fff;
+  --bs-btn-hover-border-color: #fff;
+  --bs-btn-active-bg: #fff;
+  --bs-btn-active-border-color: #fff;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  line-height: normal;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.header-tabs .btn-outline-primary.active:before {
+  content: '';
+  height: 2px;
+  width: 80%;
+  background-color: #3585F5;
+  border-radius: 2px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .header-actions .btn {
@@ -242,4 +252,11 @@ ul {
   grid-gap: 8px;
   padding-top: 7px;
   padding-bottom: 7px;
+  border-radius: 6px;
+  background-color: #3585F5;
+  font-weight: 700;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
 }

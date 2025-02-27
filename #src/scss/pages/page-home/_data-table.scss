@@ -1,6 +1,6 @@
 .container-fluid {
 	padding-right: 40px;
-	padding-left: 40px;
+	padding-left: 20px;
 }
 
 .dt-container {
@@ -36,7 +36,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 	border-bottom: none;
 	& thead {
 		& tr {
-			background-color: #F3F6FB;
+			background-color: transparent;
 			& th {
 				padding: 0;
 				border-bottom: none;
@@ -45,8 +45,51 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					outline: none;
 				}
 				& .thead-wrapper {
-					padding: 12px 16px;
+					padding: 10px;
+					&.checkBox {
+						& label {
+							display: flex;
+						}
+					}
+					&.location {
+					
+					}
+					&.type {
+					
+					}
+					&.area {
+					
+					}
+					&.condition {
+					
+					}
+					&.floor {
+					
+					}
+					&.photo {
+					
+					}
+					&.price {
+					
+					}
+					&.contact {
+					
+					}
+					&.block-actions {
+						display: flex;
+						align-items: center;
+						text-align: right;
+						justify-content: flex-end;
+						& .btn {
+							padding: 0;
+							border: none;
+						}
+					}
 					& p {
+						font-weight: 700;
+						font-size: 14px;
+						line-height: 108%;
+						color: #aaa;
 						margin: 0;
 					}
 				}
@@ -63,32 +106,88 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			&:last-child {
 				border-radius: 0 0 8px 8px;
 			}
-			&:nth-child(odd) {
-				background-color: #0062FF1A;
-			}
 			& td {
 				border: none;
-				&:first-child {
-					border-radius: 8px 0 0 8px;
+				border-bottom: 1px solid #EFEFEF;
+				padding: 0;
+				& .tbody-wrapper {
+					padding: 20px 10px;
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 108%;
+					color: #111;
+					& > p {
+						margin: 0;
+						text-wrap: nowrap;
+					}
+					& > span {
+						font-size: 12px;
+					}
+					& > a {
+						font-size: 12px;
+						color: #111;
+						text-decoration: underline;
+					}
+					&.checkBox {
+						& label {
+							display: flex;
+						}
+					}
+					&.location {
+					
+					}
+					&.type {
+					
+					}
+					&.area {
+					
+					}
+					&.condition {
+					
+					}
+					&.floor {
+					
+					}
+					&.photo {
+						& > picture img {
+							width: 60px;
+							height: 40px;
+							border-radius: 8px;
+							object-fit: cover;
+						}
+					}
+					&.price {
+						& p {
+							font-weight: 400;
+							font-size: 14px;
+							line-height: 107%;
+							color: #111;
+							text-align: left;
+							text-wrap: nowrap;
+							
+						}
+					}
+					&.contact {
+						max-width: 131px;
+						& > p {
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							overflow: hidden;
+						}
+					}
+					&.block-actions {
+						display: flex;
+						align-items: center;
+						& .block-actions-wrapper {
+							display: flex;
+							align-items: center;
+							& > div {
+								display: flex;
+								align-items: center;
+							}
+						}
+					}
 				}
-				&:last-child {
-					border-radius: 0 8px 8px 0;
-				}
-				& p {
-					margin: 0;
-				}
-			}
-		}
-	}
-	& .block-actions {
-		display: flex;
-		align-items: center;
-		& .block-actions-wrapper {
-			display: flex;
-			align-items: center;
-			& > div {
-				display: flex;
-				align-items: center;
 			}
 		}
 	}
@@ -98,6 +197,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 	flex-direction: row;
 	justify-content: space-between;
 	& div.dt-layout-row:nth-child(1) {
+		grid-gap: 12px;
+		padding: 8px;
 		background-color: #0062FF1A;
 		width: 50%;
 		order: 1;
@@ -110,9 +211,75 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 	}
 	& div.dt-layout-row:nth-child(3) {
 		background-color: #0062FF1A;
+		padding: 8px;
+		justify-content: flex-end;
+		grid-gap: 12px;
 		width: 50%;
 		order: 1;
 		margin: 0;
 		border-radius: 0 8px 8px 0;
+	}
+}
+.block-actions-wrapper {
+	display: flex;
+	align-items: center;
+	grid-gap: 4px;
+	& .menu-burger,
+	& .menu-info {
+		& .btn {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 32px;
+			height: 32px;
+			padding: 0;
+			background-color: transparent;
+			border: none;
+			&:hover {
+				outline: none;
+				border: none;
+				background-color: transparent;
+			}
+		}
+	}
+	& .bookmark {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		& input {
+			display: none;
+		}
+		& input:checked + span > .non-checked {
+			display: none;
+		}
+		& input:checked  + span > .on-checked {
+			display: block;
+		}
+		& .non-checked {
+			display: block;
+		}
+		& .on-checked {
+			display: none;
+		}
+	}
+}
+.contact {
+	padding: 8px 16px;
+	text-align: left;
+}
+.details-control {
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	&:hover {
+		outline: none;
+		border: none;
+		background-color: transparent;
 	}
 }

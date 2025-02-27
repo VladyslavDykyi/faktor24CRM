@@ -1,10 +1,4 @@
-@include font("Lato", "Lato-Thin", "100", "normal");
-@include font("Lato", "Lato-ThinItalic", "100", "italic");
-@include font("Lato", "Lato-Light", "300", "normal");
-@include font("Lato", "Lato-LightItalic", "300", "italic");
-@include font("Lato", "Lato-Regular", "400", "normal");
-@include font("Lato", "Lato-Italic", "400", "italic");
-@include font("Lato", "Lato-Bold", "700", "normal");
-@include font("Lato", "Lato-BoldItalic", "700", "italic");
-@include font("Lato", "Lato-Black", "900", "normal");
-@include font("Lato", "Lato-BlackItalic", "900", "italic");
+@include font("PTSans", "PTSans-Bold", "700", "normal");
+@include font("PTSans", "PTSans-BoldItalic", "700", "italic");
+@include font("PTSans", "PTSans-Italick", "400", "italic");
+@include font("PTSans", "PTSans-Regular", "400", "normal");
