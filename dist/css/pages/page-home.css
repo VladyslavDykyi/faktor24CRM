@@ -689,6 +689,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
           align-items: center;
 }
 
+#example tbody tr td .tbody-wrapper.block-actions .details-control {
+  margin-left: 22px;
+}
+
 #example_wrapper {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
