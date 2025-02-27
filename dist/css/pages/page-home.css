@@ -270,7 +270,7 @@ ul {
   width: 100%;
   height: 100vh;
   background-color: #04254E;
-  padding: 20px 0;
+  padding: 16px 0;
 }
 
 .sidebar-logo {
@@ -351,7 +351,7 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
 }
 
 .nav-list-link:hover {
@@ -377,7 +377,7 @@ ul {
 }
 
 .nav-list-icon {
-  padding: 8px;
+  padding: 6px;
   border-radius: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -427,7 +427,7 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 8px;
+  padding: 6px;
 }
 
 .nav-info-link:hover {
