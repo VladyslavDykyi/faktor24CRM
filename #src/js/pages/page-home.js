@@ -260,6 +260,25 @@
 	// 	});
 	// });
 	$(document).ready(function () {
+		// код який відповідає за відображення текст по кнопці еще #btn-show-text
+		$('#btn-show-text').on('click', function () {
+			const container = $(this).closest('.description-text');
+			const moreText = container.find('.more-text');
+			const mainText = container.contents().filter(function () {
+				return this.nodeType === 3;
+			});
+			
+			if (moreText.is(':visible')) {
+				moreText.hide();
+				mainText.show();
+				$(this).text('Ещё');
+			} else {
+				moreText.show();
+				mainText.hide();
+				$(this).text('Скрыть');
+			}
+		});
+		// код який відповідає за відображення текст по кнопці еще #btn-show-text
 		
 		const $cityInput = $('#city');
 		const $listCountry = $('#list-country');
