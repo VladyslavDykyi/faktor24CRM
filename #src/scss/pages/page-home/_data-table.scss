@@ -1,6 +1,10 @@
 .container-fluid {
-	padding-right: 40px;
+	padding-right: 20px;
 	padding-left: 20px;
+	@media screen and (max-width: 1280px) {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
 }
 
 .dt-container {
@@ -9,8 +13,8 @@
 }
 
 .dt-layout-row {
-	 display: flex;
-	 align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .dt-layout-row:first-of-type {
@@ -21,12 +25,15 @@
 div.dt-container div.dt-layout-row {
 	width: max-content;
 }
+
 div.dt-container div.dt-layout-row.dt-layout-table {
 	width: 100%;
 }
+
 div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-start {
 	margin-right: 0;
 }
+
 div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 	margin-left: 0;
 }
@@ -34,53 +41,76 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example {
 	border-bottom: none;
+	
+	& colgroup:first-of-type {
+		display: none;
+	}
+	
 	& thead {
 		& tr {
 			background-color: transparent;
+			
 			& th {
 				padding: 0;
 				border-bottom: none;
 				text-align: left;
+				
 				&:hover {
 					outline: none;
 				}
+				
 				& .thead-wrapper {
 					padding: 10px;
+					@media screen and (max-width: 1280px) {
+						padding: 7px 6px;
+					}
 					&.checkBox {
+						max-width: 50px;
+						
 						& label {
 							display: flex;
 						}
 					}
+					
 					&.location {
 					
 					}
+					
 					&.type {
 					
 					}
+					
 					&.area {
 					
 					}
+					
 					&.condition {
 					
 					}
+					
 					&.floor {
 					
 					}
+					
 					&.photo {
 					
 					}
+					
 					&.price {
 					
 					}
+					
 					&.contact {
 					
 					}
+					
 					&.block-actions {
 						display: flex;
 						align-items: center;
 						text-align: right;
 						justify-content: flex-end;
 						grid-gap: 20px;
+						
 						& .btn {
 							padding: 0;
 							border: none;
@@ -91,11 +121,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							justify-content: center;
 							background-color: transparent;
 							border-radius: 6px;
+							
 							&:hover {
 								background-color: #F6F8FB;
 							}
 						}
 					}
+					
 					& p {
 						font-weight: 700;
 						font-size: 14px;
@@ -107,58 +139,77 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			}
 		}
 	}
+	
 	& tbody {
 		border-radius: 8px;
+		
 		& tr {
-			&:first-child td:first-child  {
+			&:first-child td:first-child {
 				border-radius: 8px 0 0 8px;
 			}
+			
 			&:last-child td:last-child {
 				border-radius: 0 8px 8px 0;
 			}
+			
 			& td {
 				border: none;
 				border-bottom: 1px solid #EFEFEF;
 				background-color: #Fff;
 				padding: 0;
+				
 				& .tbody-wrapper {
-					padding: 20px 10px;
+					padding: 7px 10px;
 					font-weight: 400;
 					font-size: 14px;
 					line-height: 108%;
 					color: #111;
+					@media screen and (max-width: 1280px) {
+						padding: 7px 6px;
+					}
 					& > p {
 						margin: 0;
 						text-wrap: nowrap;
 					}
+					
 					& > span {
 						font-size: 12px;
 					}
+					
 					& > a {
 						font-size: 12px;
 						color: #111;
 						text-decoration: underline;
 					}
+					
 					&.checkBox {
+						max-width: 50px;
+						
 						& label {
 							display: flex;
 						}
 					}
+					
 					&.location {
 					
 					}
+					
 					&.type {
 					
 					}
+					
 					&.area {
 					
 					}
+					
 					&.condition {
 					
 					}
+					
 					&.floor {
 					
 					}
+					
 					&.photo {
 						& > picture img {
 							width: 60px;
@@ -167,6 +218,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							object-fit: cover;
 						}
 					}
+					
 					&.price {
 						& p {
 							font-weight: 400;
@@ -178,17 +230,21 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							
 						}
 					}
+					
 					&.contact {
 						max-width: 131px;
+						
 						& > p {
 							text-overflow: ellipsis;
 							white-space: nowrap;
 							overflow: hidden;
 						}
 					}
+					
 					&.block-actions {
 						display: flex;
 						align-items: center;
+						
 						& .mail-link {
 							margin-right: 20px;
 							display: flex;
@@ -200,18 +256,162 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							border: none;
 							background-color: transparent;
 							border-radius: 6px;
+							
 							&:hover {
 								background-color: #F6F8FB;
 							}
 						}
+						
 						& .block-actions-wrapper {
 							& > div {
 								display: flex;
 								align-items: center;
 							}
 						}
+						
 						& .details-control {
 							margin-left: 22px;
+						}
+					}
+				}
+				
+				& .tbody-dop-info {
+					padding: 16px 10px;
+					@media screen and (max-width: 1280px) {
+						padding: 8px 6px;
+					}
+					
+					& .info-main {
+						display: flex;
+						
+						&-left {
+							flex: 0 1 75.5%;
+							display: flex;
+							flex-direction: column;
+							justify-content: space-between;
+							&-wrapper {
+								display: flex;
+							}
+							
+							& .description {
+								flex: 1 2 65%;
+								padding-right: 10px;
+								
+								&-title {
+									font-weight: 700;
+									font-size: 16px;
+									line-height: normal;
+									color: #111;
+									margin-bottom: 15px;
+								}
+								
+								&-text {
+									font-weight: 400;
+									font-size: 14px;
+									line-height: normal;
+									color: #111;
+									margin-bottom: 15px;
+								}
+								
+								&-note {
+									font-weight: 700;
+									font-size: 14px;
+									line-height: normal;
+									color: #aaa;
+									margin-bottom: 13px;
+									
+									& span {
+										font-weight: 400;
+										color: #111;
+									}
+								}
+							}
+							
+							& .block-info {
+								flex: 1 2 35%;
+							}
+							
+							& .filter-tags {
+								width: 100%;
+							}
+						}
+						
+						&-right {
+							flex: 1 2 24.5%;
+							& .block-info {
+								flex: 1 2 275px;
+							}
+						}
+						
+						& .block-info {
+							width: 100%;
+							display: flex;
+							align-items: flex-start;
+							align-content: flex-start;
+							flex-wrap: wrap;
+							
+							& .info-title {
+								flex: 0 1 100%;
+								font-weight: 700;
+								font-size: 14px;
+								line-height: normal;
+								color: #aaa;
+								margin-bottom: 5px;
+							}
+							
+							& .info-avatar {
+								flex: 0 1 50px;
+								margin-right: 10px;
+								
+								& img {
+									width: 50px;
+									height: 50px;
+									object-fit: contain;
+								}
+							}
+							
+							& .info-contacts {
+								flex: 0 1 calc(100% - 60px);
+								display: flex;
+								flex-direction: column;
+								
+								&-name {
+									font-weight: 400;
+									font-size: 14px;
+									line-height: normal;
+									color: #111;
+									margin-bottom: 10px;
+								}
+								
+								&-tel {
+									font-weight: 700;
+									font-size: 14px;
+									line-height: normal;
+									color: #111;
+									margin-bottom: 10px;
+								}
+								
+								&-mail {
+									font-weight: 700;
+									font-size: 14px;
+									line-height: normal;
+									color: #111;
+									text-decoration: underline;
+								}
+							}
+						}
+					}
+					
+					& .info-footer {
+						display: flex;
+						align-items: center;
+						
+						&-data {
+							margin-bottom: 0;
+						}
+						
+						&-btn {
+						
 						}
 					}
 				}
@@ -219,10 +419,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		}
 	}
 }
+
 #example_wrapper {
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-between;
+	
 	& div.dt-layout-row:nth-child(1) {
 		grid-gap: 12px;
 		padding: 8px;
@@ -232,10 +434,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		margin: 0;
 		border-radius: 8px 0 0 8px;
 	}
+	
 	& div.dt-layout-row:nth-child(2) {
 		width: 100%;
 		margin: 0;
 	}
+	
 	& div.dt-layout-row:nth-child(3) {
 		background-color: transparent;
 		padding: 8px;
@@ -247,10 +451,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		border-radius: 0 8px 8px 0;
 	}
 }
+
 .block-actions-wrapper {
 	display: flex;
 	align-items: center;
 	grid-gap: 4px;
+	
 	& .menu-burger,
 	& .menu-info {
 		& .btn {
@@ -263,6 +469,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			width: 26px;
 			height: 26px;
 			border-radius: 6px;
+			
 			&:hover {
 				outline: none;
 				border: none;
@@ -270,6 +477,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			}
 		}
 	}
+	
 	& .bookmark {
 		display: flex;
 		align-items: center;
@@ -277,29 +485,37 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		width: 26px;
 		height: 26px;
 		border-radius: 6px;
+		
 		&:hover {
 			background-color: #F6F8FB;
 		}
+		
 		& input {
 			display: none;
 		}
+		
 		& span {
 			cursor: pointer;
 		}
+		
 		& input:checked + span .non-checked {
 			display: none;
 		}
-		& input:checked  + span .on-checked {
+		
+		& input:checked + span .on-checked {
 			display: block;
 		}
+		
 		& .non-checked {
 			display: block;
 		}
+		
 		& .on-checked {
 			display: none;
 		}
 	}
 }
+
 //.contact {
 //	padding: 8px 16px;
 //	text-align: left;
@@ -312,6 +528,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 	background-color: transparent;
 	border: none;
 	outline: none;
+	
 	&:hover {
 		outline: none;
 		border: none;

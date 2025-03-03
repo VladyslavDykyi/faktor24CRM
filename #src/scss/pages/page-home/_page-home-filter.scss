@@ -124,7 +124,9 @@
 			}
 		}
 		& .mega-select {
-			min-width: 440px;
+			min-width: 240px;
+			width: 100%;
+			max-width: 440px;
 			position: relative;
 			background-color: #FFFFFF;
 			border-radius: 6px;
@@ -228,7 +230,7 @@
 			grid-gap: 10px;
 			& .form-control {
 				max-width: 140px;
-				min-width: 140px;
+				min-width: 80px;
 			}
 			& .form-control {
 				width: 100%;

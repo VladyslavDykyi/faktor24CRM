@@ -1,8 +1,9 @@
 "use strict";
 (function () {
 	$('#example').DataTable({
-		searching: false,
+		"searching": false,
 		"ordering": false,
+		"processing": false,
 		});
 	
 	$(".js-example-responsive2").select2({

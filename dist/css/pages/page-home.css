@@ -453,7 +453,7 @@ ul {
 }
 
 .container-fluid {
-  padding-right: 40px;
+  padding-right: 20px;
   padding-left: 20px;
 }
 
@@ -504,6 +504,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   border-bottom: none;
 }
 
+#example colgroup:first-of-type {
+  display: none;
+}
+
 #example thead tr {
   background-color: transparent;
 }
@@ -520,6 +524,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example thead tr th .thead-wrapper {
   padding: 10px;
+}
+
+#example thead tr th .thead-wrapper.checkBox {
+  max-width: 50px;
 }
 
 #example thead tr th .thead-wrapper.checkBox label {
@@ -592,7 +600,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 #example tbody tr td .tbody-wrapper {
-  padding: 20px 10px;
+  padding: 7px 10px;
   font-weight: 400;
   font-size: 14px;
   line-height: 108%;
@@ -612,6 +620,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-size: 12px;
   color: #111;
   text-decoration: underline;
+}
+
+#example tbody tr td .tbody-wrapper.checkBox {
+  max-width: 50px;
 }
 
 #example tbody tr td .tbody-wrapper.checkBox label {
@@ -690,6 +702,185 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example tbody tr td .tbody-wrapper.block-actions .details-control {
   margin-left: 22px;
+}
+
+#example tbody tr td .tbody-dop-info {
+  padding: 16px 10px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 75.5%;
+          flex: 0 1 75.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .description {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 2 65%;
+          flex: 1 2 65%;
+  padding-right: 10px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .description-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: normal;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .description-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .description-note {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: normal;
+  color: #aaa;
+  margin-bottom: 13px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .description-note span {
+  font-weight: 400;
+  color: #111;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .block-info {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 2 35%;
+          flex: 1 2 35%;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .filter-tags {
+  width: 100%;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 2 24.5%;
+          flex: 1 2 24.5%;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-right .block-info {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 2 275px;
+          flex: 1 2 275px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-title {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 100%;
+          flex: 0 1 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: normal;
+  color: #aaa;
+  margin-bottom: 5px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-avatar {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 50px;
+          flex: 0 1 50px;
+  margin-right: 10px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-avatar img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-contacts {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 calc(100% - 60px);
+          flex: 0 1 calc(100% - 60px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-contacts-name {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-contacts-tel {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-contacts-mail {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
+  text-decoration: underline;
+}
+
+#example tbody tr td .tbody-dop-info .info-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#example tbody tr td .tbody-dop-info .info-footer-data {
+  margin-bottom: 0;
 }
 
 #example_wrapper {
@@ -994,7 +1185,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .filter-header .mega-select {
-  min-width: 440px;
+  min-width: 240px;
+  width: 100%;
+  max-width: 440px;
   position: relative;
   background-color: #FFFFFF;
   border-radius: 6px;
@@ -1152,7 +1345,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 .filter-header .header-price .form-control {
   max-width: 140px;
-  min-width: 140px;
+  min-width: 80px;
 }
 
 .filter-header .header-price .form-control {
@@ -1318,6 +1511,25 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   --bs-modal-width: 1040px;
   --bs-modal-padding: 47px 75px 46px;
   --bs-modal-bg: #EEF5FB;
+}
+
+@media screen and (max-width: 1280px) {
+  .container-fluid {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  #example thead tr th .thead-wrapper {
+    padding: 7px 6px;
+  }
+
+  #example tbody tr td .tbody-wrapper {
+    padding: 7px 6px;
+  }
+
+  #example tbody tr td .tbody-dop-info {
+    padding: 8px 6px;
+  }
 }
 
 @media screen and (max-width: 850px) {
