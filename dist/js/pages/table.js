@@ -3,13 +3,16 @@ $(document).ready(function () {
 		searching: false,
 		ordering: false,
 		processing: false,
+		pagingType: "simple_numbers",
+		language: {
+			url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/ru.json" // Підключення локалізації
+		},
 		columns: [
 			{
 				data: null,
 				orderable: false,
 				searchable: false,
 				render: function (data, type, row) {
-					// Додаємо кнопку з іконкою для деталей
 					return `
                       <div class="tbody-wrapper checkBox">
                           <label class="my-custom-input">
@@ -33,7 +36,6 @@ $(document).ready(function () {
 				orderable: false,
 				searchable: false,
 				render: function (data, type, row) {
-					// Додаємо кнопки для дій (бургер-меню, гео-кнопка, сортування)
 					return `
                      <div class="tbody-wrapper block-actions">
                         <a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -88,23 +90,14 @@ $(document).ready(function () {
 	
 	// Обробник кліку на кнопку "деталі" всередині таблиці
 	$('#example tbody').on('click', '.details-control', function () {
-		const button = $(this); // Отримуємо кнопку, на яку клікнули
-		const img = button.find('img'); // Знаходимо <img> всередині кнопки
-		
-		// Змінюємо іконку кнопки
+		const button = $(this);
+		const img = button.find('img');
 		toggleImage(img);
-		
-		// Отримуємо поточний рядок
 		const row = button.closest('tr');
-		
-		// Перевіряємо, чи вже додано додатковий рядок
 		const isExpanded = row.next().hasClass('dop-info-row');
-		
 		if (isExpanded) {
-			// Якщо рядок вже розгорнуто, видаляємо його
 			row.next().remove();
 		} else {
-			// Якщо рядок не розгорнуто, додаємо додатковий рядок
 			const dopInfoRow = `
                 <tr class="dop-info-row">
                     <td colspan="10" style="border-bottom: none;">
@@ -120,7 +113,7 @@ $(document).ready(function () {
                                                 <span class="more-text" style="display: none;">
                                                     Полное описание квартиры с деталями, которые скрыты по умолчанию.
                                                 </span>
-                                                <button class="btn" id="btn-show-text" type="button">Ещё</button>
+                                                <button class="btn btn-show-text" type="button">Ещё</button>
                                             </p>
                                             <p class="description-note">
                                                 <strong>Примечание для агентов:</strong>
@@ -173,26 +166,19 @@ $(document).ready(function () {
                     </td>
                 </tr>
             `;
-			
-			// Вставляємо додатковий рядок після поточного
 			row.after(dopInfoRow);
 		}
 	});
 	
 	// Обробник кліку на кнопку "btn-others"
 	$('#example tbody').on('click', '#btn-others', function () {
-		const button = $(this); // Отримуємо кнопку, на яку клікнули
-		const dopInfoRow = button.closest('.dop-info-row'); // Знаходимо батьківський рядок
-		const tbodyDopInfo = dopInfoRow.find('.tbody-dop-info'); // Знаходимо блок .tbody-dop-info
-		
-		// Перевіряємо, чи вже додано блок .table-for-others
+		const button = $(this);
+		const dopInfoRow = button.closest('.dop-info-row');
+		const tbodyDopInfo = dopInfoRow.find('.tbody-dop-info');
 		const isOthersTableAdded = tbodyDopInfo.next().hasClass('table-for-others');
-		
 		if (isOthersTableAdded) {
-			// Якщо блок вже додано, видаляємо його
 			tbodyDopInfo.next().remove();
 		} else {
-			// Якщо блок не додано, вставляємо його
 			const othersTable = `
                 <div class="table-for-others">
                     <table id="example2" style="width:98%;">
@@ -307,31 +293,167 @@ $(document).ready(function () {
                     </table>
                 </div>
             `;
-			
-			// Вставляємо блок .table-for-others після .tbody-dop-info
 			tbodyDopInfo.after(othersTable);
 		}
 	});
 	
 	// Обробник кліку на кнопку "close-btn-other"
 	$('#example tbody').on('click', '#close-btn-other', function () {
-		const button = $(this); // Отримуємо кнопку, на яку клікнули
-		const dopInfoRow = button.closest('.dop-info-row'); // Знаходимо батьківський рядок
-		const tbodyDopInfo = dopInfoRow.find('.tbody-dop-info'); // Знаходимо блок .tbody-dop-info
-		
-		// Видаляємо блок .table-for-others, якщо він існує
+		const button = $(this);
+		const dopInfoRow = button.closest('.dop-info-row');
+		const tbodyDopInfo = dopInfoRow.find('.tbody-dop-info');
 		const othersTable = tbodyDopInfo.next('.table-for-others');
 		if (othersTable.length) {
 			othersTable.remove();
 		}
 	});
 	
-	/**
-	 * Функція для зміни зображення між plus.svg та minus.svg.
-	 * @param {jQuery} img - Елемент <img>.
-	 */
+	// Обробник кліку на кнопку "details-control-dop"
+	$('#example tbody').on('click', '.details-control-dop', function () {
+		const button = $(this);
+		const img = button.find('img');
+		toggleImage(img);
+		const row = button.closest('tr');
+		const isExpanded = row.next().hasClass('dop-info-row-dop');
+		if (isExpanded) {
+			row.next().remove();
+		} else {
+			const dopInfoRow = `
+            <tr class="dop-info-row-dop">
+                <td colspan="9">
+                    <div class="tbody-dop-info">
+                        <div class="info-main">
+                            <div class="info-main-left">
+                                <div class="info-main-left-wrapper">
+                                    <div class="description">
+                                        <h2 class="description-title">Заголовок текст 1 к кв пл Толбухина срочно</h2>
+                                        <p class="description-text">
+                                            Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть
+                                            вся мебель и техника и еще описание
+                                            <span class="more-text" style="display: none;">
+                                                Полное описание квартиры с деталями, которые скрыты по умолчанию.
+                                            </span>
+                                            <button class="btn btn-show-text2"  type="button">Ещё</button>
+                                        </p>
+                                        <p class="description-note">
+                                            <strong>Примечание для агентов:</strong>
+                                            <span>Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть вся мебель и техника и еще описание</span>
+                                        </p>
+                                    </div>
+                                    <div class="block-info">
+                                        <h2 class="info-title">Собственник</h2>
+                                        <div class="info-avatar">
+                                            <img src="./img/icon/default-avatar-table.svg" alt="">
+                                        </div>
+                                        <div class="info-contacts">
+                                            <p class="info-contacts-name">Имя Фамилия</p>
+                                            <a href="tel:+381231257869" class="info-contacts-tel">+38 (123) 125 - 78 - 69</a>
+                                            <a href="mailto:nameemail@gmail.com" class="info-contacts-mail">nameemail@gmail.com</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-tags">
+                                    <div class="badge rounded-pill qwe1">Параметр из фильтра</div>
+                                    <div class="badge rounded-pill qwe2">Параметр из фильтра</div>
+                                    <div class="badge rounded-pill qwe2">Параметр из фильтра</div>
+                                </div>
+                            </div>
+                            <div class="info-main-right">
+                                <div class="block-info">
+                                    <h2 class="info-title">Агент</h2>
+                                    <div class="info-avatar">
+                                        <img src="./img/icon/default-avatar-table.svg" alt="">
+                                    </div>
+                                    <div class="info-contacts">
+                                        <p class="info-contacts-name">Длинное имя Добровольский</p>
+                                        <p class="info-contacts-company">Real Estate Name</p>
+                                        <a href="tel:+381231257869" class="info-contacts-tel">+38 (123) 125 - 78 - 69</a>
+                                        <a href="tel:+381231257869" class="info-contacts-tel">+38 (123) 125 - 78 - 69</a>
+                                        <a href="mailto:nameemail@gmail.com" class="info-contacts-mail">nameemail@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-footer">
+                            <p class="info-footer-data">ID: <span>1234567</span></p>
+                            <p class="info-footer-data">Добавлено: <span>01.02.2025</span></p>
+                            <p class="info-footer-data">Обновлено: <span>10.02.2025</span></p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        `;
+			row.after(dopInfoRow);
+		}
+	});
+	
+	// Обробник кліку на кнопку "btn-show-text"
+	$('#example tbody').on('click', '.btn-show-text', function () {
+		const button = $(this);
+		const container = button.closest('.description-text');
+		const moreText = container.find('.more-text');
+		const mainText = container.contents().filter(function () {
+			return this.nodeType === 3;
+		});
+		
+		if (moreText.is(':visible')) {
+			moreText.hide();
+			mainText.show();
+			button.text('Ещё');
+		} else {
+			moreText.show();
+			mainText.hide();
+			button.text('Скрыть');
+		}
+	});
+	// Обробник кліку на кнопку "btn-show-text"
+	$('#example tbody').on('click', '.btn-show-text2', function () {
+		const button = $(this);
+		const container = button.closest('.description-text');
+		const moreText = container.find('.more-text');
+		const mainText = container.contents().filter(function () {
+			return this.nodeType === 3;
+		});
+		
+		if (moreText.is(':visible')) {
+			moreText.hide();
+			mainText.show();
+			button.text('Ещё');
+		} else {
+			moreText.show();
+			mainText.hide();
+			button.text('Скрыть');
+		}
+	});
+	
+	
 	function toggleImage(img) {
 		const isPlus = img.attr('src').includes('plus.svg');
 		img.attr('src', img.attr('src').replace(isPlus ? 'plus.svg' : 'minus.svg', isPlus ? 'minus.svg' : 'plus.svg'));
 	}
+	$('thead .my-custom-input input').on('change', function () {
+		let isChecked = $(this).prop('checked');
+		$('tbody .my-custom-input input').prop('checked', isChecked);
+	});
+	
+	const initTooltips = function () {
+		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+	};
+	
+	// Викликаємо ініціалізацію Tooltip після створення таблиці
+	initTooltips();
+	
+	// Викликаємо ініціалізацію Tooltip після оновлення таблиці
+	table.on('draw', function () {
+		initTooltips();
+	});
+	
+	// Викликаємо ініціалізацію Tooltip після динамічного додавання рядків
+	$('#example tbody').on('click', '.details-control, .details-control-dop, #btn-others', function () {
+		setTimeout(() => {
+			initTooltips();
+		}, 0);
+	});
+	
 });
