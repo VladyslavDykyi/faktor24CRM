@@ -64,6 +64,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					@media screen and (max-width: 1280px) {
 						padding: 7px 6px;
 					}
+					
 					&.checkBox {
 						max-width: 50px;
 						
@@ -167,6 +168,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					@media screen and (max-width: 1280px) {
 						padding: 7px 6px;
 					}
+					
 					& > p {
 						margin: 0;
 						text-wrap: nowrap;
@@ -245,6 +247,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						display: flex;
 						align-items: center;
 						justify-content: flex-end;
+						
 						& .mail-link {
 							margin-right: 20px;
 							display: flex;
@@ -268,7 +271,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 								align-items: center;
 							}
 						}
-						
+						& .details-control-dop {
+							margin-left: 22px;
+						}
 						& .details-control {
 							margin-left: 22px;
 						}
@@ -289,6 +294,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							display: flex;
 							flex-direction: column;
 							justify-content: space-between;
+							
 							&-wrapper {
 								display: flex;
 							}
@@ -311,8 +317,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									line-height: normal;
 									color: #111;
 									padding-bottom: 15px;
+									margin-bottom: 0;
 									position: relative;
 								}
+								
 								& .btn {
 									margin-left: 2px;
 									font-size: 14px;
@@ -323,6 +331,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									color: #3585F5;
 									border-bottom: 1px dashed #3585F5;
 								}
+								
 								&-note {
 									font-weight: 700;
 									font-size: 14px;
@@ -339,6 +348,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							
 							& .block-info {
 								flex: 1 2 35%;
+								
+								& p.info-contacts {
+									&-name {
+										margin-bottom: 10px;
+									}
+								}
 							}
 							
 							& .filter-tags {
@@ -348,6 +363,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						
 						&-right {
 							flex: 1 2 24.5%;
+							
 							& .block-info {
 								flex: 1 2 275px;
 							}
@@ -390,7 +406,15 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									font-size: 14px;
 									line-height: normal;
 									color: #111;
-									margin-bottom: 10px;
+									margin: 0;
+								}
+								
+								&-company {
+									font-weight: 400;
+									line-height: normal;
+									color: #111;
+									font-size: 12px;
+									margin: 0 0 10px 0;
 								}
 								
 								&-tel {
@@ -424,8 +448,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							line-height: normal;
 							color: #111;
 							margin-right: 20px;
+							
 							& span {
 								font-weight: 400;
+								font-size: 12px;
 							}
 						}
 						
@@ -437,6 +463,40 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							background-color: transparent;
 							color: #3585F5;
 							border-bottom: 1px dashed #3585F5;
+						}
+					}
+				}
+				
+				& .table-for-others {
+					box-shadow: inset 0 0 0 1px #D5DBE3;
+					padding: 1px;
+					margin: 0 10px 20px;
+					border-radius: 8px;
+					
+					& tbody {
+						
+						& tr {
+							border: none;
+							
+							&:first-child td:first-child .tbody-wrapper {
+								border-radius: 8px 0 0 8px;
+							}
+							
+							&:last-child td:last-child .tbody-wrapper {
+								border-radius: 0 8px 8px 0;
+							}
+							
+							&:last-child td {
+								border-bottom: none;
+							}
+							
+							& td {
+								background-color: transparent;
+								border-bottom-color: #D5DBE3;
+								
+								& .tbody-wrapper {
+								}
+							}
 						}
 					}
 				}
@@ -541,10 +601,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 	}
 }
 
-//.contact {
-//	padding: 8px 16px;
-//	text-align: left;
-//}
+.details-control-dop,
 .details-control {
 	padding: 0;
 	display: flex;

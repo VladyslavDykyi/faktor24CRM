@@ -268,9 +268,8 @@ ul {
 .sidebar {
   max-width: 70px;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #04254E;
-  padding: 16px 0;
 }
 
 .sidebar-logo {
@@ -308,9 +307,14 @@ ul {
           justify-content: space-between;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  height: 100%;
+  height: 100vh;
   overflow-Y: auto;
   overflow-X: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  padding: 16px 0;
+  top: 0;
+  left: 0;
 }
 
 .nav::-webkit-scrollbar {
@@ -703,6 +707,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
           align-items: center;
 }
 
+#example tbody tr td .tbody-wrapper.block-actions .details-control-dop {
+  margin-left: 22px;
+}
+
 #example tbody tr td .tbody-wrapper.block-actions .details-control {
   margin-left: 22px;
 }
@@ -760,6 +768,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   line-height: normal;
   color: #111;
   padding-bottom: 15px;
+  margin-bottom: 0;
   position: relative;
 }
 
@@ -791,6 +800,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-flex: 1;
       -ms-flex: 1 2 35%;
           flex: 1 2 35%;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .block-info p.info-contacts-name {
+  margin-bottom: 10px;
 }
 
 #example tbody tr td .tbody-dop-info .info-main-left .filter-tags {
@@ -866,7 +879,15 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-size: 14px;
   line-height: normal;
   color: #111;
-  margin-bottom: 10px;
+  margin: 0;
+}
+
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-contacts-company {
+  font-weight: 400;
+  line-height: normal;
+  color: #111;
+  font-size: 12px;
+  margin: 0 0 10px 0;
 }
 
 #example tbody tr td .tbody-dop-info .info-main .block-info .info-contacts-tel {
@@ -906,6 +927,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example tbody tr td .tbody-dop-info .info-footer-data span {
   font-weight: 400;
+  font-size: 12px;
 }
 
 #example tbody tr td .tbody-dop-info .info-footer-btn {
@@ -916,6 +938,35 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   background-color: transparent;
   color: #3585F5;
   border-bottom: 1px dashed #3585F5;
+}
+
+#example tbody tr td .table-for-others {
+  -webkit-box-shadow: inset 0 0 0 1px #D5DBE3;
+          box-shadow: inset 0 0 0 1px #D5DBE3;
+  padding: 1px;
+  margin: 0 10px 20px;
+  border-radius: 8px;
+}
+
+#example tbody tr td .table-for-others tbody tr {
+  border: none;
+}
+
+#example tbody tr td .table-for-others tbody tr:first-child td:first-child .tbody-wrapper {
+  border-radius: 8px 0 0 8px;
+}
+
+#example tbody tr td .table-for-others tbody tr:last-child td:last-child .tbody-wrapper {
+  border-radius: 0 8px 8px 0;
+}
+
+#example tbody tr td .table-for-others tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#example tbody tr td .table-for-others tbody tr td {
+  background-color: transparent;
+  border-bottom-color: #D5DBE3;
 }
 
 #example_wrapper {
@@ -1041,6 +1092,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   display: none;
 }
 
+.details-control-dop,
 .details-control {
   padding: 0;
   display: -webkit-box;
@@ -1057,6 +1109,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   outline: none;
 }
 
+.details-control-dop:hover,
 .details-control:hover {
   outline: none;
   border: none;

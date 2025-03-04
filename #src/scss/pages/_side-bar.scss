@@ -1,9 +1,9 @@
 .sidebar {
 	max-width: 70px;
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
 	background-color: #04254E;
-	padding: 16px 0;
+	
 	&-logo {
 		display: flex;
 		align-items: center;
@@ -23,9 +23,13 @@
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: nowrap;
-	height: 100%;
+	height: 100vh;
 	overflow-Y: auto;
 	overflow-X: hidden;
+	position: sticky;
+	padding: 16px 0;
+	top: 0;
+	left: 0;
 	&::-webkit-scrollbar {
 		width: 2px;
 		padding-right: 8px;
