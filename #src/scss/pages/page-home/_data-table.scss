@@ -463,6 +463,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							background-color: transparent;
 							color: #3585F5;
 							border-bottom: 1px dashed #3585F5;
+							&.close-btn-other {
+								display: none;
+								&.active {
+									display: block;
+								}
+							}
 						}
 					}
 				}

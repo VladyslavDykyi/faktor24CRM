@@ -159,8 +159,8 @@ $(document).ready(function () {
                                 <p class="info-footer-data">Добавлено: <span>01.02.2025</span></p>
                                 <p class="info-footer-data">Обновлено: <span>10.02.2025</span></p>
                                 <p class="info-footer-data">Может подойти: <button class="info-footer-btn" type="button">30</button></p>
-                                <p class="info-footer-data">У других: <button class="info-footer-btn" id="btn-others" type="button">3</button></p>
-                                <button class="info-footer-btn ms-auto" id="close-btn-other" type="button">Свернуть</button>
+                                <p class="info-footer-data">У других: <button class="info-footer-btn btn-others" type="button">3</button></p>
+                                <button class="info-footer-btn ms-auto close-btn-other" type="button">Свернуть</button>
                             </div>
                         </div>
                     </td>
@@ -171,140 +171,148 @@ $(document).ready(function () {
 	});
 	
 	// Обробник кліку на кнопку "btn-others"
-	$('#example tbody').on('click', '#btn-others', function () {
+	$('#example tbody').on('click', '.btn-others', function () {
 		const button = $(this);
 		const dopInfoRow = button.closest('.dop-info-row');
 		const tbodyDopInfo = dopInfoRow.find('.tbody-dop-info');
 		const isOthersTableAdded = tbodyDopInfo.next().hasClass('table-for-others');
+		
+		// Знаходимо кнопку "info-footer-btn", яка знаходиться поряд з #btn-others
+		const infoFooterBtn = button.closest('.info-footer').find('.close-btn-other');
+		
 		if (isOthersTableAdded) {
 			tbodyDopInfo.next().remove();
+			infoFooterBtn.removeClass('active'); // Видаляємо клас "active", якщо таблиця видаляється
 		} else {
 			const othersTable = `
-                <div class="table-for-others">
-                    <table id="example2" style="width:98%;">
-                        <col width="25.652%" valign="middle">
-                        <col width="6.695%" valign="middle">
-                        <col width="7.478%" valign="middle">
-                        <col width="9.13%" valign="middle">
-                        <col width="5.217%" valign="middle">
-                        <col width="6.956%" valign="middle">
-                        <col width="6.782%" valign="middle">
-                        <col width="14.525%" valign="middle">
-                        <col width="17.565%" valign="middle">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="tbody-wrapper location">
-                                        <p>Южная Пальмира</p>
-                                        <p>Генуэзская/Посмитного</p>
-                                        <span>Аркадия, Одесса, Одесская, Украина</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper type">
-                                        <p>2к</p>
-                                        <span>Квартира</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper area">
-                                        <p>60/40/15</p>
-                                        <span>5сот</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper condition">
-                                        <p>С ремонтом</p>
-                                        <p>Новострой</p>
-                                        <span> Монолит</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper floor">
-                                        <p>4/25</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper photo">
-                                        <img src="./img/image.png" alt="">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper price">
-                                        <p>85000</p>
-                                        <span>850/м <sup>2</sup></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper contact">
-                                        <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Имя Фамилия">Имя Фамилия</p>
-                                        <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Real Estate Name">Real Estate Name</p>
-                                        <a href="tel:380968796542">+380968796542</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="tbody-wrapper block-actions">
-                                        <a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Написать">
-                                            <img src="./img/icon/mail.svg" alt="">
-                                        </a>
-                                        <div class="block-actions-wrapper">
-                                            <label class="bookmark">
-                                                <input type="checkbox">
-                                                <span>
-                                                    <img class="non-checked" src="./img/icon/bookmark.svg" alt="">
-                                                    <img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
-                                                </span>
-                                            </label>
-                                            <div class="menu-burger">
-                                                <div class="dropdown">
-                                                    <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <img src="./img/icon/burger-blue.svg" alt="">
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#">Обновить</a></li>
-                                                        <li><a class="dropdown-item" href="#">Редактировать</a></li>
-                                                        <li><a class="dropdown-item" href="#">Удалить</a></li>
-                                                        <li><a class="dropdown-item" href="#">Отложить</a></li>
-                                                        <li><a class="dropdown-item" href="#">Передать</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="menu-info">
-                                                <div class="dropdown">
-                                                    <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <img src="./img/icon/copylinked.svg" alt="">
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#"><span>На сайте</span></a></li>
-                                                        <li><a class="dropdown-item" href="#"><span>На Rem.ua</span></a></li>
-                                                        <li><a class="dropdown-item" href="#"><span>Видео Youtube</span></a></li>
-                                                        <li><a class="dropdown-item" href="#"><span>На карте</span></a></li>
-                                                    </ul>
-                                                </div>
+            <div class="table-for-others">
+                <table id="example2" style="width:98%;">
+                    <col width="25.652%" valign="middle">
+                    <col width="6.695%" valign="middle">
+                    <col width="7.478%" valign="middle">
+                    <col width="9.13%" valign="middle">
+                    <col width="5.217%" valign="middle">
+                    <col width="6.956%" valign="middle">
+                    <col width="6.782%" valign="middle">
+                    <col width="14.525%" valign="middle">
+                    <col width="17.565%" valign="middle">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="tbody-wrapper location">
+                                    <p>Южная Пальмира</p>
+                                    <p>Генуэзская/Посмитного</p>
+                                    <span>Аркадия, Одесса, Одесская, Украина</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper type">
+                                    <p>2к</p>
+                                    <span>Квартира</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper area">
+                                    <p>60/40/15</p>
+                                    <span>5сот</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper condition">
+                                    <p>С ремонтом</p>
+                                    <p>Новострой</p>
+                                    <span> Монолит</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper floor">
+                                    <p>4/25</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper photo">
+                                    <img src="./img/image.png" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper price">
+                                    <p>85000</p>
+                                    <span>850/м <sup>2</sup></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper contact">
+                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Имя Фамилия">Имя Фамилия</p>
+                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Real Estate Name">Real Estate Name</p>
+                                    <a href="tel:380968796542">+380968796542</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper block-actions">
+                                    <a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Написать">
+                                        <img src="./img/icon/mail.svg" alt="">
+                                    </a>
+                                    <div class="block-actions-wrapper">
+                                        <label class="bookmark">
+                                            <input type="checkbox">
+                                            <span>
+                                                <img class="non-checked" src="./img/icon/bookmark.svg" alt="">
+                                                <img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
+                                            </span>
+                                        </label>
+                                        <div class="menu-burger">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="./img/icon/burger-blue.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Обновить</a></li>
+                                                    <li><a class="dropdown-item" href="#">Редактировать</a></li>
+                                                    <li><a class="dropdown-item" href="#">Удалить</a></li>
+                                                    <li><a class="dropdown-item" href="#">Отложить</a></li>
+                                                    <li><a class="dropdown-item" href="#">Передать</a></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <button type="button" class="details-control-dop">
-                                            <img src="./img/icon/plus.svg" alt="">
-                                        </button>
+                                        <div class="menu-info">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="./img/icon/copylinked.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><span>На сайте</span></a></li>
+                                                    <li><a class="dropdown-item" href="#"><span>На Rem.ua</span></a></li>
+                                                    <li><a class="dropdown-item" href="#"><span>Видео Youtube</span></a></li>
+                                                    <li><a class="dropdown-item" href="#"><span>На карте</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            `;
+                                    <button type="button" class="details-control-dop">
+                                        <img src="./img/icon/plus.svg" alt="">
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
 			tbodyDopInfo.after(othersTable);
+			infoFooterBtn.addClass('active'); // Додаємо клас "active", якщо таблиця додається
 		}
 	});
 	
 	// Обробник кліку на кнопку "close-btn-other"
-	$('#example tbody').on('click', '#close-btn-other', function () {
+	$('#example tbody').on('click', '.close-btn-other', function () {
 		const button = $(this);
 		const dopInfoRow = button.closest('.dop-info-row');
 		const tbodyDopInfo = dopInfoRow.find('.tbody-dop-info');
 		const othersTable = tbodyDopInfo.next('.table-for-others');
+		
 		if (othersTable.length) {
 			othersTable.remove();
+			button.removeClass('active');
 		}
 	});
 	
