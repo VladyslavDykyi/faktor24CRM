@@ -861,6 +861,14 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
      object-fit: contain;
 }
 
+#example tbody tr td .tbody-dop-info .info-main .block-info .info-description {
+  font-size: 14px;
+  line-height: normal;
+  font-weight: 400;
+  color: #111;
+  margin: 0;
+}
+
 #example tbody tr td .tbody-dop-info .info-main .block-info .info-contacts {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 calc(100% - 60px);
@@ -904,6 +912,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   line-height: normal;
   color: #111;
   text-decoration: underline;
+  margin-bottom: 10px;
 }
 
 #example tbody tr td .tbody-dop-info .info-footer {

@@ -130,6 +130,9 @@ $(document).ready(function () {
                                                 <a href="tel:+381231257869" class="info-contacts-tel">+38 (123) 125 - 78 - 69</a>
                                                 <a href="mailto:nameemail@gmail.com" class="info-contacts-mail">nameemail@gmail.com</a>
                                             </div>
+                                            <div class="info-description">
+                                            	<p>Покупает тому-то, продает свою там-то, звонить тогда-то текст личной заметки</p>
+											</div>
                                         </div>
                                     </div>
                                     <div class="filter-tags">
@@ -143,6 +146,7 @@ $(document).ready(function () {
                                         <h2 class="info-title">Агент</h2>
                                         <div class="info-avatar">
                                             <img src="./img/icon/default-avatar-table.svg" alt="">
+                                            <img src="./img/icon/company.svg" alt="">
                                         </div>
                                         <div class="info-contacts">
                                             <p class="info-contacts-name">Длинное имя Добровольский</p>
@@ -358,6 +362,9 @@ $(document).ready(function () {
                                             <a href="tel:+381231257869" class="info-contacts-tel">+38 (123) 125 - 78 - 69</a>
                                             <a href="mailto:nameemail@gmail.com" class="info-contacts-mail">nameemail@gmail.com</a>
                                         </div>
+                                        <div class="info-description">
+                                            <p>Покупает тому-то, продает свою там-то, звонить тогда-то текст личной заметки</p>
+										</div>
                                     </div>
                                 </div>
                                 <div class="filter-tags">
@@ -371,6 +378,7 @@ $(document).ready(function () {
                                     <h2 class="info-title">Агент</h2>
                                     <div class="info-avatar">
                                         <img src="./img/icon/default-avatar-table.svg" alt="">
+                                         <img src="./img/icon/company.svg" alt="">
                                     </div>
                                     <div class="info-contacts">
                                         <p class="info-contacts-name">Длинное имя Добровольский</p>

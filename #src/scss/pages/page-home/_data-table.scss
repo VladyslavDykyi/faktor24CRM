@@ -395,7 +395,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									object-fit: contain;
 								}
 							}
-							
+							& .info-description {
+								font-size: 14px;
+								line-height: normal;
+								font-weight: 400;
+								color: #111;
+								margin: 0;
+							}
 							& .info-contacts {
 								flex: 0 1 calc(100% - 60px);
 								display: flex;
@@ -431,6 +437,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									line-height: normal;
 									color: #111;
 									text-decoration: underline;
+									margin-bottom: 10px;
 								}
 							}
 						}
