@@ -100,6 +100,7 @@
 						line-height: normal;
 						font-size: 18px;
 						color: #111;
+						cursor: auto;
 					}
 				}
 				& .my-custom-input {
@@ -132,6 +133,10 @@
 					justify-content: space-between;
 					align-items: center;
 					border: none;
+					& span {
+						display: flex;
+						flex-direction: column;
+					}
 					&:hover {
 						background: #f6f8fb;
 					}
@@ -141,6 +146,12 @@
 				display: none;
 				position: absolute;
 				z-index: 5;
+				background-color: #fff;
+			}
+			& #district {
+				display: none;
+				position: absolute;
+				z-index: 15;
 				background-color: #fff;
 			}
 			& #city {
