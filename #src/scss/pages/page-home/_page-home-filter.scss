@@ -5,132 +5,28 @@
 		grid-gap: 20px;
 		padding-bottom: 10px;
 		
-		& .drop-menu {
-			position: absolute;
-			z-index: 10000;
-			width: max-content;
-			display: flex;
-			align-items: flex-start;
-			& .list-group {
-				max-height: 240px;
-				overflow-y: auto;
-				border-radius: 8px;
-				background-color: #FFFFFF;
-				box-shadow: 0 16px 32px 0 transparent, 0 0 2px 0 transparent;
-				&::-webkit-scrollbar {
-					width: 2px;
-					padding-right: 8px;
-				}
-				&::-webkit-scrollbar-track {
-					background-color: #FFFFFF;
-					border-radius: 8px;
-				}
-				&::-webkit-scrollbar-thumb {
-					border-radius: 6px;
-					background-color: #C2CDD8;
-				}
-				
-				&-item {
-					padding: 0;
-					border: none;
-					display: flex;
-				}
-				& label {
-					border: none;
-					display: block;
-					
-					& input[type="radio"] {
-						display: none;
-						& + span:before {
-							content: "";
-							position: absolute;
-							top: 14px;
-							left: 14px;
-							width: 24px;
-							height: 24px;
-							background-color: #FFFFFF;
-							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12ZM4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12Z' fill='%23C2CDD8'/%3e%3c/svg%3e");
-							background-repeat: no-repeat;
-						}
-						&:checked + span:after {
-							content: "";
-							position: absolute;
-							top: 14px;
-							left: 14px;
-							border-radius: 50%;
-							width: 24px;
-							height: 24px;
-							background-color: #C2CDD8;
-							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 12C2 6.47715 6.47715 2 12 2C14.6522 2 17.1957 3.05357 19.0711 4.92893C20.9464 6.8043 22 9.34784 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM4 12C4 16.4183 7.58172 20 12 20C14.1217 20 16.1566 19.1571 17.6569 17.6569C19.1571 16.1566 20 14.1217 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z' fill='white'/%3e%3cpath d='M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7Z' fill='white'/%3e%3c/svg%3e");
-							background-repeat: no-repeat;
-						}
-						&:checked + span {
-							color: #FFFFFF;
-							background-color: #0062FF !important;
-							&:after {
-								background-color: #0062FF;
-							}
-							&:before {
-								border-color: #FFFFFF;
-								background-color: #0062FF;
-							}
-						}
-					}
-					& input[type="checkbox"] {
-						display: none;
-						& + span:before {
-							content: "";
-							position: absolute;
-							top: 14px;
-							left: 14px;
-							width: 24px;
-							height: 24px;
-							background-color: #FFFFFF;
-							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21ZM5 6C5 5.44772 5.44772 5 6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6Z' fill='%23C2CDD8'/%3e%3c/svg%3e");
-							background-repeat: no-repeat;
-						}
-						&:checked + span:after {
-							content: "";
-							position: absolute;
-							top: 14px;
-							left: 14px;
-							border-radius: 50%;
-							width: 24px;
-							height: 24px;
-							background-color: #C2CDD8;
-							background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6C3 4.34315 4.34315 3 6 3ZM11.73 15.61L16.3 9.61V9.58C16.5179 9.29419 16.5668 8.91382 16.4283 8.58218C16.2897 8.25054 15.9848 8.01801 15.6283 7.97218C15.2718 7.92635 14.9179 8.07419 14.7 8.36L10.92 13.36L9.29 11.28C9.07028 10.9978 8.71668 10.8542 8.36239 10.9033C8.00811 10.9525 7.70696 11.1869 7.57239 11.5183C7.43783 11.8497 7.49028 12.2278 7.71 12.51L10.15 15.62C10.3408 15.8615 10.6322 16.0017 10.94 16C11.2495 15.9993 11.5412 15.8552 11.73 15.61Z' fill='%230062FF'/%3e%3c/svg%3e ");
-							background-repeat: no-repeat;
-						}
-						&:checked + span {
-							color: #334553;
-							background-color: #ffffff !important;
-							&:after {
-								background-color: #ffffff;
-							}
-							&:before {
-								border-color: #FFFFFF;
-								background-color: #ffffff;
-							}
-						}
-					}
-					& span {
-						position: relative;
-						color: #242424;
-						width: 100%;
-						display: block;
-						padding: 12px 12px 12px 44px;
-					}
-				}
-			}
-		}
+		
 		& .mega-select {
-			min-width: 240px;
+			min-width: 200px;
 			width: 100%;
 			max-width: 440px;
 			position: relative;
-			background-color: #FFFFFF;
+			background-color: #FFffff;
 			border-radius: 6px;
-			& .city {
+			&.active .drop-menu {
+				display: flex;
+				border-radius: 0 0 6px 6px;
+				& #country {
+					display: block;
+				}
+			}
+			&.active .input-search {
+				border-radius: 6px 6px 0 0;
+			}
+			& .drop-menu-wrapper {
+				width: 100%;
+			}
+			& .input-search {
 				display: block;
 				padding-left: 28px;
 				position: relative;
@@ -142,6 +38,7 @@
 				border-radius: 6px;
 				--bs-body-bg: #FFFFFF;
 				& input {
+					width: 100%;
 					border-radius: 0 8px 8px 0;
 					border: none;
 					font-weight: 700;
@@ -183,39 +80,95 @@
 					height: 20px;
 				}
 			}
+			& .drop-menu {
+				position: absolute;
+				z-index: 10000;
+				width: 100%;
+				display: none;
+				align-items: flex-start;
+				background-color: #FFffff;
+				border-top: 1px solid #EFEFEF;
+				&-list {
+					width: 100%;
+					margin-bottom: 16px;
+				}
+				&-item {
+					& .title {
+						padding: 6px 10px 6px 28px;
+						margin: 0;
+						font-weight: 700;
+						line-height: normal;
+						font-size: 18px;
+						color: #111;
+					}
+				}
+				& .my-custom-input {
+					padding: 6px 10px 6px 28px;
+					width: 100%;
+					background-color: transparent;
+					font-weight: 400;
+					line-height: normal;
+					font-size: 14px;
+					color: #111;
+					display: flex;
+					justify-content: flex-start;
+					grid-gap: 10px;
+					align-items: center;
+					&:hover {
+						background: #f6f8fb;
+					}
+				}
+				&-btn {
+					padding: 6px 10px 6px 28px;
+					margin: 0;
+					width: 100%;
+					background-color: transparent;
+					font-weight: 400;
+					line-height: normal;
+					font-size: 14px;
+					color: #111;
+					text-align: left;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					border: none;
+					&:hover {
+						background: #f6f8fb;
+					}
+				}
+			}
+			& #country {
+				display: none;
+				position: absolute;
+				z-index: 5;
+				background-color: #fff;
+			}
 			& #city {
-				width: 100%;
-			}
-			& .list-group {
 				display: none;
-				list-style: none;
-				border: none;
-				border-radius: 8px;
-				max-height: 200px;
-				overflow-y: auto;
-			}
-			&  #list-country {
-				display: none;
-			}
-			& .list-group-item {
-				border-bottom: 1px solid #eee;
-			}
-			& .list-group-item:last-child {
-				border-bottom: none;
-			}
-			& .form-check-input {
-				display: none;
-			}
-			& .form-check-label {
-				width: 100%;
-				cursor: pointer;
-			}
-			& .list-group-item:hover {
-				background-color: #f8f9fa;
-			}
-			&  .form-check-input:checked + .form-check-label {
-				background-color: #e9ecef;
-				font-weight: bold;
+				position: absolute;
+				z-index: 10;
+				background-color: #fff;
+				& .title button {
+					justify-content: flex-start;
+					grid-gap: 12px;
+					padding-left: 10px;
+				}
+				& .btn-take {
+					padding: 6px 10px 6px 28px;
+					margin: 0;
+					width: 100%;
+					background-color: transparent;
+					text-align: left;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					border: none;
+					font-weight: 700;
+					font-size: 14px;
+					line-height: normal;
+					color: #3585f5;
+					text-decoration: underline;
+				}
 			}
 		}
 		& .js-example-responsive2 + .select2-container {

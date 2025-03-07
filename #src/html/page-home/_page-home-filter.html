@@ -1,146 +1,59 @@
 <div class="filter">
 	<div class="filter-header">
 		<div class="mega-select">
-			<label for="city" class="city">
-				<input class="form-control" type="text" id="city" autocomplete="off" placeholder="Введите название">
+			<label for="input-search" class="input-search">
+				<input class="form-control" type="text" id="input-search" autocomplete="off" placeholder="Введите название">
 			</label>
 			<div class="drop-menu">
-				<ul class="list-group" id="list-country">
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio0">
-							<input class="form-check-input me-1" type="radio" name="listGroupRadio" value=""
-								   id="firstRadio0" checked>
-							<span>Україна</span>
-						</label>
-					</li>
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio1">
-							<input class="form-check-input me-1" type="radio" name="listGroupRadio" value=""
-								   id="firstRadio1" checked>
-							<span>Україна</span>
-						</label>
-					</li>
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio2">
-							<input class="form-check-input me-1" type="radio" name="listGroupRadio" value=""
-								   id="firstRadio2" checked>
-							<span>Україна</span>
-						</label>
-					</li>
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio3">
-							<input class="form-check-input me-1" type="radio" name="listGroupRadio" value=""
-								   id="firstRadio3" checked>
-							<span>Україна</span>
-						</label>
-					</li>
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio4">
-							<input class="form-check-input me-1" type="radio" name="listGroupRadio" value=""
-								   id="firstRadio4" checked>
-							<span>Україна</span>
-						</label>
-					</li>
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio5">
-							<input class="form-check-input me-1" type="radio" name="listGroupRadio" value=""
-								   id="firstRadio5" checked>
-							<span>Україна</span>
-						</label>
-					</li>
-				</ul>
-				<ul class="list-group" id="list-oblast">
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio11">
-							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio11">
-							<span>область 1</span>
-						</label>
-					</li>
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio22">
-							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio22">
-							<span>область 2</span>
-						</label>
-					</li>
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstRadio33">
-							<input class="form-check-input me-1" type="radio" name="oblast" value="" id="firstRadio33">
-							<span>область 3</span>
-						</label>
-					</li>
-				</ul>
-				<ul class="list-group" id="list-city">
-					<li class="list-group-item">
-						<label class="form-check-label" for="firstCheckbox1">
-							<input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox1">
-							<span>
-								Одесса
-							</span>
-						</label>
-					</li>
-					<li class="list-group-item"><label class="form-check-label" for="secondCheckbox2">
-						<input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox2">
-						<span>
-							Город 1
-						</span>
-					</label>
-					</li>
-					<li class="list-group-item"><label class="form-check-label" for="thirdCheckbox3">
-						<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox3">
-						<span>
-							Город 2
-						</span>
-					</label>
-					</li>
-				</ul>
-				
-				<div id="list-street">
-					<ul class="list-group">
-						<li class="list-group-item">
-							<label class="form-check-label" for="firstCheckbox11">
-								<input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox11">
-								<span>
-								Микрорайон 1
-						    </span>
-							</label>
+				<div class="drop-menu-wrapper" id="country">
+					<ul class="drop-menu-list">
+						<li class="drop-menu-item">
+							<h2 class="title" type="button">
+								Страна
+							</h2>
 						</li>
-						<li class="list-group-item">
-							<label class="form-check-label" for="secondCheckbox22">
-								<input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox22">
-								<span>
-								Микрорайон 2
-							</span>
-							</label>
+						<li class="drop-menu-item">
+							<button class="drop-menu-btn" type="button">
+								Страна 1
+								<svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M0.201142 10.1186C0.468414 10.3881 0.899323 10.3881 1.1666 10.1186L5.69932 5.54812C5.91205 5.33362 5.91205 4.98712 5.69932 4.77262L1.1666 0.202125C0.899323 -0.067375 0.468414 -0.067375 0.201142 0.202125C-0.066131 0.471625 -0.066131 0.906125 0.201142 1.17562L4.15023 5.16312L0.195687 9.15062C-0.0661311 9.41462 -0.066131 9.85462 0.201142 10.1186Z" fill="#3585F5" />
+								</svg>
+							</button>
 						</li>
-						<li class="list-group-item">
-							<label class="form-check-label" for="thirdCheckbox11">
-								<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox11">
-								<span>
-								Микрорайон 3
-							</span>
-							</label>
-						</li>
-						<li class="list-group-item">
-							<label class="form-check-label" for="thirdCheckbox22">
-								<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox22">
-								<span>
-								Микрорайон 4
-							</span>
-							</label>
-						</li>
-						<li class="list-group-item">
-							<label class="form-check-label" for="thirdCheckbox33">
-								<input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox33">
-								<span>
-								Микрорайон 5
-							</span>
-							</label>
+						<li class="drop-menu-item">
+							<button class="drop-menu-btn" type="button">
+								Страна 2
+								<svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M0.201142 10.1186C0.468414 10.3881 0.899323 10.3881 1.1666 10.1186L5.69932 5.54812C5.91205 5.33362 5.91205 4.98712 5.69932 4.77262L1.1666 0.202125C0.899323 -0.067375 0.468414 -0.067375 0.201142 0.202125C-0.066131 0.471625 -0.066131 0.906125 0.201142 1.17562L4.15023 5.16312L0.195687 9.15062C-0.0661311 9.41462 -0.066131 9.85462 0.201142 10.1186Z" fill="#3585F5" />
+								</svg>
+							</button>
 						</li>
 					</ul>
-					<button class="btn btn-primary btn-menu-drop" type="button">
-						Подтвердить
-					</button>
 				</div>
+				<form class="drop-menu-wrapper" action="#" id="city">
+					<ul class="drop-menu-list">
+						<li class="drop-menu-item title">
+							<button class="drop-menu-btn" type="button">
+								<svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M5.64944 10.1186C5.38217 10.3881 4.95126 10.3881 4.68399 10.1186L0.151263 5.54812C-0.0614638 5.33362 -0.0614638 4.98712 0.151263 4.77262L4.68399 0.202125C4.95126 -0.067375 5.38217 -0.067375 5.64944 0.202125C5.91672 0.471625 5.91672 0.906125 5.64944 1.17562L1.70035 5.16312L5.6549 9.15062C5.91672 9.41462 5.91672 9.85462 5.64944 10.1186Z" fill="#3585F5" />
+								</svg>
+								Город
+							</button>
+						</li>
+						<li class="drop-menu-item">
+							<label class="my-custom-input">
+								<input type="checkbox">
+								<span></span>
+								Город 3
+							</label>
+						</li>
+						<li class="drop-menu-item">
+							<button class="btn-take" type="button">
+								Выбрать
+							</button>
+						</li>
+					</ul>
+				</form>
 			</div>
 		</div>
 		<label for="type">

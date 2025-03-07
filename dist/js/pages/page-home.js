@@ -10,63 +10,39 @@
 		placeholder: 'Валюта',
 		minimumResultsForSearch: -1,
 	});
-	
 	$(document).ready(function () {
-		const $cityInput = $('#city');
-		const $listCountry = $('#list-country');
-		const $listOblast = $('#list-oblast');
-		const $listCity = $('#list-city');
-		const $listStreet = $('#list-street');
-		const $dropMenu = $('.drop-menu');
+		const megaSelect = $('.mega-select');
+		const inputSearch = $('#input-search');
+		const dropMenu = $('.drop-menu');
+		const cityList = $('#city');
+		const countryList = $('#country');
 		
-		function hideAllLists() {
-			$listCountry.hide();
-			$listOblast.hide();
-			$listCity.hide();
-			$listStreet.hide();
-		}
+		// Обробник події для input-search
+		inputSearch.on('focus input', function () {
+			megaSelect.addClass('active'); // Додаємо клас active до mega-select
+		});
 		
-		$cityInput.on('input', function () {
-			if ($cityInput.val().trim() !== '') {
-				$listCountry.show();
-				$listOblast.hide();
-				$listCity.hide();
-				$listStreet.hide();
-			} else {
-				hideAllLists();
+		// Обробник події для drop-menu-btn
+		$('.drop-menu-btn').on('click', function () {
+			const target = $(this).closest('.drop-menu-wrapper').attr('id'); // Отримуємо id списку (city або country)
+			console.log(target)
+			// Переключаємо видимість списків
+			if (target === 'city') {
+				cityList.css('display', 'none');
+				countryList.css('display', 'block');
+			} else if (target === 'country') {
+				countryList.css('display', 'none');
+				cityList.css('display', 'block');
 			}
 		});
 		
-		$listCountry.find('input[type="radio"]').on('change', function () {
-			if ($(this).is(':checked')) {
-				$listOblast.show();
-				$listCity.hide();
-				$listStreet.hide();
-			}
-		});
-		
-		$listOblast.find('input[type="radio"]').on('change', function () {
-			if ($(this).is(':checked')) {
-				$listCity.show();
-				$listStreet.hide();
-			}
-		});
-		
-		$listCity.find('input[type="checkbox"]').on('change', function () {
-			if ($(this).is(':checked')) {
-				$listStreet.show();
-			}
-		});
-		
+		// Закриваємо випадаюче меню при кліку поза ним
 		$(document).on('click', function (event) {
-			if (!$(event.target).closest($dropMenu).length && !$(event.target).is($cityInput)) {
-				hideAllLists();
+			if (!$(event.target).closest('.mega-select').length) {
+				megaSelect.removeClass('active'); // Видаляємо клас active
+				cityList.css('display', 'none'); // Приховуємо city
+				countryList.css('display', 'none'); // Приховуємо country
 			}
-		});
-		
-		$dropMenu.on('click', function (event) {
-			event.stopPropagation();
 		});
 	});
-	
 })();
