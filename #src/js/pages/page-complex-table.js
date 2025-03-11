@@ -84,6 +84,14 @@ $(document).ready(function () {
 		]
 	});
 	
+	table.on('draw', function() {
+		// Отримуємо кількість записів, які відображаються
+		const recordsDisplay = table.page.info().recordsDisplay;
+		
+		// Змінюємо текст елемента, обгортаючи кількість записів у тег <b>
+		$('#example_info').html('Количество комплексов: <b>' + recordsDisplay + '</b>');
+	});
+	
 	// Обробник кліку на кнопку "деталі" всередині таблиці
 	$('#example tbody').on('click', '.details-control', function () {
 		const button = $(this);
