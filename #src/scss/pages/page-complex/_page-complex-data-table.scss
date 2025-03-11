@@ -178,7 +178,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						font-size: 12px;
 					}
 					
-					& a {
+					& div > a {
 						font-size: 12px;
 						color: #111;
 						text-decoration: underline;
@@ -285,6 +285,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 				
 				& .tbody-dop-info {
 					padding: 16px 10px;
+					background-color: #F6F8FB;
 					@media screen and (max-width: 1280px) {
 						padding: 8px 6px;
 					}
@@ -293,7 +294,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						display: flex;
 						
 						&-left {
-							flex: 0 1 75.5%;
+							flex: 0 1 100%;
 							display: flex;
 							flex-direction: column;
 							justify-content: space-between;
@@ -303,18 +304,11 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							}
 							
 							& .description {
-								flex: 1 2 65%;
-								padding-right: 10px;
-								
-								&-title {
-									font-weight: 700;
-									font-size: 16px;
-									line-height: normal;
-									color: #111;
-									margin-bottom: 15px;
-								}
-								
+								flex: 1 2 100%;
+								display: flex;
+								grid-gap: 20px;
 								&-text {
+									flex: 1 2 50%;
 									font-weight: 400;
 									font-size: 14px;
 									line-height: normal;
@@ -322,6 +316,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									padding-bottom: 15px;
 									margin-bottom: 0;
 									position: relative;
+									& strong {
+										font-weight: 700;
+										color: #aaa;
+									}
 								}
 								
 								& .btn {
@@ -336,6 +334,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 								}
 								
 								&-note {
+									flex: 1 2 50%;
 									font-weight: 700;
 									font-size: 14px;
 									line-height: normal;
@@ -348,106 +347,14 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									}
 								}
 							}
-							
-							& .block-info {
-								flex: 1 2 35%;
-								
-								& p.info-contacts {
-									&-name {
-										margin-bottom: 10px;
-									}
-								}
-							}
-							
 							& .filter-tags {
 								width: 100%;
-							}
-						}
-						
-						&-right {
-							flex: 1 2 24.5%;
-							
-							& .block-info {
-								flex: 1 2 275px;
-							}
-						}
-						
-						& .block-info {
-							width: 100%;
-							display: flex;
-							align-items: flex-start;
-							align-content: flex-start;
-							flex-wrap: wrap;
-							
-							& .info-title {
-								flex: 0 1 100%;
-								font-weight: 700;
-								font-size: 14px;
-								line-height: normal;
-								color: #aaa;
-								margin-bottom: 5px;
-							}
-							
-							& .info-avatar {
-								flex: 0 1 50px;
-								margin-right: 10px;
-								
-								& img {
-									width: 50px;
-									height: 50px;
-									object-fit: contain;
-								}
-							}
-							& .info-description {
-								font-size: 14px;
-								line-height: normal;
-								font-weight: 400;
-								color: #111;
-								margin: 0;
-							}
-							& .info-contacts {
-								flex: 0 1 calc(100% - 60px);
-								display: flex;
-								flex-direction: column;
-								
-								&-name {
-									font-weight: 400;
-									font-size: 14px;
-									line-height: normal;
-									color: #111;
-									margin: 0;
-								}
-								
-								&-company {
-									font-weight: 400;
-									line-height: normal;
-									color: #111;
-									font-size: 12px;
-									margin: 0 0 10px 0;
-								}
-								
-								&-tel {
-									font-weight: 700;
-									font-size: 14px;
-									line-height: normal;
-									color: #111;
-									margin-bottom: 10px;
-								}
-								
-								&-mail {
-									font-weight: 700;
-									font-size: 14px;
-									line-height: normal;
-									color: #111;
-									text-decoration: underline;
-									margin-bottom: 10px;
-								}
+								padding-bottom: 0;
 							}
 						}
 					}
 					
 					& .info-footer {
-						padding-top: 10px;
 						display: flex;
 						align-items: center;
 						
@@ -482,11 +389,51 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						}
 					}
 				}
-				
+				& .type-areas {
+					padding-top: 15px;
+					&-list {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+					}
+					&-item {
+						&.active {
+							& .type-areas-title {
+								color: #111;
+								border-bottom-color: #3585f5;
+							}
+						}
+					}
+					&-title {
+						font-weight: 700;
+						font-size: 14px;
+						line-height: 20px;
+						text-align: center;
+						padding: 0 29px 3px;
+						color: #aaa;
+						border-bottom: 2px solid transparent;
+					}
+					&-text {
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						padding-top: 7px;
+						& span {
+							font-weight: 400;
+							text-align: center;
+							font-size: 12px;
+							line-height: normal;
+							color: #111;
+						}
+						& span:first-child {
+							font-size: 14px;
+						}
+					}
+				}
 				& .table-for-others {
 					box-shadow: inset 0 0 0 1px #D5DBE3;
 					padding: 1px;
-					margin: 0 10px 20px;
+					margin: 0 0 20px;
 					border-radius: 8px;
 					
 					& tbody {

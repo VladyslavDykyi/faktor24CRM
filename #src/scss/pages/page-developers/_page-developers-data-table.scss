@@ -73,31 +73,15 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						}
 					}
 					
-					&.location {
+					&.developer {
 					
 					}
 					
-					&.type {
+					&.year {
 					
 					}
 					
-					&.area {
-					
-					}
-					
-					&.condition {
-					
-					}
-					
-					&.floor {
-					
-					}
-					
-					&.photo {
-					
-					}
-					
-					&.price {
+					&.complex {
 					
 					}
 					
@@ -158,7 +142,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 				border-bottom: 1px solid #EFEFEF;
 				background-color: #Fff;
 				padding: 0;
-				
 				& .tbody-wrapper {
 					padding: 7px 10px;
 					font-weight: 400;
@@ -169,7 +152,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						padding: 7px 6px;
 					}
 					
-					& > p {
+					& p {
 						margin: 0;
 						text-wrap: nowrap;
 					}
@@ -178,7 +161,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						font-size: 12px;
 					}
 					
-					& > a {
+					& div > a {
 						font-size: 12px;
 						color: #111;
 						text-decoration: underline;
@@ -192,51 +175,30 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						}
 					}
 					
-					&.location {
-					
-					}
-					
-					&.type {
-					
-					}
-					
-					&.area {
-					
-					}
-					
-					&.condition {
-					
-					}
-					
-					&.floor {
-					
-					}
-					
-					&.photo {
-						& > picture img {
-							width: 60px;
-							height: 40px;
-							border-radius: 8px;
-							object-fit: cover;
+					&.developer {
+						& .developer-wrapper {
+							display: flex;
+							align-items: center;
+							grid-gap: 20px;
 						}
 					}
 					
-					&.price {
-						& p {
-							font-weight: 400;
-							font-size: 14px;
-							line-height: 107%;
-							color: #111;
-							text-align: left;
-							text-wrap: nowrap;
-							
-						}
+					&.year {
+						text-align: left;
 					}
+					
+					&.complex {
+						text-align: left;
+					}
+					
 					
 					&.contact {
 						max-width: 131px;
+						display: flex;
+						align-items: center;
+						grid-gap: 10px;
 						
-						& > p {
+						& p {
 							text-overflow: ellipsis;
 							white-space: nowrap;
 							overflow: hidden;
@@ -271,9 +233,11 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 								align-items: center;
 							}
 						}
+						
 						& .details-control-dop {
 							margin-left: 22px;
 						}
+						
 						& .details-control {
 							margin-left: 22px;
 						}
@@ -290,7 +254,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						display: flex;
 						
 						&-left {
-							flex: 0 1 75.5%;
+							flex: 0 1 100%;
 							display: flex;
 							flex-direction: column;
 							justify-content: space-between;
@@ -300,25 +264,24 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							}
 							
 							& .description {
-								flex: 1 2 65%;
-								padding-right: 10px;
-								
-								&-title {
-									font-weight: 700;
-									font-size: 16px;
-									line-height: normal;
-									color: #111;
-									margin-bottom: 15px;
-								}
+								flex: 1 2 100%;
+								display: flex;
+								grid-gap: 20px;
 								
 								&-text {
+									flex: 1 2 50%;
 									font-weight: 400;
 									font-size: 14px;
 									line-height: normal;
 									color: #111;
-									padding-bottom: 15px;
+									padding-bottom: 0;
 									margin-bottom: 0;
 									position: relative;
+									
+									& strong {
+										font-weight: 700;
+										color: #aaa;
+									}
 								}
 								
 								& .btn {
@@ -333,111 +296,17 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 								}
 								
 								&-note {
+									flex: 1 2 50%;
 									font-weight: 700;
 									font-size: 14px;
 									line-height: normal;
 									color: #aaa;
-									margin-bottom: 13px;
+									margin-bottom: 0;
 									
 									& span {
 										font-weight: 400;
 										color: #111;
 									}
-								}
-							}
-							
-							& .block-info {
-								flex: 1 2 35%;
-								
-								& p.info-contacts {
-									&-name {
-										margin-bottom: 10px;
-									}
-								}
-							}
-							
-							& .filter-tags {
-								width: 100%;
-							}
-						}
-						
-						&-right {
-							flex: 1 2 24.5%;
-							
-							& .block-info {
-								flex: 1 2 275px;
-							}
-						}
-						
-						& .block-info {
-							width: 100%;
-							display: flex;
-							align-items: flex-start;
-							align-content: flex-start;
-							flex-wrap: wrap;
-							
-							& .info-title {
-								flex: 0 1 100%;
-								font-weight: 700;
-								font-size: 14px;
-								line-height: normal;
-								color: #aaa;
-								margin-bottom: 5px;
-							}
-							
-							& .info-avatar {
-								flex: 0 1 50px;
-								margin-right: 10px;
-								
-								& img {
-									width: 50px;
-									height: 50px;
-									object-fit: contain;
-								}
-							}
-							& .info-description {
-								font-size: 14px;
-								line-height: normal;
-								font-weight: 400;
-								color: #111;
-								margin: 0;
-							}
-							& .info-contacts {
-								flex: 0 1 calc(100% - 60px);
-								display: flex;
-								flex-direction: column;
-								
-								&-name {
-									font-weight: 400;
-									font-size: 14px;
-									line-height: normal;
-									color: #111;
-									margin: 0;
-								}
-								
-								&-company {
-									font-weight: 400;
-									line-height: normal;
-									color: #111;
-									font-size: 12px;
-									margin: 0 0 10px 0;
-								}
-								
-								&-tel {
-									font-weight: 700;
-									font-size: 14px;
-									line-height: normal;
-									color: #111;
-									margin-bottom: 10px;
-								}
-								
-								&-mail {
-									font-weight: 700;
-									font-size: 14px;
-									line-height: normal;
-									color: #111;
-									text-decoration: underline;
-									margin-bottom: 10px;
 								}
 							}
 						}
@@ -470,8 +339,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							background-color: transparent;
 							color: #3585F5;
 							border-bottom: 1px dashed #3585F5;
+							
 							&.close-btn-other {
 								display: none;
+								
 								&.active {
 									display: block;
 								}
@@ -532,6 +403,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		order: 2;
 		margin: 0;
 		border-radius: 8px 0 0 8px;
+		
 		& label {
 			font-weight: 400;
 			font-size: 14px;
@@ -539,6 +411,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			text-align: right;
 			color: #111;
 		}
+		
 		& select {
 			border: 1px solid transparent;
 			border-radius: 6px;
@@ -564,17 +437,20 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		order: 1;
 		margin: 0;
 		border-radius: 0 8px 8px 0;
+		
 		& .dt-info {
 			font-weight: 400;
 			font-size: 14px;
 			line-height: normal;
 			color: #111;
 		}
+		
 		& nav {
 			display: flex;
 			align-items: center;
 			grid-gap: 6px;
 		}
+		
 		& .dt-paging .dt-paging-button {
 			width: 24px;
 			height: 24px;
@@ -587,38 +463,46 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			border: none !important;
 			padding: 2px !important;
 			background-image: none !important;
+			
 			&:hover {
 				background: #fff !important;
 				color: #3585f5 !important;
 			}
+			
 			&.disabled {
 				border: none !important;
 			}
+			
 			&.previous {
 				font-weight: 400;
 				color: #111 !important;
 				width: auto;
 				background-color: transparent;
 				border-radius: 6px;
+				
 				&:hover {
 					background: #3585f5 !important;
 					color: #fff !important;
 				}
 			}
+			
 			&.next {
 				font-weight: 400;
 				color: #111 !important;
 				width: auto;
 				background-color: transparent;
 				border-radius: 6px;
+				
 				&:hover {
 					background: #3585f5 !important;
 					color: #fff !important;
 				}
 			}
+			
 			&.current {
 				cursor: auto;
 				box-shadow: inset 0 0 0 2px #fff;
+				
 				&:hover {
 					background: #3585f5 !important;
 					color: #fff !important;

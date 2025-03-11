@@ -190,7 +190,7 @@ $(document).ready(function () {
 		} else {
 			const othersTable = `
             <div class="table-for-others">
-                <table id="example2" style="width:98%;">
+                <table id="example2" style="width:98%;  margin: auto;">
                     <col width="25.652%" valign="middle">
                     <col width="6.695%" valign="middle">
                     <col width="7.478%" valign="middle">
