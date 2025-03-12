@@ -240,6 +240,8 @@
 				align-items: center;
 				justify-content: center;
 				--bs-btn-bg: #fff;
+				--bs-btn-disabled-bg: #fff;
+				--bs-btn-disabled-border-color: #fff;
 				--bs-btn-border-color: transparent;
 				--bs-btn-border-radius: 6px;
 				padding: 7px;
@@ -250,6 +252,11 @@
 				& svg {
 					width: 24px;
 					height: 24px;
+				}
+				&:disabled {
+					& path {
+						fill: #AAAAAA;
+					}
 				}
 			}
 		}

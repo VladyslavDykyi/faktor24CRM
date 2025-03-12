@@ -1480,6 +1480,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
       -ms-flex-pack: center;
           justify-content: center;
   --bs-btn-bg: #fff;
+  --bs-btn-disabled-bg: #fff;
+  --bs-btn-disabled-border-color: #fff;
   --bs-btn-border-color: transparent;
   --bs-btn-border-radius: 6px;
   padding: 7px;
@@ -1492,6 +1494,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .filter-header .header-btn .btn-primary svg {
   width: 24px;
   height: 24px;
+}
+
+.filter-header .header-btn .btn-primary:disabled path {
+  fill: #AAAAAA;
 }
 
 .modal {

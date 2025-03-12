@@ -393,7 +393,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					padding-top: 15px;
 					&-list {
 						display: flex;
-						align-items: center;
+						align-items: flex-start;
 						justify-content: space-between;
 					}
 					&-item {

@@ -111,9 +111,9 @@ $(document).ready(function () {
                                     <div class="info-main-left-wrapper">
                                         <div class="description">
                                             <p class="description-text">
-                                                <strong>Примечание для агентов:</strong>
-                                                Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть
-                                                вся мебель и техника и еще описание
+                                                <strong>О комплексе:</strong>
+                                               Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть вся мебель и техника и еще описание
+Еще строка текста и если текст длиннее этого то добавляется кнопка развернуть
                                                 <span class="more-text" style="display: none;">
                                                     Полное описание квартиры с деталями, которые скрыты по умолчанию.
                                                 </span>
@@ -175,7 +175,7 @@ $(document).ready(function () {
 										</p>
 									</li>
 									<li class="type-areas-item">
-	                            		<strong class="type-areas-title">Коммерч</strong>
+	                            		<strong class="type-areas-title">Коммерческая</strong>
 	                            		<p class="type-areas-text">
 		                                    <span>S от 23 м²</span>
 		                                    <span>от 18 000$</span>
