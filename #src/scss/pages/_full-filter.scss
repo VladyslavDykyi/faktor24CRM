@@ -1,0 +1,225 @@
+#full-filter-btn {
+	&.active {
+		background-color: #3585f5;
+		& path {
+			fill: #fff;
+		}
+	}
+}
+.full-filter {
+	border-bottom: 1px solid #d5dbe3;
+	display: none;
+	&.active {
+		display: block;
+	}
+	&-title {
+		font-weight: 700;
+		font-size: 16px;
+		line-height: normal;
+		color: #aaa;
+		display: flex;
+		align-items: center;
+		text-wrap: nowrap;
+		&:after {
+			content: "";
+			display: block;
+			width: 100%;
+			margin-left: 10px;
+			height: 1px;
+			background-color: #d5dbe3;
+		}
+	}
+	&-wrapper {
+	
+	}
+	&-row {
+		display: flex;
+		flex-wrap: wrap;
+		grid-gap: 16px 20px;
+		margin-bottom: 16px;
+		&:first-child {
+			& .item {
+				width: calc(25% - 15px);
+				display: flex;
+				flex-direction: column;
+			}
+		}
+		& select {
+			outline: none;
+		}
+	}
+	& .item {
+		width: calc(16.66667% - 16.66667px);
+		display: flex;
+		flex-direction: column;
+		&.filter-btn-outline,
+		&.filter-btn {
+			margin-top: auto;
+			& .btn {
+				font-weight: 700;
+				font-size: 14px;
+				text-align: center;
+				color: #fff;
+				border-radius: 6px;
+				padding: 6px 10px;
+				width: 100%;
+				&.btn-outline-primary {
+					border-color: #3585F5;
+					color: #3585f5;
+					background-color: #fff;
+				}
+				&.btn-primary {
+					background-color: #3585f5;
+					color: #fff;
+					border-color: #3585F5;
+				}
+			}
+		}
+		&.filter-btn-outline {
+			width: calc(14.47487% - 16.66667px);
+		}
+		&.date {
+			width: calc(20.33334% - 16.66667px);
+			min-width: 200px;
+			& label {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: normal;
+				color: #111;
+				margin-bottom: 6px;
+			}
+		}
+		&.search-on-id {
+			width: calc(33.33334% - 33.33334px);
+			& label {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: normal;
+				color: #111;
+				margin-bottom: 6px;
+			}
+			& .item-inputSearchBtn {
+				position: absolute;
+				right: 10px;
+				top: calc(50% - 8px);
+				border: none;
+				outline: none;
+				background-color: transparent;
+				padding: 0;
+				width: 16px;
+				height: 16px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+		&-inputSearch {
+			width: 100%;
+			border: none;
+			outline: none;
+			background-color: #fff;
+			font-weight: 700;
+			font-size: 14px;
+			line-height: normal;
+			color: #111;
+			padding: 6px 10px;
+			&::placeholder {
+				font-weight: 700;
+				font-size: 14px;
+				line-height: normal;
+				color: #aaa;
+			}
+			&-wrapper {
+				position: relative;
+			}
+		}
+		&-label {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: normal;
+			color: #111;
+			margin-bottom: 6px;
+		}
+		&-inputText {
+			padding: 6px 10px;
+			background-color: #fff;
+			border-radius: 6px;
+			border: none;
+			outline: none;
+			width: 100%;
+			font-weight: 700;
+			font-size: 14px;
+			line-height: normal;
+			color: #111;
+			&::placeholder {
+				font-weight: 700;
+				font-size: 14px;
+				line-height: normal;
+				color: #aaa;
+			}
+			&-wrapper {
+				display: flex;
+				grid-gap: 20px;
+				position: relative;
+				&::after {
+					content: "";
+					display: block;
+					width: 4px;
+					height: 2px;
+					position: absolute;
+					top: calc(50% - 1px);
+					left: calc(50% - 2px);
+					background-color: #aaa;
+				}
+			}
+		}
+	}
+}
+.date-piker {
+	background-color: #fff;
+	border: none;
+	padding: 6px 10px;
+	outline: none;
+}
+
+
+.multiple-menu {
+	position: relative;
+	&-btn {
+		width: 100%;
+		background-color: #fff;
+		border: none;
+		outline: none;
+		padding: 6px 10px;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: normal;
+		color: #111;
+		text-align: left;
+		&[data-open-menu="false"] + .multiple-menu-wrapper {
+			display: none;
+		}
+		&[data-open-menu="true"] + .multiple-menu-wrapper {
+			display: block;
+		}
+	}
+	&-wrapper {
+		width: 100%;
+		position: absolute;
+		top: 30px;
+		left: 0;
+		z-index: 100;
+		background-color: #fff;
+	}
+	&-item {
+		padding: 6px 10px;
+		& label {
+			display: flex;
+			align-items: center;
+			grid-gap: 6px;
+			& span {
+			
+			}
+		}
+	}
+}
