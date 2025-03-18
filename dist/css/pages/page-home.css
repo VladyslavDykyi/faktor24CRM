@@ -1868,6 +1868,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   width: calc(14.47487% - 16.66667px);
 }
 
+.full-filter .item.filter-btn {
+  width: calc(16% - 16.66667px);
+}
+
 .full-filter .item.date {
   width: calc(20.33334% - 16.66667px);
   min-width: 200px;
@@ -2079,6 +2083,39 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   left: 0;
   z-index: 100;
   background-color: #fff;
+}
+
+.multiple-menu-wrapper > label {
+  display: block;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.multiple-menu-wrapper > label .multiple-menu-search {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #aeaeae;
+  outline: none;
+}
+
+.multiple-menu-list {
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: 0;
+}
+
+.multiple-menu-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.multiple-menu-list::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.multiple-menu-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #919191;
 }
 
 .multiple-menu-item {
