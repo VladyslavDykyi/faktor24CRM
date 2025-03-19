@@ -604,15 +604,30 @@
 					</div>
 				</div>
 				<div class="item">
-					<label class="item-label" for="full-filter-property-counter-room">Кол-во комнат</label>
-					<select id="full-filter-property-counter-room" class="js-example-responsive1" autocomplete="off">
-						<option value="all">Все</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5over">5+</option>
-					</select>
+					<span class="item-label">Кол-во комнат</span>
+					<div class="multiple-menu">
+						<button class="multiple-menu-btn" data-open-menu="false">
+							Все объекты
+						</button>
+						<div class="multiple-menu-wrapper">
+							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="all-room">
+										<span></span>
+										Все
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input type="checkbox" name="room-1">
+										<span></span>
+										1
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="item">
 					<label class="item-label" for="all-area">Площадь общая</label>
