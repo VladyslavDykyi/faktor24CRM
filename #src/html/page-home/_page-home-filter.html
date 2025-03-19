@@ -297,13 +297,20 @@
 					<span class="item-label">Комплекс</span>
 					<div class="multiple-menu">
 						<button class="multiple-menu-btn" data-open-menu="false">
-							Все объекты
+							Все
 						</button>
 						<div class="multiple-menu-wrapper">
 							<label>
 								<input class="multiple-menu-search" autocomplete="off" name="complex-search" type="text" placeholder="Поиск">
 							</label>
 							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="complex-all" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
 										<input type="checkbox" name="complex_1">
@@ -333,13 +340,20 @@
 					<span class="item-label">Улица</span>
 					<div class="multiple-menu">
 						<button class="multiple-menu-btn" data-open-menu="false">
-							Все объекты
+							Все
 						</button>
 						<div class="multiple-menu-wrapper">
 							<label>
 								<input class="multiple-menu-search" autocomplete="off" name="street-search" type="text" placeholder="Поиск">
 							</label>
 							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="street-all" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
 										<input type="checkbox" name="street_1">
@@ -359,39 +373,124 @@
 					</div>
 				</div>
 				<div class="item">
-					<label class="item-label" for="full-filter-metro">Метро</label>
-					<select id="full-filter-metro" class="js-example-responsive2" autocomplete="off">
-						<option selected value="apartments-for-sale">-</option>
-					</select>
+					<span class="item-label">Метро</span>
+					<div class="multiple-menu">
+						<button class="multiple-menu-btn" data-open-menu="false">
+							Все
+						</button>
+						<div class="multiple-menu-wrapper">
+							<label>
+								<input class="multiple-menu-search" autocomplete="off" name="metro-search" type="text" placeholder="Поиск">
+							</label>
+							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="metro-all" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input type="checkbox" name="metro1">
+										<span></span>
+										Метро 1
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input type="checkbox" name="metro2">
+										<span></span>
+										Метро 2
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="full-filter-row">
 				<div class="item">
-					<label class="item-label" for="full-filter-property-type">Тип недвижимости</label>
-					<select id="full-filter-property-type" class="js-example-responsive2" autocomplete="off">
-						<option selected value="default">Все по умолчанию</option>
-						<option value="apartament">Квартира</option>
-						<option value="room">Комната</option>
-					</select>
+					<span class="item-label">Тип недвижимости</span>
+					<div class="multiple-menu">
+						<button class="multiple-menu-btn" data-open-menu="false">
+							Все
+						</button>
+						<div class="multiple-menu-wrapper">
+							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="new-buildings-all" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input type="checkbox" name="new-buildings">
+										<span></span>
+										Новостройки
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input type="checkbox" name="khrushchevka">
+										<span></span>
+										Хрущёвка
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="item">
-					<label class="item-label" for="full-filter-property-state">Состояние</label>
-					<select id="full-filter-property-state" class="js-example-responsive2" autocomplete="off">
-						<option selected value="default">Все по умолчанию</option>
-						<option value="not-remont">Без ремонта</option>
-					</select>
+					<span class="item-label">Состояние</span>
+					<div class="multiple-menu">
+						<button class="multiple-menu-btn" data-open-menu="false">
+							Все
+						</button>
+						<div class="multiple-menu-wrapper">
+							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="new-buildings-all" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input type="checkbox" name="new-buildings">
+										<span></span>
+										Новостройки
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input type="checkbox" name="khrushchevka">
+										<span></span>
+										Хрущёвка
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="item">
 					<span class="item-label">Тип здания</span>
 					<div class="multiple-menu">
 						<button class="multiple-menu-btn" data-open-menu="false">
-							Все объекты
+							Все
 						</button>
 						<div class="multiple-menu-wrapper">
-							<label>
-								<input class="multiple-menu-search" autocomplete="off" name="type-house-search" type="text" placeholder="Поиск">
-							</label>
 							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="new-buildings-all" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
 										<input type="checkbox" name="new-buildings">
@@ -414,16 +513,13 @@
 					<span class="item-label">Год</span>
 					<div class="multiple-menu">
 						<button class="multiple-menu-btn" data-open-menu="false">
-							Все объекты
+							Все
 						</button>
 						<div class="multiple-menu-wrapper">
-							<label>
-								<input class="multiple-menu-search" autocomplete="off" name="years-search" type="text" placeholder="Поиск">
-							</label>
 							<ul class="multiple-menu-list">
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
-										<input type="checkbox" name="years-all">
+										<input data-name="checkbox-all" type="checkbox" name="years-all" checked>
 										<span></span>
 										Все
 									</label>
@@ -457,16 +553,13 @@
 					<span class="item-label">Тип стен</span>
 					<div class="multiple-menu">
 						<button class="multiple-menu-btn" data-open-menu="false">
-							Все объекты
+							Все
 						</button>
 						<div class="multiple-menu-wrapper">
-							<label>
-								<input class="multiple-menu-search" autocomplete="off" name="wall-type-search" type="text" placeholder="Поиск">
-							</label>
 							<ul class="multiple-menu-list">
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
-										<input type="checkbox" name="wall-type-all">
+										<input data-name="checkbox-all" type="checkbox" name="wall-type-all" checked>
 										<span></span>
 										Все
 									</label>
@@ -567,16 +660,13 @@
 					<span class="item-label">Отопление</span>
 					<div class="multiple-menu">
 						<button class="multiple-menu-btn" data-open-menu="false">
-							Все объекты
+							Все
 						</button>
 						<div class="multiple-menu-wrapper">
-							<label>
-								<input class="multiple-menu-search" autocomplete="off" name="search-heating" type="text" placeholder="Поиск">
-							</label>
 							<ul class="multiple-menu-list">
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
-										<input type="checkbox" name="all-heating">
+										<input data-name="checkbox-all" type="checkbox" name="all-heating" checked>
 										<span></span>
 										Все
 									</label>
@@ -596,16 +686,13 @@
 					<span class="item-label">Ванные комнаты</span>
 					<div class="multiple-menu">
 						<button class="multiple-menu-btn" data-open-menu="false">
-							Все объекты
+							Все
 						</button>
 						<div class="multiple-menu-wrapper">
-							<label>
-								<input class="multiple-menu-search" autocomplete="off" name="search-bathrooms" type="text" placeholder="Поиск">
-							</label>
 							<ul class="multiple-menu-list">
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
-										<input type="checkbox" name="all-bathrooms">
+										<input data-name="checkbox-all" type="checkbox" name="all-bathrooms" checked>
 										<span></span>
 										Все
 									</label>
@@ -628,13 +715,10 @@
 							Все объекты
 						</button>
 						<div class="multiple-menu-wrapper">
-							<label>
-								<input class="multiple-menu-search" autocomplete="off" name="search-ceiling-height" type="text" placeholder="Поиск">
-							</label>
 							<ul class="multiple-menu-list">
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
-										<input type="checkbox" name="all-ceiling-height">
+										<input data-name="checkbox-all" type="checkbox" name="all-ceiling-height">
 										<span></span>
 										Все
 									</label>
@@ -684,6 +768,13 @@
 							<ul class="multiple-menu-list">
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="from-the-intermediary-all" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
 										<input type="checkbox" name="from-the-intermediary">
 										<span></span>
 										От посредника
@@ -713,6 +804,13 @@
 								<input class="multiple-menu-search" autocomplete="off" name="search-developer" type="text" placeholder="Поиск">
 							</label>
 							<ul class="multiple-menu-list">
+								<li class="multiple-menu-item">
+									<label class="my-custom-input">
+										<input data-name="checkbox-all" type="checkbox" name="kadorr-group" checked>
+										<span></span>
+										Все
+									</label>
+								</li>
 								<li class="multiple-menu-item">
 									<label class="my-custom-input">
 										<input type="checkbox" name="kadorr-group">

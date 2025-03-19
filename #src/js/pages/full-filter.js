@@ -67,4 +67,32 @@ $(document).ready(function() {
 	$('.multiple-menu-wrapper').on('click', function(event) {
 		event.stopPropagation();
 	});
+	
+	
+	// Обробник для всіх чекбоксів
+	$(document).on('change', '.multiple-menu-list input[type="checkbox"]', function() {
+		const $currentList = $(this).closest('.multiple-menu-list'); // Поточний список
+		const $allCheckbox = $currentList.find('input[data-name="checkbox-all"]'); // Чекбокс "Все" в поточному списку
+		const $otherCheckboxes = $currentList.find('input[type="checkbox"]').not($allCheckbox); // Інші чекбокси
+		
+		if ($(this).data('name') === 'checkbox-all') {
+			// Якщо змінений чекбокс "Все"
+			if ($(this).is(':checked')) {
+				// Якщо "Все" обрано, знімаємо галочки з інших чекбоксів
+				$otherCheckboxes.prop('checked', false);
+			}
+		} else {
+			// Якщо змінений будь-який інший чекбокс
+			if ($(this).is(':checked')) {
+				// Якщо обрано інший чекбокс, знімаємо галочку з "Все"
+				$allCheckbox.prop('checked', false);
+			}
+			
+			// Перевіряємо, чи всі інші чекбокси не вибрані
+			if ($otherCheckboxes.filter(':checked').length === 0) {
+				// Якщо жоден інший чекбокс не вибрано, ставимо галочку на "Все"
+				$allCheckbox.prop('checked', true);
+			}
+		}
+	});
 });
