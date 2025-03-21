@@ -95,6 +95,9 @@
 		}
 		&.search-on-id {
 			width: calc(33.33334% - 33.33334px);
+			@media screen and (max-width: 1250px) {
+				width: calc(30% - 33.33334px);
+			}
 			& label {
 				font-weight: 400;
 				font-size: 14px;

@@ -2218,7 +2218,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   width: 24px;
   height: 24px;
   border: none;
-  background-color: #3585f5;
+  background-color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2232,6 +2232,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   top: calc(50% - 12px);
   right: 3px;
   outline: none;
+}
+
+.my-dropdown-btn.active {
+  background-color: #3585f5;
 }
 
 .my-dropdown-list-wrapper {
@@ -2250,25 +2254,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   border: 1px solid #d5dbe3;
   border-radius: 6px;
   padding: 15px 10px 6px;
-}
-
-.my-dropdown-list > .scroller {
-  max-height: 290px;
-  overflow-y: auto;
-  margin-bottom: 0;
-}
-
-.my-dropdown-list > .scroller::-webkit-scrollbar {
-  width: 4px;
-}
-
-.my-dropdown-list > .scroller::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-.my-dropdown-list > .scroller::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #919191;
 }
 
 .my-dropdown-item {
@@ -2330,6 +2315,55 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding-left: 30px;
 }
 
+.my-dropdown-search-wrapper {
+  position: absolute;
+  z-index: 100;
+}
+
+.my-dropdown-search-list {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background-color: #fff;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  padding: 15px 10px 6px;
+}
+
+.my-dropdown-search-item {
+  padding-right: 6px;
+  margin-bottom: 10px;
+}
+
+.my-dropdown-search-item:last-child {
+  margin-bottom: 0;
+}
+
+.scroller {
+  max-height: 290px;
+  overflow-y: auto;
+  margin-bottom: 0;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroller::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #919191;
+}
+
+.eqweqw {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
+}
+
 .modal {
   --bs-modal-width: 1040px;
   --bs-modal-padding: 47px 75px 46px;
@@ -2352,6 +2386,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
   #example tbody tr td .tbody-dop-info {
     padding: 8px 6px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .full-filter .item.search-on-id {
+    width: calc(30% - 33.33334px);
   }
 }
 
