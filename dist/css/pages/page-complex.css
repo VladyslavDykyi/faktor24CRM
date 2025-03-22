@@ -2268,7 +2268,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 .my-dropdown-next-list {
   margin-top: 10px;
-  padding-left: 30px;
+  padding-left: 15px;
+}
+
+.my-dropdown-next-next-list {
+  margin-top: 10px;
+  padding-left: 15px;
 }
 
 .my-dropdown-search-wrapper {

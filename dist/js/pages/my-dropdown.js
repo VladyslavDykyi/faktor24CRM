@@ -63,6 +63,21 @@
 			}
 		});
 		
+		// Обробник для вибору чекбокса району (другий рівень)
+		$('.my-dropdown-next-list .my-dropdown-item-checkbox').on('change', function() {
+			// Отримуємо внутрішній блок третього рівня
+			const nextNextList = $(this).closest('.my-dropdown-item').find('.my-dropdown-next-next-list');
+			
+			// Якщо чекбокс обраний, відображаємо блок третього рівня
+			if ($(this).is(':checked')) {
+				nextNextList.show();
+			} else {
+				// Якщо чекбокс не обраний, приховуємо блок третього рівня
+				nextNextList.hide();
+				clearInnerCheckboxes(nextNextList); // Очищаємо чекбокси третього рівня
+			}
+		});
+		
 		// Закриття меню при кліку поза ним
 		$(document).on('click', function(event) {
 			if (!$(event.target).closest('.my-dropdown').length) {
