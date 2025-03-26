@@ -1,0 +1,21 @@
+.pagination {
+	& > div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	& [rel="prev"],
+	& [rel="next"] {
+		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		background: transparent;
+		border: none !important;
+		outline: none;
+		& span {
+			display: none;
+		}
+	}
+}

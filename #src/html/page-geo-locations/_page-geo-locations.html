@@ -1,0 +1,83 @@
+<div class="container-fluid">
+	<!-- початок header	-->
+	@@include('../_header.html')
+	<!-- кінець header	-->
+	<!-- початок filter	-->
+	@@include('../page-home/_page-home-filter.html')
+	<!-- кінець filter	-->
+	<div class="geo-locations">
+		<div class="geo-locations-header">
+			<div class="checkBox">
+				<label class="my-custom-input">
+					<input type="checkbox">
+					<span></span>
+				</label>
+			</div>
+			<div class=" block-actions">
+				<div class="menu-burger">
+					<div class="dropdown">
+						<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="./img/icon/burger.svg" alt="">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">Обновить</a></li>
+							<li><a class="dropdown-item" href="#">Редактировать</a></li>
+							<li><a class="dropdown-item" href="#">Удалить</a></li>
+							<li><a class="dropdown-item" href="#">Отложить</a></li>
+							<li><a class="dropdown-item" href="#">Передать</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="geo-btn">
+					<a class="btn " href="./page-home.html">
+						<img src="./img/icon/burger-geo-table.svg" alt="">
+					</a>
+				</div>
+				<div class="menu-burger">
+					<div class="dropdown">
+						<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="./img/icon/sorting.svg" alt="">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">Самые новые</a></li>
+							<li><a class="dropdown-item" href="#">Самые дешевые</a></li>
+							<li><a class="dropdown-item" href="#">Самые дорогие</a></li>
+							<li><a class="dropdown-item" href="#">Самые дешевые/м<sup>2</sup></a></li>
+							<li><a class="dropdown-item" href="#">Самые дорогие/м<sup>2</sup></a></li>
+							<li><a class="dropdown-item" href="#">Наименьшая площадь</a></li>
+							<li><a class="dropdown-item" href="#">Наибольшая площадь</a></li>
+							<li><a class="dropdown-item" href="#">Самые старые</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="geo-locations-wrapper">
+			<div class="geo-locations-geo">
+				<div class="geo-list">
+					@@include('./_page-geo-locations-card.html')
+					@@include('./_page-geo-locations-card.html')
+					@@include('./_page-geo-locations-card.html')
+					@@include('./_page-geo-locations-card.html')
+					@@include('./_page-geo-locations-card.html')
+					@@include('./_page-geo-locations-card.html')
+				</div>
+				<div class="geo-actions">
+					<div>
+						<p>
+							Количество:
+							<strong>1000</strong>
+						</p>
+					</div>
+					<div>
+						@@include('../_pagination.html')
+					</div>
+				</div>
+			</div>
+			<div class="geo-locations-map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28963.91301656984!2d30.67751142178331!3d46.4771246684562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c631ed0c9f0e83%3A0x662bcbeb3235bdab!2z0JzQvtC70LTQsNCy0LDQvdC60LAsINCe0LTQtdGB0LAsINCe0LTQtdGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCA2NTAwMA!5e1!3m2!1suk!2sua!4v1743003559173!5m2!1suk!2sua" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+		
+	</div>
+</div>
