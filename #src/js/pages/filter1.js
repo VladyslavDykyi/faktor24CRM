@@ -18,4 +18,10 @@
 		placeholder: 'Выбрать',
 		minimumResultsForSearch: -1,
 	});
+	window.addEventListener('load', () => {
+		document.querySelectorAll('input, select').forEach(field => {
+			field.setAttribute('autocomplete', 'off');
+		});
+	});
+	
 })();

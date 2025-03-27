@@ -44,6 +44,13 @@ body {
   --bs-font-sans-serif: 'PTSans', sans-serif;
 }
 
+input::-webkit-autofill,
+input::-webkit-contacts-auto-fill,
+input::-webkit-credentials-auto-fill {
+  display: none !important;
+  background-color: transparent !important;
+}
+
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
