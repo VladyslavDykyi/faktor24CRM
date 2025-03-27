@@ -49,8 +49,16 @@ body {
 input::-webkit-autofill,
 input::-webkit-contacts-auto-fill,
 input::-webkit-credentials-auto-fill {
-  display: none !important;
+  opacity: 0 !important;
+  /* Робить автозаповнення невидимим */
   background-color: transparent !important;
+  color: inherit !important;
+}
+
+.filter select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
 }
 
 .wrapper {

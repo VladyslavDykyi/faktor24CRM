@@ -4,7 +4,7 @@
 		setTimeout(() => {
 			document.querySelectorAll('input, select').forEach(el => {
 				el.value = '';
-				el.autocomplete = 'nope';
+				el.autocomplete = 'new-password';
 			});
 		}, 100);
 	});
