@@ -26,18 +26,11 @@
 			});
 		}, 100);
 	});
-	$('.select2-container')
-		.off('touchstart')
-		.on('touchstart', function (e) {
-			e.stopPropagation();
-		})
-		.siblings('select')
-		.off('select2:open')
-		.on('select2:open', function () {
-			$('.select2-results__options')
-				.off('touchstart')
-				.on('touchstart', 'li', function (e) {
-					e.stopPropagation();
-				});
-		});
+	$('.js-example-responsive2').on('select2:opening', function (e) {
+		$('.filter select').attr("style", "display: none !important");
+	});
+	
+	$('.js-example-responsive2').on('select2:closing', function (e) {
+		$('.filter select').attr("style", "display: block !important");
+	});
 })();
