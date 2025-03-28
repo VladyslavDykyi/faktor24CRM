@@ -9,7 +9,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding-left: 14px;
-		padding-bottom: 7px;
+		padding-bottom: 4px;
 		& .checkBox {
 			display: flex;
 			& label {
@@ -20,23 +20,34 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			max-width: 160px;
+			max-width: 120px;
 			width: 100%;
+			& .btn {
+				padding: 0;
+				border: none;
+				width: 26px;
+				height: 26px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: transparent;
+				border-radius: 6px;
+			}
 		}
 	}
 	&-geo {
 		flex: 0 1 50%;
-		padding: 14px;
+		padding: 6px;
 		border-radius: 6px;
 		background-color: #fff;
 		& .geo-list {
 			display: flex;
 			flex-wrap: wrap;
-			grid-gap: 20px;
+			grid-gap: 12px;
 			justify-content: flex-start;
 		}
 		& .geo-actions {
-			margin-top: 25px;
+			margin-top: 12px;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;

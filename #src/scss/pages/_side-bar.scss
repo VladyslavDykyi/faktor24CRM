@@ -9,7 +9,8 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		padding: 18px 0;
+		padding: 23px 0;
+		box-shadow: inset 0 0 0 2px #04254E;
 		&:hover {
 			background-color: #FFFFFF1A;
 			cursor: pointer;
@@ -49,7 +50,7 @@
 			&:first-child {
 				& .nav-list-link {
 					background-color: #fff;
-					padding-bottom: 18px;
+					padding-bottom: 23px;
 				}
 			}
 		}

@@ -1,15 +1,15 @@
 .geo_card {
-	width: calc(33.33333% - 13.33333px);
+	width: calc(33.33333% - 8px);
 	display: flex;
 	flex-direction: column;
 	@media screen and (min-width: 1680px) {
-		width: calc(25% - 15px);
+		width: calc(25% - 9px);
 	}
 	@media screen and (min-width: 1280px) {
-		width: calc(33.33333% - 13.33333px);
+		width: calc(33.33333% - 8px);
 	}
 	@media screen and (min-width: 1024px) {
-		width: calc(50% - 15px);
+		width: calc(50% - 6px);
 	}
 	& p {
 		margin-bottom: 0;
