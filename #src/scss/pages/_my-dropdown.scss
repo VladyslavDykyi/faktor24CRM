@@ -53,6 +53,12 @@
 		&.active {
 			background-color: #3585f5;
 		}
+		& picture {
+			display: flex;
+			& img {
+				display: flex;
+			}
+		}
 	}
 	&-list-wrapper {
 		position: absolute;

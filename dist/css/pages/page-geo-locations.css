@@ -298,7 +298,7 @@ ul {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  padding: 12px 0;
+  padding: 18px 0;
 }
 
 .sidebar-logo:hover {
@@ -327,7 +327,6 @@ ul {
   overflow-X: hidden;
   position: -webkit-sticky;
   position: sticky;
-  padding: 16px 0;
   top: 0;
   left: 0;
 }
@@ -354,6 +353,11 @@ ul {
 
 .nav-list-item {
   padding: 0;
+}
+
+.nav-list-item:first-child .nav-list-link {
+  background-color: #fff;
+  padding-bottom: 18px;
 }
 
 .nav-list-link {
@@ -1156,6 +1160,18 @@ ul {
   background-color: #3585f5;
 }
 
+.my-dropdown-btn picture {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.my-dropdown-btn picture img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .my-dropdown-list-wrapper {
   position: absolute;
   z-index: 100;
@@ -1297,11 +1313,16 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  grid-gap: 6px;
 }
 
-.pagination [rel="prev"],
-.pagination [rel="next"] {
-  width: 40px;
+.pagination > div > span {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1311,14 +1332,53 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.pagination span[aria-current="page"] {
+  border: 1px solid #3585f5 !important;
+  color: #3585f5 !important;
+}
+
+.pagination a {
+  border-radius: 100%;
+  background-color: #3585f5 !important;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 !important;
+  border: none !important;
+  text-decoration: none;
+}
+
+.pagination a[rel="prev"],
+.pagination a[rel="next"] {
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: transparent;
+  background-color: transparent !important;
   border: none !important;
   outline: none;
 }
 
-.pagination [rel="prev"] span,
-.pagination [rel="next"] span {
+.pagination a[rel="prev"] path,
+.pagination a[rel="next"] path {
+  fill: #3585f5;
+}
+
+.pagination a[rel="prev"] span,
+.pagination a[rel="next"] span {
   display: none;
 }
 
@@ -1393,6 +1453,7 @@ ul {
 }
 
 .geo-locations-geo .geo-actions {
+  margin-top: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1404,6 +1465,10 @@ ul {
           justify-content: space-between;
 }
 
+.geo-locations-geo .geo-actions-counter p {
+  margin-bottom: 0;
+}
+
 .geo-locations-map {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 50%;
@@ -1413,6 +1478,107 @@ ul {
 .geo-locations-map iframe {
   width: 100%;
   height: 100%;
+}
+
+.block-actions-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 4px;
+}
+
+.block-actions-wrapper .menu-burger .btn,
+.block-actions-wrapper .menu-info .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.block-actions-wrapper .menu-burger .btn:hover,
+.block-actions-wrapper .menu-info .btn:hover {
+  outline: none;
+  border: none;
+  background-color: #F6F8FB;
+}
+
+.block-actions-wrapper .bookmark {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.block-actions-wrapper .bookmark:hover {
+  background-color: #F6F8FB;
+}
+
+.block-actions-wrapper .bookmark input {
+  display: none;
+}
+
+.block-actions-wrapper .bookmark span {
+  cursor: pointer;
+}
+
+.block-actions-wrapper .bookmark input:checked + span .non-checked {
+  display: none;
+}
+
+.block-actions-wrapper .bookmark input:checked + span .on-checked {
+  display: block;
+}
+
+.block-actions-wrapper .bookmark .non-checked {
+  display: block;
+}
+
+.block-actions-wrapper .bookmark .on-checked {
+  display: none;
+}
+
+.details-control {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.details-control:hover {
+  outline: none;
+  border: none;
+  background-color: transparent;
 }
 
 .geo_card {
@@ -1466,6 +1632,59 @@ ul {
 
 .geo_card-active {
   margin-bottom: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  grid-gap: 8px;
+}
+
+.geo_card-active .block-actions-wrapper {
+  grid-gap: 8px;
+}
+
+.geo_card-active > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.geo_card-active > div label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.geo_card-active > div picture {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.geo_card-active .mail-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 26px;
+  width: 26px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border-radius: 6px;
 }
 
 .geo_card-address {
@@ -1512,6 +1731,18 @@ ul {
   --bs-modal-width: 1040px;
   --bs-modal-padding: 47px 75px 46px;
   --bs-modal-bg: #EEF5FB;
+}
+
+@media screen and (min-width: 1024px) {
+  .geo_card {
+    width: calc(50% - 15px);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .geo_card {
+    width: calc(33.33333% - 13.33333px);
+  }
 }
 
 @media screen and (min-width: 1680px) {

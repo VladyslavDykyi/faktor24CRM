@@ -9,7 +9,7 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		padding: 12px 0;
+		padding: 18px 0;
 		&:hover {
 			background-color: #FFFFFF1A;
 			cursor: pointer;
@@ -27,7 +27,6 @@
 	overflow-Y: auto;
 	overflow-X: hidden;
 	position: sticky;
-	padding: 16px 0;
 	top: 0;
 	left: 0;
 	&::-webkit-scrollbar {
@@ -47,6 +46,12 @@
 		margin-bottom: 0;
 		&-item {
 		padding: 0;
+			&:first-child {
+				& .nav-list-link {
+					background-color: #fff;
+					padding-bottom: 18px;
+				}
+			}
 		}
 		&-link {
 			text-decoration: none;

@@ -3,17 +3,50 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		grid-gap: 6px;
+		& > span {
+			background-color: transparent !important;
+			border: none !important;
+			padding: 0 !important;
+			width: 24px;
+			height: 24px;
+			border-radius: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 	}
-	& [rel="prev"],
-	& [rel="next"] {
-		width: 40px;
+	& span[aria-current="page"] {
+		border: 1px solid #3585f5 !important;
+		color: #3585f5 !important;
+	}
+	& a {
+		border-radius: 100%;
+		background-color: #3585f5 !important;
+		font-weight: 700;
+		font-size: 12px;
+		text-align: center;
+		color: #fff;
+		width: 24px;
+		height: 24px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: 0 !important;
+		border: none !important;
+		text-decoration: none;
+	}
+	& a[rel="prev"],
+	& a[rel="next"] {
+		width: 24px;
+		height: 24px;
 		border-radius: 50%;
-		background: transparent;
+		background-color: transparent !important;
 		border: none !important;
 		outline: none;
+		& path {
+			fill: #3585f5;
+		}
 		& span {
 			display: none;
 		}

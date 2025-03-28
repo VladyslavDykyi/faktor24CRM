@@ -5,6 +5,12 @@
 	@media screen and (min-width: 1680px) {
 		width: calc(25% - 15px);
 	}
+	@media screen and (min-width: 1280px) {
+		width: calc(33.33333% - 13.33333px);
+	}
+	@media screen and (min-width: 1024px) {
+		width: calc(50% - 15px);
+	}
 	& p {
 		margin-bottom: 0;
 	}
@@ -37,6 +43,34 @@
 	}
 	&-active {
 		margin-bottom: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		grid-gap: 8px;
+		& .block-actions-wrapper {
+			grid-gap: 8px;
+		}
+		& > div {
+			display: flex;
+			align-items: center;
+			& label {
+				display: flex;
+			}
+			& picture {
+				display: flex;
+			}
+		}
+		& .mail-link {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 26px;
+			width: 26px;
+			padding: 0;
+			border: none;
+			background-color: transparent;
+			border-radius: 6px;
+		}
 	}
 	&-info {
 	
