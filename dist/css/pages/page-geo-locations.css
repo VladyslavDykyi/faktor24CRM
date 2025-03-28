@@ -1314,6 +1314,8 @@ ul {
       -ms-flex-pack: center;
           justify-content: center;
   grid-gap: 6px;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 .pagination > div > span {
