@@ -455,9 +455,13 @@ $(document).ready(function () {
 		const isPlus = img.attr('src').includes('plus.svg');
 		img.attr('src', img.attr('src').replace(isPlus ? 'plus.svg' : 'minus.svg', isPlus ? 'minus.svg' : 'plus.svg'));
 	}
-	$('thead .my-custom-input input').on('change', function () {
+	$('thead .my-custom-input input').on('change', function() {
 		let isChecked = $(this).prop('checked');
 		$('tbody .my-custom-input input').prop('checked', isChecked);
+	}).end().on('change', 'tbody .my-custom-input input', function() {
+		let allChecked = $('tbody .my-custom-input input:checked').length ===
+			$('tbody .my-custom-input input').length;
+		$('thead .my-custom-input input').prop('checked', allChecked);
 	});
 	
 	const initTooltips = function () {
