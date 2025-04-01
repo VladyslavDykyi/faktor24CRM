@@ -36,135 +36,203 @@
 <script src="./js/pages/page-geo-locations.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-JxH1yXZg7DPInjpOmGFMvCNX5vFPzkg&callback=initMap" async defer></script>
 <script>
-	
 	function initMap() {
 		let map = new google.maps.Map(document.getElementById("map"), {
-			center: { lat: 46.4825, lng: 30.7233 }, // Координаты центра карты (Одеська область)
+			center: { lat: 46.4825, lng: 30.7233 },
 			zoom: 12,
 		});
 		
-		// Пример добавления объекта на карту
-		let marker = new google.maps.Marker({
-			position: { lat: 46.4775, lng: 30.7326 }, // Координаты объекта
-			map: map,
-			title: "Пример объекта",
-		});
-		
+		// Створюємо інформаційне вікно
 		let infoWindow = new google.maps.InfoWindow({
-			content: `
-<div class="geo_card small">
-<figure class="geo_card-img">
-<img src="./img/1.jpg" alt="">
-<figcaption class="geo_card-img-name">
-Real Estate Name
-</figcaption>
-</figure>
-<div class="geo_card-active">
-<div class="thead-wrapper checkBox">
-<label class="my-custom-input">
-<input type="checkbox">
-<span></span>
-</label>
-</div>
-<div class="tbody-wrapper block-actions">
-<div class="block-actions-wrapper">
-<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
-   data-bs-title="Написать">
-<img src="./img/icon/mail.svg" alt="">
-</a>
-<label class="bookmark">
-<input type="checkbox">
-<span>
-<img class="non-checked" src="./img/icon/bookmark.svg" alt="">
-<img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
-</span>
-</label>
-<div class="menu-burger">
-<div class="dropdown">
-<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-<img src="./img/icon/burger-blue.svg" alt="">
-</button>
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" href="#">Обновить</a></li>
-<li><a class="dropdown-item" href="#">Редактировать</a></li>
-<li><a class="dropdown-item" href="#">Удалить</a></li>
-<li><a class="dropdown-item" href="#">Отложить</a></li>
-<li><a class="dropdown-item" href="#">Передать</a></li>
-</ul>
-</div>
-</div>
-<div class="menu-info">
-<div class="dropdown">
-<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-<img src="./img/icon/copylinked.svg" alt="">
-</button>
-<ul class="dropdown-menu">
-<li>
-<a class="dropdown-item" href="#">
-<span>На сайте</span>
-</a>
-</li>
-<li>
-<a class="dropdown-item" href="#">
-<span>На Rem.ua</span>
-</a>
-</li>
-<li>
-<a class="dropdown-item" href="#">
-<span>Видео Youtube</span>
-</a>
-</li>
-<li>
-<a class="dropdown-item" href="#">
-<span>\tНа карте</span>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<button type="button" class="details-control">
-<img src="./img/icon/plus.svg" alt="">
-</button>
-</div>
-
-</div>
-</div>
-<div class="geo_card-info">
-<div class="geo_card-address">
-<strong>
-Южная Пальмира,
-</strong>
-<span>
-ул. Генуэзская/Посмитного длинн...
-</span>
-<span>
-Аркадия, Одесса
-</span>
-</div>
-<div class="geo_card-params">
-<p>
-2 к / Квартира / S 300/40/15 / 5 сот / 14 из 25 эт / С ремонтом
-</p>
-</div>
-	<div class="geo_card-price">
-		<p>
-			USD 85 000 <span>(850/м²)</span>
-		</p>
-	</div>
-		<div class="geo_card-contact">
-			<p>
-				<span>Имядлинное Фамилия</span>
-				<a href="tel:380968796542">+380968796542</a>
-			</p>
-		</div>
-	</div>
-</div>`
+			maxWidth: 216,
 		});
 		
-		// Відкриваємо infoWindow при кліку на маркер
-		marker.addListener("click", function() {
-			infoWindow.open(map, marker);
+		// Масив з координатами маркерів
+		let locations = [
+			{ lat: 46.4775, lng: 30.7326, title: "агент 1", quantityOfObjects: '1', },
+			{ lat: 46.4875, lng: 30.7426, title: "агент 2", quantityOfObjects: '5', },
+			{ lat: 46.4825, lng: 30.7333, title: "агент 1", quantityOfObjects: '15', }
+		];
+		
+		// Функція для створення іконки маркера
+		function getMarkerIcon(text, textColor = '#ffffff') {
+			const svg = `
+            <svg width="27" height="36" viewBox="0 0 27 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.3573 21.4394L23.3573 21.4395C21.5933 24.7529 19.23 28.0986 17.294 30.6295C16.3285 31.8916 15.4746 32.9442 14.8627 33.6805C14.5568 34.0485 14.3117 34.3372 14.1437 34.5332C14.0597 34.6312 13.9949 34.706 13.9516 34.7559L13.9027 34.8119L13.8908 34.8255L13.888 34.8287L13.8875 34.8293L13.8875 34.8293L13.8874 34.8294L13.887 34.8299C13.7961 34.9333 13.6554 35 13.5 35C13.3446 35 13.2039 34.9333 13.113 34.8299L13.1126 34.8294L13.1125 34.8293L13.1125 34.8293L13.112 34.8287L13.1092 34.8255L13.0973 34.8119L13.0484 34.7559C13.0051 34.706 12.9403 34.6312 12.8563 34.5332C12.6883 34.3372 12.4432 34.0485 12.1373 33.6805C11.5254 32.9442 10.6715 31.8916 9.70601 30.6295C7.76999 28.0986 5.40666 24.7529 3.64271 21.4395L3.64268 21.4394C2.02765 18.4062 1 15.5045 1 13.2733C1 6.51156 6.58979 1 13.5 1C20.4102 1 26 6.51156 26 13.2733C26 15.5045 24.9723 18.4062 23.3573 21.4394Z" fill="#3585F5" stroke="white" stroke-width="2"/>
+                <text x="50%" y="45%" font-family="Arial" font-size="12" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${text}</text>
+            </svg>
+        `;
+			return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+		}
+		
+		// Масив для зберігання маркерів
+		let markers = [];
+		let circle = null; // Початково коло відсутнє
+		
+		// Додаємо маркери на карту
+		locations.forEach(function(location) {
+			let marker = new google.maps.Marker({
+				position: { lat: location.lat, lng: location.lng },
+				map: map,
+				title: location.title,
+				icon: {
+					url: getMarkerIcon(location.quantityOfObjects, '#ffffff'),
+					scaledSize: new google.maps.Size(27, 36),
+				},
+			});
+			
+			// HTML-контент для infoWindow
+			let content = `
+			<div class="geo_card small">
+				<figure class="geo_card-img">
+					<img src="./img/1.jpg" alt="">
+					<figcaption class="geo_card-img-name">${location.title}</figcaption>
+				</figure>
+				<div class="geo_card-active">
+					<div class="thead-wrapper checkBox">
+						<label class="my-custom-input">
+							<input type="checkbox">
+							<span></span>
+						</label>
+					</div>
+					<div class="tbody-wrapper block-actions">
+						<div class="block-actions-wrapper">
+							<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
+							   data-bs-title="Написать">
+								<img src="./img/icon/mail.svg" alt="">
+							</a>
+							<label class="bookmark">
+								<input type="checkbox">
+								<span>
+									<img class="non-checked" src="./img/icon/bookmark.svg" alt="">
+									<img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
+								</span>
+							</label>
+							<div class="menu-burger">
+								<div class="dropdown">
+									<button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<img src="./img/icon/burger-blue.svg" alt="">
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Обновить</a></li>
+										<li><a class="dropdown-item" href="#">Редактировать</a></li>
+										<li><a class="dropdown-item" href="#">Удалить</a></li>
+										<li><a class="dropdown-item" href="#">Отложить</a></li>
+										<li><a class="dropdown-item" href="#">Передать</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="menu-info">
+								<div class="dropdown">
+									<button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<img src="./img/icon/copylinked.svg" alt="">
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><span>На сайте</span></a></li>
+										<li><a class="dropdown-item" href="#"><span>На Rem.ua</span></a></li>
+										<li><a class="dropdown-item" href="#"><span>Видео Youtube</span></a></li>
+										<li><a class="dropdown-item" href="#"><span>На карте</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<button type="button" class="details-control">
+								<img src="./img/icon/plus.svg" alt="">
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="geo_card-info">
+					<div class="geo_card-address">
+						<strong>Южная Пальмира,</strong>
+						<span>ул. Генуэзская/Посмитного длинн...</span>
+						<span>Аркадия, Одесса</span>
+					</div>
+					<div class="geo_card-params">
+						<p>2 к / Квартира / S 300/40/15 / 5 сот / 14 из 25 эт / С ремонтом</p>
+					</div>
+					<div class="geo_card-price">
+						<p>USD 85 000 <span>(850/м²)</span></p>
+					</div>
+					<div class="geo_card-contact">
+						<p>
+							<span>Имядлинное Фамилия</span>
+							<a href="tel:380968796542">+380968796542</a>
+						</p>
+					</div>
+				</div>
+			</div>`;
+			
+			marker.addListener("click", function() {
+				infoWindow.setContent(content);
+				infoWindow.open(map, marker);
+			});
+			
+			markers.push(marker);
 		});
+		
+		// Функція для фільтрації маркерів
+		function filterMarkers() {
+			if (!circle) return;
+			
+			const center = circle.getCenter();
+			const radius = circle.getRadius();
+			
+			markers.forEach(marker => {
+				const distance = google.maps.geometry.spherical.computeDistanceBetween(
+					center,
+					marker.getPosition()
+				);
+				marker.setVisible(distance <= radius);
+			});
+		}
+		
+		// Функція для створення/видалення круга
+		function toggleCircle() {
+			if (circle) {
+				circle.setMap(null);
+				circle = null;
+				markers.forEach(marker => marker.setVisible(true));
+				circleBtn.textContent = 'Увімкнути фільтр по зоні';
+			} else {
+				circle = new google.maps.Circle({
+					map: map,
+					center: map.getCenter(),
+					radius: 1000,
+					fillColor: '#3585F5',
+					fillOpacity: 0.2,
+					strokeColor: '#3585F5',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					editable: true,
+					draggable: true
+				});
+				
+				circle.addListener('radius_changed', filterMarkers);
+				circle.addListener('center_changed', filterMarkers);
+				filterMarkers();
+				circleBtn.textContent = 'Вимкнути фільтр по зоні';
+			}
+		}
+		
+		// Створюємо кнопку для управління фільтром
+		const circleBtn = document.createElement('button');
+		circleBtn.textContent = 'Увімкнути фільтр по зоні';
+		circleBtn.style.cssText = `
+        margin: 10px;
+        padding: 8px 16px;
+        background: #3585F5;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    `;
+		
+		// Додаємо кнопку на карту
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(circleBtn);
+		
+		// Обробник кліку для кнопки
+		circleBtn.addEventListener('click', toggleCircle);
 	}
 </script>
 
