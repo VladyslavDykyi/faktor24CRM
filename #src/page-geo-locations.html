@@ -218,19 +218,18 @@
 		const circleBtn = document.createElement('button');
 		circleBtn.textContent = 'Увімкнути фільтр по зоні';
 		circleBtn.style.cssText = `
-        margin: 10px;
-        padding: 8px 16px;
-        background: #3585F5;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-    `;
+			margin: 10px;
+			padding: 8px 16px;
+			background: #3585F5;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 14px;
+		`;
 		
 		// Додаємо кнопку на карту
 		map.controls[google.maps.ControlPosition.TOP_CENTER].push(circleBtn);
-		
 		// Обробник кліку для кнопки
 		circleBtn.addEventListener('click', toggleCircle);
 	}

@@ -172,3 +172,28 @@
 		--bs-gutter-x: 0 !important;
 	}
 }
+
+/* Ховає логотип Google */
+.gm-style a[href^="https://maps.google.com/maps"] img {
+	//display: none !important;
+	opacity: 0 !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+}
+
+/* Ховає текст "Google" */
+.gm-style .gm-style-cc {
+	opacity: 0 !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+}
+
+/* Ховає водяний знак "Map data" */
+.gm-style .gm-style-mtc {
+	opacity: 0 !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+}
