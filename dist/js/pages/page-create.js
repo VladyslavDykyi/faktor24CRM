@@ -11,6 +11,18 @@
 		placeholder: 'Выбрать',
 		minimumResultsForSearch: -1,
 	});
+	$(".js-example-responsive3").select2({
+		width: 'resolve',
+		placeholder: 'Выбрать',
+	});
+	$(".js-example-responsive4").select2({
+		width: 'resolve',
+		placeholder: 'Введите теги через запятую',
+	});
+	$(".js-example-responsive5").select2({
+		width: 'resolve',
+		placeholder: '--',
+	});
 	
 	document.addEventListener('DOMContentLoaded', () => {
 		setTimeout(() => {

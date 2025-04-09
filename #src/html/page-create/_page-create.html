@@ -33,134 +33,50 @@
 			</h3>
 			<div class="create-filter-data">
 				<div class="create-filter-row row1">
-					<div class="item">
-						<span class="item-label">Тип недвижимости</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input data-name="checkbox-all" type="checkbox" name="real-estate-all" checked>
-											<span></span>
-											Все
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="notary">
-											<span></span>
-											Нотариальная
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="view-deal">Вид сделки</label>
+						<select id="view-deal" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Нотариальная
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Тип сделки</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input data-name="checkbox-all" type="checkbox" name="deals-all" checked>
-											<span></span>
-											Все
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="sales-apartment">
-											<span></span>
-											Продажа квартир
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="type-deal">Тип сделки</label>
+						<select id="type-deal" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Продажа квартир
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Тип здания</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input data-name="checkbox-all" type="checkbox" name="buildings-all" checked>
-											<span></span>
-											Все
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="new-buildings">
-											<span></span>
-											Новостройки
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="khrushchevka">
-											<span></span>
-											Хрущёвка
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="type-building">Тип здания</label>
+						<select id="type-building" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Новострой
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Комплекс</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<label>
-									<input class="multiple-menu-search" autocomplete="off" name="complex-search" type="text" placeholder="Поиск">
-								</label>
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox">
-											<span></span>
-											Южная Пальмира
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="complex">Комплекс</label>
+						<select id="complex" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Южная Пальмира
+							</option>
+						</select>
 					</div>
-					<div class="item size2">
-						<span class="item-label">Корпус / Секция</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<label>
-									<input class="multiple-menu-search" autocomplete="off" name="housing-section-search" type="text" placeholder="Поиск">
-								</label>
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox">
-											<span></span>
-											Светлый совиньон коттеджный городок 15
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item size2 selects">
+						<label class="item-label" for="body-section">Корпус / Секция</label>
+						<select id="body-section" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Светлый совиньон коттеджный городок 15
+							</option>
+						</select>
 					</div>
 				</div>
 				<div class="create-filter-row row2">
@@ -168,27 +84,14 @@
 						<span>Локация</span>
 						@@include('../elements/_element.html')
 					</div>
-					<div class="item">
-						<span class="item-label">Комплекс</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<label>
-									<input class="multiple-menu-search" autocomplete="off" name="complex-search" type="text" placeholder="Поиск">
-								</label>
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox">
-											<span></span>
-											Южная Пальмира
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="street">Улица</label>
+						<select id="street" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Тенистая
+							</option>
+						</select>
 					</div>
 					<div class="item">
 						<span>
@@ -201,25 +104,9 @@
 						</div>
 					</div>
 					<div class="item">
-						<span class="item-label">Комплекс</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<label>
-									<input class="multiple-menu-search" autocomplete="off" name="complex-search" type="text" placeholder="Поиск">
-								</label>
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox">
-											<span></span>
-											Южная Пальмира
-										</label>
-									</li>
-								</ul>
-							</div>
+						<label for="cadastre-number">Кадастровый номер</label>
+						<div class="item-inputText-wrapper">
+							<input class="item-inputText" id="cadastre-number" type="text" autocomplete="off">
 						</div>
 					</div>
 				</div>
@@ -440,7 +327,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<span class="item-label">Год</span>
+						<span class="item-label">Год постройки</span>
 						<div class="multiple-menu">
 							<button class="multiple-menu-btn" data-open-menu="false">
 								Все
@@ -474,7 +361,7 @@
 					</div>
 				</div>
 				<div class="create-filter-row row5">
-					<div class="item selects">
+					<div class="item size0-5 selects">
 						<label class="item-label" for="full-filter-currency">Валюта</label>
 						<select id="full-filter-currency" class="js-example-responsive2-currency my-select2" autocomplete="off">
 							<option value=""></option>
@@ -489,7 +376,7 @@
 							</option>
 						</select>
 					</div>
-					<div class="item">
+					<div class="item size0-8">
 						<label for="price">Цена</label>
 						<div class="item-inputText-wrapper">
 							<input class="item-inputText" id="price" type="text" autocomplete="off">
@@ -501,17 +388,29 @@
 							<input class="item-inputText" id="commission" type="text" autocomplete="off" placeholder="Введите значение">
 						</div>
 					</div>
-					<div class="item size1-5">
+					<div class="item size1-3">
 						<label for="video-youtube">Видео YouTube</label>
 						<div class="item-inputText-wrapper">
 							<input class="item-inputText" id="video-youtube" type="url" autocomplete="off" placeholder="https://linkname.youtube.com">
 						</div>
 					</div>
-					<div class="item size1-5">
-						<label for="you-tag">Теги (другие особенности)</label>
-						<div class="item-inputText-wrapper">
-							<input class="item-inputText" id="you-tag" type="text" autocomplete="off" placeholder="Введите теги через запятую">
-						</div>
+					<div class="item size1-3 selects">
+						<label class="item-label" for="you-tag">Теги (другие особенности)</label>
+						<select id="you-tag" class="js-example-responsive4 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Нотариальная
+							</option>
+						</select>
+					</div>
+					<div class="item selects">
+						<label class="item-label" for="metro">Метро</label>
+						<select id="metro" class="js-example-responsive5 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Параметр из фильтра
+							</option>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -550,53 +449,61 @@
 				<span>Контактное лицо (клиент)</span>
 			</h3>
 			<div class="create-filter-client">
-				<div class="left">
-					<div class="create-filter-row">
-						<div class="item selects">
-							<label class="item-label" for="type-client">Тип клиента</label>
-							<select id="type-client" class="js-example-responsive2 my-select2" autocomplete="off">
-								<option value=""></option>
-								<option value="company">
-									Посредник
-								</option>
-							</select>
-						</div>
-						<div class="item">
-							<label for="name-contact">Имя контакта</label>
-							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="name-contact" type="text" autocomplete="off" placeholder="Введите имя">
+				<div class="create-filter-client-wrapper">
+					<div class="left">
+						<div class="create-filter-row">
+							<div class="item selects">
+								<label class="item-label" for="type-client">Тип клиента</label>
+								<select id="type-client" class="js-example-responsive2 my-select2" autocomplete="off">
+									<option value=""></option>
+									<option value="company">
+										Посредник
+									</option>
+								</select>
+							</div>
+							<div class="item">
+								<label for="name-contact">Имя контакта</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" id="name-contact" type="text" autocomplete="off" placeholder="Введите имя">
+								</div>
+							</div>
+							<div class="item">
+								<label for="link-announcement">Ссылка на объявление</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" id="link-announcement" type="url" autocomplete="off" placeholder="Вставьте ссылку">
+								</div>
 							</div>
 						</div>
-						<div class="item">
-							<label for="link-announcement">Ссылка на объявление</label>
-							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="link-announcement" type="url" autocomplete="off" placeholder="Вставьте ссылку">
+						<div class="create-filter-row">
+							<div class="item">
+								<label for="email-contact">Email</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" id="email-contact" type="email" autocomplete="off">
+								</div>
+							</div>
+							<div class="item">
+								<label for="personal-notes">Личные заметки</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" id="personal-notes" type="url" autocomplete="off">
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="create-filter-row">
+					<div class="right">
 						<div class="item">
-							<label for="email-contact">Email</label>
+							<label for="tel-contact">Телефон</label>
 							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="email-contact" type="email" autocomplete="off">
-							</div>
-						</div>
-						<div class="item">
-							<label for="personal-notes">Личные заметки</label>
-							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="personal-notes" type="url" autocomplete="off">
+								<input class="item-inputText" id="tel-contact" type="tel" autocomplete="off">
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="right">
-					<div class="item">
-						<label for="tel-contact">Телефон</label>
-						<div class="item-inputText-wrapper">
-							<input class="item-inputText" id="tel-contact" type="tel" autocomplete="off" placeholder="+380 (__) ___ - __ - __">
-						</div>
-					</div>
-					
+				<div class="create-filter-client-checkbox">
+					<label class="my-custom-input">
+						<input type="checkbox" name="penthouse">
+						<span></span>
+						Открыть контакты и адрес объекта для агентов моей компании
+					</label>
 				</div>
 			</div>
 			<h3 class="create-filter-title">

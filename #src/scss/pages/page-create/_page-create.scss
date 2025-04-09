@@ -257,11 +257,28 @@
 						width: 100%;
 						padding-right: 0;
 					}
-					
-					&.size1-5 {
-						width: 25.00001%;
+					&.size0-5 {
+						width: 8.33334%;
 						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
+						}
+						@media screen and (max-width: 620px) {
 							width: 50%;
+						}
+					}
+					&.size0-8 {
+						width: 13%;
+						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
+						}
+						@media screen and (max-width: 620px) {
+							width: 50%;
+						}
+					}
+					&.size1-3 {
+						width: 22.66666%;
+						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
 						}
 						@media screen and (max-width: 620px) {
 							width: 100%;
@@ -279,10 +296,26 @@
 		}
 		
 		&-client {
-			display: flex;
-			align-items: flex-start;
+			&-wrapper {
+				display: flex;
+				align-items: flex-start;
+				@media screen and (max-width: 620px) {
+					flex-direction: column;
+				}
+			}
+			&-checkbox {
+				margin-bottom: 20px;
+				& .my-custom-input{
+					display: flex;
+					grid-gap: 10px;
+					align-items: center;
+				}
+			}
 			& .left {
 				width: 75%;
+				@media screen and (max-width: 620px) {
+					width: 100%;
+				}
 				& .item {
 					width: 33.33334%;
 					padding-right: 20px;
@@ -297,6 +330,10 @@
 			}
 			& .right {
 				width: 25%;
+				@media screen and (max-width: 620px) {
+					width: 100%;
+					margin-bottom: 20px;
+				}
 				& .item {
 					width: 100%;
 				}
@@ -339,7 +376,7 @@
 }
 .item-inputText {
 	padding: 6px 10px;
-	background-color: #f12626;
+	background-color: #fff;
 	border-radius: 6px;
 	border: none;
 	outline: none;
@@ -402,14 +439,14 @@
 }
 
 .date-piker {
-	background-color: #f30d0d;
+	background-color: #fff;
 	border: none;
 	padding: 6px 10px;
 	outline: none;
 }
 
 .js-example-responsive2 {
-	background-color: #b61a1a;
+	background-color: #fff;
 	font-weight: 700;
 	font-size: 14px;
 	color: #111;
@@ -424,7 +461,7 @@
 	
 	&-btn {
 		width: 100%;
-		background-color: #ce2e2e;
+		background-color: #fff;
 		border: none;
 		border-radius: 6px;
 		outline: none;
