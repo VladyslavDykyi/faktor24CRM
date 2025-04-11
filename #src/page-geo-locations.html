@@ -49,9 +49,9 @@
 		
 		// Масив з координатами маркерів
 		let locations = [
-			{ lat: 46.4775, lng: 30.7326, title: "агент 1", quantityOfObjects: '1', },
-			{ lat: 46.4875, lng: 30.7426, title: "агент 2", quantityOfObjects: '5', },
-			{ lat: 46.4825, lng: 30.7333, title: "агент 1", quantityOfObjects: '15', }
+			{ lat: 46.4775, lng: 30.7326, title: "агент 1", quantityOfObjects: '1', id:22, },
+			{ lat: 46.4875, lng: 30.7426, title: "агент 2", quantityOfObjects: '5', id:23, },
+			{ lat: 46.4825, lng: 30.7333, title: "агент 1", quantityOfObjects: '15', id:24, },
 		];
 		
 		// Функція для створення іконки маркера
@@ -84,10 +84,30 @@
 			// HTML-контент для infoWindow
 			let content = `
 			<div class="geo_card small">
-				<figure class="geo_card-img">
-					<img src="./img/1.jpg" alt="">
-					<figcaption class="geo_card-img-name">${location.title}</figcaption>
-				</figure>
+				<div class="geo_card-img">
+					<div id="${location.id}" class="carousel slide">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="./img/1.jpg" alt="">
+							</div>
+							<div class="carousel-item">
+								<img src="./img/1.jpg" alt="">
+							</div>
+							<div class="carousel-item">
+								<img src="./img/1.jpg" alt="">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#${location.id}" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#${location.id}" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+					<div class="geo_card-img-name">${location.title}</div>
+				</div>
 				<div class="geo_card-active">
 					<div class="thead-wrapper checkBox">
 						<label class="my-custom-input">

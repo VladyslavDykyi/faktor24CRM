@@ -111,171 +111,59 @@
 					</div>
 				</div>
 				<div class="create-filter-row row3">
-					<div class="item">
-						<span class="item-label">Тип недвижимости</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<label>
-									<input class="multiple-menu-search" autocomplete="off" name="complex-search" type="text" placeholder="Поиск">
-								</label>
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input data-name="checkbox-all" type="checkbox" name="real-estate-all" checked>
-											<span></span>
-											Все
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="penthouse">
-											<span></span>
-											Penthouse
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="property-type">Тип недвижимости</label>
+						<select id="property-type" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Тенистая
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Кол-во комнат</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input data-name="checkbox-all" type="checkbox" name="all-room">
-											<span></span>
-											Все
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="room-1">
-											<span></span>
-											1
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="number-rooms">Кол-во комнат</label>
+						<select id="number-rooms" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								1
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Состояние</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="repair">
-											<span></span>
-											С ремонтом
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="not-repair">
-											<span></span>
-											Без ремонта
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="condition">Состояние</label>
+						<select id="condition" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Без ремонта
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Кол-во ванных комнат</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="combined-bathrooms">
-											<span></span>
-											1
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="number-bathrooms">Кол-во ванных комнат</label>
+						<select id="number-bathrooms" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								1
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Высота потолков</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="up-to-2.5m">
-											<span></span>
-											До 2.5м
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="ceiling-height">Высота потолков</label>
+						<select id="ceiling-height" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="up-to-2.5m">
+								До 2.5м
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Тип стен</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="brick">
-											<span></span>
-											Кирпич
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="panel">
-											<span></span>
-											Панель
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="foam-block">
-											<span></span>
-											Пеноблок
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="monolith">
-											<span></span>
-											Монолит
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="shellfish">
-											<span></span>
-											Ракушечник
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="wall-type">Тип стен</label>
+						<select id="wall-type" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="brick">
+								Кирпич
+							</option>
+						</select>
 					</div>
 				</div>
 				<div class="create-filter-row row4">
@@ -307,57 +195,23 @@
 							<input class="item-inputText" id="number-floor" type="text" autocomplete="off">
 						</div>
 					</div>
-					<div class="item">
-						<span class="item-label">Отопление</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="central-heating">
-											<span></span>
-											Централизованное
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="heating">Отопление</label>
+						<select id="heating" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="brick">
+								Централизованное
+							</option>
+						</select>
 					</div>
-					<div class="item">
-						<span class="item-label">Год постройки</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								Все
-							</button>
-							<div class="multiple-menu-wrapper">
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="years-2030">
-											<span></span>
-											2030
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="years-2029">
-											<span></span>
-											2029
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="years-2028">
-											<span></span>
-											1960-1969
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="item selects">
+						<label class="item-label" for="years-building">Год постройки</label>
+						<select id="years-building" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="brick">
+								2030
+							</option>
+						</select>
 					</div>
 				</div>
 				<div class="create-filter-row row5">
@@ -383,7 +237,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<label for="commission">Комиссия от владельца 50/50</label>
+						<label for="commission">Комиссия от владельца</label>
 						<div class="item-inputText-wrapper">
 							<input class="item-inputText" id="commission" type="text" autocomplete="off" placeholder="Введите значение">
 						</div>
@@ -394,23 +248,70 @@
 							<input class="item-inputText" id="video-youtube" type="url" autocomplete="off" placeholder="https://linkname.youtube.com">
 						</div>
 					</div>
-					<div class="item size1-3 selects">
-						<label class="item-label" for="you-tag">Теги (другие особенности)</label>
-						<select id="you-tag" class="js-example-responsive4 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Нотариальная
-							</option>
-						</select>
+					<div class="item size1-3">
+						<span class="item-label">Теги (другие особенности)</span>
+						<div class="multiple-menu">
+							<button class="multiple-menu-btn" data-open-menu="false">
+								--
+							</button>
+							<div class="multiple-menu-wrapper">
+								<label>
+									<input class="multiple-menu-search" autocomplete="off" name="search-additionally" type="text" placeholder="Поиск">
+								</label>
+								<ul class="multiple-menu-list">
+									<li class="multiple-menu-item">
+										<label class="my-custom-input">
+											<input type="checkbox" name="years-2030">
+											<span></span>
+											2030
+										</label>
+									</li>
+									<li class="multiple-menu-item">
+										<label class="my-custom-input">
+											<input type="checkbox" name="years-2029">
+											<span></span>
+											Нотариальная
+										</label>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div class="item selects">
-						<label class="item-label" for="metro">Метро</label>
-						<select id="metro" class="js-example-responsive5 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Параметр из фильтра
-							</option>
-						</select>
+					<div class="item">
+						<span class="item-label">Метро</span>
+						<div class="multiple-menu">
+							<button class="multiple-menu-btn" data-open-menu="false">
+								--
+							</button>
+							<div class="multiple-menu-wrapper">
+								<label>
+									<input class="multiple-menu-search" autocomplete="off" name="search-additionally" type="text" placeholder="Поиск">
+								</label>
+								<ul class="multiple-menu-list">
+									<li class="multiple-menu-item">
+										<label class="my-custom-input">
+											<input type="checkbox" name="years-2030">
+											<span></span>
+											Центральная
+										</label>
+									</li>
+									<li class="multiple-menu-item">
+										<label class="my-custom-input">
+											<input type="checkbox" name="years-2029">
+											<span></span>
+											Метро-строителей
+										</label>
+									</li>
+									<li class="multiple-menu-item">
+										<label class="my-custom-input">
+											<input type="checkbox" name="years-2028">
+											<span></span>
+											Арсенальная
+										</label>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
