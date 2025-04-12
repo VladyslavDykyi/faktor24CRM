@@ -47,12 +47,9 @@ $(document).ready(function() {
 	// Обробник відкриття меню
 	$('.multiple-menu-btn').on('click', function(event) {
 		event.stopPropagation(); // Зупиняємо всплиття
-		var currentState = $(this).attr('data-open-menu');
-		var newState = currentState === 'false' ? 'true' : 'false';
+		const currentState = $(this).attr('data-open-menu');
+		const newState = currentState === 'false' ? 'true' : 'false';
 		$(this).attr('data-open-menu', newState);
-		if (newState === 'true') {
-			saveOriginalItems(); // Зберігаємо елементи при відкритті меню
-		}
 	});
 	
 	// Обробник кліку поза меню

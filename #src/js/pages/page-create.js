@@ -42,17 +42,30 @@
 	});
 	
 	
-		
-		
-		// Оновлення маски при зміні країни
-		// input.on("countrychange", function() {
-		// 	const countryData = input.intlTelInput("getSelectedCountryData");
-		// 	console.log("Обрана країна:", countryData.name, "Код:", countryData.dialCode);
-		//
-		// 	// Оновлюємо placeholder (необов'язково)
-		// 	const placeholder = `+${countryData.dialCode} (__) ___ - __ - __`;
-		// 	input.attr("placeholder", placeholder);
-		// });
+	// const apiKey = ``; // заміни своїм ключем
+	// const url = 'https://api.openai.com/v1/chat/completions';
 	
 	
+	const fetchGPT = (e) => {
+		console.log(e);
+		// fetch(url, {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		'Authorization': `Bearer ${apiKey}`,
+		// 	},
+		// 	body: JSON.stringify({
+		// 		model: 'gpt-3.5-turbo', // або 'gpt-4' якщо доступний
+		// 		messages: [
+		// 			{ role: 'system', content: 'You are a helpful assistant.' },
+		// 			{ role: 'user', content: 'Привіт! Як справи?' }
+		// 		]
+		// 	})
+		// })
+		// 	.then(res => res.json())
+		// 	.then(data =>  console.log(data))
+		// 	.catch(error => console.error('Помилка:', error));
+	}
+	const btn_gpt = document.querySelector('#generation-chat-gpt');
+	btn_gpt.addEventListener('click', fetchGPT)
 })();
