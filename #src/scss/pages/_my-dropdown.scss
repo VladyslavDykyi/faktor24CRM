@@ -6,7 +6,8 @@
 		position: relative;
 	}
 	&-label {
-		display: block;
+		display: block !important;
+		margin-bottom: 0 !important;
 		width: 100%;
 		background-color: #fff;
 		border: 1px solid #d5dbe3;
@@ -25,6 +26,7 @@
 		}
 	}
 	&-input {
+		width: 100%;
 		font-weight: 700;
 		font-size: 14px;
 		color: #111;

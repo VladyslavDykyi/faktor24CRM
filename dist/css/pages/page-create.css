@@ -647,6 +647,11 @@ ul {
           align-items: center;
 }
 
+.create-filter-client-checkbox .my-custom-input span {
+  min-width: 20px;
+  min-height: 20px;
+}
+
 .create-filter-client .left {
   width: 75%;
 }
@@ -658,10 +663,37 @@ ul {
 
 .create-filter-client .right {
   width: 25%;
+  position: relative;
+}
+
+.create-filter-client .right .btn-new-tel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  border: none;
+  width: 24px;
+  height: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .create-filter-client .right .item {
   width: 100%;
+}
+
+.create-filter-client .right .item label {
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  line-height: normal;
 }
 
 .create-filter-agent .item {
@@ -1067,6 +1099,7 @@ ul {
   margin-bottom: 6px;
   font-weight: 400;
   font-size: 14px;
+  line-height: normal;
   color: #111;
 }
 
@@ -1156,6 +1189,13 @@ ul {
   padding-bottom: 0;
 }
 
+.loading-plan .filter-tags .badge,
+.loading-documents .filter-tags .badge {
+  text-wrap: auto;
+  height: auto;
+  text-align: left;
+}
+
 .loading-plan .document-item,
 .loading-documents .document-item {
   position: relative;
@@ -1202,7 +1242,8 @@ ul {
 }
 
 .my-dropdown-label {
-  display: block;
+  display: block !important;
+  margin-bottom: 0 !important;
   width: 100%;
   background-color: #fff;
   border: 1px solid #d5dbe3;
@@ -1223,6 +1264,7 @@ ul {
 }
 
 .my-dropdown-input {
+  width: 100%;
   font-weight: 700;
   font-size: 14px;
   color: #111;
@@ -1592,11 +1634,11 @@ ul {
   }
 
   .create-filter-row.row5 .item.size0-5 {
-    width: 50%;
+    width: 100%;
   }
 
   .create-filter-row.row5 .item.size0-8 {
-    width: 50%;
+    width: 100%;
   }
 
   .create-filter-row.row5 .item.size1-3 {
@@ -1628,6 +1670,14 @@ ul {
 
   .tab-content-right {
     width: 100%;
+  }
+
+  .loading-plan,
+  .loading-documents {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
   .loading-plan > label > span .error-list,
@@ -1665,6 +1715,12 @@ ul {
         -ms-flex-align: start;
             align-items: flex-start;
     grid-gap: 10px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .create-filter-title > span > span {
+    display: block;
   }
 }
 

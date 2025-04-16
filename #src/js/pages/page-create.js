@@ -140,6 +140,127 @@
 	const btn_gpt = document.querySelector('#generation-chat-gpt');
 	btn_gpt.addEventListener('click', fetchGPT);
 	
+	const btn_add_tel = document.querySelector('.btn-new-tel');
+	let phoneCounter = 1; // Лічильник для унікальних ID
+	const MAX_PHONES = 3; // Максимальна кількість телефонних полів
+	
+	btn_add_tel.addEventListener('click', (e) => {
+		// Перевіряємо кількість вже доданих полів
+		const currentPhones = document.querySelectorAll('.right .item').length;
+		
+		if (currentPhones >= MAX_PHONES) {
+			alert(`Максимальна кількість телефонів - ${MAX_PHONES}`);
+			return;
+		}
+		
+		phoneCounter++;
+		const wrapper = document.querySelector('.create-filter-client-wrapper .right');
+		
+		// Створюємо новий елемент
+		const newItem = document.createElement('div');
+		newItem.className = 'item';
+		newItem.innerHTML = `
+        <label for="tel-contact${phoneCounter}">Телефон</label>
+        <div class="item-inputText-wrapper">
+            <input class="item-inputText tel-contact" id="tel-contact${phoneCounter}" type="tel" autocomplete="off">
+        </div>
+    `;
+		
+		// Додаємо перед кнопкою додавання
+		const addButton = wrapper.querySelector('.add_new-tel');
+		wrapper.insertBefore(newItem, addButton);
+		
+		// Ініціалізуємо intl-tel-input для нового поля
+		initTelInput(newItem.querySelector('.tel-contact'));
+		
+		// Ховаємо кнопку додавання, якщо досягнуто максимум
+		if (currentPhones + 1 >= MAX_PHONES) {
+			btn_add_tel.style.display = 'none';
+		}
+	});
+
+// Функція для ініціалізації intl-tel-input
+	function initTelInput(inputElement) {
+		const $input = $(inputElement);
+		
+		// Ініціалізація intl-tel-input
+		const iti = window.intlTelInput(inputElement, {
+			initialCountry: "ua",
+			utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js",
+			separateDialCode: true,
+			nationalMode: true,
+			autoPlaceholder: "aggressive",
+			customPlaceholder: function(placeholder, countryData) {
+				return placeholder.replace(/[0-9]/g, '_');
+			}
+		});
+		
+		// Маски для різних країн
+		const countryMasks = {
+			'ua': '(99) 999-99-99',
+			'us': '(999) 999-9999',
+			'gb': '9999 999999',
+			'de': '999 99999999',
+			'fr': '9 99-99-99-99',
+			'pl': '999 999-999',
+			'it': '999 999-9999',
+			'es': '999 99-99-99',
+			'default': '(999) 999-99-99'
+		};
+		
+		// Функція для застосування маски
+		function applyPhoneMask(countryCode) {
+			const mask = countryMasks[countryCode] || countryMasks['default'];
+			$input.unmask().mask(mask, {
+				clearIfNotMatch: true
+			});
+		}
+		
+		// Обробник зміни країни
+		$input.on('countrychange', function() {
+			applyPhoneMask(iti.getSelectedCountryData().iso2);
+		});
+		
+		// Обмеження введення лише цифр
+		$input.on('keypress', function(e) {
+			if (!/[0-9]/.test(String.fromCharCode(e.which))) {
+				e.preventDefault();
+			}
+		});
+		
+		// Автоматичне форматування при втраті фокусу
+		$input.on('blur', function() {
+			if ($input.val()) {
+				const number = iti.getNumber();
+				if (number) {
+					$input.val(number.replace(/[^\d]/g, ''));
+				}
+			}
+		});
+		
+		// Ініціалізація при створенні
+		applyPhoneMask(iti.getSelectedCountryData().iso2);
+		
+		// Додаткове налаштування для коректного відображення
+		setTimeout(function() {
+			$input.trigger('countrychange');
+		}, 100);
+	}
+
+// Ініціалізуємо перше поле при завантаженні сторінки
+	document.addEventListener('DOMContentLoaded', function() {
+		const firstTelInput = document.querySelector('.tel-contact');
+		if (firstTelInput) {
+			initTelInput(firstTelInput);
+			phoneCounter = 1; // Встановлюємо лічильник на 1
+			
+			// Перевіряємо кількість полів при завантаженні
+			const currentPhones = document.querySelectorAll('.right .item').length;
+			if (currentPhones >= MAX_PHONES) {
+				document.querySelector('.btn-new-tel').style.display = 'none';
+			}
+		}
+	});
 	
 // 	class LoadingFile {
 // 		constructor () {
@@ -468,7 +589,7 @@
 					URL.createObjectURL(this.getFileByName(item.name));
 				
 				documentItem.innerHTML = `
-                ${item.name}
+                <span>${item.name}</span>
                 <button type="button" class="fancybox-button" data-fancybox data-type="${fancyboxType}" data-src="${fancyboxSrc}" aria-label="eye" data-id="${item.id}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z"

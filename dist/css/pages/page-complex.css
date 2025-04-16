@@ -1839,7 +1839,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .my-dropdown-label {
-  display: block;
+  display: block !important;
+  margin-bottom: 0 !important;
   width: 100%;
   background-color: #fff;
   border: 1px solid #d5dbe3;
@@ -1860,6 +1861,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .my-dropdown-input {
+  width: 100%;
   font-weight: 700;
   font-size: 14px;
   color: #111;
