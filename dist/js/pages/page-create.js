@@ -527,7 +527,7 @@
 						name: file.name,
 						size: file.size,
 						width: width,
-						height: height
+						height: height,
 					});
 				} else if (width >= this.minWidth && height >= this.minHeight) {
 					// Якщо перевірка увімкнена і розмір підходить
@@ -536,7 +536,7 @@
 						name: file.name,
 						size: file.size,
 						width: width,
-						height: height
+						height: height,
 					});
 				} else {
 					// Якщо перевірка увімкнена і розмір не підходить
@@ -552,8 +552,7 @@
 				}
 			};
 			
-			img.onerror = (error) => {
-				alert(error);
+			img.onerror = () => {
 				URL.revokeObjectURL(url);
 				this.invalidDocuments.push({
 					text: `Помилка завантаження зображення: ${file.name}`
@@ -658,20 +657,6 @@
 			});
 		}
 	}
-
-//document.addEventListener('DOMContentLoaded', () => {
-	// Підключаємо Fancybox CSS та JS (якщо ще не підключено)
-	// if (!document.querySelector('link[href*="fancybox"]')) {
-	// 	const fancyboxCSS = document.createElement('link');
-	// 	fancyboxCSS.rel = 'stylesheet';
-	// 	fancyboxCSS.href = 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css';
-	// 	document.head.appendChild(fancyboxCSS);
-	//
-	// 	const fancyboxJS = document.createElement('script');
-	// 	fancyboxJS.src = 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js';
-	// 	document.head.appendChild(fancyboxJS);
-	// }
-	//
 	// Ініціалізація FileUploader після завантаження Fancybox
 	function initFileUploaders() {
 		// Для документів (без перевірки розміру)
@@ -691,7 +676,7 @@
 	}
 	
 	// Чекаємо, поки завантажиться Fancybox, якщо ми його тільки що підключили
-	if (window.Fancybox) {
+	if (typeof Fancybox !== 'undefined') {
 		initFileUploaders();
 	} else {
 		const checkFancybox = setInterval(() => {
@@ -699,6 +684,6 @@
 				clearInterval(checkFancybox);
 				initFileUploaders();
 			}
-		}, 100);
+		}, 200);
 	}
 })();

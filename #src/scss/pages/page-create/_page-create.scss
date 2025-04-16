@@ -798,8 +798,9 @@
 		& > span {
 			display: flex;
 			align-items: center;
-			
+			cursor: pointer;
 			& .error-list {
+				cursor: auto;
 				position: absolute;
 				left: 0;
 				bottom: -32px;

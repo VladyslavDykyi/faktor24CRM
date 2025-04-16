@@ -1158,10 +1158,12 @@ ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
 }
 
 .loading-plan > label > span .error-list,
 .loading-documents > label > span .error-list {
+  cursor: auto;
   position: absolute;
   left: 0;
   bottom: -32px;
