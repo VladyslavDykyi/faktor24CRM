@@ -552,7 +552,8 @@
 				}
 			};
 			
-			img.onerror = () => {
+			img.onerror = (error) => {
+				alert(error);
 				URL.revokeObjectURL(url);
 				this.invalidDocuments.push({
 					text: `Помилка завантаження зображення: ${file.name}`
