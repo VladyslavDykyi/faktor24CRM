@@ -1,17 +1,34 @@
 #full-filter-btn {
+	position: relative;
+	
 	&.active {
 		background-color: #3585f5;
+		
 		& path {
 			fill: #fff;
 		}
 	}
+	
+	& .full-filter-counter {
+		position: absolute;
+		top: -10px;
+		right: -10px;
+		background-color: red;
+		border-radius: 20px;
+		padding: 1px 4px;
+		font-size: 12px;
+		color: #fff;
+	}
 }
+
 .full-filter {
 	border-bottom: 1px solid #d5dbe3;
 	display: none;
+	
 	&.active {
 		display: block;
 	}
+	
 	&-title {
 		font-weight: 700;
 		font-size: 16px;
@@ -20,6 +37,7 @@
 		display: flex;
 		align-items: center;
 		text-wrap: nowrap;
+		
 		&:after {
 			content: "";
 			display: block;
@@ -29,14 +47,17 @@
 			background-color: #d5dbe3;
 		}
 	}
+	
 	&-wrapper {
 	
 	}
+	
 	&-row {
 		display: flex;
 		flex-wrap: wrap;
 		grid-gap: 16px 20px;
 		margin-bottom: 16px;
+		
 		&:first-child {
 			& .item {
 				width: calc(25% - 15px);
@@ -44,14 +65,17 @@
 				flex-direction: column;
 			}
 		}
+		
 		& select {
 			outline: none;
 		}
 	}
+	
 	& .item {
 		width: calc(16.66667% - 16.66667px);
 		display: flex;
 		flex-direction: column;
+		
 		&.filter-btn-outline,
 		&.filter-btn {
 			margin-top: auto;
@@ -64,11 +88,13 @@
 				border-radius: 6px;
 				padding: 6px 10px;
 				width: 100%;
+				
 				&.btn-outline-primary {
 					border-color: #3585F5;
 					color: #3585f5;
 					background-color: #fff;
 				}
+				
 				&.btn-primary {
 					background-color: #3585f5;
 					color: #fff;
@@ -76,15 +102,19 @@
 				}
 			}
 		}
+		
 		&.filter-btn-outline {
 			width: calc(14.47487% - 16.66667px);
 		}
+		
 		&.filter-btn {
 			width: calc(16% - 16.66667px);
 		}
+		
 		&.date {
 			width: calc(20.33334% - 16.66667px);
 			min-width: 200px;
+			
 			& label {
 				font-weight: 400;
 				font-size: 14px;
@@ -93,11 +123,13 @@
 				margin-bottom: 6px;
 			}
 		}
+		
 		&.search-on-id {
 			width: calc(33.33334% - 33.33334px);
 			@media screen and (max-width: 1250px) {
 				width: calc(30% - 33.33334px);
 			}
+			
 			& label {
 				font-weight: 400;
 				font-size: 14px;
@@ -105,6 +137,7 @@
 				color: #111;
 				margin-bottom: 6px;
 			}
+			
 			& .item-inputSearchBtn {
 				position: absolute;
 				right: 10px;
@@ -120,6 +153,7 @@
 				justify-content: center;
 			}
 		}
+		
 		&-inputSearch {
 			width: 100%;
 			border: none;
@@ -130,16 +164,19 @@
 			line-height: normal;
 			color: #111;
 			padding: 6px 10px;
+			
 			&::placeholder {
 				font-weight: 700;
 				font-size: 14px;
 				line-height: normal;
 				color: #aaa;
 			}
+			
 			&-wrapper {
 				position: relative;
 			}
 		}
+		
 		&-label {
 			font-weight: 400;
 			font-size: 14px;
@@ -147,6 +184,7 @@
 			color: #111;
 			margin-bottom: 6px;
 		}
+		
 		&-inputText {
 			padding: 6px 10px;
 			background-color: #fff;
@@ -158,16 +196,19 @@
 			font-size: 14px;
 			line-height: normal;
 			color: #111;
+			
 			&::placeholder {
 				font-weight: 700;
 				font-size: 14px;
 				line-height: normal;
 				color: #aaa;
 			}
+			
 			&-wrapper {
 				display: flex;
 				grid-gap: 20px;
 				position: relative;
+				
 				&::after {
 					content: "";
 					display: block;
@@ -182,6 +223,7 @@
 		}
 	}
 }
+
 .date-piker {
 	background-color: #fff;
 	border: none;
@@ -192,6 +234,7 @@
 
 .multiple-menu {
 	position: relative;
+	
 	&-btn {
 		width: 100%;
 		background-color: #fff;
@@ -204,15 +247,19 @@
 		color: #111;
 		text-align: left;
 		position: relative;
+		
 		&[data-open-menu="false"] + .multiple-menu-wrapper {
 			display: none;
 		}
+		
 		&[data-open-menu="true"] + .multiple-menu-wrapper {
 			display: block;
 		}
+		
 		&[data-open-menu="true"]:after {
 			transform: rotateX(180deg);
 		}
+		
 		&::after {
 			content: "";
 			position: absolute;
@@ -226,6 +273,7 @@
 			background-position: center;
 		}
 	}
+	
 	&-wrapper {
 		width: 100%;
 		position: absolute;
@@ -233,10 +281,12 @@
 		left: 0;
 		z-index: 100;
 		background-color: #fff;
+		
 		& > label {
 			display: block;
 			padding: 6px 10px;
 			width: 100%;
+			
 			& .multiple-menu-search {
 				width: 100%;
 				background-color: #fff;
@@ -246,23 +296,29 @@
 			}
 		}
 	}
+	
 	&-list {
 		max-height: 180px;
 		overflow-y: auto;
 		margin-bottom: 0;
+		
 		&::-webkit-scrollbar {
 			width: 4px;
 		}
+		
 		&::-webkit-scrollbar-track {
 			border-radius: 10px;
 		}
+		
 		&::-webkit-scrollbar-thumb {
 			border-radius: 10px;
 			background-color: #919191;
 		}
 	}
+	
 	&-item {
 		padding: 6px 10px;
+		
 		& label {
 			display: flex;
 			align-items: center;

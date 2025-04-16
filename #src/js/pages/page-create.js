@@ -460,31 +460,41 @@
 				documentItem.className = 'badge rounded-pill document-item';
 				documentItem.setAttribute('data-document-id', item.id);
 				
+				// Визначаємо тип контенту та джерело для Fancybox
+				const isPDF = item.name.toLowerCase().endsWith('.pdf');
+				const fancyboxType = isPDF ? 'iframe' : 'image';
+				const fancyboxSrc = isPDF ?
+					URL.createObjectURL(this.getFileByName(item.name)) :
+					URL.createObjectURL(this.getFileByName(item.name));
+				
 				documentItem.innerHTML = `
-		        ${item.name}
-		        <a href="#" target="_blank" aria-label="eye">
-		          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-		            <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z"
-		              stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
-		            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
-		              stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
-		          </svg>
-		        </a>
-		        <button type="button" aria-label="Close" class="remove-document" data-id="${item.id}">
-		          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-		            <path d="M0.932895 9.93359C0.708205 9.93359 0.483405 9.84787 0.311951 9.67641C-0.0310669 9.3334 -0.0310669 8.77754 0.311951 8.43452L8.43461 0.311868C8.77763 -0.0310395 9.33348 -0.0310395 9.67649 0.311868C10.0194 0.654776 10.0194 1.21074 9.67649 1.55365L1.55384 9.6763C1.38239 9.84787 1.15759 9.93359 0.932895 9.93359Z"
-		              fill="#111111"/>
-		            <path d="M9.05555 9.93348C8.83075 9.93348 8.60606 9.84776 8.43461 9.6763L0.311951 1.55365C-0.0310669 1.21074 -0.0310669 0.654776 0.311951 0.311868C0.654859 -0.0310395 1.21082 -0.0310395 1.55373 0.311868L9.67638 8.43452C10.0193 8.77754 10.0193 9.3334 9.67638 9.67641C9.50504 9.84776 9.28035 9.93348 9.05555 9.93348Z"
-		              fill="#111111"/>
-		          </svg>
-		        </button>
-		      `;
+                ${item.name}
+                <button type="button" class="fancybox-button" data-fancybox data-type="${fancyboxType}" data-src="${fancyboxSrc}" aria-label="eye" data-id="${item.id}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z"
+                      stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
+                    <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
+                      stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button type="button" aria-label="Close" class="remove-document" data-id="${item.id}">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.932895 9.93359C0.708205 9.93359 0.483405 9.84787 0.311951 9.67641C-0.0310669 9.3334 -0.0310669 8.77754 0.311951 8.43452L8.43461 0.311868C8.77763 -0.0310395 9.33348 -0.0310395 9.67649 0.311868C10.0194 0.654776 10.0194 1.21074 9.67649 1.55365L1.55384 9.6763C1.38239 9.84787 1.15759 9.93359 0.932895 9.93359Z"
+                      fill="#111111"/>
+                    <path d="M9.05555 9.93348C8.83075 9.93348 8.60606 9.84776 8.43461 9.6763L0.311951 1.55365C-0.0310669 1.21074 -0.0310669 0.654776 0.311951 0.311868C0.654859 -0.0310395 1.21082 -0.0310395 1.55373 0.311868L9.67638 8.43452C10.0193 8.77754 10.0193 9.3334 9.67638 9.67641C9.50504 9.84776 9.28035 9.93348 9.05555 9.93348Z"
+                      fill="#111111"/>
+                  </svg>
+                </button>
+            `;
 				
 				this.renderContainer.appendChild(documentItem);
 			});
 			
 			// Додаємо обробники подій для кнопок видалення
 			this.addRemoveHandlers();
+			
+			// Ініціалізуємо Fancybox для нових елементів
+			this.initFancybox();
 		}
 		
 		addRemoveHandlers() {
@@ -510,10 +520,38 @@
 			// Перерендеримо список
 			this.render();
 		}
+		getFileByName(filename) {
+			// Шукаємо файл у input.files за ім'ям
+			const files = Array.from(this.input.files);
+			return files.find(file => file.name === filename);
+		}
+		initFancybox() {
+			// Ініціалізація Fancybox для всіх кнопок перегляду
+			Fancybox.bind("[data-fancybox]", {
+				Thumbs: false,
+				Toolbar: true,
+				Images: {
+					zoom: true,
+				},
+			});
+		}
 	}
 
-// Ініціалізація
-	document.addEventListener('DOMContentLoaded', () => {
+//document.addEventListener('DOMContentLoaded', () => {
+	// Підключаємо Fancybox CSS та JS (якщо ще не підключено)
+	// if (!document.querySelector('link[href*="fancybox"]')) {
+	// 	const fancyboxCSS = document.createElement('link');
+	// 	fancyboxCSS.rel = 'stylesheet';
+	// 	fancyboxCSS.href = 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css';
+	// 	document.head.appendChild(fancyboxCSS);
+	//
+	// 	const fancyboxJS = document.createElement('script');
+	// 	fancyboxJS.src = 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js';
+	// 	document.head.appendChild(fancyboxJS);
+	// }
+	//
+	// Ініціалізація FileUploader після завантаження Fancybox
+	function initFileUploaders() {
 		// Для документів (без перевірки розміру)
 		new FileUploader({
 			inputId: 'document',
@@ -528,5 +566,17 @@
 			minWidth: 800,
 			minHeight: 800
 		});
-	});
+	}
+	
+	// Чекаємо, поки завантажиться Fancybox, якщо ми його тільки що підключили
+	if (window.Fancybox) {
+		initFileUploaders();
+	} else {
+		const checkFancybox = setInterval(() => {
+			if (window.Fancybox) {
+				clearInterval(checkFancybox);
+				initFileUploaders();
+			}
+		}, 100);
+	}
 })();

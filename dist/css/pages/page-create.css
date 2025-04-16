@@ -1186,6 +1186,11 @@ ul {
   fill: #111111;
 }
 
+.has-iframe .fancybox__content {
+  height: 90% !important;
+  padding: 0 !important;
+}
+
 .my-dropdown {
   max-width: 506px;
   width: 100%;
