@@ -125,7 +125,7 @@ $(document).ready(function () {
                                 <p class="info-footer-data">ID: <span>1234567</span></p>
                                 <p class="info-footer-data">Добавлено: <span>01.02.2025</span></p>
                                 <p class="info-footer-data">Обновлено: <span>10.02.2025</span></p>
-                                <p class="info-footer-data">У других: <button class="info-footer-btn btn-others" type="button">3</button></p>
+                                <p class="info-footer-data">Комплексы: <button class="info-footer-btn btn-others" type="button">3</button></p>
                             	<button class="info-footer-btn ms-auto close-btn-other" type="button">Свернуть</button>
                             </div>
                         </div>

@@ -213,7 +213,7 @@ ul {
 }
 
 .header-wrapper {
-  padding: 10px 0;
+  padding: 10px 0 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1432,15 +1432,56 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   fill: #fff;
 }
 
-#full-filter-btn .full-filter-counter {
+#full-filter-btn.active + .full-filter-counter {
+  background-color: #fff;
+  -webkit-box-shadow: inset 0 0 0 1px #3585f5;
+          box-shadow: inset 0 0 0 1px #3585f5;
+  color: #3585f5;
+}
+
+#full-filter-btn.active + .full-filter-counter svg path {
+  fill: #3585f5;
+}
+
+.full-filter-btn-wrapper {
+  position: relative;
+}
+
+.full-filter-btn-wrapper .full-filter-counter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 6px;
   position: absolute;
-  top: -10px;
+  top: -14px;
   right: -10px;
-  background-color: red;
+  background-color: #3585f5;
   border-radius: 20px;
   padding: 1px 4px;
   font-size: 12px;
   color: #fff;
+}
+
+.full-filter-btn-wrapper .full-filter-counter button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.full-filter-btn-wrapper .full-filter-counter button svg {
+  width: 8px;
+  height: 8px;
+}
+
+.full-filter-btn-wrapper .full-filter-counter button svg path {
+  fill: #fff;
 }
 
 .full-filter {

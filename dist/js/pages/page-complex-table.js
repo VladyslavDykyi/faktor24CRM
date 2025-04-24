@@ -134,7 +134,7 @@ $(document).ready(function () {
                             </div>
                             <div class="type-areas">
 	                            <ul class="type-areas-list">
-	                            	<li class="type-areas-item active">
+	                            	<li class="type-areas-item">
 	                            		<strong class="type-areas-title">Студии</strong>
 	                            		<p class="type-areas-text">
 		                                    <span>S от 23 м²</span>
