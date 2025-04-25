@@ -1030,7 +1030,7 @@
 			// DOM елементи
 			this.input = document.querySelector(`#${this.inputId}`);
 			this.wrapper = document.querySelector(`.${this.wrapperClass}`);
-			this.errorContainer = this.wrapper?.querySelector('.error-container');
+			this.errorContainer = document.querySelector('.photo-info-list-wrapper > .error-container');
 			this.renderContainer = document.querySelector('.photo-info-list');
 			
 			// Масиви для зберігання фото

@@ -1248,6 +1248,12 @@ ul {
   margin-top: 6px;
 }
 
+.photo-info-list-wrapper > .error-container .error {
+  font-size: 10px;
+  color: red;
+  margin-bottom: 0;
+}
+
 .photo-info-item {
   max-width: 105px;
 }

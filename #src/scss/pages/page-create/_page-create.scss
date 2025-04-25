@@ -869,6 +869,13 @@
 		grid-gap: 16px 10px;
 		&-wrapper {
 			margin-top: 6px;
+			& > .error-container {
+				& .error {
+					font-size: 10px;
+					color: red;
+					margin-bottom: 0;
+				}
+			}
 		}
 	}
 	&-item {
