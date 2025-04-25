@@ -659,356 +659,9 @@
 			});
 		}
 	}
-	// class PhotoLoader {
-	// 	constructor(options) {
-	// 		// Обов'язкові параметри
-	// 		this.inputId = options.inputId;
-	// 		this.wrapperClass = options.wrapperClass || 'photo-info-list';
-	// 		this.checkImageSize = options.checkImageSize !== false;
-	//
-	// 		// Мінімальні розміри
-	// 		this.minWidth = options.minWidth || 800;
-	// 		this.minHeight = options.minHeight || 800;
-	//
-	// 		// DOM елементи
-	// 		this.input = document.querySelector(`#${this.inputId}`);
-	// 		this.wrapper = document.querySelector(`.${this.wrapperClass}`);
-	// 		this.errorContainer = this.wrapper ? this.wrapper.querySelector('.error-container') : null;
-	// 		this.renderContainer = document.querySelector('.photo-info-list');
-	//
-	// 		// Масиви для файлів
-	// 		this.validPhotos = [];
-	// 		this.invalidPhotos = [];
-	// 		this.photoArray = [];
-	//
-	// 		// Ініціалізація
-	// 		if (this.input && this.wrapper) {
-	// 			this.init();
-	// 		} else {
-	// 			console.error('Не вдалося знайти необхідні DOM-елементи');
-	// 		}
-	// 	}
-	//
-	// 	init() {
-	// 		this.input.addEventListener('change', (e) => this.handleFileUpload(e));
-	// 	}
-	//
-	// 	handleFileUpload(event) {
-	// 		const files = Array.from(event.target.files);
-	// 		// Очищаємо масиви
-	// 		this.validPhotos = [];
-	// 		this.invalidPhotos = [];
-	// 		this.photoArray = [];
-	//
-	// 		// Обробляємо файли
-	// 		files.forEach((file, index) => {
-	// 			if (file.type.match('image.*')) {
-	// 				this.handleImage(file, index, files.length);
-	// 			} else {
-	// 				this.handleInvalidFile(file);
-	// 			}
-	// 		});
-	// 	}
-	//
-	// 	handleImage(file, index, totalFiles) {
-	// 		const img = new Image();
-	// 		const url = URL.createObjectURL(file);
-	//
-	// 		img.onload = () => {
-	// 			URL.revokeObjectURL(url);
-	//
-	// 			const width = img.width;
-	// 			const height = img.height;
-	//
-	// 			if (!this.checkImageSize || (width >= this.minWidth && height >= this.minHeight)) {
-	// 				const photoItem = {
-	// 					id: this.validPhotos.length,
-	// 					name: file.name,
-	// 					size: file.size,
-	// 					width: width,
-	// 					height: height,
-	// 					file: file,
-	// 					isCheked: false // Перше фото - головне
-	// 				};
-	// 				console.log(photoItem);
-	// 				this.validPhotos.push(photoItem);
-	// 				this.photoArray.push(photoItem);
-	// 			} else {
-	// 				this.invalidPhotos.push({
-	// 					text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`,
-	// 					file: file
-	// 				});
-	// 			}
-	//
-	// 			if (index === totalFiles - 1) {
-	// 				this.displayErrors();
-	// 				this.render();
-	// 			}
-	// 		};
-	//
-	// 		img.onerror = () => {
-	// 			URL.revokeObjectURL(url);
-	// 			this.invalidPhotos.push({
-	// 				text: `Помилка завантаження зображення: ${file.name}`,
-	// 				file: file
-	// 			});
-	// 			this.displayErrors();
-	// 		};
-	//
-	// 		img.src = url;
-	// 	}
-	//
-	// 	handleInvalidFile(file) {
-	// 		this.invalidPhotos.push({
-	// 			text: `Файл "${file.name}" не є зображенням. Допустимі лише зображення (JPG/PNG).`,
-	// 			file: file
-	// 		});
-	// 	}
-	//
-	// 	clearErrors() {
-	// 		if (!this.wrapper || !this.errorContainer) return;
-	//
-	// 		this.wrapper.classList.remove('error');
-	// 		const errorElements = this.errorContainer.querySelectorAll('.error');
-	// 		errorElements.forEach(element => element.remove());
-	// 	}
-	//
-	// 	displayErrors() {
-	// 		if (!this.wrapper || !this.errorContainer) return;
-	//
-	// 		this.clearErrors();
-	//
-	// 		if (this.invalidPhotos.length > 0) {
-	// 			this.wrapper.classList.add('error');
-	//
-	// 			this.invalidPhotos.forEach(item => {
-	// 				const errorItem = document.createElement('div');
-	// 				errorItem.textContent = item.text;
-	// 				errorItem.classList.add('error');
-	// 				this.errorContainer.appendChild(errorItem);
-	// 			});
-	// 		}
-	// 	}
-	//
-	// 	render() {
-	// 		if (!this.renderContainer) return;
-	//
-	// 		// Знищуємо всі тултіпи перед оновленням DOM
-	// 		this.destroyTooltips();
-	//
-	// 		// Створюємо DocumentFragment для ефективного додавання елементів
-	// 		const fragment = document.createDocumentFragment();
-	//
-	// 		// Спочатку додаємо всі фото
-	// 		this.photoArray.forEach((item) => {
-	// 			const photoItem = document.createElement('li');
-	// 			photoItem.classList.add('photo-info-item');
-	// 			photoItem.setAttribute('data-photo-id', item.id);
-	//
-	// 			const photoUrl = URL.createObjectURL(item.file);
-	//
-	// 			photoItem.innerHTML = `
-    //             <label>
-    //                 <input type="checkbox" ${item.isCheked ? 'checked' : ''}
-    //                        data-cheked-photo-id="${item.id}">
-    //                 <div>
-    //                     <img src="${photoUrl}" alt="${item.name}"
-    //                          data-bs-toggle="tooltip" data-bs-placement="top"
-    //                          data-bs-title="${item.isCheked ? 'Це фото буде відображатися' : 'Це фото буде відображатися в оголошенні та рекламних матеріалах'}">
-    //                 </div>
-    //             </label>
-    //             <div class="photo-info-item-actions">
-    //                  <button type="button" class="btn-see" aria-label="eye"
-    //                         data-fancybox data-src="${photoUrl}">
-    //                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //                         <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
-    //                         <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
-    //                     </svg>
-    //                 </button>
-    //                 <button type="button" class="btn-move" data-move-id="${item.id}">
-    //                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //                         <g clip-path="url(#clip0_388_3868)">
-    //                             <path d="M3.33301 6L1.33301 8L3.33301 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    //                             <path d="M6 3.33301L8 1.33301L10 3.33301" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    //                             <path d="M10 12.667L8 14.667L6 12.667" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    //                             <path d="M12.667 6L14.667 8L12.667 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    //                             <path d="M1.33301 8H14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    //                             <path d="M8 1.33301V14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    //                         </g>
-    //                         <defs>
-    //                             <clipPath id="clip0_388_3868">
-    //                                 <rect width="16" height="16" fill="white" />
-    //                             </clipPath>
-    //                         </defs>
-    //                     </svg>
-    //                 </button>
-    //                 <button type="button" class="btn-delete" data-delete-id="${item.id}">
-    //                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //                         <path d="M4.30007 12.4999C4.09537 12.4999 3.89057 12.4218 3.73437 12.2656C3.42188 11.9531 3.42188 11.4467 3.73437 11.1342L11.1343 3.7343C11.4468 3.4219 11.9532 3.4219 12.2657 3.7343C12.5781 4.0467 12.5781 4.55319 12.2657 4.86559L4.86576 12.2655C4.70956 12.4218 4.50477 12.4999 4.30007 12.4999Z" fill="#3585F5" />
-    //                         <path d="M11.7 12.4998C11.4952 12.4998 11.2905 12.4217 11.1343 12.2655L3.73437 4.86559C3.42188 4.55319 3.42188 4.0467 3.73437 3.7343C4.04677 3.4219 4.55327 3.4219 4.86566 3.7343L12.2656 11.1342C12.578 11.4467 12.578 11.9531 12.2656 12.2656C12.1095 12.4217 11.9048 12.4998 11.7 12.4998Z" fill="#3585F5" />
-    //                     </svg>
-    //                 </button>
-    //             </div>
-    //         `;
-	//
-	// 			fragment.appendChild(photoItem);
-	// 		});
-	//
-	// 		// Очищаємо контейнер, але зберігаємо кнопку завантаження
-	// 		const uploadButton = this.renderContainer.querySelector('.photo-info-btn-wrapper');
-	// 		this.renderContainer.innerHTML = '';
-	//
-	// 		// Додаємо спочатку нові фото, потім кнопку завантаження
-	// 		this.renderContainer.appendChild(fragment);
-	// 		if (uploadButton) {
-	// 			this.renderContainer.appendChild(uploadButton);
-	// 		}
-	//
-	// 		// Ініціалізуємо обробники подій
-	// 		this.initEventHandlers();
-	// 		this.initFancybox();
-	// 		this.initTooltips();
-	// 	}
-	//
-	// 	initEventHandlers() {
-	// 		// Обробник для вибору головного фото
-	// 		this.renderContainer.querySelectorAll('input[type="checkbox"]').forEach(radio => {
-	// 			radio.addEventListener('change', (e) => {
-	// 				const photoId = parseInt(e.target.dataset.chekedPhotoId);
-	// 				this.setMainPhoto(photoId);
-	// 			});
-	// 		});
-	//
-	// 		// Обробник для видалення фото
-	// 		this.renderContainer.querySelectorAll('.btn-delete').forEach(btn => {
-	// 			btn.addEventListener('click', (e) => {
-	// 				const photoId = parseInt(e.currentTarget.dataset.deleteId);
-	// 				this.deletePhoto(photoId);
-	// 			});
-	// 		});
-	//
-	// 		// Обробник для переміщення фото (можна реалізувати drag & drop)
-	// 		this.renderContainer.querySelectorAll('.btn-move').forEach(btn => {
-	// 			btn.addEventListener('click', (e) => {
-	// 				const photoId = parseInt(e.currentTarget.dataset.moveId);
-	// 				this.movePhoto(photoId);
-	// 			});
-	// 		});
-	// 	}
-	//
-	// 	setMainPhoto(photoId) {
-	// 		this.photoArray.forEach(photo => {
-	// 			photo.isMain = (photo.id === photoId);
-	// 		});
-	// 		this.render();
-	// 	}
-	//
-	// 	deletePhoto(photoId) {
-	// 		// Знаходимо фото перед видаленням
-	// 		const photoToDelete = this.photoArray.find(photo => photo.id === photoId);
-	//
-	// 		// Звільняємо URL
-	// 		if (photoToDelete && photoToDelete.file) {
-	// 			const photoUrl = URL.createObjectURL(photoToDelete.file);
-	// 			URL.revokeObjectURL(photoUrl);
-	// 		}
-	//
-	// 		// Продовжуємо видалення
-	// 		this.photoArray = this.photoArray.filter(photo => photo.id !== photoId);
-	// 		this.validPhotos = this.validPhotos.filter(photo => photo.id !== photoId);
-	//
-	// 		// Оновлюємо ID для залишених фото
-	// 		this.photoArray.forEach((photo, index) => {
-	// 			photo.id = index;
-	// 			if (index === 0) photo.isMain = true;
-	// 		});
-	//
-	// 		this.validPhotos.forEach((photo, index) => {
-	// 			photo.id = index;
-	// 		});
-	//
-	// 		this.render();
-	// 	}
-	//
-	// 	movePhoto(photoId) {
-	// 		// Тут можна реалізувати логіку переміщення фото
-	// 		console.log(`Move photo with id: ${photoId}`);
-	// 		// Наприклад, можна використати drag & drop або кнопки вверх/вниз
-	// 	}
-	//
-	// 	initFancybox() {
-	// 		if (typeof Fancybox !== 'undefined') {
-	// 			// Спочатку знищуємо старі екземпляри Fancybox
-	// 			if (Fancybox.getInstance()) {
-	// 				Fancybox.getInstance().destroy();
-	// 			}
-	//
-	// 			// Ініціалізуємо новий Fancybox з безпечним обробником закриття
-	// 			Fancybox.bind("[data-fancybox]", {
-	// 				Thumbs: false,
-	// 				Toolbar: true,
-	// 				Images: {
-	// 					zoom: true,
-	// 				},
-	// 				on: {
-	// 					close: () => {
-	// 						// Безпечний спосіб обробки закриття
-	// 						const instance = Fancybox.getInstance();
-	// 						if (instance) {
-	// 							const slides = instance.getSlides();
-	// 							if (slides && slides.forEach) {
-	// 								slides.forEach(slide => {
-	// 									if (slide.content && slide.content.src && slide.content.src.startsWith('blob:')) {
-	// 										URL.revokeObjectURL(slide.content.src);
-	// 									}
-	// 								});
-	// 							}
-	// 						}
-	// 					},
-	// 					destroy: () => {
-	// 						// Додаткове очищення при повному знищенні
-	// 						if (Fancybox.getInstance()) {
-	// 							Fancybox.getInstance().destroy();
-	// 						}
-	// 					}
-	// 				}
-	// 			});
-	// 		}
-	// 	}
-	//
-	// 	initTooltips() {
-	// 		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-	// 			// Спочатку знищуємо старі тултіпи
-	// 			this.destroyTooltips();
-	//
-	// 			// Ініціалізуємо нові тултіпи
-	// 			this.tooltips = [];
-	// 			this.renderContainer.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
-	// 				this.tooltips.push(new bootstrap.Tooltip(el, {
-	// 					trigger: 'hover'
-	// 				}));
-	// 			});
-	// 		}
-	// 	}
-	//
-	// 	destroyTooltips() {
-	// 		if (this.tooltips) {
-	// 			this.tooltips.forEach(tooltip => {
-	// 				tooltip.dispose();
-	// 			});
-	// 			this.tooltips = [];
-	// 		}
-	// 	}
-	// }
-	/**
-	 * Клас для завантаження, перевірки та відображення фотографій
-	 * Виправлена версія з усіма патчами для стабільної роботи
-	 */
+	
+	
 	class PhotoLoader {
-		/**
-		 * Конструктор класу
-		 * @param {Object} options - Налаштування завантажувача
-		 */
 		constructor(options) {
 			// Перевірка обов'язкових параметрів
 			if (!options.inputId) {
@@ -1079,8 +732,8 @@
 				this.displayErrors();
 				return;
 			}
-			
-			this.clearResults();
+			// якщо треба очишення треба розкоментувати цей визов функції, або в середині нього трішки змінити його
+			// this.clearResults();
 			
 			const processingPromises = files.map((file, index) => {
 				return new Promise((resolve) => {
@@ -1102,62 +755,177 @@
 		/**
 		 * Обробка зображення
 		 */
+		// handleImage(file, index, totalFiles) {
+		// 	return new Promise((resolve) => {
+		// 		const img = new Image();
+		// 		const url = URL.createObjectURL(file);
+		//
+		// 		img.onerror = () => {
+		// 			URL.revokeObjectURL(url);
+		// 			this.invalidPhotos.push({
+		// 				text: `Помилка завантаження зображення: ${file.name}`,
+		// 				file: file
+		// 			});
+		// 			resolve();
+		// 		};
+		//
+		// 		img.onload = () => {
+		// 			URL.revokeObjectURL(url);
+		//
+		// 			try {
+		// 				const width = img.naturalWidth;
+		// 				const height = img.naturalHeight;
+		//
+		// 				if (!this.checkImageSize || (width >= this.minWidth && height >= this.minHeight)) {
+		// 					const photoItem = {
+		// 						id: this.generateUniqueId(),
+		// 						name: file.name,
+		// 						size: file.size,
+		// 						width: width,
+		// 						height: height,
+		// 						file: file,
+		// 						isCheked: false,
+		// 						objectUrl: null
+		// 					};
+		//
+		// 					this.validPhotos.push(photoItem);
+		// 					this.photoArray.push(photoItem);
+		// 				} else {
+		// 					this.invalidPhotos.push({
+		// 						text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`,
+		// 						file: file
+		// 					});
+		// 				}
+		// 			} catch (error) {
+		// 				console.error('Помилка обробки зображення:', error);
+		// 				this.invalidPhotos.push({
+		// 					text: `Помилка обробки зображення: ${file.name}`,
+		// 					file: file
+		// 				});
+		// 			}
+		//
+		// 			resolve();
+		// 		};
+		//
+		// 		img.src = url;
+		// 	});
+		// }
+		/**
+		 * Обробка зображення з підтримкою HEIC
+		 */
 		handleImage(file, index, totalFiles) {
 			return new Promise((resolve) => {
-				const img = new Image();
-				const url = URL.createObjectURL(file);
+				// Перевіряємо, чи це HEIC зображення
+				const isHeic = file.type === 'image/heic' ||
+					file.type === 'image/heif' ||
+					file.name.toLowerCase().endsWith('.heic') ||
+					file.name.toLowerCase().endsWith('.heif');
 				
-				img.onerror = () => {
-					URL.revokeObjectURL(url);
-					this.invalidPhotos.push({
-						text: `Помилка завантаження зображення: ${file.name}`,
-						file: file
+				if (isHeic && typeof heic2any !== 'undefined') {
+					this.convertHeicToJpg(file).then(convertedFile => {
+						this.processImageFile(convertedFile, resolve);
+					}).catch(error => {
+						console.error('Помилка конвертації HEIC:', error);
+						this.invalidPhotos.push({
+							text: `Помилка конвертації HEIC зображення: ${file.name}`,
+							file: file
+						});
+						resolve();
 					});
-					resolve();
+				} else {
+					// Якщо не HEIC або бібліотека не завантажена, обробляємо як звичайне зображення
+					this.processImageFile(file, resolve);
+				}
+			});
+		}
+		/**
+		 * Конвертація HEIC у JPG
+		 */
+		convertHeicToJpg(file) {
+			return new Promise((resolve, reject) => {
+				const reader = new FileReader();
+				
+				reader.onload = function(e) {
+					try {
+						heic2any({
+							blob: file,
+							toType: 'image/jpeg',
+							quality: 0.8
+						}).then(conversionResult => {
+							// Створюємо новий файл з конвертованими даними
+							const newFile = new File(
+								[conversionResult],
+								file.name.replace(/\.(heic|heif)$/i, '.jpg'),
+								{ type: 'image/jpeg', lastModified: Date.now() }
+							);
+							resolve(newFile);
+						}).catch(reject);
+					} catch (error) {
+						reject(error);
+					}
 				};
 				
-				img.onload = () => {
-					URL.revokeObjectURL(url);
+				reader.onerror = reject;
+				reader.readAsArrayBuffer(file);
+			});
+		}
+		/**
+		 * Загальна обробка зображення (HEIC або іншого типу)
+		 */
+		processImageFile(file, resolve) {
+			const img = new Image();
+			const url = URL.createObjectURL(file);
+			
+			img.onerror = () => {
+				URL.revokeObjectURL(url);
+				this.invalidPhotos.push({
+					text: `Помилка завантаження зображення: ${file.name}`,
+					file: file
+				});
+				resolve();
+			};
+			
+			img.onload = () => {
+				URL.revokeObjectURL(url);
+				
+				try {
+					const width = img.naturalWidth;
+					const height = img.naturalHeight;
 					
-					try {
-						const width = img.naturalWidth;
-						const height = img.naturalHeight;
+					if (!this.checkImageSize || (width >= this.minWidth && height >= this.minHeight)) {
+						const photoItem = {
+							id: this.generateUniqueId(),
+							name: file.name,
+							size: file.size,
+							width: width,
+							height: height,
+							file: file,
+							isCheked: false,
+							objectUrl: null,
+							originalFileType: file.type // Зберігаємо оригінальний тип файлу
+						};
 						
-						if (!this.checkImageSize || (width >= this.minWidth && height >= this.minHeight)) {
-							const photoItem = {
-								id: this.generateUniqueId(),
-								name: file.name,
-								size: file.size,
-								width: width,
-								height: height,
-								file: file,
-								isCheked: false,
-								objectUrl: null
-							};
-							
-							this.validPhotos.push(photoItem);
-							this.photoArray.push(photoItem);
-						} else {
-							this.invalidPhotos.push({
-								text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`,
-								file: file
-							});
-						}
-					} catch (error) {
-						console.error('Помилка обробки зображення:', error);
+						this.validPhotos.push(photoItem);
+						this.photoArray.push(photoItem);
+					} else {
 						this.invalidPhotos.push({
-							text: `Помилка обробки зображення: ${file.name}`,
+							text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`,
 							file: file
 						});
 					}
-					
-					resolve();
-				};
+				} catch (error) {
+					console.error('Помилка обробки зображення:', error);
+					this.invalidPhotos.push({
+						text: `Помилка обробки зображення: ${file.name}`,
+						file: file
+					});
+				}
 				
-				img.src = url;
-			});
+				resolve();
+			};
+			
+			img.src = url;
 		}
-		
 		/**
 		 * Генерація унікального ID для фото
 		 */
@@ -1274,7 +1042,7 @@
 			const containerParent = this.renderContainer.parentNode;
 			containerParent.replaceChild(newContainer, this.renderContainer);
 			this.renderContainer = newContainer;
-			console.log(8)
+			
 			this.initTooltips();
 			this.initFancybox();
 			this.initEventHandlers();
@@ -1331,7 +1099,7 @@
                 </button>
             </div>
         `;
-			console.log(7)
+			
 			return photoItem;
 		}
 		
@@ -1350,7 +1118,6 @@
 			
 			this.renderContainer.addEventListener('click', (e) => {
 				if (e.target.closest('.btn-delete')) {
-					console.log(6)
 					const btn = e.target.closest('.btn-delete');
 					const photoId = btn.dataset.deleteId;
 					this.deletePhoto(photoId);
@@ -1412,10 +1179,8 @@
 			// Знищуємо тултіп перед видаленням елемента
 			const img = photoElement.querySelector('img');
 			if (img) {
-				console.log('1');
 				const tooltip = bootstrap.Tooltip.getInstance(img);
 				if (tooltip) {
-					console.log('2');
 					tooltip.dispose();
 					this.tooltips.delete(img);
 				}
@@ -1434,7 +1199,6 @@
 			// Видаляємо фото з масивів
 			this.photoArray.splice(photoIndex, 1);
 			this.validPhotos = this.validPhotos.filter(photo => photo.id !== photoId);
-			console.log('3');
 			// Видаляємо елемент з DOM
 			photoElement.remove();
 			
@@ -1470,8 +1234,8 @@
 						const instance = Fancybox.getInstance();
 						if (instance) {
 							const slides = instance.getSlides();
-							slides?.forEach(slide => {
-								if (slide.content?.src?.startsWith('blob:')) {
+							slides && slides.forEach(slide => {
+								if (slide.content.src.startsWith('blob:')) {
 									URL.revokeObjectURL(slide.content.src);
 								}
 							});
@@ -1487,7 +1251,7 @@
 		initTooltips() {
 			if (typeof bootstrap === 'undefined' || !bootstrap.Tooltip) return;
 			
-			const tooltipElements = this.renderContainer?.querySelectorAll('[data-bs-toggle="tooltip"]') || [];
+			const tooltipElements = this.renderContainer && this.renderContainer.querySelectorAll('[data-bs-toggle="tooltip"]') || [];
 			
 			tooltipElements.forEach(el => {
 				try {

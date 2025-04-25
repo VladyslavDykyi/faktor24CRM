@@ -34,76 +34,7 @@
 <script src="./js/lib/fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-<script>
-	// $(function() {
-	// 	const $input = $(".tel-contact");
-	//
-	// 	// Ініціалізація intl-tel-input
-	// 	const iti = window.intlTelInput($input.get(0), {
-	// 		initialCountry: "ua",
-	// 		utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js",
-	// 		separateDialCode: true, // Вимкнути відокремлений код країни
-	// 		nationalMode: true, // Використовувати національний формат
-	// 		autoPlaceholder: "aggressive", // Агресивне оновлення плейсхолдера
-	// 		customPlaceholder: function(placeholder, countryData) {
-	// 			// Генеруємо маску з підкресленнями
-	// 			return placeholder.replace(/[0-9]/g, '_');
-	// 		}
-	// 	});
-	//
-	// 	// Маски для різних країн (без кодів країн)
-	// 	const countryMasks = {
-	// 		'ua': '(99) 999-99-99',
-	// 		'us': '(999) 999-9999',
-	// 		'gb': '9999 999999',
-	// 		'de': '999 99999999',
-	// 		'fr': '9 99-99-99-99',
-	// 		'pl': '999 999-999',
-	// 		'it': '999 999-9999',
-	// 		'es': '999 99-99-99',
-	// 		'default': '(999) 999-99-99'
-	// 	};
-	//
-	// 	// Функція для застосування маски
-	// 	function applyPhoneMask(countryCode) {
-	// 		const mask = countryMasks[countryCode] || countryMasks['default'];
-	// 		$input.unmask().mask(mask, {
-	// 			clearIfNotMatch: true
-	// 		});
-	// 	}
-	//
-	// 	// Обробник зміни країни
-	// 	$input.on('countrychange', function() {
-	// 		applyPhoneMask(iti.getSelectedCountryData().iso2);
-	// 	});
-	//
-	// 	// Обмеження введення лише цифр
-	// 	$input.on('keypress', function(e) {
-	// 		if (!/[0-9]/.test(String.fromCharCode(e.which))) {
-	// 			e.preventDefault();
-	// 		}
-	// 	});
-	//
-	// 	// Автоматичне форматування при втраті фокусу
-	// 	$input.on('blur', function() {
-	// 		if ($input.val()) {
-	// 			const number = iti.getNumber();
-	// 			if (number) {
-	// 				$input.val(number.replace(/[^\d]/g, '')); // Просто цифри
-	// 			}
-	// 		}
-	// 	});
-	//
-	// 	// Ініціалізація при завантаженні
-	// 	applyPhoneMask(iti.getSelectedCountryData().iso2);
-	//
-	// 	// Додаткове налаштування для коректного відображення
-	// 	setTimeout(function() {
-	// 		$input.trigger('countrychange');
-	// 	}, 100);
-	// });
-</script>
-<!--<script src="./js/pages/page-complex-table.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 <script src="./js/pages/full-filter.min.js"></script>
 <script src="./js/pages/my-dropdown.min.js"></script>
 <script src="./js/pages/page-create.js"></script>
