@@ -951,6 +951,10 @@
 				outline: none;
 				& svg {
 					@media screen and (max-width: 620px) {
+						width: 26px;
+						height: 26px;
+					}
+					@media screen and (max-width: 520px) {
 						width: 34px;
 						height: 34px;
 					}

@@ -2177,8 +2177,8 @@ ul {
   }
 
   .photo-info-item-actions button svg {
-    width: 34px;
-    height: 34px;
+    width: 26px;
+    height: 26px;
   }
 
   .photo-info-btn {
@@ -2237,6 +2237,11 @@ ul {
 
   .photo-info-item {
     max-width: calc(33.33333% - 6.66667px);
+  }
+
+  .photo-info-item-actions button svg {
+    width: 34px;
+    height: 34px;
   }
 
   .modal {
