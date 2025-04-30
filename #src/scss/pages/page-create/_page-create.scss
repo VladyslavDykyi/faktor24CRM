@@ -949,6 +949,12 @@
 				border: none;
 				background-color: transparent;
 				outline: none;
+				& svg {
+					@media screen and (max-width: 620px) {
+						width: 34px;
+						height: 34px;
+					}
+				}
 			}
 		}
 	}
@@ -1224,6 +1230,8 @@
 .sortable-ghost {
 	opacity: 0.5;
 	background: #c8ebfb;
+	border-radius: 8px;
+	box-shadow: 0 0 0 1px #3498db !important;
 }
 
 .sortable-chosen {

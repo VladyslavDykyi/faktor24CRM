@@ -1670,6 +1670,9 @@ ul {
 .sortable-ghost {
   opacity: 0.5;
   background: #c8ebfb;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 0 1px #3498db !important;
+          box-shadow: 0 0 0 1px #3498db !important;
 }
 
 .sortable-chosen {
@@ -2171,6 +2174,11 @@ ul {
 
   .photo-info-item {
     max-width: calc(25% - 7.5px);
+  }
+
+  .photo-info-item-actions button svg {
+    width: 34px;
+    height: 34px;
   }
 
   .photo-info-btn {
