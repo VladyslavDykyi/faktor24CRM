@@ -693,29 +693,81 @@
 			// Інші властивості
 			this.tooltips = new Map();
 			this.isProcessing = false;
+			this.globalLoader = null;
 			
 			// Ініціалізація
 			if (this.input && this.wrapper) {
+				this.createGlobalLoader();
 				this.init();
 			} else {
 				console.error('Не вдалося знайти необхідні DOM-елементи');
 			}
 		}
 		
+		createGlobalLoader() {
+			this.globalLoader = document.createElement('div');
+			this.globalLoader.className = 'photo-loader-global';
+			this.globalLoader.innerHTML = `
+      <div class="photo-loader-content">
+        <div class="photo-loader-spinner"></div>
+        <div class="photo-loader-text">Завантаження фото...</div>
+        <div class="photo-loader-progress">0%</div>
+      </div>
+    `;
+			document.body.appendChild(this.globalLoader);
+			this.globalLoader.style.display = 'none';
+		}
+		
+		showLoader() {
+			if (this.globalLoader) {
+				this.globalLoader.style.display = 'flex';
+			}
+		}
+		
+		hideLoader() {
+			if (this.globalLoader) {
+				this.globalLoader.style.display = 'none';
+			}
+		}
+		
+		updateProgress(loaded, total) {
+			if (!this.globalLoader) return;
+			const progress = Math.round((loaded / total) * 100);
+			const progressElement = this.globalLoader.querySelector('.photo-loader-progress');
+			if (progressElement) {
+				progressElement.textContent = `${progress}%`;
+			}
+		}
+		
 		init() {
-			this.input.addEventListener('change', (e) => {
+			this.input.addEventListener('change', async (e) => {
 				if (this.isProcessing) return;
 				this.isProcessing = true;
 				this.wrapper.classList.add('loading');
+				this.showLoader();
 				
-				this.handleFileUpload(e).finally(() => {
+				try {
+					let loadedFiles = 0;
+					const totalFiles = e.target.files.length;
+					
+					const progressCallback = () => {
+						loadedFiles++;
+						this.updateProgress(loadedFiles, totalFiles);
+					};
+					
+					await this.handleFileUpload(e, progressCallback);
+				} catch (error) {
+					console.error('Помилка при завантаженні файлів:', error);
+				} finally {
 					this.isProcessing = false;
 					this.wrapper.classList.remove('loading');
-				});
+					this.hideLoader();
+					this.updateProgress(0, 1); // Скидаємо прогрес
+				}
 			});
 		}
 		
-		async handleFileUpload(event) {
+		async handleFileUpload(event, progressCallback) {
 			const files = Array.from(event.target.files);
 			
 			if (this.photoArray.length + files.length > this.maxPhotos) {
@@ -726,17 +778,24 @@
 				return;
 			}
 			
-			const processingPromises = files.map((file, index) => {
+			const processingPromises = files.map((file) => {
 				return new Promise((resolve) => {
-					// Оновлена перевірка для підтримки HEIC
 					if (file.type.match('image.*') ||
 						file.name.toLowerCase().endsWith('.heic') ||
 						file.name.toLowerCase().endsWith('.heif')) {
-						this.handleImage(file, index, files.length)
-							.then(resolve)
-							.catch(() => resolve());
+						this.handleImage(file)
+							.then(() => {
+								progressCallback();
+								resolve();
+							})
+							.catch((error) => {
+								console.error('Помилка обробки зображення:', error);
+								progressCallback();
+								resolve();
+							});
 					} else {
 						this.handleInvalidFile(file);
+						progressCallback();
 						resolve();
 					}
 				});
@@ -746,28 +805,19 @@
 			this.displayResults();
 		}
 		
-		handleImage(file, index, totalFiles) {
-			return new Promise((resolve) => {
-				// Перевіряємо, чи це HEIC зображення
+		handleImage(file) {
+			return new Promise((resolve, reject) => {
 				const isHeic = file.type === 'image/heic' ||
 					file.type === 'image/heif' ||
 					file.name.toLowerCase().endsWith('.heic') ||
 					file.name.toLowerCase().endsWith('.heif');
 				
 				if (isHeic && typeof heic2any !== 'undefined') {
-					this.convertHeicToJpg(file).then(convertedFile => {
-						this.processImageFile(convertedFile, resolve);
-					}).catch(error => {
-						console.error('Помилка конвертації HEIC:', error);
-						this.invalidPhotos.push({
-							text: `Помилка конвертації HEIC зображення: ${file.name}`,
-							file: file
-						});
-						resolve();
-					});
+					this.convertHeicToJpg(file)
+						.then(convertedFile => this.processImageFile(convertedFile, resolve, reject))
+						.catch(reject);
 				} else {
-					// Якщо не HEIC або бібліотека не завантажена, обробляємо як звичайне зображення
-					this.processImageFile(file, resolve);
+					this.processImageFile(file, resolve, reject);
 				}
 			});
 		}
@@ -779,7 +829,6 @@
 					toType: 'image/jpeg',
 					quality: 0.8
 				}).then(conversionResult => {
-					// Створюємо новий файл з конвертованими даними
 					const newFile = new File(
 						[conversionResult],
 						file.name.replace(/\.(heic|heif)$/i, '.jpg'),
@@ -790,7 +839,7 @@
 			});
 		}
 		
-		processImageFile(file, resolve) {
+		processImageFile(file, resolve, reject) {
 			const img = new Image();
 			const url = URL.createObjectURL(file);
 			
@@ -800,7 +849,7 @@
 					text: `Помилка завантаження зображення: ${file.name}`,
 					file: file
 				});
-				resolve();
+				reject(new Error(`Помилка завантаження зображення: ${file.name}`));
 			};
 			
 			img.onload = () => {
@@ -825,11 +874,13 @@
 						
 						this.validPhotos.push(photoItem);
 						this.photoArray.push(photoItem);
+						resolve();
 					} else {
 						this.invalidPhotos.push({
 							text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`,
 							file: file
 						});
+						resolve();
 					}
 				} catch (error) {
 					console.error('Помилка обробки зображення:', error);
@@ -837,9 +888,8 @@
 						text: `Помилка обробки зображення: ${file.name}`,
 						file: file
 					});
+					reject(error);
 				}
-				
-				resolve();
 			};
 			
 			img.src = url;
@@ -942,54 +992,100 @@
 			this.initEventHandlers();
 		}
 		
+		createSpinnerElement() {
+			const spinnerDiv = document.createElement('div');
+			spinnerDiv.className = 'spinner-border text-primary';
+			spinnerDiv.style.width = '50px';
+			spinnerDiv.style.height = '50px';
+			spinnerDiv.setAttribute('role', 'status');
+			
+			const spinnerSpan = document.createElement('span');
+			spinnerSpan.className = 'visually-hidden';
+			spinnerSpan.textContent = 'Loading...';
+			
+			spinnerDiv.appendChild(spinnerSpan);
+			return spinnerDiv;
+		}
+		
 		createPhotoElement(item) {
 			const photoItem = document.createElement('li');
 			photoItem.classList.add('photo-info-item');
 			photoItem.setAttribute('data-photo-id', item.id);
 			
+			const spinner = this.createSpinnerElement();
+			
 			photoItem.innerHTML = `
-            <label>
-                <input type="checkbox" ${item.isCheked ? 'checked' : ''}
-                       data-cheked-photo-id="${item.id}">
-                <div>
-                    <img src="${item.objectUrl}" alt="${item.name}"
-                         data-bs-toggle="tooltip" data-bs-placement="top"
-                         data-bs-title="${item.isCheked ? 'Це фото буде відображатися' : 'Це фото буде відображатися в оголошенні та рекламних матеріалах'}">
-                </div>
-            </label>
-            <div class="photo-info-item-actions">
-                <button type="button" class="btn-see" aria-label="eye"
-                        data-fancybox data-src="${item.objectUrl}">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
-                        <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
-                    </svg>
-                </button>
-                <button type="button" class="btn-move" data-move-id="${item.id}">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_388_3868)">
-                            <path d="M3.33301 6L1.33301 8L3.33301 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M6 3.33301L8 1.33301L10 3.33301" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M10 12.667L8 14.667L6 12.667" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M12.667 6L14.667 8L12.667 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M1.33301 8H14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M8 1.33301V14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_388_3868">
-                                <rect width="16" height="16" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </button>
-                <button type="button" class="btn-delete" data-delete-id="${item.id}">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.30007 12.4999C4.09537 12.4999 3.89057 12.4218 3.73437 12.2656C3.42188 11.9531 3.42188 11.4467 3.73437 11.1342L11.1343 3.7343C11.4468 3.4219 11.9532 3.4219 12.2657 3.7343C12.5781 4.0467 12.5781 4.55319 12.2657 4.86559L4.86576 12.2655C4.70956 12.4218 4.50477 12.4999 4.30007 12.4999Z" fill="#3585F5" />
-                        <path d="M11.7 12.4998C11.4952 12.4998 11.2905 12.4217 11.1343 12.2655L3.73437 4.86559C3.42188 4.55319 3.42188 4.0467 3.73437 3.7343C4.04677 3.4219 4.55327 3.4219 4.86566 3.7343L12.2656 11.1342C12.578 11.4467 12.578 11.9531 12.2656 12.2656C12.1095 12.4217 11.9048 12.4998 11.7 12.4998Z" fill="#3585F5" />
-                    </svg>
-                </button>
-            </div>
-        `;
+      <label>
+        <input type="checkbox" ${item.isCheked ? 'checked' : ''}
+               data-cheked-photo-id="${item.id}">
+        <div class="image-container">
+        </div>
+      </label>
+      <div class="photo-info-item-actions">
+        <button type="button" class="btn-see" aria-label="eye"
+                data-fancybox data-src="${item.objectUrl}">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
+            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button type="button" class="btn-move" data-move-id="${item.id}">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_388_3868)">
+              <path d="M3.33301 6L1.33301 8L3.33301 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 3.33301L8 1.33301L10 3.33301" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M10 12.667L8 14.667L6 12.667" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12.667 6L14.667 8L12.667 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M1.33301 8H14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M8 1.33301V14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_388_3868">
+                <rect width="16" height="16" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+        <button type="button" class="btn-delete" data-delete-id="${item.id}">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.30007 12.4999C4.09537 12.4999 3.89057 12.4218 3.73437 12.2656C3.42188 11.9531 3.42188 11.4467 3.73437 11.1342L11.1343 3.7343C11.4468 3.4219 11.9532 3.4219 12.2657 3.7343C12.5781 4.0467 12.5781 4.55319 12.2657 4.86559L4.86576 12.2655C4.70956 12.4218 4.50477 12.4999 4.30007 12.4999Z" fill="#3585F5" />
+            <path d="M11.7 12.4998C11.4952 12.4998 11.2905 12.4217 11.1343 12.2655L3.73437 4.86559C3.42188 4.55319 3.42188 4.0467 3.73437 3.7343C4.04677 3.4219 4.55327 3.4219 4.86566 3.7343L12.2656 11.1342C12.578 11.4467 12.578 11.9531 12.2656 12.2656C12.1095 12.4217 11.9048 12.4998 11.7 12.4998Z" fill="#3585F5" />
+          </svg>
+        </button>
+      </div>
+    `;
+			
+			const imageContainer = photoItem.querySelector('.image-container');
+			imageContainer.appendChild(spinner);
+			
+			const img = new Image();
+			img.src = item.objectUrl;
+			img.alt = item.name;
+			img.dataset.bsToggle = 'tooltip';
+			img.dataset.bsPlacement = 'top';
+			img.dataset.bsTitle = item.isCheked ? 'Це фото буде відображатися' :
+				'Це фото буде відображатися в оголошенні та рекламних матеріалах';
+			
+			img.onload = () => {
+				spinner.style.display = 'none';
+				imageContainer.appendChild(img);
+				
+				if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+					const tooltip = new bootstrap.Tooltip(img, {
+						trigger: 'hover',
+						placement: 'top'
+					});
+					this.tooltips.set(img, tooltip);
+				}
+			};
+			
+			img.onerror = () => {
+				spinner.style.display = 'none';
+				const errorMsg = document.createElement('div');
+				errorMsg.className = 'text-danger';
+				errorMsg.textContent = 'Помилка завантаження зображення';
+				imageContainer.appendChild(errorMsg);
+			};
 			
 			return photoItem;
 		}
@@ -1150,6 +1246,11 @@
 		destroy() {
 			this.clearOldObjectUrls();
 			this.destroyAllTooltips();
+			
+			if (this.globalLoader) {
+				this.globalLoader.remove();
+				this.globalLoader = null;
+			}
 			
 			if (typeof Fancybox !== 'undefined' && Fancybox.getInstance()) {
 				Fancybox.getInstance().destroy();
