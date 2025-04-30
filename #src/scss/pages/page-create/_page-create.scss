@@ -1189,3 +1189,23 @@
 	font-size: 16px;
 	color: #666;
 }
+
+/* Стилі для SortableJS */
+.sortable-ghost {
+	opacity: 0.5;
+	background: #c8ebfb;
+}
+
+.sortable-chosen {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sortable-drag {
+	opacity: 1 !important;
+	transform: rotate(5deg);
+}
+
+/* Додаткові стилі для плавності */
+.photo-info-item {
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}

@@ -723,7 +723,28 @@
 				this.globalLoader.style.display = 'flex';
 			}
 		}
+		initSortable() {
+			if (!this.renderContainer || typeof Sortable === 'undefined') return;
+			
+			new Sortable(this.renderContainer, {
+				animation: 150, // тривалість анімації
+				ghostClass: 'sortable-ghost', // клас для "привида" елемента, який переміщається
+				chosenClass: 'sortable-chosen', // клас для виділеного елемента
+				dragClass: 'sortable-drag', // клас під час перетягування
+				handle: '.btn-move', // елемент, за який можна тягнути
+				onEnd: (evt) => this.handleSortEnd(evt) // обробник завершення перетягування
+			});
+		}
 		
+		handleSortEnd(evt) {
+			// Оновлюємо масив photoArray відповідно до нового порядку
+			const movedItem = this.photoArray[evt.oldIndex];
+			this.photoArray.splice(evt.oldIndex, 1);
+			this.photoArray.splice(evt.newIndex, 0, movedItem);
+			
+			// Оновлюємо відображення (необов'язково, якщо Sortable вже оновив DOM)
+			this.render();
+		}
 		hideLoader() {
 			if (this.globalLoader) {
 				this.globalLoader.style.display = 'none';
@@ -990,6 +1011,7 @@
 			this.initTooltips();
 			this.initFancybox();
 			this.initEventHandlers();
+			this.initSortable();
 		}
 		
 		createSpinnerElement() {
