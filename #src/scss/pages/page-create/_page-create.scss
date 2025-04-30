@@ -881,6 +881,7 @@
 	}
 	&-item {
 		max-width: 105px;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -931,9 +932,11 @@
 		}
 		& img {
 			width: 100%;
-			//height: 70px;
 			border-radius: 8px;
 			object-fit: cover;
+			@media screen and (max-width: 480px) {
+				height: 170px;
+			}
 		}
 		&-actions {
 			margin-top: 7px;

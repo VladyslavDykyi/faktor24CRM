@@ -1295,7 +1295,7 @@
 		new FileUploader({
 			inputId: 'document',
 			wrapperClass: 'loading-documents',
-			checkImageSize: false
+			checkImageSize: false,
 		});
 		new PhotoLoader({
 			inputId: 'loading-photo',
@@ -1307,8 +1307,7 @@
 		new FileUploader({
 			inputId: 'plan',
 			wrapperClass: 'loading-plan',
-			minWidth: 800,
-			minHeight: 800
+			checkImageSize: false,
 		});
 	}
 	
