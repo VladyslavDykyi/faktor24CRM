@@ -867,6 +867,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		grid-gap: 16px 10px;
+		width: 100%;
 		&-wrapper {
 			margin-top: 6px;
 			& > .error-container {
@@ -966,20 +967,8 @@
 			width: 100%;
 		}
 		&-wrapper {
-			max-width: 105px;
 			width: 100%;
-			@media screen and (max-width: 620px) {
-				max-width: calc(25% - 7.5px);
-			}
-			@media screen and (max-width: 520px) {
-				max-width: calc(33.33333% - 6.66667px);
-			}
-			@media screen and (max-width: 480px) {
-				max-width: calc(50% - 5px);
-			}
-			@media screen and (max-width: 420px) {
-				max-width: 100%;
-			}
+			
 		}
 		& > input {
 			display: none;
