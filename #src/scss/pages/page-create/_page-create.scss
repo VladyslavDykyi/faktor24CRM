@@ -880,8 +880,30 @@
 	}
 	&-item {
 		max-width: 105px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		@media screen and (max-width: 620px) {
+			max-width: calc(25% - 7.5px);
+		}
+		@media screen and (max-width: 520px) {
+			max-width: calc(33.33333% - 6.66667px);
+		}
+		@media screen and (max-width: 480px) {
+			max-width: calc(50% - 5px);
+		}
+		@media screen and (max-width: 420px) {
+			max-width: 100%;
+		}
 		& label {
 			cursor: pointer;
+			flex: 1 2 auto;
+		}
+		& .image-container {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 		& input {
 			display: none;
@@ -907,8 +929,8 @@
 			}
 		}
 		& img {
-			width: 105px;
-			height: 70px;
+			width: 100%;
+			//height: 70px;
 			border-radius: 8px;
 			object-fit: cover;
 		}
@@ -933,13 +955,32 @@
 		box-shadow: 0 0 0 1px #d5dbe3;
 		border: none;
 		border-radius: 8px;
-		padding: 17px 6px;
+		padding: 17px 5px;
 		background-color: #fff;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		width: fit-content;
 		cursor: pointer;
+		@media screen and (max-width: 620px) {
+			width: 100%;
+		}
+		&-wrapper {
+			max-width: 105px;
+			width: 100%;
+			@media screen and (max-width: 620px) {
+				max-width: calc(25% - 7.5px);
+			}
+			@media screen and (max-width: 520px) {
+				max-width: calc(33.33333% - 6.66667px);
+			}
+			@media screen and (max-width: 480px) {
+				max-width: calc(50% - 5px);
+			}
+			@media screen and (max-width: 420px) {
+				max-width: 100%;
+			}
+		}
 		& > input {
 			display: none;
 		}
