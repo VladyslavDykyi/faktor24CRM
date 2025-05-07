@@ -286,6 +286,7 @@ $(document).ready(function () {
                 </tr>
             `;
 			row.after(dopInfoRow);
+			initPhotoHoverPreview();
 		}
 	});
 	
@@ -333,6 +334,7 @@ $(document).ready(function () {
 	// Викликаємо ініціалізацію Tooltip після оновлення таблиці
 	table.on('draw', function () {
 		initTooltips();
+		initPhotoHoverPreview();
 	});
 	
 	// Викликаємо ініціалізацію Tooltip після динамічного додавання рядків
@@ -341,5 +343,65 @@ $(document).ready(function () {
 			initTooltips();
 		}, 0);
 	});
+	
+	
+	
+	// Додаємо цей код до вашого існуючого $(document).ready()
+	
+	function initPhotoHoverPreview() {
+		// Створюємо попап для прев'ю фото (якщо ще не існує)
+		if ($('#photo-preview-popup').length === 0) {
+			$('body').append(`
+            <div id="photo-preview-popup">
+                <img src="" alt="">
+            </div>
+        `);
+		}
+		
+		const $popup = $('#photo-preview-popup');
+		const $popupImg = $popup.find('img');
+		const $closeBtn = $('#close-photo-preview');
+		let hoverTimeout;
+		
+		// Обробник наведення на фото
+		$('.tbody-wrapper.photo img').hover(
+			function() {
+				const $img = $(this);
+				const imgSrc = $img.attr('src');
+				
+				// Пропускаємо якщо це дефолтна іконка
+				// if (imgSrc.includes('default-foto.svg')) return;
+				
+				hoverTimeout = setTimeout(function() {
+					$popupImg.attr('src', imgSrc);
+					$popup.show();
+				}, 300);
+			},
+			function() {
+				clearTimeout(hoverTimeout);
+				$popup.hide();
+			}
+		);
+		
+		// Обробник наведення на сам попап
+		$popup.hover(
+			function() {
+				// Не ховаємо попап при наведенні на нього
+			},
+			function() {
+				$popup.hide();
+			}
+		);
+		
+		// Обробник кліку на кнопку закриття
+		$closeBtn.on('click', function() {
+			$popup.hide();
+		});
+	}
+
+// Ініціалізуємо функціонал при завантаженні сторінки
+	initPhotoHoverPreview();
+
+
 	
 });
