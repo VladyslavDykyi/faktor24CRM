@@ -286,6 +286,7 @@ $(document).ready(function () {
                 </tr>
             `;
 			row.after(dopInfoRow);
+			// 08.05.2025
 			initPhotoHoverPreview();
 		}
 	});
@@ -334,6 +335,7 @@ $(document).ready(function () {
 	// Викликаємо ініціалізацію Tooltip після оновлення таблиці
 	table.on('draw', function () {
 		initTooltips();
+		// 08.05.2025
 		initPhotoHoverPreview();
 	});
 	
@@ -347,7 +349,7 @@ $(document).ready(function () {
 	
 	
 	// Додаємо цей код до вашого існуючого $(document).ready()
-	
+	// 08.05.2025
 	function initPhotoHoverPreview() {
 		// Створюємо попап для прев'ю фото (якщо ще не існує)
 		if ($('#photo-preview-popup').length === 0) {
