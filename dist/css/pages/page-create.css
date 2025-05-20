@@ -1984,6 +1984,111 @@ ul {
   background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/img/flags.png");
 }
 
+.tui-image-editor-container .tui-image-editor-controls {
+  background-color: #111;
+}
+
+.tui-image-editor-container .filter-color-item {
+  display: none;
+}
+
+.tui-image-editor-header-logo,
+.tui-image-editor-header-buttons {
+  display: none;
+}
+
+.tui-image-editor-menu-crop .tie-crop-button.action {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  grid-gap: 20px;
+}
+
+.tui-image-editor-help-menu.top {
+  background-color: rgba(53, 133, 245, 0.3);
+}
+
+.tui-image-editor-help-menu.top use.normal.use-default {
+  fill: #111 !important;
+  stroke: #111 !important;
+}
+
+.tui-image-editor-help-menu.top use.hover.use-default {
+  fill: #111 !important;
+  stroke: #111 !important;
+}
+
+.tui-image-editor-menu-resize .tie-resize-button.action {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  grid-gap: 20px;
+}
+
+.tui-image-editor-button.cancel,
+.tui-image-editor-button.apply {
+  cursor: pointer;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tui-image-editor-button.cancel label,
+.tui-image-editor-button.apply label {
+  cursor: pointer;
+}
+
+.tui-image-editor-button.preset.preset-square,
+.tui-image-editor-button.preset.preset-3-2,
+.tui-image-editor-button.preset.preset-4-3,
+.tui-image-editor-button.preset.preset-5-4,
+.tui-image-editor-button.preset.preset-7-5,
+.tui-image-editor-button.preset.preset-16-9 {
+  display: none !important;
+}
+
+.btn-tui-save {
+  background-color: #3585F5;
+}
+
+.tui-image-editor-container .tui-image-editor-help-menu > .tui-image-editor-item,
+.tui-image-editor-container .tui-image-editor-menu > .tui-image-editor-item {
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  padding: 7px 8px 7px;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.tui-image-editor-container .tui-image-editor-help-menu.top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tui-image-editor-container .tui-image-editor-icpartition {
+  display: block;
+}
+
 @media screen and (max-width: 1024px) {
   .create-filter-row.row1 .item:nth-child(3) {
     padding-right: 0;

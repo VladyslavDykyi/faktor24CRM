@@ -694,6 +694,7 @@
 			this.tooltips = new Map();
 			this.isProcessing = false;
 			this.globalLoader = null;
+			this.imageEditor = null;
 			
 			// Ініціалізація
 			if (this.input && this.wrapper) {
@@ -708,12 +709,12 @@
 			this.globalLoader = document.createElement('div');
 			this.globalLoader.className = 'photo-loader-global';
 			this.globalLoader.innerHTML = `
-      <div class="photo-loader-content">
-        <div class="photo-loader-spinner"></div>
-        <div class="photo-loader-text">Завантаження фото...</div>
-        <div class="photo-loader-progress">0%</div>
-      </div>
-    `;
+            <div class="photo-loader-content">
+                <div class="photo-loader-spinner"></div>
+                <div class="photo-loader-text">Завантаження фото...</div>
+                <div class="photo-loader-progress">0%</div>
+            </div>
+        `;
 			document.body.appendChild(this.globalLoader);
 			this.globalLoader.style.display = 'none';
 		}
@@ -723,6 +724,7 @@
 				this.globalLoader.style.display = 'flex';
 			}
 		}
+		
 		initSortable() {
 			if (!this.renderContainer || typeof Sortable === 'undefined') return;
 			
@@ -745,6 +747,7 @@
 			// Оновлюємо відображення (необов'язково, якщо Sortable вже оновив DOM)
 			this.render();
 		}
+		
 		hideLoader() {
 			if (this.globalLoader) {
 				this.globalLoader.style.display = 'none';
@@ -888,14 +891,32 @@
 							width: width,
 							height: height,
 							file: file,
-							isCheked: false,
+							isCheked: true,
 							objectUrl: null,
 							originalFileType: file.type
 						};
 						
-						this.validPhotos.push(photoItem);
-						this.photoArray.push(photoItem);
-						resolve();
+						// Якщо перевірка розмірів вимкнена, обробляємо зображення
+						if (!this.checkImageSize && (width < this.minWidth || height < this.minHeight)) {
+							this.resizeImageToMinimum(file, photoItem)
+								.then(resizedPhoto => {
+									this.validPhotos.push(resizedPhoto);
+									this.photoArray.push(resizedPhoto);
+									resolve();
+								})
+								.catch(error => {
+									console.error('Помилка при зміні розміру зображення:', error);
+									this.invalidPhotos.push({
+										text: `Помилка обробки зображення: ${file.name}`,
+										file: file
+									});
+									reject(error);
+								});
+						} else {
+							this.validPhotos.push(photoItem);
+							this.photoArray.push(photoItem);
+							resolve();
+						}
 					} else {
 						this.invalidPhotos.push({
 							text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`,
@@ -1037,45 +1058,50 @@
 			const spinner = this.createSpinnerElement();
 			
 			photoItem.innerHTML = `
-      <label>
-        <input type="checkbox" ${item.isCheked ? 'checked' : ''}
-               data-cheked-photo-id="${item.id}">
-        <div class="image-container">
-        </div>
-      </label>
-      <div class="photo-info-item-actions">
-        <button type="button" class="btn-see" aria-label="eye"
-                data-fancybox data-src="${item.objectUrl}">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
-            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
-          </svg>
-        </button>
-        <button type="button" class="btn-move" data-move-id="${item.id}">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_388_3868)">
-              <path d="M3.33301 6L1.33301 8L3.33301 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M6 3.33301L8 1.33301L10 3.33301" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M10 12.667L8 14.667L6 12.667" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M12.667 6L14.667 8L12.667 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M1.33301 8H14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M8 1.33301V14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-            <defs>
-              <clipPath id="clip0_388_3868">
-                <rect width="16" height="16" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-        </button>
-        <button type="button" class="btn-delete" data-delete-id="${item.id}">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.30007 12.4999C4.09537 12.4999 3.89057 12.4218 3.73437 12.2656C3.42188 11.9531 3.42188 11.4467 3.73437 11.1342L11.1343 3.7343C11.4468 3.4219 11.9532 3.4219 12.2657 3.7343C12.5781 4.0467 12.5781 4.55319 12.2657 4.86559L4.86576 12.2655C4.70956 12.4218 4.50477 12.4999 4.30007 12.4999Z" fill="#3585F5" />
-            <path d="M11.7 12.4998C11.4952 12.4998 11.2905 12.4217 11.1343 12.2655L3.73437 4.86559C3.42188 4.55319 3.42188 4.0467 3.73437 3.7343C4.04677 3.4219 4.55327 3.4219 4.86566 3.7343L12.2656 11.1342C12.578 11.4467 12.578 11.9531 12.2656 12.2656C12.1095 12.4217 11.9048 12.4998 11.7 12.4998Z" fill="#3585F5" />
-          </svg>
-        </button>
-      </div>
-    `;
+            <label>
+                <input type="checkbox" ${item.isCheked ? 'checked' : ''}
+                       data-cheked-photo-id="${item.id}">
+                <div class="image-container">
+                </div>
+            </label>
+            <div class="photo-info-item-actions">
+                <button type="button" class="btn-see" aria-label="eye"
+                        data-fancybox data-src="${item.objectUrl}">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
+                        <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button type="button" class="btn-move" data-move-id="${item.id}">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_388_3868)">
+                            <path d="M3.33301 6L1.33301 8L3.33301 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 3.33301L8 1.33301L10 3.33301" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10 12.667L8 14.667L6 12.667" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12.667 6L14.667 8L12.667 10" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M1.33301 8H14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8 1.33301V14.6663" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_388_3868">
+                                <rect width="16" height="16" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </button>
+                <button type="button" class="btn-delete" data-delete-id="${item.id}">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.30007 12.4999C4.09537 12.4999 3.89057 12.4218 3.73437 12.2656C3.42188 11.9531 3.42188 11.4467 3.73437 11.1342L11.1343 3.7343C11.4468 3.4219 11.9532 3.4219 12.2657 3.7343C12.5781 4.0467 12.5781 4.55319 12.2657 4.86559L4.86576 12.2655C4.70956 12.4218 4.50477 12.4999 4.30007 12.4999Z" fill="#3585F5" />
+                        <path d="M11.7 12.4998C11.4952 12.4998 11.2905 12.4217 11.1343 12.2655L3.73437 4.86559C3.42188 4.55319 3.42188 4.0467 3.73437 3.7343C4.04677 3.4219 4.55327 3.4219 4.86566 3.7343L12.2656 11.1342C12.578 11.4467 12.578 11.9531 12.2656 12.2656C12.1095 12.4217 11.9048 12.4998 11.7 12.4998Z" fill="#3585F5" />
+                    </svg>
+                </button>
+                <button type="button" class="btn-edit" data-edit-id="${item.id}">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.3333 2.00004C11.5084 1.82493 11.7163 1.68602 11.9451 1.59131C12.1739 1.49659 12.4191 1.44794 12.6667 1.44794C12.9142 1.44794 13.1594 1.49659 13.3882 1.59131C13.617 1.68602 13.8249 1.82493 14 2.00004C14.1751 2.17515 14.314 2.38306 14.4087 2.61185C14.5034 2.84064 14.5521 3.08582 14.5521 3.33337C14.5521 3.58092 14.5034 3.8261 14.4087 4.05489C14.314 4.28368 14.1751 4.49159 14 4.66671L4.66667 14L1.33333 14.6667L2 11.3334L11.3333 2.00004Z" stroke="#3585F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        `;
 			
 			const imageContainer = photoItem.querySelector('.image-container');
 			imageContainer.appendChild(spinner);
@@ -1136,7 +1162,180 @@
 					this.movePhoto(photoId);
 					e.preventDefault();
 				}
+				
+				if (e.target.closest('.btn-edit')) {
+					const btn = e.target.closest('.btn-edit');
+					const photoId = btn.dataset.editId;
+					this.editPhoto(photoId);
+					e.preventDefault();
+				}
 			});
+		}
+		
+		editPhoto(photoId) {
+			const photo = this.photoArray.find(p => p.id === photoId);
+			if (!photo) return;
+			
+			// Create a temporary canvas to get the image data
+			const img = new Image();
+			img.onload = () => {
+				const canvas = document.createElement('canvas');
+				canvas.width = img.width;
+				canvas.height = img.height;
+				const ctx = canvas.getContext('2d');
+				ctx.drawImage(img, 0, 0);
+				
+				// Initialize TUI Image Editor
+				this.initImageEditor(canvas.toDataURL('image/jpeg'), photo);
+			};
+			img.src = photo.objectUrl;
+		}
+		
+		initImageEditor(imageSrc, photoItem) {
+			// Створюємо контейнер для редактора
+			const editorContainer = document.createElement('div');
+			editorContainer.id = 'tui-image-editor-container';
+			editorContainer.style.position = 'fixed';
+			editorContainer.style.top = '0';
+			editorContainer.style.left = '0';
+			editorContainer.style.width = '100%';
+			editorContainer.style.height = '100%';
+			editorContainer.style.zIndex = '9999';
+			editorContainer.style.backgroundColor = '#fff';
+			
+			// Додаємо індикатор завантаження
+			const loadingDiv = document.createElement('div');
+			loadingDiv.style.position = 'absolute';
+			loadingDiv.style.top = '50%';
+			loadingDiv.style.left = '50%';
+			loadingDiv.style.transform = 'translate(-50%, -50%)';
+			loadingDiv.textContent = 'Завантаження редактора...';
+			editorContainer.appendChild(loadingDiv);
+			
+			document.body.appendChild(editorContainer);
+			
+			// Чекаємо, щоб DOM точно був готовий
+			setTimeout(() => {
+				try {
+					// Видаляємо індикатор завантаження
+					editorContainer.removeChild(loadingDiv);
+					
+					// Ініціалізуємо TUI Image Editor
+					this.imageEditor = new tui.ImageEditor(editorContainer, {
+						includeUI: {
+							loadImage: {
+								path: imageSrc,
+								name: photoItem.name
+							},
+							theme: {
+								'common.bi.image': '',
+								'common.bisize.width': '0px',
+								'common.bisize.height': '0px',
+								'common.backgroundImage': 'none',
+								'common.backgroundColor': '#fff',
+								'common.border': '1px solid #ddd'
+							},
+							menu: ['crop', 'resize', 'rotate', 'filter'],
+							initMenu: '',
+							uiSize: {
+								width: '100%',
+								height: '100%'
+							},
+							menuBarPosition: 'bottom',
+						},
+						cssMaxWidth: window.innerWidth,
+						cssMaxHeight: window.innerHeight,
+						selectionStyle: {
+							cornerSize: 20,
+							rotatingPointOffset: 70
+						}
+					});
+					// Обробник для пропорційного змінення розміру
+					setTimeout(() => {
+						// Знайди чекбокс "Lock Aspect Ratio" і постав вибраний
+						const lockAspectCheckbox = document.querySelector('.tie-lock-aspect-ratio');
+						if (lockAspectCheckbox && !lockAspectCheckbox.checked) {
+							lockAspectCheckbox.click(); // Або: lockAspectCheckbox.checked = true;
+						}
+					}, 200);
+					// Додаємо кнопки збереження та скасування
+					this.addEditorButtons(editorContainer, photoItem);
+					
+				} catch (error) {
+					console.error('Помилка ініціалізації редактора:', error);
+					editorContainer.innerHTML = '<div style="color:red;padding:20px;">Помилка завантаження редактора. Спробуйте ще раз.</div>';
+					document.body.appendChild(editorContainer);
+				}
+			}, 100);
+		}
+		addEditorButtons(editorContainer, photoItem) {
+			const buttonContainer = document.createElement('div');
+			buttonContainer.style.position = 'fixed';
+			buttonContainer.style.bottom = '13px';
+			buttonContainer.style.right = '20px';
+			buttonContainer.style.zIndex = '10000';
+			buttonContainer.style.display = 'flex';
+			buttonContainer.style.gap = '10px';
+			
+			const saveButton = document.createElement('button');
+			saveButton.textContent = 'Зберегти';
+			saveButton.className = 'btn btn-primary  btn-tui-save';
+			saveButton.onclick = () => this.saveEditedImage(photoItem);
+			
+			const cancelButton = document.createElement('button');
+			cancelButton.textContent = 'Скасувати';
+			cancelButton.className = 'btn btn-danger btn-tui-reset';
+			cancelButton.onclick = () => this.closeImageEditor();
+			
+			buttonContainer.appendChild(saveButton);
+			buttonContainer.appendChild(cancelButton);
+			editorContainer.appendChild(buttonContainer);
+		}
+		
+		saveEditedImage(photoItem) {
+			if (!this.imageEditor) return;
+			
+			// Get edited image as blob
+			const editedImageData = this.imageEditor.toDataURL();
+			fetch(editedImageData)
+				.then(res => res.blob())
+				.then(blob => {
+					// Create a new File object with the edited image
+					const editedFile = new File([blob], photoItem.name, {
+						type: 'image/jpeg',
+						lastModified: Date.now()
+					});
+					
+					// Update the photo item with the edited file
+					photoItem.file = editedFile;
+					photoItem.objectUrl = URL.createObjectURL(editedFile);
+					
+					// Update the display
+					this.render();
+					
+					// Close the editor
+					this.closeImageEditor();
+				});
+		}
+		
+		closeImageEditor() {
+			if (this.imageEditor) {
+				this.imageEditor.destroy();
+				this.imageEditor = null;
+			}
+			const body = document.querySelector('body');
+			
+			const editorContainer = document.getElementById('tui-image-editor-container');
+			if (editorContainer) {
+				editorContainer.remove();
+				body.classList.remove('lock');
+			}
+			
+			const buttonContainer = document.querySelector('div[style*="z-index: 10000"]');
+			if (buttonContainer) {
+				buttonContainer.remove();
+				body.classList.remove('lock');
+			}
 		}
 		
 		togglePhotoSelection(photoId) {
@@ -1208,7 +1407,13 @@
 			
 			Fancybox.bind("[data-fancybox]", {
 				Thumbs: false,
-				Toolbar: true,
+				Toolbar: {
+					display: {
+						left: ["infobar"],
+						middle: [],
+						right: ["close"],
+					},
+				},
 				Images: {
 					zoom: true,
 				},
@@ -1268,6 +1473,7 @@
 		destroy() {
 			this.clearOldObjectUrls();
 			this.destroyAllTooltips();
+			this.closeImageEditor();
 			
 			if (this.globalLoader) {
 				this.globalLoader.remove();
@@ -1287,6 +1493,90 @@
 				this.renderContainer.removeEventListener('click', this.handleContainerClick);
 			}
 		}
+		/**
+		 * Збільшує зображення до мінімального розміру, зберігаючи пропорції
+		 * @param {File} file - Об'єкт файлу зображення
+		 * @param {Object} photoItem - Об'єкт фото для оновлення
+		 * @returns {Promise<Object>} Обіцянка, що повертає оновлений об'єкт фото
+		 */
+		resizeImageToMinimum(file, photoItem) {
+			return new Promise((resolve, reject) => {
+				const img = new Image();
+				const url = URL.createObjectURL(file);
+				
+				img.onload = () => {
+					URL.revokeObjectURL(url);
+					
+					try {
+						const originalWidth = img.naturalWidth;
+						const originalHeight = img.naturalHeight;
+						
+						// Визначаємо, яка сторона менша
+						const isWidthSmaller = originalWidth < originalHeight;
+						
+						// Розраховуємо нові розміри, зберігаючи пропорції
+						let newWidth, newHeight;
+						
+						if (isWidthSmaller) {
+							// Якщо ширина менша, масштабуємо по ширині
+							const scaleFactor = this.minWidth / originalWidth;
+							newWidth = this.minWidth;
+							newHeight = Math.round(originalHeight * scaleFactor);
+						} else {
+							// Якщо висота менша, масштабуємо по висоті
+							const scaleFactor = this.minHeight / originalHeight;
+							newHeight = this.minHeight;
+							newWidth = Math.round(originalWidth * scaleFactor);
+						}
+						
+						// Створюємо canvas для зміни розміру
+						const canvas = document.createElement('canvas');
+						canvas.width = newWidth;
+						canvas.height = newHeight;
+						const ctx = canvas.getContext('2d');
+						
+						// Застосовуємо високоякісне масштабування
+						ctx.imageSmoothingQuality = 'high';
+						ctx.drawImage(img, 0, 0, newWidth, newHeight);
+						
+						// Конвертуємо canvas назад у файл
+						canvas.toBlob(blob => {
+							if (!blob) {
+								reject(new Error('Помилка при створенні blob з canvas'));
+								return;
+							}
+							
+							const resizedFile = new File([blob], file.name, {
+								type: 'image/jpeg',
+								lastModified: Date.now()
+							});
+							
+							// Оновлюємо об'єкт фото новими даними
+							const resizedPhoto = {
+								...photoItem,
+								file: resizedFile,
+								width: newWidth,
+								height: newHeight,
+								size: blob.size,
+								wasResized: true // Додатковий прапорець для інформації
+							};
+							
+							resolve(resizedPhoto);
+						}, 'image/jpeg', 0.92); // Якість 92%
+						
+					} catch (error) {
+						reject(error);
+					}
+				};
+				
+				img.onerror = () => {
+					URL.revokeObjectURL(url);
+					reject(new Error('Помилка завантаження зображення для зміни розміру'));
+				};
+				
+				img.src = url;
+			});
+		}
 	}
 	
 	// Ініціалізація FileUploader після завантаження Fancybox
@@ -1299,9 +1589,11 @@
 		});
 		new PhotoLoader({
 			inputId: 'loading-photo',
+			checkImageSize: false,
 			minWidth: 800,
 			minHeight: 800,
-			wrapperClass: 'photo-info-list'
+			wrapperClass: 'photo-info-list',
+			maxPhotos: 20,
 		});
 		// Для плану (з перевіркою розміру)
 		new FileUploader({

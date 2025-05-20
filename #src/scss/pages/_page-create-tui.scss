@@ -1,0 +1,90 @@
+.tui-image-editor {
+	&-container {
+		& .tui-image-editor-controls {
+			background-color: #111;
+		}
+		& .filter-color-item {
+			display: none;
+		}
+	}
+	&-partition {
+		//display: none !important;
+	}
+	&-header-logo,
+	&-header-buttons {
+		display: none;
+	}
+	&-menu-crop {
+		& .tie-crop-button.action {
+			display: flex !important;
+			align-items: center;
+			justify-content: center;
+			grid-gap: 20px;
+		}
+	}
+	&-help-menu.top {
+		background-color: rgba(53, 133, 245, 0.3);
+		&  use.normal.use-default {
+			fill: #111 !important;
+			stroke: #111 !important;
+		}
+		&  use.hover.use-default {
+			fill: #111 !important;
+			stroke: #111 !important;
+		}
+	}
+	&-menu-resize {
+		& .tie-resize-button.action {
+			display: flex !important;
+			align-items: center;
+			justify-content: center;
+			grid-gap: 20px;
+		}
+	}
+	&-button  {
+		&.cancel,
+		&.apply {
+			cursor: pointer;
+			display: flex !important;
+			align-items: center;
+			& label {
+				cursor: pointer;
+			}
+		}
+		
+		&.preset {
+			&.preset-square,
+			&.preset-3-2,
+			&.preset-4-3,
+			&.preset-5-4,
+			&.preset-7-5,
+			&.preset-16-9 {
+				display: none !important;
+			}
+		}
+	}
+	
+}
+
+.btn-tui-save {
+	background-color: #3585F5;
+}
+.btn-tui-reset {
+
+}
+
+.tui-image-editor-container .tui-image-editor-help-menu>.tui-image-editor-item, .tui-image-editor-container .tui-image-editor-menu>.tui-image-editor-item {
+	position: relative;
+	display: inline-block;
+	border-radius: 2px;
+	padding: 7px 8px 7px;
+	cursor: pointer;
+	margin: 0 4px;
+}
+.tui-image-editor-container .tui-image-editor-help-menu.top {
+	display: flex;
+	align-items: center;
+}
+.tui-image-editor-container .tui-image-editor-icpartition {
+	display: block;
+}
