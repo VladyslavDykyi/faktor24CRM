@@ -149,7 +149,7 @@
 		const currentPhones = document.querySelectorAll('.right .item').length;
 		
 		if (currentPhones >= MAX_PHONES) {
-			alert(`Максимальна кількість телефонів - ${MAX_PHONES}`);
+			alert(`Максимальное количество телефонов - ${MAX_PHONES}`);
 			return;
 		}
 		
@@ -262,140 +262,6 @@
 		}
 	});
 
-// 	class LoadingFile {
-// 		constructor () {
-// 		}
-//
-// 	}
-//
-// 	const input_document = document.querySelector('#document');
-// 	const wrapper_document = document.querySelector('.loading-documents');
-// 	const error_document = document.querySelector('.loading-documents [for="document"] span');
-// 	const validDocuments = []; // Масив для валідних файлів
-// 	let noValidDocuments = []; // Масив для невалідних файлів
-//
-// // Функції для роботи з помилками
-// 	const error_document_funk_delete = () => {
-// 		if (!wrapper_document || !error_document) return;
-//
-// 		// Видаляємо всі помилки тільки якщо масив noValidDocuments порожній
-// 		if (noValidDocuments.length === 0) {
-// 			wrapper_document.classList.remove('error');
-// 			const errorElements = error_document.querySelectorAll('ul.error-list, li.error');
-// 			errorElements.forEach(element => element.remove());
-// 		}
-// 	};
-//
-// 	const error_document_funk = () => {
-// 		if (!wrapper_document || !error_document) return;
-//
-// 		// Спочатку очищаємо попередні помилки
-// 		const existingList = error_document.querySelector('ul.error-list');
-// 		if (existingList) existingList.remove();
-//
-// 		// Створюємо новий список помилок
-// 		if (noValidDocuments.length > 0) {
-// 			wrapper_document.classList.add('error');
-//
-// 			// Додаємо динамічний margin-bottom в залежності від кількості помилок
-// 			const marginBottomValue = `${noValidDocuments.length * 16}px`;
-// 			wrapper_document.style.marginBottom = marginBottomValue;
-//
-// 			const listErrors = document.createElement('ul');
-// 			listErrors.classList.add('error-list');
-//
-// 			noValidDocuments.forEach((item) => {
-// 				const elem = document.createElement('li');
-// 				elem.innerText = item.text;
-// 				elem.classList.add('error');
-// 				listErrors.append(elem);
-// 			});
-//
-// 			error_document.append(listErrors);
-// 		} else {
-// 			// Якщо помилок немає, видаляємо margin-bottom та клас error
-// 			wrapper_document.style.marginBottom = '';
-// 			error_document_funk_delete();
-// 		}
-// 	};
-//
-// // Обробка файлів
-// 	input_document.addEventListener('change', (e) => {
-// 		const files = Array.from(input_document.files);
-//
-// 		// Очищаємо масиви при новому виборі файлів
-// 		validDocuments.length = 0;
-// 		noValidDocuments.length = 0;
-//
-// 		files.forEach((file, index) => {
-// 			// Обробка PDF-файлів
-// 			if (file.type === 'application/pdf') {
-// 				validDocuments.push({
-// 					id: validDocuments.length,
-// 					name: file.name,
-// 					size: file.size,
-// 					width: null,
-// 					height: null,
-// 				});
-// 				return;
-// 			}
-//
-// 			// Перевірка чи це зображення
-// 			if (!file.type.match('image.*')) {
-// 				noValidDocuments.push({
-// 					text: `Файл "${file.name}" не є зображенням або PDF. Допустимі лише зображення (JPG/PNG) та PDF.`
-// 				});
-// 				return;
-// 			}
-//
-// 			// Обробка зображень
-// 			const img = new Image();
-// 			const url = URL.createObjectURL(file);
-//
-// 			img.onload = function() {
-// 				URL.revokeObjectURL(url);
-//
-// 				const width = this.width;
-// 				const height = this.height;
-//
-// 				if (width >= 800 && height >= 800) {
-// 					validDocuments.push({
-// 						id: validDocuments.length,
-// 						name: file.name,
-// 						size: file.size,
-// 						width: width,
-// 						height: height,
-// 					});
-// 				} else {
-// 					noValidDocuments.push({
-// 						text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: 800x800 пікселів.`
-// 					});
-// 				}
-//
-// 				// Оновлюємо помилки після обробки останнього файлу
-// 				if (index === files.length - 1) {
-// 					error_document_funk();
-// 				}
-// 			};
-//
-// 			img.onerror = () => {
-// 				URL.revokeObjectURL(url);
-// 				noValidDocuments.push({
-// 					text: `Помилка завантаження зображення: ${file.name}`
-// 				});
-//
-// 				// Оновлюємо помилки негайно при помилці завантаження
-// 				error_document_funk();
-// 			};
-//
-// 			img.src = url;
-// 		});
-//
-// 		// Якщо не було файлів для асинхронної обробки (наприклад, тільки PDF)
-// 		if (files.every(file => file.type === 'application/pdf')) {
-// 			error_document_funk();
-// 		}
-// 	});
 	class FileUploader {
 		constructor (options) {
 			// Обов'язкові параметри
@@ -432,7 +298,7 @@
 			if (this.input && this.wrapper && this.errorContainer) {
 				this.init();
 			} else {
-				console.error('Не вдалося знайти необхідні DOM-елементи');
+				console.error('Не удалось найти необходимые DOM-элементы');
 			}
 		}
 		
@@ -540,7 +406,7 @@
 				} else {
 					// Якщо перевірка увімкнена і розмір не підходить
 					this.invalidDocuments.push({
-						text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`
+						text: `Изображение "${file.name}" (${width}x${height}) маловатое. Минимальный размер: ${this.minWidth}x${this.minHeight} пікселів.`
 					});
 				}
 				
@@ -554,7 +420,7 @@
 			img.onerror = () => {
 				URL.revokeObjectURL(url);
 				this.invalidDocuments.push({
-					text: `Помилка завантаження зображення: ${file.name}`
+					text: `Ошибка загрузки изображения: ${file.name}`
 				});
 				this.displayErrors();
 			};
@@ -564,7 +430,7 @@
 		
 		handleInvalidFile (file) {
 			this.invalidDocuments.push({
-				text: `Файл "${file.name}" не є зображенням або PDF. Допустимі лише зображення (JPG/PNG) та PDF.`
+				text: `Файл "${file.name}" не является изображением или PDF. Допустимы только изображения (JPG/PNG) и PDF.`
 			});
 		}
 		
@@ -666,7 +532,7 @@
 		constructor (options) {
 			// Перевірка обов'язкових параметрів
 			if ( !options.inputId) {
-				throw new Error('Необхідно вказати inputId');
+				throw new Error('Необходимо указать inputId');
 			}
 			
 			// Обов'язкові параметри
@@ -703,7 +569,7 @@
 				this.createGlobalLoader();
 				this.init();
 			} else {
-				console.error('Не вдалося знайти необхідні DOM-елементи');
+				console.error('Не удалось найти необходимые DOM-элементы');
 			}
 		}
 		
@@ -713,7 +579,7 @@
 			this.globalLoader.innerHTML = `
             <div class="photo-loader-content">
                 <div class="photo-loader-spinner"></div>
-                <div class="photo-loader-text">Завантаження фото...</div>
+                <div class="photo-loader-text">Загрузка фото...</div>
                 <div class="photo-loader-progress">0%</div>
             </div>
         `;
@@ -783,7 +649,7 @@
 					
 					await this.handleFileUpload(e, progressCallback);
 				} catch (error) {
-					console.error('Помилка при завантаженні файлів:', error);
+					console.error('Ошибка загрузки файлов:', error);
 				} finally {
 					this.isProcessing = false;
 					this.wrapper.classList.remove('loading');
@@ -798,7 +664,7 @@
 			
 			if (this.photoArray.length + files.length > this.maxPhotos) {
 				this.invalidPhotos.push({
-					text: `Максимальна кількість фото - ${this.maxPhotos}. Додано не буде.`
+					text: `Максимальное количество фото - ${this.maxPhotos}. Добавлено не будет.`
 				});
 				this.displayErrors();
 				return;
@@ -815,7 +681,7 @@
 								resolve();
 							})
 							.catch((error) => {
-								console.error('Помилка обробки зображення:', error);
+								console.error('Ошибка обработки изображения:', error);
 								progressCallback();
 								resolve();
 							});
@@ -872,10 +738,10 @@
 			img.onerror = () => {
 				URL.revokeObjectURL(url);
 				this.invalidPhotos.push({
-					text: `Помилка завантаження зображення: ${file.name}`,
+					text: `Ошибка загрузки изображения: ${file.name}`,
 					file: file
 				});
-				reject(new Error(`Помилка завантаження зображення: ${file.name}`));
+				reject(new Error(`Ошибка загрузки изображения: ${file.name}`));
 			};
 			
 			img.onload = () => {
@@ -907,9 +773,9 @@
 									resolve();
 								})
 								.catch(error => {
-									console.error('Помилка при зміні розміру зображення:', error);
+									console.error('Ошибка при изменении размера изображения:', error);
 									this.invalidPhotos.push({
-										text: `Помилка обробки зображення: ${file.name}`,
+										text: `Ошибка обработки изображения: ${file.name}`,
 										file: file
 									});
 									reject(error);
@@ -921,15 +787,15 @@
 						}
 					} else {
 						this.invalidPhotos.push({
-							text: `Зображення "${file.name}" (${width}x${height}) замаленьке. Мінімальний розмір: ${this.minWidth}x${this.minHeight} пікселів.`,
+							text: `Изображение "${file.name}" (${width}x${height}) маловатое. Минимальный размер: ${this.minWidth}x${this.minHeight} пикселей.`,
 							file: file
 						});
 						resolve();
 					}
 				} catch (error) {
-					console.error('Помилка обробки зображення:', error);
+					console.error('Ошибка обработки изображения:', error);
 					this.invalidPhotos.push({
-						text: `Помилка обробки зображення: ${file.name}`,
+						text: `Ошибка обработки изображения: ${file.name}`,
 						file: file
 					});
 					reject(error);
@@ -945,7 +811,7 @@
 		
 		handleInvalidFile (file) {
 			this.invalidPhotos.push({
-				text: `Файл "${file.name}" не є зображенням. Допустимі лише зображення (JPG/PNG/HEIC/HEIF).`,
+				text: `Файл "${file.name}" не является изображением. Допустимы только изображения (JPG/PNG/HEIC/HEIF).`,
 				file: file
 			});
 		}
@@ -1046,7 +912,7 @@
 			
 			const spinnerSpan = document.createElement('span');
 			spinnerSpan.className = 'visually-hidden';
-			spinnerSpan.textContent = 'Loading...';
+			spinnerSpan.textContent = 'Загрузка...';
 			
 			spinnerDiv.appendChild(spinnerSpan);
 			return spinnerDiv;
@@ -1133,7 +999,7 @@
 				spinner.style.display = 'none';
 				const errorMsg = document.createElement('div');
 				errorMsg.className = 'text-danger';
-				errorMsg.textContent = 'Помилка завантаження зображення';
+				errorMsg.textContent = 'Ошибка загрузки изображения';
 				imageContainer.appendChild(errorMsg);
 			};
 			
@@ -1214,7 +1080,7 @@
 			loadingDiv.style.top = '50%';
 			loadingDiv.style.left = '50%';
 			loadingDiv.style.transform = 'translate(-50%, -50%)';
-			loadingDiv.textContent = 'Завантаження редактора...';
+			loadingDiv.textContent = 'Загрузка редактора...';
 			editorContainer.appendChild(loadingDiv);
 			
 			document.body.appendChild(editorContainer);
@@ -1267,8 +1133,8 @@
 					this.addEditorButtons(editorContainer, photoItem);
 					
 				} catch (error) {
-					console.error('Помилка ініціалізації редактора:', error);
-					editorContainer.innerHTML = '<div style="color:red;padding:20px;">Помилка завантаження редактора. Спробуйте ще раз.</div>';
+					console.error('Ошибка инициализации редактора:', error);
+					editorContainer.innerHTML = '<div style="color:red;padding:20px;">Ошибка загрузки редактора. Попытайтесь еще раз.</div>';
 					document.body.appendChild(editorContainer);
 				}
 			}, 100);
@@ -1279,12 +1145,12 @@
 			buttonContainer.className = 'btn-tui-wrapper';
 			
 			const saveButton = document.createElement('button');
-			saveButton.textContent = 'Зберегти';
+			saveButton.textContent = 'Сохранить';
 			saveButton.className = 'btn btn-primary  btn-tui-save';
 			saveButton.onclick = () => this.saveEditedImage(photoItem);
 			
 			const cancelButton = document.createElement('button');
-			cancelButton.textContent = 'Скасувати';
+			cancelButton.textContent = 'Отменить';
 			cancelButton.className = 'btn btn-danger btn-tui-reset';
 			cancelButton.onclick = () => this.closeImageEditor();
 			
@@ -1391,7 +1257,7 @@
 				try {
 					URL.revokeObjectURL(photoToDelete.objectUrl);
 				} catch (e) {
-					console.warn('Помилка при звільненні URL:', e);
+					console.warn('Ошибка при освобождении URL:', e);
 				}
 			}
 			
@@ -1401,7 +1267,7 @@
 		}
 		
 		movePhoto (photoId) {
-			console.log(`Move photo with id: ${photoId}`);
+			console.log(`Переместить фото с идентификатором: ${photoId}`);
 		}
 		
 		initFancybox () {
@@ -1454,7 +1320,7 @@
 						this.tooltips.set(el, tooltip);
 					}
 				} catch (e) {
-					console.warn('Помилка при ініціалізації тултіпа:', e);
+					console.warn('Ошибка при инициализации тултипа:', e);
 				}
 			});
 		}
@@ -1466,7 +1332,7 @@
 						tooltip.dispose();
 					}
 				} catch (e) {
-					console.warn('Помилка при знищенні тултіпа:', e);
+					console.warn('Ошибка при уничтожении тултипа:', e);
 				}
 			});
 			this.tooltips.clear();
@@ -1549,7 +1415,7 @@
 						// Конвертуємо canvas назад у файл
 						canvas.toBlob(blob => {
 							if ( !blob) {
-								reject(new Error('Помилка при створенні blob з canvas'));
+								reject(new Error('Ошибка при создании blob из canvas'));
 								return;
 							}
 							
@@ -1578,7 +1444,7 @@
 				
 				img.onerror = () => {
 					URL.revokeObjectURL(url);
-					reject(new Error('Помилка завантаження зображення для зміни розміру'));
+					reject(new Error('Ошибка загрузки изображения для изменения размера'));
 				};
 				
 				img.src = url;
