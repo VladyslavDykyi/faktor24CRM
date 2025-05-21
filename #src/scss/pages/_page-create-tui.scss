@@ -1,14 +1,58 @@
+body.lock {
+	overflow: hidden !important;
+}
 .tui-image-editor {
 	&-container {
+		& .tui-image-editor-main-container {
+			@media screen and (max-width: 768px) {
+				height: calc(100% - 150px);
+			}
+		}
+		& .tui-image-editor-menu-filter .tui-image-editor-submenu-item {
+			@media screen and (max-width: 768px) {
+				flex-direction: column;
+				display: flex;
+				padding: 0 16px;
+			}
+			& li:first-child.tui-image-editor-submenu-align {
+				display: none;
+			}
+			& .tui-image-editor-partition {
+				@media screen and (max-width: 768px) {
+					display: none;
+				}
+			}
+		}
 		& .tui-image-editor-controls {
 			background-color: #111;
+			@media screen and (max-width: 768px) {
+				height: 150px;
+				padding-bottom: 30px;
+			}
+		}
+		.btn-tui-wrapper {
+			position: fixed;
+			bottom: 13px;
+			right: 20px;
+			z-index: 10000;
+			display: flex;
+			gap: 10px;
+			@media screen and (max-width: 768px) {
+				left: 0;
+				width: 100%;
+				justify-content: center;
+				bottom: 26px;
+			}
+		}
+		& .tui-image-editor-menu {
+			@media screen and (max-width: 768px) {
+				display: block;
+				margin-top: 16px;
+			}
 		}
 		& .filter-color-item {
 			display: none;
 		}
-	}
-	&-partition {
-		//display: none !important;
 	}
 	&-header-logo,
 	&-header-buttons {
@@ -24,6 +68,14 @@
 	}
 	&-help-menu.top {
 		background-color: rgba(53, 133, 245, 0.3);
+		@media screen and (max-width: 768px) {
+			position: absolute;
+			left: 26px !important;
+			z-index: 100;
+			flex-direction: column;
+			width: 40px !important;
+			height: auto !important;
+		}
 		&  use.normal.use-default {
 			fill: #111 !important;
 			stroke: #111 !important;
@@ -68,9 +120,6 @@
 
 .btn-tui-save {
 	background-color: #3585F5;
-}
-.btn-tui-reset {
-
 }
 
 .tui-image-editor-container .tui-image-editor-help-menu>.tui-image-editor-item, .tui-image-editor-container .tui-image-editor-menu>.tui-image-editor-item {

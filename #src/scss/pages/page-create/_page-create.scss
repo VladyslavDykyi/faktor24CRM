@@ -944,7 +944,13 @@
 			align-items: center;
 			grid-gap: 10px;
 			justify-content: center;
+			@media screen and (max-width: 620px) {
+				flex-wrap: wrap;
+			}
 			& button {
+				@media screen and (max-width: 620px) {
+					width: calc(50% - 5px);
+				}
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -1233,7 +1239,6 @@
 	color: #666;
 }
 
-/* Стилі для SortableJS */
 .sortable-ghost {
 	opacity: 0.5;
 	background: #c8ebfb;
@@ -1250,7 +1255,6 @@
 	transform: rotate(5deg);
 }
 
-/* Додаткові стилі для плавності */
 .photo-info-item {
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

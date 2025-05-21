@@ -180,7 +180,7 @@
 	});
 
 // Функція для ініціалізації intl-tel-input
-	function initTelInput(inputElement) {
+	function initTelInput (inputElement) {
 		const $input = $(inputElement);
 		
 		// Ініціалізація intl-tel-input
@@ -190,7 +190,7 @@
 			separateDialCode: true,
 			nationalMode: true,
 			autoPlaceholder: "aggressive",
-			customPlaceholder: function(placeholder, countryData) {
+			customPlaceholder: function (placeholder, countryData) {
 				return placeholder.replace(/[0-9]/g, '_');
 			}
 		});
@@ -209,7 +209,7 @@
 		};
 		
 		// Функція для застосування маски
-		function applyPhoneMask(countryCode) {
+		function applyPhoneMask (countryCode) {
 			const mask = countryMasks[countryCode] || countryMasks['default'];
 			$input.unmask().mask(mask, {
 				clearIfNotMatch: true
@@ -217,19 +217,19 @@
 		}
 		
 		// Обробник зміни країни
-		$input.on('countrychange', function() {
+		$input.on('countrychange', function () {
 			applyPhoneMask(iti.getSelectedCountryData().iso2);
 		});
 		
 		// Обмеження введення лише цифр
-		$input.on('keypress', function(e) {
-			if (!/[0-9]/.test(String.fromCharCode(e.which))) {
+		$input.on('keypress', function (e) {
+			if ( !/[0-9]/.test(String.fromCharCode(e.which))) {
 				e.preventDefault();
 			}
 		});
 		
 		// Автоматичне форматування при втраті фокусу
-		$input.on('blur', function() {
+		$input.on('blur', function () {
 			if ($input.val()) {
 				const number = iti.getNumber();
 				if (number) {
@@ -242,13 +242,13 @@
 		applyPhoneMask(iti.getSelectedCountryData().iso2);
 		
 		// Додаткове налаштування для коректного відображення
-		setTimeout(function() {
+		setTimeout(function () {
 			$input.trigger('countrychange');
 		}, 100);
 	}
 
 // Ініціалізуємо перше поле при завантаженні сторінки
-	document.addEventListener('DOMContentLoaded', function() {
+	document.addEventListener('DOMContentLoaded', function () {
 		const firstTelInput = document.querySelector('.tel-contact');
 		if (firstTelInput) {
 			initTelInput(firstTelInput);
@@ -261,7 +261,7 @@
 			}
 		}
 	});
-	
+
 // 	class LoadingFile {
 // 		constructor () {
 // 		}
@@ -397,7 +397,7 @@
 // 		}
 // 	});
 	class FileUploader {
-		constructor(options) {
+		constructor (options) {
 			// Обов'язкові параметри
 			this.inputId = options.inputId;
 			this.wrapperClass = options.wrapperClass;
@@ -415,8 +415,8 @@
 			this.input = document.querySelector(`#${this.inputId}`);
 			this.wrapper = document.querySelector(`.${this.wrapperClass}`);
 			this.errorContainer = this.wrapper;
-				// ? this.wrapper.querySelector(`.${this.wrapperClass}`)
-				// : null;
+			// ? this.wrapper.querySelector(`.${this.wrapperClass}`)
+			// : null;
 			
 			// Визначаємо контейнер для рендерингу
 			this.renderContainer = document.querySelector(
@@ -436,12 +436,12 @@
 			}
 		}
 		
-		init() {
+		init () {
 			this.input.addEventListener('change', (e) => this.handleFileUpload(e));
 		}
 		
-		clearErrors() {
-			if (!this.wrapper || !this.errorContainer) return;
+		clearErrors () {
+			if ( !this.wrapper || !this.errorContainer) return;
 			
 			this.wrapper.classList.remove('error');
 			this.wrapper.style.marginBottom = '';
@@ -449,8 +449,8 @@
 			errorElements.forEach(element => element.remove());
 		}
 		
-		displayErrors() {
-			if (!this.wrapper || !this.errorContainer) return;
+		displayErrors () {
+			if ( !this.wrapper || !this.errorContainer) return;
 			
 			// Очищаємо попередні помилки
 			this.clearErrors();
@@ -474,7 +474,7 @@
 			}
 		}
 		
-		handleFileUpload(event) {
+		handleFileUpload (event) {
 			const files = Array.from(event.target.files);
 			
 			// Очищаємо масиви
@@ -499,7 +499,7 @@
 			}
 		}
 		
-		handlePDF(file) {
+		handlePDF (file) {
 			this.validDocuments.push({
 				id: this.validDocuments.length,
 				name: file.name,
@@ -509,7 +509,7 @@
 			});
 		}
 		
-		handleImage(file, index, totalFiles) {
+		handleImage (file, index, totalFiles) {
 			const img = new Image();
 			const url = URL.createObjectURL(file);
 			
@@ -519,7 +519,7 @@
 				const width = img.width;
 				const height = img.height;
 				
-				if (!this.checkImageSize) {
+				if ( !this.checkImageSize) {
 					// Якщо перевірка вимкнена
 					this.validDocuments.push({
 						id: this.validDocuments.length,
@@ -562,14 +562,14 @@
 			img.src = url;
 		}
 		
-		handleInvalidFile(file) {
+		handleInvalidFile (file) {
 			this.invalidDocuments.push({
 				text: `Файл "${file.name}" не є зображенням або PDF. Допустимі лише зображення (JPG/PNG) та PDF.`
 			});
 		}
 		
-		render() {
-			if (!this.renderContainer) return;
+		render () {
+			if ( !this.renderContainer) return;
 			
 			// Очищаємо контейнер перед рендерингом
 			this.renderContainer.innerHTML = '';
@@ -578,7 +578,7 @@
 			this.validDocuments.forEach(item => {
 				const documentItem = document.createElement('div');
 				documentItem.className = 'badge rounded-pill document-item';
-				if(this.inputId === 'plan') {
+				if (this.inputId === 'plan') {
 					documentItem.setAttribute('data-plan-id', item.id);
 				} else {
 					documentItem.setAttribute('data-document-id', item.id);
@@ -620,7 +620,7 @@
 			this.initFancybox();
 		}
 		
-		addRemoveHandlers() {
+		addRemoveHandlers () {
 			const removeButtons = this.renderContainer.querySelectorAll('.remove-document');
 			removeButtons.forEach(button => {
 				button.addEventListener('click', (e) => {
@@ -631,7 +631,7 @@
 			});
 		}
 		
-		removeDocument(id) {
+		removeDocument (id) {
 			// Видаляємо документ з масиву
 			this.validDocuments = this.validDocuments.filter(doc => doc.id !== id);
 			
@@ -643,12 +643,14 @@
 			// Перерендеримо список
 			this.render();
 		}
-		getFileByName(filename) {
+		
+		getFileByName (filename) {
 			// Шукаємо файл у input.files за ім'ям
 			const files = Array.from(this.input.files);
 			return files.find(file => file.name === filename);
 		}
-		initFancybox() {
+		
+		initFancybox () {
 			// Ініціалізація Fancybox для всіх кнопок перегляду
 			Fancybox.bind("[data-fancybox]", {
 				Thumbs: false,
@@ -661,9 +663,9 @@
 	}
 	
 	class PhotoLoader {
-		constructor(options) {
+		constructor (options) {
 			// Перевірка обов'язкових параметрів
-			if (!options.inputId) {
+			if ( !options.inputId) {
 				throw new Error('Необхідно вказати inputId');
 			}
 			
@@ -705,7 +707,7 @@
 			}
 		}
 		
-		createGlobalLoader() {
+		createGlobalLoader () {
 			this.globalLoader = document.createElement('div');
 			this.globalLoader.className = 'photo-loader-global';
 			this.globalLoader.innerHTML = `
@@ -719,14 +721,14 @@
 			this.globalLoader.style.display = 'none';
 		}
 		
-		showLoader() {
+		showLoader () {
 			if (this.globalLoader) {
 				this.globalLoader.style.display = 'flex';
 			}
 		}
 		
-		initSortable() {
-			if (!this.renderContainer || typeof Sortable === 'undefined') return;
+		initSortable () {
+			if ( !this.renderContainer || typeof Sortable === 'undefined') return;
 			
 			new Sortable(this.renderContainer, {
 				animation: 150, // тривалість анімації
@@ -738,7 +740,7 @@
 			});
 		}
 		
-		handleSortEnd(evt) {
+		handleSortEnd (evt) {
 			// Оновлюємо масив photoArray відповідно до нового порядку
 			const movedItem = this.photoArray[evt.oldIndex];
 			this.photoArray.splice(evt.oldIndex, 1);
@@ -748,14 +750,14 @@
 			this.render();
 		}
 		
-		hideLoader() {
+		hideLoader () {
 			if (this.globalLoader) {
 				this.globalLoader.style.display = 'none';
 			}
 		}
 		
-		updateProgress(loaded, total) {
-			if (!this.globalLoader) return;
+		updateProgress (loaded, total) {
+			if ( !this.globalLoader) return;
 			const progress = Math.round((loaded / total) * 100);
 			const progressElement = this.globalLoader.querySelector('.photo-loader-progress');
 			if (progressElement) {
@@ -763,7 +765,7 @@
 			}
 		}
 		
-		init() {
+		init () {
 			this.input.addEventListener('change', async (e) => {
 				if (this.isProcessing) return;
 				this.isProcessing = true;
@@ -791,7 +793,7 @@
 			});
 		}
 		
-		async handleFileUpload(event, progressCallback) {
+		async handleFileUpload (event, progressCallback) {
 			const files = Array.from(event.target.files);
 			
 			if (this.photoArray.length + files.length > this.maxPhotos) {
@@ -829,7 +831,7 @@
 			this.displayResults();
 		}
 		
-		handleImage(file) {
+		handleImage (file) {
 			return new Promise((resolve, reject) => {
 				const isHeic = file.type === 'image/heic' ||
 					file.type === 'image/heif' ||
@@ -846,7 +848,7 @@
 			});
 		}
 		
-		convertHeicToJpg(file) {
+		convertHeicToJpg (file) {
 			return new Promise((resolve, reject) => {
 				heic2any({
 					blob: file,
@@ -856,14 +858,14 @@
 					const newFile = new File(
 						[conversionResult],
 						file.name.replace(/\.(heic|heif)$/i, '.jpg'),
-						{ type: 'image/jpeg', lastModified: Date.now() }
+						{type: 'image/jpeg', lastModified: Date.now()}
 					);
 					resolve(newFile);
 				}).catch(reject);
 			});
 		}
 		
-		processImageFile(file, resolve, reject) {
+		processImageFile (file, resolve, reject) {
 			const img = new Image();
 			const url = URL.createObjectURL(file);
 			
@@ -883,7 +885,7 @@
 					const width = img.naturalWidth;
 					const height = img.naturalHeight;
 					
-					if (!this.checkImageSize || (width >= this.minWidth && height >= this.minHeight)) {
+					if ( !this.checkImageSize || (width >= this.minWidth && height >= this.minHeight)) {
 						const photoItem = {
 							id: this.generateUniqueId(),
 							name: file.name,
@@ -897,7 +899,7 @@
 						};
 						
 						// Якщо перевірка розмірів вимкнена, обробляємо зображення
-						if (!this.checkImageSize && (width < this.minWidth || height < this.minHeight)) {
+						if ( !this.checkImageSize && (width < this.minWidth || height < this.minHeight)) {
 							this.resizeImageToMinimum(file, photoItem)
 								.then(resizedPhoto => {
 									this.validPhotos.push(resizedPhoto);
@@ -937,18 +939,18 @@
 			img.src = url;
 		}
 		
-		generateUniqueId() {
+		generateUniqueId () {
 			return Date.now().toString(36) + Math.random().toString(36).substr(2);
 		}
 		
-		handleInvalidFile(file) {
+		handleInvalidFile (file) {
 			this.invalidPhotos.push({
 				text: `Файл "${file.name}" не є зображенням. Допустимі лише зображення (JPG/PNG/HEIC/HEIF).`,
 				file: file
 			});
 		}
 		
-		clearResults() {
+		clearResults () {
 			this.clearOldObjectUrls();
 			this.validPhotos = [];
 			this.invalidPhotos = [];
@@ -964,12 +966,12 @@
 			this.clearErrors();
 		}
 		
-		displayResults() {
+		displayResults () {
 			this.displayErrors();
 			this.render();
 		}
 		
-		clearOldObjectUrls() {
+		clearOldObjectUrls () {
 			this.photoArray.forEach(item => {
 				if (item.objectUrl) {
 					URL.revokeObjectURL(item.objectUrl);
@@ -978,16 +980,16 @@
 			});
 		}
 		
-		clearErrors() {
-			if (!this.wrapper || !this.errorContainer) return;
+		clearErrors () {
+			if ( !this.wrapper || !this.errorContainer) return;
 			
 			this.wrapper.classList.remove('error');
 			const errorElements = this.errorContainer.querySelectorAll('.error');
 			errorElements.forEach(element => element.remove());
 		}
 		
-		displayErrors() {
-			if (!this.wrapper || !this.errorContainer) return;
+		displayErrors () {
+			if ( !this.wrapper || !this.errorContainer) return;
 			
 			this.clearErrors();
 			
@@ -1003,8 +1005,8 @@
 			}
 		}
 		
-		render() {
-			if (!this.renderContainer) return;
+		render () {
+			if ( !this.renderContainer) return;
 			
 			this.destroyAllTooltips();
 			
@@ -1035,7 +1037,7 @@
 			this.initSortable();
 		}
 		
-		createSpinnerElement() {
+		createSpinnerElement () {
 			const spinnerDiv = document.createElement('div');
 			spinnerDiv.className = 'spinner-border text-primary';
 			spinnerDiv.style.width = '50px';
@@ -1050,7 +1052,7 @@
 			return spinnerDiv;
 		}
 		
-		createPhotoElement(item) {
+		createPhotoElement (item) {
 			const photoItem = document.createElement('li');
 			photoItem.classList.add('photo-info-item');
 			photoItem.setAttribute('data-photo-id', item.id);
@@ -1111,8 +1113,8 @@
 			img.alt = item.name;
 			img.dataset.bsToggle = 'tooltip';
 			img.dataset.bsPlacement = 'top';
-			img.dataset.bsTitle = item.isCheked ? 'Це фото буде відображатися' :
-				'Це фото буде відображатися в оголошенні та рекламних матеріалах';
+			img.dataset.bsTitle = item.isCheked ? 'Не показывать в объявлении' :
+				'Показывать в объявлении';
 			
 			img.onload = () => {
 				spinner.style.display = 'none';
@@ -1138,8 +1140,8 @@
 			return photoItem;
 		}
 		
-		initEventHandlers() {
-			if (!this.renderContainer) return;
+		initEventHandlers () {
+			if ( !this.renderContainer) return;
 			
 			this.renderContainer.addEventListener('change', (e) => {
 				if (e.target.matches('input[type="checkbox"][data-cheked-photo-id]')) {
@@ -1172,9 +1174,9 @@
 			});
 		}
 		
-		editPhoto(photoId) {
+		editPhoto (photoId) {
 			const photo = this.photoArray.find(p => p.id === photoId);
-			if (!photo) return;
+			if ( !photo) return;
 			
 			// Create a temporary canvas to get the image data
 			const img = new Image();
@@ -1191,8 +1193,11 @@
 			img.src = photo.objectUrl;
 		}
 		
-		initImageEditor(imageSrc, photoItem) {
+		initImageEditor (imageSrc, photoItem) {
 			// Створюємо контейнер для редактора
+			if (!document.body.classList.contains('lock')) {
+				document.body.classList.add('lock');
+			}
 			const editorContainer = document.createElement('div');
 			editorContainer.id = 'tui-image-editor-container';
 			editorContainer.style.position = 'fixed';
@@ -1268,14 +1273,10 @@
 				}
 			}, 100);
 		}
-		addEditorButtons(editorContainer, photoItem) {
+		
+		addEditorButtons (editorContainer, photoItem) {
 			const buttonContainer = document.createElement('div');
-			buttonContainer.style.position = 'fixed';
-			buttonContainer.style.bottom = '13px';
-			buttonContainer.style.right = '20px';
-			buttonContainer.style.zIndex = '10000';
-			buttonContainer.style.display = 'flex';
-			buttonContainer.style.gap = '10px';
+			buttonContainer.className = 'btn-tui-wrapper';
 			
 			const saveButton = document.createElement('button');
 			saveButton.textContent = 'Зберегти';
@@ -1292,8 +1293,8 @@
 			editorContainer.appendChild(buttonContainer);
 		}
 		
-		saveEditedImage(photoItem) {
-			if (!this.imageEditor) return;
+		saveEditedImage (photoItem) {
+			if ( !this.imageEditor) return;
 			
 			// Get edited image as blob
 			const editedImageData = this.imageEditor.toDataURL();
@@ -1316,39 +1317,44 @@
 					// Close the editor
 					this.closeImageEditor();
 				});
+			// Після збереження також видаляємо клас lock
+			if (document.body.classList.contains('lock')) {
+				document.body.classList.remove('lock');
+			}
 		}
 		
-		closeImageEditor() {
+		closeImageEditor () {
 			if (this.imageEditor) {
 				this.imageEditor.destroy();
 				this.imageEditor = null;
 			}
-			const body = document.querySelector('body');
 			
 			const editorContainer = document.getElementById('tui-image-editor-container');
 			if (editorContainer) {
 				editorContainer.remove();
-				body.classList.remove('lock');
 			}
 			
 			const buttonContainer = document.querySelector('div[style*="z-index: 10000"]');
 			if (buttonContainer) {
 				buttonContainer.remove();
-				body.classList.remove('lock');
+			}
+			// Видаляємо клас lock з body, якщо він є
+			if (document.body.classList.contains('lock')) {
+				document.body.classList.remove('lock');
 			}
 		}
 		
-		togglePhotoSelection(photoId) {
+		togglePhotoSelection (photoId) {
 			const photo = this.photoArray.find(p => p.id === photoId);
-			if (!photo) return;
+			if ( !photo) return;
 			
 			photo.isCheked = !photo.isCheked;
 			
 			const img = this.renderContainer.querySelector(`[data-photo-id="${photoId}"] img`);
 			if (img) {
 				img.setAttribute('data-bs-title',
-					photo.isCheked ? 'Це фото буде відображатися' :
-						'Це фото буде відображатися в оголошенні та рекламних матеріалах');
+					photo.isCheked ? 'Не показывать в объявлении' :
+						'Показывать в объявлении');
 				
 				const tooltip = bootstrap.Tooltip.getInstance(img);
 				if (tooltip) {
@@ -1364,9 +1370,9 @@
 			}
 		}
 		
-		deletePhoto(photoId) {
+		deletePhoto (photoId) {
 			const photoElement = this.renderContainer.querySelector(`[data-photo-id="${photoId}"]`);
-			if (!photoElement) return;
+			if ( !photoElement) return;
 			
 			const photoIndex = this.photoArray.findIndex(photo => photo.id === photoId);
 			if (photoIndex === -1) return;
@@ -1394,11 +1400,11 @@
 			photoElement.remove();
 		}
 		
-		movePhoto(photoId) {
+		movePhoto (photoId) {
 			console.log(`Move photo with id: ${photoId}`);
 		}
 		
-		initFancybox() {
+		initFancybox () {
 			if (typeof Fancybox === 'undefined') return;
 			
 			if (Fancybox.getInstance()) {
@@ -1433,14 +1439,14 @@
 			});
 		}
 		
-		initTooltips() {
+		initTooltips () {
 			if (typeof bootstrap === 'undefined' || !bootstrap.Tooltip) return;
 			
 			const tooltipElements = this.renderContainer && this.renderContainer.querySelectorAll('[data-bs-toggle="tooltip"]') || [];
 			
 			tooltipElements.forEach(el => {
 				try {
-					if (!this.tooltips.has(el)) {
+					if ( !this.tooltips.has(el)) {
 						const tooltip = new bootstrap.Tooltip(el, {
 							trigger: 'hover',
 							placement: 'top'
@@ -1453,7 +1459,7 @@
 			});
 		}
 		
-		destroyAllTooltips() {
+		destroyAllTooltips () {
 			this.tooltips.forEach((tooltip, element) => {
 				try {
 					if (tooltip && typeof tooltip.dispose === 'function') {
@@ -1466,11 +1472,11 @@
 			this.tooltips.clear();
 		}
 		
-		getSelectedPhotos() {
+		getSelectedPhotos () {
 			return this.photoArray.filter(photo => photo.isCheked);
 		}
 		
-		destroy() {
+		destroy () {
 			this.clearOldObjectUrls();
 			this.destroyAllTooltips();
 			this.closeImageEditor();
@@ -1493,13 +1499,14 @@
 				this.renderContainer.removeEventListener('click', this.handleContainerClick);
 			}
 		}
+		
 		/**
 		 * Збільшує зображення до мінімального розміру, зберігаючи пропорції
 		 * @param {File} file - Об'єкт файлу зображення
 		 * @param {Object} photoItem - Об'єкт фото для оновлення
 		 * @returns {Promise<Object>} Обіцянка, що повертає оновлений об'єкт фото
 		 */
-		resizeImageToMinimum(file, photoItem) {
+		resizeImageToMinimum (file, photoItem) {
 			return new Promise((resolve, reject) => {
 				const img = new Image();
 				const url = URL.createObjectURL(file);
@@ -1541,7 +1548,7 @@
 						
 						// Конвертуємо canvas назад у файл
 						canvas.toBlob(blob => {
-							if (!blob) {
+							if ( !blob) {
 								reject(new Error('Помилка при створенні blob з canvas'));
 								return;
 							}
@@ -1580,7 +1587,7 @@
 	}
 	
 	// Ініціалізація FileUploader після завантаження Fancybox
-	function initFileUploaders() {
+	function initFileUploaders () {
 		// Для документів (без перевірки розміру)
 		new FileUploader({
 			inputId: 'document',

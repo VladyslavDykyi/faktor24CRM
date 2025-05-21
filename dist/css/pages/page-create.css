@@ -1690,8 +1690,6 @@ ul {
   color: #666;
 }
 
-/* Стилі для SortableJS */
-
 .sortable-ghost {
   opacity: 0.5;
   background: #c8ebfb;
@@ -1711,8 +1709,6 @@ ul {
       -ms-transform: rotate(5deg);
           transform: rotate(5deg);
 }
-
-/* Додаткові стилі для плавності */
 
 .photo-info-item {
   -webkit-transition: -webkit-transform 0.2s ease, -webkit-box-shadow 0.2s ease;
@@ -1984,8 +1980,27 @@ ul {
   background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/img/flags.png");
 }
 
+body.lock {
+  overflow: hidden !important;
+}
+
+.tui-image-editor-container .tui-image-editor-menu-filter .tui-image-editor-submenu-item li:first-child.tui-image-editor-submenu-align {
+  display: none;
+}
+
 .tui-image-editor-container .tui-image-editor-controls {
   background-color: #111;
+}
+
+.tui-image-editor-container .btn-tui-wrapper {
+  position: fixed;
+  bottom: 13px;
+  right: 20px;
+  z-index: 10000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
 }
 
 .tui-image-editor-container .filter-color-item {
@@ -2210,6 +2225,56 @@ ul {
             align-items: flex-start;
     grid-gap: 20px;
   }
+
+  .tui-image-editor-container .tui-image-editor-main-container {
+    height: calc(100% - 150px);
+  }
+
+  .tui-image-editor-container .tui-image-editor-menu-filter .tui-image-editor-submenu-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 16px;
+  }
+
+  .tui-image-editor-container .tui-image-editor-menu-filter .tui-image-editor-submenu-item .tui-image-editor-partition {
+    display: none;
+  }
+
+  .tui-image-editor-container .tui-image-editor-controls {
+    height: 150px;
+    padding-bottom: 30px;
+  }
+
+  .tui-image-editor-container .btn-tui-wrapper {
+    left: 0;
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    bottom: 26px;
+  }
+
+  .tui-image-editor-container .tui-image-editor-menu {
+    display: block;
+    margin-top: 16px;
+  }
+
+  .tui-image-editor-help-menu.top {
+    position: absolute;
+    left: 26px !important;
+    z-index: 100;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 40px !important;
+    height: auto !important;
+  }
 }
 
 @media screen and (max-width: 620px) {
@@ -2317,6 +2382,15 @@ ul {
 
   .photo-info-item {
     max-width: calc(25% - 7.5px);
+  }
+
+  .photo-info-item-actions {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+
+  .photo-info-item-actions button {
+    width: calc(50% - 5px);
   }
 
   .photo-info-item-actions button svg {
