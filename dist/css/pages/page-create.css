@@ -2193,6 +2193,18 @@ body.lock {
   .tab-content .btn-gpt {
     top: -42px;
   }
+
+  .tui-image-editor-wrap {
+    padding-left: 40px;
+  }
+
+  .tui-image-editor-canvas-container {
+    padding-left: 40px !important;
+  }
+
+  .tui-image-editor-canvas-container > * {
+    padding-left: 52px !important;
+  }
 }
 
 @media screen and (max-width: 880px) {

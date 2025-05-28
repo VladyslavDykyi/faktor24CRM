@@ -137,3 +137,19 @@ body.lock {
 .tui-image-editor-container .tui-image-editor-icpartition {
 	display: block;
 }
+
+.tui-image-editor-wrap {
+	@media screen and (max-width: 1024px) {
+		padding-left: 40px;
+	}
+}
+.tui-image-editor-canvas-container {
+	@media screen and (max-width: 1024px) {
+		padding-left: 40px !important;
+	}
+	& > * {
+		@media screen and (max-width: 1024px) {
+			padding-left: 52px !important;
+		}
+	}
+}
