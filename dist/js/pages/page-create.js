@@ -1130,30 +1130,17 @@
 					this.imageEditor = new tui.ImageEditor(editorContainer, editorOptions);
 					// авто увімкнення чекбокса
 					setTimeout(() => {
-						const elem = document.querySelector('.tie-lock-aspect-ratio');
+						const $elem = $('.tie-lock-aspect-ratio');
 						
-						if (elem) {
-							// Створюємо повноцінну подію кліку
-							const clickEvent = new MouseEvent('click', {
-								bubbles: true,
-								cancelable: true,
-								view: window
-							});
+						if ($elem.length) {
+							// Імітуємо клік (працює і для тач-пристроїв)
+							$elem.trigger('click');
 							
-							// Додатково створюємо touch-події для мобільних пристроїв
-							if ('ontouchstart' in window) {
-								const touchStart = new TouchEvent('touchstart', { bubbles: true });
-								const touchEnd = new TouchEvent('touchend', { bubbles: true });
-								elem.dispatchEvent(touchStart);
-								elem.dispatchEvent(touchEnd);
-							}
+							// Змінюємо стан чекбокса
+							$elem.prop('checked', true);
 							
-							// Тригеримо основну подію кліку
-							elem.dispatchEvent(clickEvent);
-							
-							// Додатково тригеримо подію зміни
-							const changeEvent = new Event('change', { bubbles: true });
-							elem.dispatchEvent(changeEvent);
+							// Тригеримо подію change (якщо потрібно)
+							$elem.trigger('change');
 						}
 					}, 100);
 					// Для мобільних пристроїв додатково приховуємо елементи
@@ -1168,30 +1155,17 @@
 							];
 							// авто увімкнення чекбокса
 							setTimeout(() => {
-								const elem = document.querySelector('.tie-lock-aspect-ratio');
+								const $elem = $('.tie-lock-aspect-ratio');
 								
-								if (elem) {
-									// Створюємо повноцінну подію кліку
-									const clickEvent = new MouseEvent('click', {
-										bubbles: true,
-										cancelable: true,
-										view: window
-									});
+								if ($elem.length) {
+									// Імітуємо клік (працює і для тач-пристроїв)
+									$elem.trigger('click');
 									
-									// Додатково створюємо touch-події для мобільних пристроїв
-									if ('ontouchstart' in window) {
-										const touchStart = new TouchEvent('touchstart', { bubbles: true });
-										const touchEnd = new TouchEvent('touchend', { bubbles: true });
-										elem.dispatchEvent(touchStart);
-										elem.dispatchEvent(touchEnd);
-									}
+									// Змінюємо стан чекбокса
+									$elem.prop('checked', true);
 									
-									// Тригеримо основну подію кліку
-									elem.dispatchEvent(clickEvent);
-									
-									// Додатково тригеримо подію зміни
-									const changeEvent = new Event('change', { bubbles: true });
-									elem.dispatchEvent(changeEvent);
+									// Тригеримо подію change (якщо потрібно)
+									$elem.trigger('change');
 								}
 							}, 100);
 							elementsToHide.forEach(selector => {
