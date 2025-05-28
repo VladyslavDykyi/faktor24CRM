@@ -143,6 +143,11 @@ body.lock {
 		padding-left: 40px;
 	}
 }
+li.tui-image-editor-item:not([tooltip-content]) {
+	@media screen and (max-width: 1024px) {
+		display: none !important;
+	}
+}
 .tui-image-editor-canvas-container {
 	@media screen and (max-width: 1024px) {
 		padding-left: 40px !important;

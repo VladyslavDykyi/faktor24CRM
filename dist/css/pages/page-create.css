@@ -2198,6 +2198,10 @@ body.lock {
     padding-left: 40px;
   }
 
+  li.tui-image-editor-item:not([tooltip-content]) {
+    display: none !important;
+  }
+
   .tui-image-editor-canvas-container {
     padding-left: 40px !important;
   }
