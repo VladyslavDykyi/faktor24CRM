@@ -98,7 +98,7 @@ body.lock {
 		&.apply {
 			cursor: pointer;
 			display: flex !important;
-			align-items: center;
+			align-items: center !important;
 			& label {
 				cursor: pointer;
 			}
@@ -187,10 +187,15 @@ li.tui-image-editor-item:not([tooltip-content]) {
 .tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
 	max-height: calc(100vh - 305px) !important;
+	@media screen and (max-width: 580px) {
+		max-height: calc(100vh - 365px) !important;
+	}
 }
+
 .tui-image-editor-container .tui-image-editor-main {
 	top: 0 !important;
 }
+
 .tui-image-editor-main .tui-image-editor {
 	height: 100% !important;
 	width: 100% !important;
@@ -200,9 +205,6 @@ li.tui-image-editor-item:not([tooltip-content]) {
 .tui-image-editor-main .tui-image-editor-canvas-container {
 	max-height: 100% !important;
 	max-width: 100% !important;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .tui-image-editor-container .tui-image-editor {
