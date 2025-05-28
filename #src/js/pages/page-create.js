@@ -1132,16 +1132,7 @@
 					setTimeout(() => {
 						const $elem = $('.tie-lock-aspect-ratio');
 						
-						if ($elem.length) {
-							// Імітуємо клік (працює і для тач-пристроїв)
-							$elem.trigger('click');
-							
-							// Змінюємо стан чекбокса
-							$elem.prop('checked', true);
-							
-							// Тригеримо подію change (якщо потрібно)
-							$elem.trigger('change');
-						}
+						$elem.trigger('click');
 					}, 100);
 					// Для мобільних пристроїв додатково приховуємо елементи
 					if (isMobile) {
@@ -1157,16 +1148,7 @@
 							setTimeout(() => {
 								const $elem = $('.tie-lock-aspect-ratio');
 								
-								if ($elem.length) {
-									// Імітуємо клік (працює і для тач-пристроїв)
 									$elem.trigger('click');
-									
-									// Змінюємо стан чекбокса
-									$elem.prop('checked', true);
-									
-									// Тригеримо подію change (якщо потрібно)
-									$elem.trigger('change');
-								}
 							}, 100);
 							elementsToHide.forEach(selector => {
 								const elements = document.querySelectorAll(selector);
