@@ -186,12 +186,11 @@ li.tui-image-editor-item:not([tooltip-content]) {
 .tui-image-editor-main.tui-image-editor-menu-resize .lower-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
-	max-height: calc(100vh - 365px) !important;
-	@media (hover: none) {
-		max-height: calc(100vh - 465px) !important;
-	}
+	max-height: calc(100vh - 305px) !important;
 }
-
+.tui-image-editor-container .tui-image-editor-main {
+	top: 0 !important;
+}
 .tui-image-editor-main .tui-image-editor {
 	height: 100% !important;
 	width: 100% !important;
