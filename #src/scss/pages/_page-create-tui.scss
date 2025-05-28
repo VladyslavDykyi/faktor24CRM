@@ -158,3 +158,42 @@ li.tui-image-editor-item:not([tooltip-content]) {
 		}
 	}
 }
+.tui-image-editor-main .lower-canvas,
+.tui-image-editor-main .upper-canvas,
+.tui-image-editor-main .tui-image-editor-wrap,
+.tui-image-editor-main .lower-canvas,
+.tui-image-editor-main .upper-canvas,
+.tui-image-editor-main .tui-image-editor-wrap,
+.tui-image-editor-main .lower-canvas,
+.tui-image-editor-main .upper-canvas,
+.tui-image-editor-main .tui-image-editor-wrap {
+	object-fit: contain !important;
+	left: 50% !important;
+	transform: translateX(-50%) !important;
+}
+.tui-image-editor-main.tui-image-editor-menu-rotate .lower-canvas,
+.tui-image-editor-main.tui-image-editor-menu-rotate .upper-canvas,
+.tui-image-editor-main.tui-image-editor-menu-rotate .tui-image-editor-wrap,
+.tui-image-editor-main.tui-image-editor-menu-crop .lower-canvas,
+.tui-image-editor-main.tui-image-editor-menu-crop .upper-canvas,
+.tui-image-editor-main.tui-image-editor-menu-crop .tui-image-editor-wrap,
+.tui-image-editor-main.tui-image-editor-menu-resize .lower-canvas,
+.tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
+.tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
+	max-height: calc(100vh - 365px) !important;
+}
+.tui-image-editor-main .tui-image-editor {
+	height: 100% !important;
+	width: 100% !important;
+	top: auto !important;
+}
+.tui-image-editor-main .tui-image-editor-canvas-container {
+	max-height: 100% !important;
+	max-width: 100% !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.tui-image-editor-container .tui-image-editor {
+	display: block !important;
+}
