@@ -1061,7 +1061,8 @@
 		
 		initImageEditor(imageSrc, photoItem) {
 			// Перевіряємо, чи це мобільний пристрій
-			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			const isMobile = window.screen.width < 1024;
+			// const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 			
 			// Створюємо контейнер для редактора
 			if (!document.body.classList.contains('lock')) {
@@ -1130,14 +1131,17 @@
 					this.imageEditor = new tui.ImageEditor(editorContainer, editorOptions);
 					
 					// Для мобільних пристроїв додатково приховуємо елементи
-					if (isMobile) {
+					console.log(isMobile,'isMobile')
+					if (!isMobile) {
+						
 						setTimeout(() => {
+							console.log(isMobile,'isMobile')
 							// Приховуємо непотрібні елементи UI
 							const elementsToHide = [
 								'.tui-image-editor-header-logo',
-								'.tui-image-editor-submenu',
 								'.tui-image-editor-checkbox',
-								'.tui-image-editor-range'
+								'.tui-image-editor-range',
+								'[tooltip-content="Filter"]',
 							];
 							
 							elementsToHide.forEach(selector => {
