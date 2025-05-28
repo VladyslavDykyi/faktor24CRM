@@ -1148,7 +1148,7 @@
 							setTimeout(() => {
 								const $elem = $('.tie-lock-aspect-ratio');
 								
-									$elem.trigger('click');
+									$elem.trigger('touchstart');
 							}, 100);
 							elementsToHide.forEach(selector => {
 								const elements = document.querySelectorAll(selector);

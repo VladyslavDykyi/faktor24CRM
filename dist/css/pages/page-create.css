@@ -2050,6 +2050,7 @@ body.lock {
       -ms-flex-pack: center;
           justify-content: center;
   grid-gap: 20px;
+  padding: 10px 0 0;
 }
 
 .tui-image-editor-button.cancel,
@@ -2133,7 +2134,7 @@ body.lock {
 .tui-image-editor-main.tui-image-editor-menu-resize .lower-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
-  max-height: calc(100vh - 305px) !important;
+  max-height: calc(100vh - 315px) !important;
 }
 
 .tui-image-editor-container .tui-image-editor-main {
@@ -2527,7 +2528,7 @@ body.lock {
   .tui-image-editor-main.tui-image-editor-menu-resize .lower-canvas,
   .tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
   .tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
-    max-height: calc(100vh - 365px) !important;
+    max-height: calc(100vh - 375px) !important;
   }
 }
 
