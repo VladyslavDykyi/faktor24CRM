@@ -1130,7 +1130,7 @@
 					this.imageEditor = new tui.ImageEditor(editorContainer, editorOptions);
 					setTimeout(()=> {
 						const elem = document.querySelector('.tie-lock-aspect-ratio');
-						elem.checked = true;
+						elem.click();
 					},100);
 					// Для мобільних пристроїв додатково приховуємо елементи
 					if (isMobile) {
@@ -1144,7 +1144,7 @@
 							];
 							setTimeout(()=> {
 								const elem = document.querySelector('.tie-lock-aspect-ratio');
-								elem.checked = true;
+								elem.click();
 							},100);
 							elementsToHide.forEach(selector => {
 								const elements = document.querySelectorAll(selector);
