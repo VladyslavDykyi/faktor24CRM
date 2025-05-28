@@ -1128,13 +1128,37 @@
 					
 					// Ініціалізуємо TUI Image Editor
 					this.imageEditor = new tui.ImageEditor(editorContainer, editorOptions);
-					setTimeout(()=> {
+					// авто увімкнення чекбокса
+					setTimeout(() => {
 						const elem = document.querySelector('.tie-lock-aspect-ratio');
-						elem.click();
-					},100);
+						
+						if (elem) {
+							// Створюємо повноцінну подію кліку
+							const clickEvent = new MouseEvent('click', {
+								bubbles: true,
+								cancelable: true,
+								view: window
+							});
+							
+							// Додатково створюємо touch-події для мобільних пристроїв
+							if ('ontouchstart' in window) {
+								const touchStart = new TouchEvent('touchstart', { bubbles: true });
+								const touchEnd = new TouchEvent('touchend', { bubbles: true });
+								elem.dispatchEvent(touchStart);
+								elem.dispatchEvent(touchEnd);
+							}
+							
+							// Тригеримо основну подію кліку
+							elem.dispatchEvent(clickEvent);
+							
+							// Додатково тригеримо подію зміни
+							const changeEvent = new Event('change', { bubbles: true });
+							elem.dispatchEvent(changeEvent);
+						}
+					}, 100);
 					// Для мобільних пристроїв додатково приховуємо елементи
 					if (isMobile) {
-						
+					
 						setTimeout(() => {
 							// Приховуємо непотрібні елементи UI
 							const elementsToHide = [
@@ -1142,10 +1166,34 @@
 								'.tui-image-editor-range',
 								'[tooltip-content="Filter"]',
 							];
-							setTimeout(()=> {
+							// авто увімкнення чекбокса
+							setTimeout(() => {
 								const elem = document.querySelector('.tie-lock-aspect-ratio');
-								elem.click();
-							},100);
+								
+								if (elem) {
+									// Створюємо повноцінну подію кліку
+									const clickEvent = new MouseEvent('click', {
+										bubbles: true,
+										cancelable: true,
+										view: window
+									});
+									
+									// Додатково створюємо touch-події для мобільних пристроїв
+									if ('ontouchstart' in window) {
+										const touchStart = new TouchEvent('touchstart', { bubbles: true });
+										const touchEnd = new TouchEvent('touchend', { bubbles: true });
+										elem.dispatchEvent(touchStart);
+										elem.dispatchEvent(touchEnd);
+									}
+									
+									// Тригеримо основну подію кліку
+									elem.dispatchEvent(clickEvent);
+									
+									// Додатково тригеримо подію зміни
+									const changeEvent = new Event('change', { bubbles: true });
+									elem.dispatchEvent(changeEvent);
+								}
+							}, 100);
 							elementsToHide.forEach(selector => {
 								const elements = document.querySelectorAll(selector);
 								elements.forEach(el => el.style.display = 'none');
