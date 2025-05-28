@@ -1130,10 +1130,8 @@
 					this.imageEditor = new tui.ImageEditor(editorContainer, editorOptions);
 					// авто увімкнення чекбокса
 					setTimeout(() => {
-						const $elem = $('.tie-lock-aspect-ratio');
-						
-						$elem.trigger('click');
-					}, 100);
+						$('.tie-lock-aspect-ratio').trigger('click');
+					}, 200);
 					// Для мобільних пристроїв додатково приховуємо елементи
 					if (isMobile) {
 					
@@ -1146,10 +1144,8 @@
 							];
 							// авто увімкнення чекбокса
 							setTimeout(() => {
-								const $elem = $('.tie-lock-aspect-ratio');
-								
-									$elem.trigger('touchstart');
-							}, 100);
+								$('.tie-lock-aspect-ratio').trigger('change');
+							}, 200);
 							elementsToHide.forEach(selector => {
 								const elements = document.querySelectorAll(selector);
 								elements.forEach(el => el.style.display = 'none');
