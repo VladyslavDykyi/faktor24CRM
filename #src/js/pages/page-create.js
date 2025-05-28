@@ -1061,7 +1061,7 @@
 		
 		initImageEditor(imageSrc, photoItem) {
 			// Перевіряємо, чи це мобільний пристрій
-			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			const isMobile = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && window.innerWidth < 1024;
 			
 			// Створюємо контейнер для редактора
 			if (!document.body.classList.contains('lock')) {
