@@ -2155,6 +2155,14 @@ body.lock {
   display: block !important;
 }
 
+.tui-image-editor-container .tui-image-editor-checkbox > label > span:before,
+.tui-image-editor-container .tui-image-editor-checkbox input + label:before {
+  width: 18px !important;
+  height: 18px !important;
+  top: 4px !important;
+  left: -25px !important;
+}
+
 @media screen and (max-width: 1024px) {
   .create-filter-row.row1 .item:nth-child(3) {
     padding-right: 0;
