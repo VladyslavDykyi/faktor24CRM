@@ -2082,29 +2082,6 @@ body.lock {
   background-color: #3585F5;
 }
 
-.tui-image-editor-container .tui-image-editor-help-menu > .tui-image-editor-item,
-.tui-image-editor-container .tui-image-editor-menu > .tui-image-editor-item {
-  position: relative;
-  display: inline-block;
-  border-radius: 2px;
-  padding: 7px 8px 7px;
-  cursor: pointer;
-  margin: 0 4px;
-}
-
-.tui-image-editor-container .tui-image-editor-help-menu.top {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.tui-image-editor-container .tui-image-editor-icpartition {
-  display: block;
-}
-
 .tui-image-editor-main .lower-canvas,
 .tui-image-editor-main .upper-canvas,
 .tui-image-editor-main .tui-image-editor-wrap,
@@ -2114,8 +2091,6 @@ body.lock {
 .tui-image-editor-main .lower-canvas,
 .tui-image-editor-main .upper-canvas,
 .tui-image-editor-main .tui-image-editor-wrap {
-  -o-object-fit: contain !important;
-     object-fit: contain !important;
   left: 50% !important;
   -webkit-transform: translateX(-50%) !important;
       -ms-transform: translateX(-50%) !important;
@@ -2135,33 +2110,30 @@ body.lock {
 .tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
   max-height: calc(100vh - 315px) !important;
+  height: 100% !important;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
-.tui-image-editor-container .tui-image-editor-main {
-  top: 0 !important;
-}
-
-.tui-image-editor-main .tui-image-editor {
+.tui-image-editor-container .tui-image-editor {
+  display: block;
   height: 100% !important;
   width: 100% !important;
   top: auto !important;
 }
 
-.tui-image-editor-main .tui-image-editor-canvas-container {
+.tui-image-editor-container .tui-image-editor-wrap .tui-image-editor-size-wrap .tui-image-editor-align-wrap {
+  display: block;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.tui-image-editor-canvas-container {
+  display: block;
+  height: 100% !important;
+  width: 100% !important;
   max-height: 100% !important;
   max-width: 100% !important;
-}
-
-.tui-image-editor-container .tui-image-editor {
-  display: block !important;
-}
-
-.tui-image-editor-container .tui-image-editor-checkbox > label > span:before,
-.tui-image-editor-container .tui-image-editor-checkbox input + label:before {
-  width: 18px !important;
-  height: 18px !important;
-  top: 4px !important;
-  left: -25px !important;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2252,22 +2224,6 @@ body.lock {
 
   .tab-content .btn-gpt {
     top: -42px;
-  }
-
-  .tui-image-editor-wrap {
-    padding-left: 40px;
-  }
-
-  li.tui-image-editor-item:not([tooltip-content]) {
-    display: none !important;
-  }
-
-  .tui-image-editor-canvas-container {
-    padding-left: 40px !important;
-  }
-
-  .tui-image-editor-canvas-container > * {
-    padding-left: 52px !important;
   }
 }
 
