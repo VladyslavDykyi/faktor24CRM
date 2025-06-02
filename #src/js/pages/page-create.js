@@ -1100,7 +1100,7 @@
 						cssMaxWidth: window.innerWidth,
 						cssMaxHeight: window.innerHeight,
 						selectionStyle: {
-							cornerSize: 20, // Збільшуємо розмір кутових маркерів
+							cornerSize: isMobile ? 40 : 20, // Збільшуємо розмір кутових маркерів
 							rotatingPointOffset: 70,
 							cornerStyle: 'circle',
 							borderColor: '#3585F5',
