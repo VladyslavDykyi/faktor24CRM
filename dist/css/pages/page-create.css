@@ -2136,6 +2136,14 @@ body.lock {
   max-width: 100% !important;
 }
 
+.upper-canvas,
+.lower-canvas {
+  height: auto !important;
+  width: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+}
+
 @media screen and (max-width: 1024px) {
   .create-filter-row.row1 .item:nth-child(3) {
     padding-right: 0;
