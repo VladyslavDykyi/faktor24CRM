@@ -1093,7 +1093,7 @@
 
 // Обмеження розмірів (min/max)
 					const desktopLimits = { min: 25, max: 150 }; // Для ПК
-					const mobileLimits = { min: 45, max: 150 };   // Для телефонів
+					const mobileLimits = { min: 55, max: 150 };   // Для телефонів
 
 // Фінальний розрахунок
 					let cornerSize;
