@@ -1100,25 +1100,66 @@
 						cssMaxWidth: window.innerWidth,
 						cssMaxHeight: window.innerHeight,
 						selectionStyle: {
-							cornerSize: isMobile ? 60 : 20, // Збільшуємо розмір кутових маркерів
+							cornerSize: isMobile ? 30 : 20,
 							rotatingPointOffset: 70,
 							cornerStyle: 'circle',
 							borderColor: '#3585F5',
 							borderWidth: 5,
 							cornerColor: '#3585F5',
-							transparentCorners: false,
+							transparentCorners: false, // Змінимо на false для кращої видимості
 							hasControls: true,
 							hasBorders: true,
-							lockUniScaling: false,
+							lockUniScaling: false, // Змінимо на false для більш гнучкого масштабування
 							lockScalingX: false,
 							lockScalingY: false,
 							lockMovementX: false,
 							lockMovementY: false,
 							lockRotation: true,
+							cornerScale: 1, // Встановимо 1 замість 100
 						}
 					};
 					
 					this.imageEditor = new tui.ImageEditor(editorContainer, editorOptions);
+					
+					// Отримуємо доступ до fabric.js canvas
+					const canvas = this.imageEditor._graphics.getCanvas();
+					
+					// Модифікуємо поведінку кутів
+					canvas.on('object:scaling', (e) => {
+						const obj = e.target;
+						if (obj) {
+							// Фіксуємо розмір кутів
+							obj.set({
+								cornerSize: isMobile ? 30 : 20,
+								borderScaleFactor: 1,
+								cornerStyle: 'circle',
+								transparentCorners: false
+							});
+							
+							// Оновлюємо координати кутів
+							obj.setCoords();
+							
+							// Фіксуємо розмір рамки
+							obj.set({
+								borderColor: '#3585F5',
+								borderWidth: 5,
+								cornerColor: '#3585F5'
+							});
+						}
+					});
+					
+					// Додаткова фіксація при зміні виділення
+					canvas.on('selection:created', (e) => {
+						if (e.selected && e.selected.length > 0) {
+							e.selected.forEach(obj => {
+								obj.set({
+									cornerSize: isMobile ? 30 : 20,
+									borderScaleFactor: 1
+								});
+							});
+							canvas.renderAll();
+						}
+					});
 					
 					// Автоматично активуємо інструмент кропування
 					setTimeout(() => {
@@ -1144,16 +1185,19 @@
 							cropper.set({
 								borderColor: '#3585F5',
 								cornerColor: '#3585F5',
-								cornerSize: 30,
-								transparentCorners: false
+								cornerSize: isMobile ? 70 : 40, // Використовуємо той самий розмір
+								transparentCorners: false,
+								borderWidth: 5
 							});
 							this.imageEditor._graphics.renderAll();
 						}
 					}, 300);
+					
 					// авто увімкнення чекбокса
 					setTimeout(() => {
 						$('.tie-lock-aspect-ratio').trigger('click');
 					}, 200);
+					
 					if (isMobile) {
 						setTimeout(() => {
 							const elementsToHide = [
@@ -1161,7 +1205,6 @@
 								'.tui-image-editor-range',
 								'[tooltip-content="Filter"]',
 							];
-							// авто увімкнення чекбокса
 							setTimeout(() => {
 								$('.tie-lock-aspect-ratio').trigger('click');
 							}, 200);

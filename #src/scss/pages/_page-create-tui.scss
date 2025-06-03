@@ -132,12 +132,10 @@ body.lock {
 .tui-image-editor-main .lower-canvas,
 .tui-image-editor-main .upper-canvas,
 .tui-image-editor-main .tui-image-editor-wrap {
-	//object-fit: contain !important;
 	left: 50% !important;
 	transform: translateX(-50%) !important;
-
 }
-//
+
 .tui-image-editor-main.tui-image-editor-menu-rotate .lower-canvas,
 .tui-image-editor-main.tui-image-editor-menu-rotate .upper-canvas,
 .tui-image-editor-main.tui-image-editor-menu-rotate .tui-image-editor-wrap,
@@ -150,13 +148,7 @@ body.lock {
 .tui-image-editor-main.tui-image-editor-menu-resize .lower-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
-	max-height: calc(100vh - 315px) !important;
-	//max-width: none !important;
-	height: 100% !important;
-	object-fit: contain;
-	@media screen and (max-width: 580px) {
-		max-height: calc(100vh - 375px) !important;
-	}
+	margin-bottom: 170px;
 }
 .tui-image-editor-container .tui-image-editor {
 	display: block;
@@ -182,4 +174,17 @@ body.lock {
 	width: auto !important;
 	max-height: none !important;
 	max-width: none !important;
+}
+.tui-image-editor-help-menu.top {
+	display: flex !important;
+	align-items: center !important;
+}
+.tui-image-editor-container .tui-image-editor-help-menu>.tui-image-editor-item, .tui-image-editor-container .tui-image-editor-menu>.tui-image-editor-item {
+	padding: 7px 8px;
+}
+.tui-image-editor-container .tui-image-editor-main {
+	@media screen and (max-width: 768px) {
+		margin-left: 52px;
+		top: 0;
+	}
 }
