@@ -1092,8 +1092,8 @@
 					const scaleFactor = Math.min(2, Math.max(0.5, maxDimension / referenceSize));
 
 // Обмеження розмірів (min/max)
-					const desktopLimits = { min: 15, max: 150 }; // Для ПК
-					const mobileLimits = { min: 25, max: 60 };   // Для телефонів
+					const desktopLimits = { min: 25, max: 150 }; // Для ПК
+					const mobileLimits = { min: 45, max: 150 };   // Для телефонів
 
 // Фінальний розрахунок
 					let cornerSize;
