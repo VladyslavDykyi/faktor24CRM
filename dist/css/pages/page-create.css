@@ -2109,7 +2109,7 @@ body.lock {
 .tui-image-editor-main.tui-image-editor-menu-resize .lower-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .upper-canvas,
 .tui-image-editor-main.tui-image-editor-menu-resize .tui-image-editor-wrap {
-  margin-bottom: 170px;
+  max-height: calc(100vh - 300px) !important;
 }
 
 .tui-image-editor-container .tui-image-editor {
@@ -2137,7 +2137,6 @@ body.lock {
 .lower-canvas {
   height: auto !important;
   width: auto !important;
-  max-height: none !important;
   max-width: none !important;
 }
 

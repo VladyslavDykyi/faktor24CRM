@@ -1071,10 +1071,47 @@
 			
 			document.body.appendChild(editorContainer);
 			
-			setTimeout(() => {
+			// Завантажуємо зображення для отримання розмірів
+			const img = new Image();
+			img.src = imageSrc;
+			
+			img.onload = () => {
 				try {
-					editorContainer.removeChild(loadingDiv);
+					const imageWidth = img.naturalWidth;
+					const imageHeight = img.naturalHeight;
 					
+					// Оптимізований розрахунок розмірів кутів
+					const referenceSize = 2000; // Базовий розмір для порівняння
+					const maxDimension = Math.max(imageWidth, imageHeight);
+
+// Базові розміри для ПК та мобільних
+					const baseDesktopSize = 20;  // Для ПК
+					const baseMobileSize = 30;   // Для телефонів (більше, бо пальцями працювати)
+
+// Коефіцієнт масштабування (від 0.5 до 2)
+					const scaleFactor = Math.min(2, Math.max(0.5, maxDimension / referenceSize));
+
+// Обмеження розмірів (min/max)
+					const desktopLimits = { min: 15, max: 150 }; // Для ПК
+					const mobileLimits = { min: 25, max: 60 };   // Для телефонів
+
+// Фінальний розрахунок
+					let cornerSize;
+					if (isMobile) {
+						cornerSize = Math.min(
+							mobileLimits.max,
+							Math.max(mobileLimits.min, baseMobileSize * scaleFactor)
+						);
+					} else {
+						cornerSize = Math.min(
+							desktopLimits.max,
+							Math.max(desktopLimits.min, baseDesktopSize * scaleFactor)
+						);
+					}
+
+// Розмір кутів для обрізки (у 3 рази більший)
+					const cropCornerSize = cornerSize * 3;
+					console.log(cropCornerSize)
 					const editorOptions = {
 						includeUI: {
 							loadImage: {
@@ -1090,7 +1127,7 @@
 								'common.border': '1px solid #ddd'
 							},
 							menu: isMobile ? ['crop', 'resize', 'rotate'] : ['crop', 'resize', 'rotate', 'filter'],
-							initMenu: 'resize',
+							initMenu: 'crop',
 							uiSize: {
 								width: '100%',
 								height: '100%'
@@ -1100,153 +1137,128 @@
 						cssMaxWidth: window.innerWidth,
 						cssMaxHeight: window.innerHeight,
 						selectionStyle: {
-							cornerSize: isMobile ? 30 : 20,
+							cornerSize: cornerSize,
 							rotatingPointOffset: 70,
 							cornerStyle: 'circle',
 							borderColor: '#3585F5',
 							borderWidth: 5,
 							cornerColor: '#3585F5',
-							transparentCorners: false, // Змінимо на false для кращої видимості
-							hasControls: true,
-							hasBorders: true,
-							lockUniScaling: false, // Змінимо на false для більш гнучкого масштабування
-							lockScalingX: false,
-							lockScalingY: false,
-							lockMovementX: false,
-							lockMovementY: false,
-							lockRotation: true,
-							cornerScale: 1, // Встановимо 1 замість 100
+							transparentCorners: false
 						}
 					};
 					
+					// Ініціалізація редактора
 					this.imageEditor = new tui.ImageEditor(editorContainer, editorOptions);
 					
-					// Отримуємо доступ до fabric.js canvas
-					const canvas = this.imageEditor._graphics.getCanvas();
-					
-					// Модифікуємо поведінку кутів
-					canvas.on('object:scaling', (e) => {
-						const obj = e.target;
-						if (obj) {
-							// Фіксуємо розмір кутів
-							obj.set({
-								cornerSize: isMobile ? 30 : 20,
-								borderScaleFactor: 1,
-								cornerStyle: 'circle',
-								transparentCorners: false
-							});
-							
-							// Оновлюємо координати кутів
-							obj.setCoords();
-							
-							// Фіксуємо розмір рамки
-							obj.set({
-								borderColor: '#3585F5',
-								borderWidth: 5,
-								cornerColor: '#3585F5'
-							});
-						}
-					});
-					
-					// Додаткова фіксація при зміні виділення
-					canvas.on('selection:created', (e) => {
-						if (e.selected && e.selected.length > 0) {
-							e.selected.forEach(obj => {
-								obj.set({
-									cornerSize: isMobile ? 30 : 20,
-									borderScaleFactor: 1
-								});
-							});
-							canvas.renderAll();
-						}
-					});
-					
-					// Автоматично активуємо інструмент кропування
-					setTimeout(() => {
-						this.imageEditor.startDrawingMode('CROPPER');
-						
-						// Додаємо велику область кропування за замовчуванням
-						const canvas = this.imageEditor._graphics.getCanvas();
-						const width = canvas.width * 0.8;
-						const height = canvas.height * 0.8;
-						const left = (canvas.width - width) / 2;
-						const top = (canvas.height - height) / 2;
-						
-						this.imageEditor.setCropzoneRect({
-							left: left,
-							top: top,
-							width: width,
-							height: height
-						});
-						
-						// Покращуємо видимість кроп-зони
-						const cropper = this.imageEditor._graphics._cropper;
-						if (cropper) {
-							cropper.set({
-								borderColor: '#3585F5',
-								cornerColor: '#3585F5',
-								cornerSize: isMobile ? 70 : 40, // Використовуємо той самий розмір
-								transparentCorners: false,
-								borderWidth: 5
-							});
-							this.imageEditor._graphics.renderAll();
-						}
-					}, 300);
-					
-					// авто увімкнення чекбокса
-					setTimeout(() => {
-						$('.tie-lock-aspect-ratio').trigger('click');
-					}, 200);
-					
-					if (isMobile) {
-						setTimeout(() => {
-							const elementsToHide = [
-								'.tui-image-editor-header-logo',
-								'.tui-image-editor-range',
-								'[tooltip-content="Filter"]',
-							];
-							setTimeout(() => {
-								$('.tie-lock-aspect-ratio').trigger('click');
-							}, 200);
-							elementsToHide.forEach(selector => {
-								const elements = document.querySelectorAll(selector);
-								elements.forEach(el => el.style.display = 'none');
-							});
-						}, 500);
-					}
-					
+					// Додаємо кнопки одразу після створення редактора
 					this.addEditorButtons(editorContainer, photoItem);
 					
+					this.imageEditor.on('load', () => {
+						editorContainer.removeChild(loadingDiv);
+						
+						const canvas = this.imageEditor._graphics.getCanvas();
+						
+						canvas.on('object:scaling', (e) => {
+							const obj = e.target;
+							if (obj) {
+								obj.set({
+									cornerSize: cornerSize,
+									borderScaleFactor: 1
+								});
+								obj.setCoords();
+							}
+						});
+						
+						canvas.on('selection:created', (e) => {
+							if (e.selected && e.selected.length > 0) {
+								e.selected.forEach(obj => {
+									obj.set({
+										cornerSize: cornerSize,
+										borderScaleFactor: 1
+									});
+								});
+								canvas.renderAll();
+							}
+						});
+						
+						// Налаштування обрізки
+						setTimeout(() => {
+							this.imageEditor.startDrawingMode('CROPPER');
+							
+							const width = canvas.width * 0.8;
+							const height = canvas.height * 0.8;
+							const left = (canvas.width - width) / 2;
+							const top = (canvas.height - height) / 2;
+							
+							this.imageEditor.setCropzoneRect({
+								left: left,
+								top: top,
+								width: width,
+								height: height
+							});
+							
+							const cropper = this.imageEditor._graphics._cropper;
+							if (cropper) {
+								cropper.set({
+									borderColor: '#3585F5',
+									cornerColor: '#3585F5',
+									cornerSize: cropCornerSize,
+									transparentCorners: false,
+									borderWidth: 5
+								});
+							}
+						}, 500);
+						
+						// Блокуємо співвідношення сторін
+						setTimeout(() => {
+							const lockBtn = document.querySelector('.tie-lock-aspect-ratio');
+							if (lockBtn) lockBtn.click();
+						}, 800);
+						
+						// Приховуємо непотрібні елементи на мобільних
+						if (isMobile) {
+							setTimeout(() => {
+								document.querySelectorAll('.tui-image-editor-header-logo, .tui-image-editor-range').forEach(el => {
+									el.style.display = 'none';
+								});
+							}, 1000);
+						}
+					});
+					
 				} catch (error) {
-					console.error('Ошибка инициализации редактора:', error);
-					editorContainer.innerHTML = '<div style="color:red;padding:20px;">Ошибка загрузки редактора. Попытайтесь еще раз.</div>';
+					console.error('Помилка ініціалізації редактора:', error);
+					editorContainer.innerHTML = '<div style="color:red;padding:20px;">Помилка завантаження редактора. Спробуйте ще раз.</div>';
 				}
-			}, 100);
+			};
+			
+			img.onerror = () => {
+				editorContainer.innerHTML = '<div style="color:red;padding:20px;">Помилка завантаження зображення.</div>';
+			};
 		}
 		
-		
-		addEditorButtons (editorContainer, photoItem) {
+		addEditorButtons(editorContainer, photoItem) {
+			console.log('1231')
 			const buttonContainer = document.createElement('div');
 			buttonContainer.className = 'btn-tui-wrapper';
-
+			
 			const saveButton = document.createElement('button');
 			saveButton.textContent = 'Сохранить';
 			saveButton.className = 'btn btn-primary  btn-tui-save';
 			saveButton.onclick = () => this.saveEditedImage(photoItem);
-
+			
 			const cancelButton = document.createElement('button');
 			cancelButton.textContent = 'Отменить';
 			cancelButton.className = 'btn btn-danger btn-tui-reset';
 			cancelButton.onclick = () => this.closeImageEditor();
-
+			
 			buttonContainer.appendChild(saveButton);
 			buttonContainer.appendChild(cancelButton);
 			editorContainer.appendChild(buttonContainer);
 		}
-
-		saveEditedImage (photoItem) {
-			if ( !this.imageEditor) return;
-
+		
+		saveEditedImage(photoItem) {
+			if (!this.imageEditor) return;
+			
 			// Get edited image as blob
 			const editedImageData = this.imageEditor.toDataURL();
 			fetch(editedImageData)
@@ -1257,14 +1269,14 @@
 						type: 'image/jpeg',
 						lastModified: Date.now()
 					});
-
+					
 					// Update the photo item with the edited file
 					photoItem.file = editedFile;
 					photoItem.objectUrl = URL.createObjectURL(editedFile);
-
+					
 					// Update the display
 					this.render();
-
+					
 					// Close the editor
 					this.closeImageEditor();
 				});
