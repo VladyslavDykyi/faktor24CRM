@@ -1111,7 +1111,6 @@
 
 // Розмір кутів для обрізки (у 3 рази більший)
 					const cropCornerSize = cornerSize * 3;
-					console.log(cropCornerSize)
 					const editorOptions = {
 						includeUI: {
 							loadImage: {
