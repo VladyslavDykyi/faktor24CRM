@@ -173,8 +173,11 @@ body.lock {
 .lower-canvas {
 	height: auto !important;
 	width: auto !important;
-	//max-height: none !important;
 	max-width: none !important;
+	aspect-ratio: auto;
+	@media screen and (max-width: 768px) {
+		width: 100% !important;
+	}
 }
 .tui-image-editor-help-menu.top {
 	display: flex !important;
@@ -185,7 +188,12 @@ body.lock {
 }
 .tui-image-editor-container .tui-image-editor-main {
 	@media screen and (max-width: 768px) {
-		margin-left: 52px;
+		margin-left: 0;
 		top: 0;
+	}
+}
+.tui-image-editor-help-menu.top {
+	@media screen and (max-width: 768px) {
+		display: none !important;
 	}
 }

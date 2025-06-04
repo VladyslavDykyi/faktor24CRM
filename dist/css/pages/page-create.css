@@ -2138,6 +2138,7 @@ body.lock {
   height: auto !important;
   width: auto !important;
   max-width: none !important;
+  aspect-ratio: auto;
 }
 
 .tui-image-editor-help-menu.top {
@@ -2326,9 +2327,18 @@ body.lock {
     height: auto !important;
   }
 
+  .upper-canvas,
+  .lower-canvas {
+    width: 100% !important;
+  }
+
   .tui-image-editor-container .tui-image-editor-main {
-    margin-left: 52px;
+    margin-left: 0;
     top: 0;
+  }
+
+  .tui-image-editor-help-menu.top {
+    display: none !important;
   }
 }
 
