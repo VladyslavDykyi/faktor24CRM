@@ -2330,6 +2330,10 @@ body.lock {
   .upper-canvas,
   .lower-canvas {
     width: 100% !important;
+    left: 50%;
+    -webkit-transform: translateX(-50%) !important;
+        -ms-transform: translateX(-50%) !important;
+            transform: translateX(-50%) !important;
   }
 
   .tui-image-editor-container .tui-image-editor-main {

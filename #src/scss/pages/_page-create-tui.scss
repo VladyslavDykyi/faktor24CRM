@@ -177,6 +177,8 @@ body.lock {
 	aspect-ratio: auto;
 	@media screen and (max-width: 768px) {
 		width: 100% !important;
+		left: 50%;
+		transform: translateX(-50%) !important;
 	}
 }
 .tui-image-editor-help-menu.top {
