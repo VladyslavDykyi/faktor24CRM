@@ -2159,7 +2159,11 @@ body.lock {
   display: none !important;
 }
 
-.tui-image-editor-container .tui-image-editor-main {
+.tui-image-editor-container.tui-image-editor-header {
+  display: none !important;
+}
+
+.tui-image-editor-container.tui-image-editor-main {
   top: 0;
 }
 

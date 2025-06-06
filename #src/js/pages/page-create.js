@@ -1218,16 +1218,19 @@
 							}, 300);
 						}
 					});
+					
 					// Блокуємо співвідношення сторін
 					setTimeout(() => {
 						const $lockCheckbox = $('.tie-lock-aspect-ratio');
 						if ($lockCheckbox.length) $lockCheckbox.trigger('click');
-					}, 400);
+					}, 300);
 					if (isMobile) {
 						setTimeout(() => {
 							const $lockCheckbox = $('.tie-lock-aspect-ratio');
 							if ($lockCheckbox.length) $lockCheckbox.trigger('change');
-						}, 400);
+							$('.tie-height-range.tui-image-editor-range, .tie-width-range.tui-image-editor-range, .tie-rotate-range.tui-image-editor-range' ).hide();
+						}, 300);
+						
 					}
 				} catch (error) {
 					console.error('Помилка ініціалізації редактора:', error);
