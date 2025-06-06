@@ -1227,8 +1227,10 @@
 					if (isMobile) {
 						setTimeout(() => {
 							const $lockCheckbox = $('.tie-lock-aspect-ratio');
-							if ($lockCheckbox.length) $lockCheckbox.trigger('change');
-							$('.tie-height-range.tui-image-editor-range, .tie-width-range.tui-image-editor-range, .tie-rotate-range.tui-image-editor-range' ).hide();
+							if ($lockCheckbox.length) {
+								$lockCheckbox.trigger('change');
+								$('.tie-height-range.tui-image-editor-range, .tie-width-range.tui-image-editor-range, .tie-rotate-range.tui-image-editor-range' ).hide();
+							}
 						}, 300);
 						
 					}

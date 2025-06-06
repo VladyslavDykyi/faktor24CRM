@@ -2256,6 +2256,12 @@ body.lock {
   .tab-content .btn-gpt {
     top: -42px;
   }
+
+  .tie-height-range.tui-image-editor-range,
+  .tie-width-range.tui-image-editor-range,
+  .tie-rotate-range.tui-image-editor-range {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 880px) {

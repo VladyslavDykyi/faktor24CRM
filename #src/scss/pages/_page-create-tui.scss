@@ -194,6 +194,13 @@ body.lock {
 		top: 0;
 	}
 }
+.tie-height-range.tui-image-editor-range,
+.tie-width-range.tui-image-editor-range,
+.tie-rotate-range.tui-image-editor-range {
+	@media screen and (max-width: 1024px) {
+		display: none !important;
+	}
+}
 .tui-image-editor-help-menu.top {
 		display: none !important;
 }
