@@ -195,7 +195,11 @@ body.lock {
 	}
 }
 .tui-image-editor-help-menu.top {
-	@media screen and (max-width: 768px) {
 		display: none !important;
-	}
+}
+..tui-image-editor-container.tui-image-editor-header {
+	display: none !important;
+}
+.tui-image-editor-container.tui-image-editor-main {
+	top: 0;
 }

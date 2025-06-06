@@ -1206,13 +1206,8 @@
 									borderWidth: 5
 								});
 							}
-						}, 500);
+						}, 300);
 						
-						// Блокуємо співвідношення сторін
-						setTimeout(() => {
-							const lockBtn = document.querySelector('.tie-lock-aspect-ratio');
-							if (lockBtn) lockBtn.click();
-						}, 800);
 						
 						// Приховуємо непотрібні елементи на мобільних
 						if (isMobile) {
@@ -1220,10 +1215,20 @@
 								document.querySelectorAll('.tui-image-editor-header-logo, .tui-image-editor-range').forEach(el => {
 									el.style.display = 'none';
 								});
-							}, 1000);
+							}, 300);
 						}
 					});
-					
+					// Блокуємо співвідношення сторін
+					setTimeout(() => {
+						const $lockCheckbox = $('.tie-lock-aspect-ratio');
+						if ($lockCheckbox.length) $lockCheckbox.trigger('click');
+					}, 400);
+					if (isMobile) {
+						setTimeout(() => {
+							const $lockCheckbox = $('.tie-lock-aspect-ratio');
+							if ($lockCheckbox.length) $lockCheckbox.trigger('change');
+						}, 400);
+					}
 				} catch (error) {
 					console.error('Помилка ініціалізації редактора:', error);
 					editorContainer.innerHTML = '<div style="color:red;padding:20px;">Помилка завантаження редактора. Спробуйте ще раз.</div>';
@@ -1236,7 +1241,6 @@
 		}
 		
 		addEditorButtons(editorContainer, photoItem) {
-			console.log('1231')
 			const buttonContainer = document.createElement('div');
 			buttonContainer.className = 'btn-tui-wrapper';
 			

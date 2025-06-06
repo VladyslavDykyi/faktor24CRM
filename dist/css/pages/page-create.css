@@ -2155,6 +2155,14 @@ body.lock {
   padding: 7px 8px;
 }
 
+.tui-image-editor-help-menu.top {
+  display: none !important;
+}
+
+.tui-image-editor-container .tui-image-editor-main {
+  top: 0;
+}
+
 @media screen and (max-width: 1024px) {
   .create-filter-row.row1 .item:nth-child(3) {
     padding-right: 0;
@@ -2339,10 +2347,6 @@ body.lock {
   .tui-image-editor-container .tui-image-editor-main {
     margin-left: 0;
     top: 0;
-  }
-
-  .tui-image-editor-help-menu.top {
-    display: none !important;
   }
 }
 
