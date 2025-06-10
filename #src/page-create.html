@@ -25,7 +25,7 @@
 	<!-- кінець main	-->
 </main>
 <!-- початок цей блок ще в розробці _modal	-->
-@@include('./html/_modal.html')
+@@include('./html/modals/_geo-location-modal.html')
 <!-- кінець цей блок ще в розробці _modal	-->
 <script src="./js/lib/popper.v2.11.8.min.js"></script>
 <script src="./js/lib/bootstrap.v5.3.3.min.js"></script>
@@ -37,6 +37,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-JxH1yXZg7DPInjpOmGFMvCNX5vFPzkg&callback=initMap" async defer></script>-->
 <!-- Спочатку залежності -->
 <script src="./js/lib/tui-code-snippet.min.js"></script>
 <script src="./js/lib/fabric.min.js"></script>
@@ -48,6 +49,151 @@
 <script src="./js/pages/my-dropdown.min.js"></script>
 <script src="./js/pages/page-create.js"></script>
 <script src="./js/pages/page-complex.min.js"></script>
-
+<script src="./js/pages/geo-search.min.js"></script>
+<script>
+	// Глобальні змінні
+	let map, marker, geocoder, autocomplete;
+	let googleMapsAPILoaded = false;
+	
+	// Функція для завантаження Google Maps API
+	function loadGoogleMapsAPI() {
+		return new Promise((resolve, reject) => {
+			if (typeof google !== 'undefined' && google.maps) {
+				googleMapsAPILoaded = true;
+				resolve();
+				return;
+			}
+			
+			const script = document.createElement('script');
+			script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyB-JxH1yXZg7DPInjpOmGFMvCNX5vFPzkg&loading=async&libraries=places,marker&callback=onGoogleMapsAPILoaded`;
+			script.async = true;
+			script.defer = true;
+			script.onerror = () => reject(new Error('Не вдалося завантажити Google Maps API'));
+			document.head.appendChild(script);
+			
+			window.onGoogleMapsAPILoaded = function() {
+				googleMapsAPILoaded = true;
+				resolve();
+			};
+		});
+	}
+	
+	// Ініціалізація карти
+	function initializeMap() {
+		try {
+			// Перевірка чи завантажено API
+			if (!googleMapsAPILoaded || !google.maps || !google.maps.Map || !google.maps.marker) {
+				throw new Error('Google Maps API не завантажено коректно');
+			}
+			
+			const { AdvancedMarkerElement } = google.maps.marker;
+			
+			// Створення карти
+			map = new google.maps.Map(document.getElementById('map-container'), {
+				center: {lat: 50.4501, lng: 30.5234},
+				zoom: 12,
+				mapId: 'YOUR_MAP_ID', // Додайте ваш Map ID з Google Cloud Console
+				streetViewControl: false,
+				mapTypeControl: false
+			});
+			
+			geocoder = new google.maps.Geocoder();
+			
+			// Створення маркера в центрі карти (не draggable)
+			marker = new AdvancedMarkerElement({
+				map: map,
+				position: map.getCenter(),
+				gmpDraggable: false // Вимкнути переміщення маркера
+			});
+			
+			// Видалити обробник кліку по карті, так як маркер фіксований
+			// map.addListener('click', (event) => placeMarker(event.latLng));
+			
+			// Додати обробник зміни центру карти
+			map.addListener('center_changed', () => {
+				// Отримати новий центр карти
+				const newCenter = map.getCenter();
+				// Оновити позицію маркера
+				marker.position = newCenter;
+				// Оновити адресу
+				updateAddressFromLocation(newCenter);
+			});
+			
+			// Додати обробник завершення переміщення карти
+			map.addListener('idle', () => {
+				const center = map.getCenter();
+				updateFormFields(center);
+			});
+			
+			// Ініціалізація автозаповнення
+			initAutocomplete();
+		} catch (error) {
+			console.error('Помилка ініціалізації карти:', error);
+			alert('Помилка ініціалізації карти: ' + error.message);
+		}
+	}
+	
+	function initAutocomplete() {
+		try {
+			autocomplete = new google.maps.places.Autocomplete(
+				document.getElementById('address'),
+				{
+					types: ['geocode'],
+					fields: ['geometry', 'formatted_address']
+				}
+			);
+			
+			autocomplete.addListener('place_changed', () => {
+				const place = autocomplete.getPlace();
+				if (!place.geometry) {
+					alert("Місце не знайдено: '" + place.name + "'");
+					return;
+				}
+				
+				// При виборі з автозаповнення - перемістити карту до вибраного місця
+				map.setCenter(place.geometry.location);
+				if (place.geometry.viewport) {
+					map.fitBounds(place.geometry.viewport);
+				} else {
+					map.setZoom(17);
+				}
+			});
+		} catch (error) {
+			console.error('Помилка ініціалізації автозаповнення:', error);
+		}
+	}
+	
+	function updateAddressFromLocation(location) {
+		geocoder.geocode({'location': location}, (results, status) => {
+			if (status === 'OK' && results[0]) {
+				$('#address').val(results[0].formatted_address);
+			}
+		});
+	}
+	
+	function updateFormFields(latLng) {
+		$('#latitude').val(latLng.lat().toFixed(6));
+		$('#longitude').val(latLng.lng().toFixed(6));
+		updateAddressFromLocation(latLng);
+	}
+	
+	// Обробник відкриття модального вікна
+	$('#geoModal').on('show.bs.modal', async function() {
+		try {
+			if (!googleMapsAPILoaded) {
+				await loadGoogleMapsAPI();
+			}
+			initializeMap();
+		} catch (error) {
+			console.error('Помилка:', error);
+			alert('Помилка: ' + error.message);
+		}
+	});
+	
+	// Обробник закриття модального вікна
+	$('#geoModal').on('hidden.bs.modal', function() {
+		$('#address, #latitude, #longitude').val('');
+	});
+</script>
 </body>
 </html>
