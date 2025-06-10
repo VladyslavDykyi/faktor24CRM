@@ -236,6 +236,53 @@ ul {
   display: block;
 }
 
+.modal#geoModal {
+  --bs-modal-width: 1040px;
+  --bs-modal-padding: 20px 20px 20px;
+  --bs-modal-bg: #f7f7f7;
+}
+
+.modal#geoModal label,
+.modal#geoModal .label {
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  line-height: normal;
+}
+
+.modal#geoModal input {
+  padding: 6px 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: none;
+  outline: 0;
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
+}
+
+.modal#geoModal input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
+.modal#geoModal .modal-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: normal;
+  color: #aaa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-wrap: nowrap;
+}
+
 .sidebar {
   max-width: 70px;
   width: 100%;

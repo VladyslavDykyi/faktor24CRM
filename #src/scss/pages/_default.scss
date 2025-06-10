@@ -168,3 +168,41 @@ ul {
 		object-fit: contain; display: block;
 	}
 }
+
+.modal#geoModal {
+	--bs-modal-width: 1040px;
+	--bs-modal-padding: 20px 20px 20px;
+	--bs-modal-bg: #f7f7f7;
+	& label,
+	& .label {
+		font-weight: 400;
+		font-size: 14px;
+		color: #111;
+		line-height: normal;
+	}
+	& input {
+		padding: 6px 10px;
+		background-color: #fff;
+		border-radius: 6px;
+		border: none;
+		outline: 0;
+		width: 100%;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: normal;
+		color: #111;
+		&:focus {
+			box-shadow: none;
+			outline: none;
+		}
+	}
+	& .modal-title {
+		font-weight: 700;
+		font-size: 16px;
+		line-height: normal;
+		color: #aaa;
+		display: flex;
+		align-items: center;
+		text-wrap: nowrap;
+	}
+}
