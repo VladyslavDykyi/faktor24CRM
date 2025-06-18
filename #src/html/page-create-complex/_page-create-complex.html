@@ -6,7 +6,7 @@
 					<img src="./img/icon/arrow-back-link.svg" alt="">
 				</a>
 				<h2 class="create-header-title">
-					Объект
+					Комплекс
 					<span>
 						ID1234567
 					</span>
@@ -29,37 +29,10 @@
 		</header>
 		<div class="create-filter">
 			<h3 class="create-filter-title">
-				<span>Данные объекта</span>
+				<span>Общая информация</span>
 			</h3>
 			<div class="create-filter-data">
 				<div class="create-filter-row row1">
-					<div class="item selects">
-						<label class="item-label" for="view-deal">Вид сделки</label>
-						<select id="view-deal" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Нотариальная
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="type-deal">Тип сделки</label>
-						<select id="type-deal" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Продажа квартир
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="type-building">Тип здания</label>
-						<select id="type-building" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Новострой
-							</option>
-						</select>
-					</div>
 					<div class="item selects">
 						<label class="item-label" for="complex">Комплекс</label>
 						<select id="complex" class="js-example-responsive3 my-select2" autocomplete="off">
@@ -69,17 +42,6 @@
 							</option>
 						</select>
 					</div>
-					<div class="item size2 selects">
-						<label class="item-label" for="body-section">Корпус / Секция</label>
-						<select id="body-section" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Светлый совиньон коттеджный городок 15
-							</option>
-						</select>
-					</div>
-				</div>
-				<div class="create-filter-row row2">
 					<div class="item size3">
 						<label>Локация</label>
 						@@include('../elements/_element.html')
@@ -93,199 +55,13 @@
 							</option>
 						</select>
 					</div>
-					<div class="item">
+					<div class="item size0-5">
 						<span>
-							<label class="item-label" for="number-house">№ Дом</label> /
-							<label for="number-apartment">квартира</label>
+							<label class="item-label" for="number-house">№ Дом</label>
 						</span>
-						<div class="item-inputText-wrapper shtrih">
-							<input class="item-inputText" id="number-house" type="text" autocomplete="off">
-							<input class="item-inputText" id="number-apartment" type="text" autocomplete="off">
-						</div>
+						<input class="item-inputText" id="number-house" type="text" autocomplete="off">
 					</div>
-					<div class="item">
-						<label for="cadastre-number">Кадастровый номер</label>
-						<div class="item-inputText-wrapper">
-							<input class="item-inputText" id="cadastre-number" type="text" autocomplete="off">
-						</div>
-					</div>
-				</div>
-				<div class="create-filter-row row3">
-					<div class="item selects">
-						<label class="item-label" for="property-type">Тип недвижимости</label>
-						<select id="property-type" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Тенистая
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="number-rooms">Кол-во комнат</label>
-						<select id="number-rooms" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								1
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="condition">Состояние</label>
-						<select id="condition" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								Без ремонта
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="number-bathrooms">Кол-во ванных комнат</label>
-						<select id="number-bathrooms" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								1
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="ceiling-height">Высота потолков</label>
-						<select id="ceiling-height" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="up-to-2.5m">
-								До 2.5м
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="wall-type">Тип стен</label>
-						<select id="wall-type" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="brick">
-								Кирпич
-							</option>
-						</select>
-					</div>
-				</div>
-				<div class="create-filter-row row4">
-					<div class="item size2">
-						<span>
-							<label for="all-areas">Площадь общая</label> /
-							<label for="areas-life">жилая</label> /
-							<label for="areas-kitchen">кухни</label>
-						</span>
-						<div class="item-inputText-wrapper shtrih2">
-							<input class="item-inputText" id="all-areas" type="text" autocomplete="off"
-								   placeholder="000">
-							<input class="item-inputText" id="areas-life" type="text" autocomplete="off"
-								   placeholder="000">
-							<input class="item-inputText" id="areas-kitchen" type="text" autocomplete="off"
-								   placeholder="000">
-						</div>
-					</div>
-					<div class="item">
-						<label for="plot-area">Площадь участка</label>
-						<div class="item-inputText-wrapper">
-							<input class="item-inputText" id="plot-area" type="text" autocomplete="off"
-								   placeholder="Укажите значение">
-						</div>
-					</div>
-					<div class="item">
-						<span>
-							<label class="item-label" for="current-floor">Этаж</label> /
-							<label for="number-floor">этажность</label>
-						</span>
-						<div class="item-inputText-wrapper shtrih">
-							<input class="item-inputText" id="current-floor" type="text" autocomplete="off">
-							<input class="item-inputText" id="number-floor" type="text" autocomplete="off">
-						</div>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="heating">Отопление</label>
-						<select id="heating" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="brick">
-								Централизованное
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="years-building">Год постройки</label>
-						<select id="years-building" class="js-example-responsive3 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="brick">
-								2030
-							</option>
-						</select>
-					</div>
-				</div>
-				<div class="create-filter-row row5">
-					<div class="item size0-5 selects">
-						<label class="item-label" for="full-filter-currency">Валюта</label>
-						<select id="full-filter-currency" class="js-example-responsive2-currency my-select2"
-								autocomplete="off">
-							<option value=""></option>
-							<option value="USD">
-								USD
-							</option>
-							<option value="UAH">
-								UAH
-							</option>
-							<option value="EUR">
-								EUR
-							</option>
-						</select>
-					</div>
-					<div class="item size0-8">
-						<label for="price">Цена</label>
-						<div class="item-inputText-wrapper">
-							<input class="item-inputText" id="price" type="text" autocomplete="off">
-						</div>
-					</div>
-					<div class="item">
-						<label for="commission">Комиссия от владельца</label>
-						<div class="item-inputText-wrapper">
-							<input class="item-inputText" id="commission" type="text" autocomplete="off"
-								   placeholder="Введите значение">
-						</div>
-					</div>
-					<div class="item size1-3">
-						<label for="video-youtube">Видео YouTube</label>
-						<div class="item-inputText-wrapper">
-							<input class="item-inputText" id="video-youtube" type="url" autocomplete="off"
-								   placeholder="https://linkname.youtube.com">
-						</div>
-					</div>
-					<div class="item size1-3">
-						<span class="item-label">Теги (другие особенности)</span>
-						<div class="multiple-menu">
-							<button class="multiple-menu-btn" data-open-menu="false">
-								--
-							</button>
-							<div class="multiple-menu-wrapper">
-								<label>
-									<input class="multiple-menu-search" autocomplete="off" name="search-additionally"
-										   type="text" placeholder="Поиск">
-								</label>
-								<ul class="multiple-menu-list">
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="years-2030">
-											<span></span>
-											2030
-										</label>
-									</li>
-									<li class="multiple-menu-item">
-										<label class="my-custom-input">
-											<input type="checkbox" name="years-2029">
-											<span></span>
-											Нотариальная
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="item">
+					<div class="item size0-5">
 						<span class="item-label">Метро</span>
 						<div class="multiple-menu">
 							<button class="multiple-menu-btn" data-open-menu="false">
@@ -320,6 +96,124 @@
 									</li>
 								</ul>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="create-filter-row row2">
+					<div class="item size-btn">
+						<button class="btn btn-primary" type="button">
+							<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M4.47186 9.47374C4.35814 9.36002 4.28775 9.20285 4.28775 9.0293C4.28775 8.68208 4.56908 8.40075 4.9163 8.40075L13.1385 8.40075C13.4856 8.4008 13.767 8.68213 13.767 9.0293C13.767 9.3764 13.4856 9.65779 13.1385 9.65779H4.91636C4.74275 9.65785 4.58558 9.58746 4.47186 9.47374Z" fill="#fff" />
+								<path d="M8.583 13.5848C8.46922 13.471 8.39889 13.3139 8.39889 13.1403L8.39889 4.91816C8.39883 4.571 8.68022 4.28961 9.02739 4.28967C9.37449 4.28967 9.65588 4.57106 9.65588 4.91816L9.65588 13.1403C9.65583 13.4875 9.37449 13.7688 9.02733 13.7689C8.85389 13.7689 8.69678 13.6985 8.583 13.5848Z" fill="#fff" />
+							</svg>
+						</button>
+					</div>
+					<div class="item size-1-2">
+						<span>
+							<label class="item-label" for="counter-section-1">Секция</label>
+						</span>
+						<input class="item-inputText" id="counter-section-1" type="text" autocomplete="off">
+					</div>
+					<div class="item selects">
+						<label class="item-label" for="counter-street-1">Улица</label>
+						<select id="counter-street-1" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Тенистая
+							</option>
+						</select>
+					</div>
+					<div class="item size0-5">
+						<span>
+							<label class="item-label" for="counter-number-house-1">№ Дом</label>
+						</span>
+						<input class="item-inputText" id="counter-number-house-1" type="text" autocomplete="off">
+					</div>
+					<div class="item size0-5">
+						<span>
+							<label class="item-label" for="counter-floor-1">Этажн.</label>
+						</span>
+						<input class="item-inputText" id="counter-floor-1" type="text" autocomplete="off">
+					</div>
+					<div class="item selects size0-5">
+						<label class="item-label" for="years-building">Год</label>
+						<select id="years-building" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="brick">
+								2030
+							</option>
+						</select>
+					</div>
+					<div class="item selects">
+						<label class="item-label" for="heating">Отопление</label>
+						<select id="heating" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="brick">
+								Централизованное
+							</option>
+						</select>
+					</div>
+					<div class="item selects">
+						<label class="item-label" for="wall-type">Тип стен</label>
+						<select id="wall-type" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="brick">
+								Кирпич
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="create-filter-row row3">
+					<div class="item selects">
+						<label class="item-label" for="property-type">Тип здания</label>
+						<select id="property-type" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Тенистая
+							</option>
+						</select>
+					</div>
+					<div class="item selects">
+						<label class="item-label" for="objects-in-building">Тип объектов в здании</label>
+						<select id="objects-in-building" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Тенистая
+							</option>
+						</select>
+					</div>
+					<div class="item selects">
+						<label class="item-label" for="condition">Состояние</label>
+						<select id="condition" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Без ремонта
+							</option>
+						</select>
+					</div>
+					<div class="item selects">
+						<label class="item-label" for="housing-class">Класс жилья</label>
+						<select id="housing-class" class="js-example-responsive3 my-select2" autocomplete="off">
+							<option value=""></option>
+							<option value="company">
+								Без ремонта
+							</option>
+						</select>
+					</div>
+					<div class="item">
+						<span>
+							<label class="item-label" for="current-floor">Площадь общая</label>
+						</span>
+						<div class="item-inputText-wrapper shtrih">
+							<input class="item-inputText" id="current-floor" type="text" autocomplete="off">
+							<input class="item-inputText" type="text" autocomplete="off">
+						</div>
+					</div>
+					<div class="item">
+						<label for="plot-area">Теги (другие особенности)</label>
+						<div class="item-inputText-wrapper">
+							<input class="item-inputText" id="plot-area" type="text" autocomplete="off"
+								   placeholder="Укажите значение">
 						</div>
 					</div>
 				</div>
@@ -371,52 +265,65 @@
 				</div>
 			</div>
 			<h3 class="create-filter-title">
-				<span>Контактное лицо <span>(клиент)</span></span>
+				<span>Контакты</span>
 			</h3>
 			<div class="create-filter-client">
 				<div class="create-filter-client-wrapper">
 					<div class="left">
 						<div class="create-filter-row">
 							<div class="item selects">
-								<label class="item-label" for="type-client">Тип клиента</label>
-								<select id="type-client" class="js-example-responsive2 my-select2" autocomplete="off">
+								<label class="item-label" for="developer">Девелопер</label>
+								<select id="developer" class="js-example-responsive2 my-select2" autocomplete="off">
 									<option value=""></option>
 									<option value="company">
-										Посредник
+										Название компании
 									</option>
 								</select>
 							</div>
 							<div class="item">
-								<label for="name-contact">Имя контакта</label>
+								<label for="site-complex">Сайт комплекса</label>
 								<div class="item-inputText-wrapper">
-									<input class="item-inputText" id="name-contact" type="text" autocomplete="off"
-										   placeholder="Введите имя">
+									<input class="item-inputText" id="site-complex" type="text" autocomplete="off"
+										   placeholder="Вставьте ссылку">
 								</div>
 							</div>
 							<div class="item">
-								<label for="link-announcement">Ссылка на объявление</label>
+								<label for="site-company">Сайт компании</label>
 								<div class="item-inputText-wrapper">
-									<input class="item-inputText" id="link-announcement" type="url" autocomplete="off"
+									<input class="item-inputText" id="site-company" type="url" autocomplete="off"
 										   placeholder="Вставьте ссылку">
 								</div>
 							</div>
 						</div>
 						<div class="create-filter-row">
 							<div class="item">
+								<label for="type-contact">Тип контакта</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" id="type-contact" type="email" autocomplete="off">
+								</div>
+							</div>
+							<div class="item">
+								<label for="name-contact">Имя контакта</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" id="name-contact" type="url" autocomplete="off" placeholder="Имя Фамилия Отчество">
+								</div>
+							</div>
+							<div class="item">
 								<label for="email-contact">Email</label>
 								<div class="item-inputText-wrapper">
 									<input class="item-inputText" id="email-contact" type="email" autocomplete="off">
 								</div>
 							</div>
-							<div class="item">
-								<label for="personal-notes">Личные заметки</label>
-								<div class="item-inputText-wrapper">
-									<input class="item-inputText" id="personal-notes" type="url" autocomplete="off">
-								</div>
-							</div>
 						</div>
 					</div>
 					<div class="right">
+						<div class="item">
+							<label for="google-disk">Google Диск (объекты девелопера)</label>
+							<div class="item-inputText-wrapper">
+								<input class="item-inputText" id="google-disk" type="text" autocomplete="off"
+									   placeholder="Вставьте ссылку">
+							</div>
+						</div>
 						<div class="item" data-phone-item>
 							<div class="add_new-tel">
 								<button type="button" class="btn btn-new-tel">
@@ -431,48 +338,6 @@
 								<input class="item-inputText tel-contact" id="tel-contact1" type="tel" autocomplete="off">
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="create-filter-client-checkbox">
-					<label class="my-custom-input">
-						<input type="checkbox" name="penthouse">
-						<span></span>
-						Открыть контакты и адрес объекта для агентов моей компании
-					</label>
-				</div>
-			</div>
-			<h3 class="create-filter-title">
-				<span>Контактное лицо <span>(ответственный агент)</span></span>
-			</h3>
-			<div class="create-filter-agent">
-				<div class="create-filter-row">
-					<div class="item selects">
-						<label class="item-label" for="create-filter-company">Компания</label>
-						<select id="create-filter-company" class="js-example-responsive2 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="company">
-								компанія
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="create-filter-office">Офис</label>
-						<select id="create-filter-office" class="js-example-responsive2 my-select2" autocomplete="off">
-							<option value=""></option>
-							<option value="office">
-								офіс
-							</option>
-						</select>
-					</div>
-					<div class="item selects">
-						<label class="item-label" for="create-filter-name-contact">Имя контакта</label>
-						<select id="create-filter-name-contact" class="js-example-responsive2 my-select2"
-								autocomplete="off">
-							<option value=""></option>
-							<option value="contact">
-								ім'я
-							</option>
-						</select>
 					</div>
 				</div>
 			</div>
@@ -514,14 +379,6 @@
 					<div class="tab-pane fade show active" id="ua-tab-pane" role="tabpanel" aria-labelledby="ua-tab"
 						 tabindex="0">
 						<div class="tab-content-left">
-							<div class="title_advertising-wrapper">
-								<label for="title_advertising-ua">Заголовок для рекламы</label>
-								<div class="item-inputText-wrapper">
-									<input class="item-inputText" id="title_advertising-ua" type="text"
-										   autocomplete="off" name="title_advertising-ua"
-										   placeholder="Введите заголовок">
-								</div>
-							</div>
 							<div class="note_advertising-wrapper">
 								<label for="note_advertising-ua">Примечание для агентов</label>
 								<div class="item-inputText-wrapper">
@@ -546,12 +403,6 @@
 					<div class="tab-pane fade" id="ru-tab-pane" role="tabpanel" aria-labelledby="ru-tab"
 						 tabindex="0">
 						<div class="tab-content-left">
-							<div class="title_advertising-wrapper">
-								<label for="title_advertising-ru">Заголовок для рекламы</label>
-								<input class="item-inputText" type="text" autocomplete="off" id="title_advertising-ru"
-									   name="title_advertising-ru"
-									   placeholder="Введите заголовок">
-							</div>
 							<div class="note_advertising-wrapper">
 								<label for="note_advertising-ru">Примечание для агентов</label>
 								<textarea class="item-textareaText" id="note_advertising-ru" autocomplete="off"
@@ -571,12 +422,6 @@
 					<div class="tab-pane fade" id="eng-tab-pane" role="tabpanel" aria-labelledby="eng-tab"
 						 tabindex="0">
 						<div class="tab-content-left">
-							<div class="title_advertising-wrapper">
-								<label for="title_advertising-eng">Заголовок для рекламы</label>
-								<input class="item-inputText" type="text" autocomplete="off" id="title_advertising-eng"
-									   name="title_advertising-eng"
-									   placeholder="Введите заголовок">
-							</div>
 							<div class="note_advertising-wrapper">
 								<label for="note_advertising-eng">Примечание для агентов</label>
 								<textarea class="item-textareaText" id="note_advertising-eng" autocomplete="off"
@@ -602,8 +447,8 @@
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
 								 xmlns="http://www.w3.org/2000/svg">
 							    <path
-								   d="M8.50627 13.2938C7.81303 13.9437 6.89417 14.2986 5.94403 14.2833C4.99388 14.2679 4.08694 13.8837 3.41499 13.2117C2.74305 12.5398 2.35879 11.6329 2.34348 10.6827C2.32817 9.73256 2.683 8.81371 3.33294 8.12046L9.17294 2.28713C9.52011 1.94269 9.96138 1.70858 10.4412 1.61425C10.9211 1.51991 11.4181 1.56956 11.8699 1.75695C12.3216 1.94433 12.7078 2.2611 12.98 2.6674C13.2522 3.0737 13.3982 3.55141 13.3996 4.04046C13.3992 4.36567 13.3342 4.68757 13.2083 4.98743C13.0824 5.28729 12.8982 5.55912 12.6663 5.78713L7.11294 11.3338C6.93932 11.4722 6.72095 11.5421 6.49924 11.5302C6.27753 11.5183 6.06789 11.4254 5.91008 11.2692C5.75226 11.1131 5.65723 10.9044 5.64302 10.6828C5.6288 10.4613 5.69638 10.2422 5.83294 10.0671L11.3929 4.50713L10.4463 3.56713L4.88627 9.12713C4.48502 9.55082 4.26495 10.1144 4.27289 10.6978C4.28082 11.2813 4.51614 11.8387 4.92876 12.2513C5.34138 12.6639 5.89874 12.8992 6.48222 12.9072C7.0657 12.9151 7.62925 12.695 8.05294 12.2938L13.6196 6.73379C14.3357 6.01859 14.7383 5.04822 14.739 4.03615C14.7396 3.02408 14.3381 2.05321 13.6229 1.33713C12.9077 0.621043 11.9374 0.218399 10.9253 0.217774C9.91323 0.217149 8.94236 0.618593 8.22627 1.33379L2.38627 7.18046C1.48313 8.1234 0.985245 9.38258 0.999314 10.6882C1.01338 11.9938 1.53828 13.2419 2.46154 14.1652C3.38479 15.0885 4.63295 15.6133 5.93855 15.6274C7.24416 15.6415 8.50334 15.1436 9.44627 14.2405L14.7263 8.95379L13.7863 8.00046L8.50627 13.2938Z"
-								   fill="#3585F5"/>
+									d="M8.50627 13.2938C7.81303 13.9437 6.89417 14.2986 5.94403 14.2833C4.99388 14.2679 4.08694 13.8837 3.41499 13.2117C2.74305 12.5398 2.35879 11.6329 2.34348 10.6827C2.32817 9.73256 2.683 8.81371 3.33294 8.12046L9.17294 2.28713C9.52011 1.94269 9.96138 1.70858 10.4412 1.61425C10.9211 1.51991 11.4181 1.56956 11.8699 1.75695C12.3216 1.94433 12.7078 2.2611 12.98 2.6674C13.2522 3.0737 13.3982 3.55141 13.3996 4.04046C13.3992 4.36567 13.3342 4.68757 13.2083 4.98743C13.0824 5.28729 12.8982 5.55912 12.6663 5.78713L7.11294 11.3338C6.93932 11.4722 6.72095 11.5421 6.49924 11.5302C6.27753 11.5183 6.06789 11.4254 5.91008 11.2692C5.75226 11.1131 5.65723 10.9044 5.64302 10.6828C5.6288 10.4613 5.69638 10.2422 5.83294 10.0671L11.3929 4.50713L10.4463 3.56713L4.88627 9.12713C4.48502 9.55082 4.26495 10.1144 4.27289 10.6978C4.28082 11.2813 4.51614 11.8387 4.92876 12.2513C5.34138 12.6639 5.89874 12.8992 6.48222 12.9072C7.0657 12.9151 7.62925 12.695 8.05294 12.2938L13.6196 6.73379C14.3357 6.01859 14.7383 5.04822 14.739 4.03615C14.7396 3.02408 14.3381 2.05321 13.6229 1.33713C12.9077 0.621043 11.9374 0.218399 10.9253 0.217774C9.91323 0.217149 8.94236 0.618593 8.22627 1.33379L2.38627 7.18046C1.48313 8.1234 0.985245 9.38258 0.999314 10.6882C1.01338 11.9938 1.53828 13.2419 2.46154 14.1652C3.38479 15.0885 4.63295 15.6133 5.93855 15.6274C7.24416 15.6415 8.50334 15.1436 9.44627 14.2405L14.7263 8.95379L13.7863 8.00046L8.50627 13.2938Z"
+									fill="#3585F5"/>
 							</svg>
 							<span class="text">
 								Загрузить документы
@@ -620,8 +465,8 @@
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
 								 xmlns="http://www.w3.org/2000/svg">
 							    <path
-								   d="M8.50627 13.2938C7.81303 13.9437 6.89417 14.2986 5.94403 14.2833C4.99388 14.2679 4.08694 13.8837 3.41499 13.2117C2.74305 12.5398 2.35879 11.6329 2.34348 10.6827C2.32817 9.73256 2.683 8.81371 3.33294 8.12046L9.17294 2.28713C9.52011 1.94269 9.96138 1.70858 10.4412 1.61425C10.9211 1.51991 11.4181 1.56956 11.8699 1.75695C12.3216 1.94433 12.7078 2.2611 12.98 2.6674C13.2522 3.0737 13.3982 3.55141 13.3996 4.04046C13.3992 4.36567 13.3342 4.68757 13.2083 4.98743C13.0824 5.28729 12.8982 5.55912 12.6663 5.78713L7.11294 11.3338C6.93932 11.4722 6.72095 11.5421 6.49924 11.5302C6.27753 11.5183 6.06789 11.4254 5.91008 11.2692C5.75226 11.1131 5.65723 10.9044 5.64302 10.6828C5.6288 10.4613 5.69638 10.2422 5.83294 10.0671L11.3929 4.50713L10.4463 3.56713L4.88627 9.12713C4.48502 9.55082 4.26495 10.1144 4.27289 10.6978C4.28082 11.2813 4.51614 11.8387 4.92876 12.2513C5.34138 12.6639 5.89874 12.8992 6.48222 12.9072C7.0657 12.9151 7.62925 12.695 8.05294 12.2938L13.6196 6.73379C14.3357 6.01859 14.7383 5.04822 14.739 4.03615C14.7396 3.02408 14.3381 2.05321 13.6229 1.33713C12.9077 0.621043 11.9374 0.218399 10.9253 0.217774C9.91323 0.217149 8.94236 0.618593 8.22627 1.33379L2.38627 7.18046C1.48313 8.1234 0.985245 9.38258 0.999314 10.6882C1.01338 11.9938 1.53828 13.2419 2.46154 14.1652C3.38479 15.0885 4.63295 15.6133 5.93855 15.6274C7.24416 15.6415 8.50334 15.1436 9.44627 14.2405L14.7263 8.95379L13.7863 8.00046L8.50627 13.2938Z"
-								   fill="#3585F5"/>
+									d="M8.50627 13.2938C7.81303 13.9437 6.89417 14.2986 5.94403 14.2833C4.99388 14.2679 4.08694 13.8837 3.41499 13.2117C2.74305 12.5398 2.35879 11.6329 2.34348 10.6827C2.32817 9.73256 2.683 8.81371 3.33294 8.12046L9.17294 2.28713C9.52011 1.94269 9.96138 1.70858 10.4412 1.61425C10.9211 1.51991 11.4181 1.56956 11.8699 1.75695C12.3216 1.94433 12.7078 2.2611 12.98 2.6674C13.2522 3.0737 13.3982 3.55141 13.3996 4.04046C13.3992 4.36567 13.3342 4.68757 13.2083 4.98743C13.0824 5.28729 12.8982 5.55912 12.6663 5.78713L7.11294 11.3338C6.93932 11.4722 6.72095 11.5421 6.49924 11.5302C6.27753 11.5183 6.06789 11.4254 5.91008 11.2692C5.75226 11.1131 5.65723 10.9044 5.64302 10.6828C5.6288 10.4613 5.69638 10.2422 5.83294 10.0671L11.3929 4.50713L10.4463 3.56713L4.88627 9.12713C4.48502 9.55082 4.26495 10.1144 4.27289 10.6978C4.28082 11.2813 4.51614 11.8387 4.92876 12.2513C5.34138 12.6639 5.89874 12.8992 6.48222 12.9072C7.0657 12.9151 7.62925 12.695 8.05294 12.2938L13.6196 6.73379C14.3357 6.01859 14.7383 5.04822 14.739 4.03615C14.7396 3.02408 14.3381 2.05321 13.6229 1.33713C12.9077 0.621043 11.9374 0.218399 10.9253 0.217774C9.91323 0.217149 8.94236 0.618593 8.22627 1.33379L2.38627 7.18046C1.48313 8.1234 0.985245 9.38258 0.999314 10.6882C1.01338 11.9938 1.53828 13.2419 2.46154 14.1652C3.38479 15.0885 4.63295 15.6133 5.93855 15.6274C7.24416 15.6415 8.50334 15.1436 9.44627 14.2405L14.7263 8.95379L13.7863 8.00046L8.50627 13.2938Z"
+									fill="#3585F5"/>
 							</svg>
 							<span class="text">
 								Загрузить план
@@ -634,7 +479,7 @@
 			<div class="create-filter-photo">
 				<div class="photo-info">
 					<div class="photo-info-left">
-						<span class="photo-info-left-title">Фото объекта</span>
+						<span class="photo-info-left-title">Фото комплекса</span>
 						<div class="photo-info-list-wrapper">
 							<ul class="photo-info-list">
 								<li class="photo-info-btn-wrapper">
@@ -652,44 +497,8 @@
 							<div class="error-container"></div>
 						</div>
 						<p>
-							Первое фото будет обложкой объявления, перетяните фотографии чтобы, поменять порядок
+							Первое фото будет обложкой объявления, перетяните фотографии чтобы поменять порядок
 						</p>
-					</div>
-					<div class="photo-info-right">
-						<span class="photo-info-right-title">История изменений</span>
-						<ul class="history-info">
-							<li class="history-info-item">
-								<span>15:40 20.12.2024 — агент ID1234567</span>
-								<p>Изменен номер телефона с +380 (12) 345-67-89 на +380 (12) 345-67-89</p>
-							</li>
-							<li class="history-info-item">
-								<span>15:40 20.12.2024 — агент ID1234567</span>
-								<p>Какие-то изменения данных</p>
-							</li>
-							<li class="history-info-item">
-								<span>15:40 20.12.2024 — агент ID1234567</span>
-								<p>Вариант изменения данных</p>
-							</li>
-							<li class="history-info-item">
-								<span>15:40 20.12.2024 — агент ID1234567</span>
-								<p>Вариант изменения данных</p>
-							</li>
-							<li class="history-info-item">
-								<span>15:40 20.12.2024 — агент ID1234567</span>
-								<p>Изменен номер телефона с +380 (12) 345-67-89 на +380 (12) 345-67-89</p>
-							</li>
-							<li class="history-info-item">
-								<span>15:40 20.12.2024 — агент ID1234567</span>
-								<p>Изменен номер телефона с +380 (12) 345-67-89 на +380 (12) 345-67-89</p>
-							</li>
-						</ul>
-						<div>
-							<label class="my-custom-input">
-								<input type="checkbox" name="penthouse">
-								<span></span>
-								Рекламировать
-							</label>
-						</div>
 					</div>
 				</div>
 				<div class="photo-info-btnGroup">
@@ -699,16 +508,10 @@
 								Отменить изменения
 							</button>
 							<button class="btn btn-outline-danger" type="button">
-								Удалить объект
+								Удалить комплекс
 							</button>
 						</div>
 						<div class="photo-info-btnGroup-right">
-							<button class="btn btn-outline-success" type="button">
-								Обновить дату актуальности
-							</button>
-							<button class="btn btn-outline-primary" type="button">
-								Отложить продажу
-							</button>
 							<button class="btn btn-primary" type="submit">
 								Сохранить изменения
 							</button>

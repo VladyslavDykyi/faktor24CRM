@@ -126,6 +126,9 @@
 				width: 16.66667%;
 				padding-right: 20px;
 				margin-bottom: 12px;
+				@media screen and (max-width: 1280px) {
+					padding-right: 8px;
+				}
 				&:last-child {
 					padding-right: 0;
 				}
@@ -133,6 +136,17 @@
 				&.selects .select2-container {
 					display: block;
 					width: 100% !important;
+				}
+				&.size-btn {
+					width: 50px;
+					max-height: 30px;
+					height: 100%;
+					@media screen and (max-width: 1280px) {
+						width: 38px;
+					}
+					& .btn {
+						padding: 2px 5px;
+					}
 				}
 			}
 			
@@ -162,6 +176,25 @@
 							width: 100%;
 						}
 					}
+					&.size0-5 {
+						width: 8.33334%;
+						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
+						}
+						@media screen and (max-width: 620px) {
+							width: 100%;
+						}
+					}
+					&.size3 {
+						width: 50.00001%;
+						@media screen and (max-width: 1024px) {
+							width: 100%;
+							padding-right: 0;
+						}
+						@media screen and (max-width: 620px) {
+							width: 100%;
+						}
+					}
 				}
 			}
 			
@@ -174,11 +207,57 @@
 						width: 100%;
 						padding-right: 0;
 					}
+					&.size0-5 {
+						width: 8.33334%;
+						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
+						}
+						@media screen and (max-width: 620px) {
+							width: 100%;
+						}
+					}
 					&.size3 {
 						width: 50.00001%;
 						@media screen and (max-width: 1024px) {
 							width: 100%;
 							padding-right: 0;
+						}
+						@media screen and (max-width: 620px) {
+							width: 100%;
+						}
+					}
+					&.size2 {
+						width: 33.33334%;
+						@media screen and (max-width: 1024px) {
+							width: 66.66668%;
+						}
+						@media screen and (max-width: 620px) {
+							width: 100%;
+						}
+					}
+					&.size-1-2 {
+						width: calc(23.3960% - 30px);
+						
+						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
+						}
+						@media screen and (max-width: 620px) {
+							width: 100%;
+						}
+					}
+					&.size0-8 {
+						width: 13%;
+						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
+						}
+						@media screen and (max-width: 620px) {
+							width: 100%;
+						}
+					}
+					&.size1-3 {
+						width: 22.66666%;
+						@media screen and (max-width: 1024px) {
+							width: 33.33334%;
 						}
 						@media screen and (max-width: 620px) {
 							width: 100%;
@@ -206,95 +285,6 @@
 						width: 100%;
 						padding-right: 0;
 					}
-				}
-			}
-			
-			&.row4 {
-				& .item {
-					&:last-child {
-						padding-right: 0;
-					}
-					
-					&:nth-child(2) {
-						@media screen and (max-width: 1024px) {
-							padding-right: 0;
-						}
-					}
-					
-					@media screen and (max-width: 1024px) {
-						width: 33.33334%;
-					}
-					
-					@media screen and (max-width: 620px) {
-						width: 100%;
-						padding-right: 0;
-					}
-					
-					&.size2 {
-						width: 33.33334%;
-						@media screen and (max-width: 1024px) {
-							width: 66.66668%;
-						}
-						@media screen and (max-width: 620px) {
-							width: 100%;
-						}
-					}
-				}
-			}
-			
-			&.row5 {
-				& .item {
-					&:last-child {
-						padding-right: 0;
-					}
-					
-					&:nth-child(3) {
-						@media screen and (max-width: 1024px) {
-							padding-right: 0;
-						}
-					}
-					
-					@media screen and (max-width: 1024px) {
-						width: 33.33334%;
-					}
-					@media screen and (max-width: 620px) {
-						width: 100%;
-						padding-right: 0;
-					}
-					
-					&.size0-5 {
-						width: 8.33334%;
-						@media screen and (max-width: 1024px) {
-							width: 33.33334%;
-						}
-						@media screen and (max-width: 620px) {
-							width: 100%;
-						}
-					}
-					
-					&.size0-8 {
-						width: 13%;
-						@media screen and (max-width: 1024px) {
-							width: 33.33334%;
-						}
-						@media screen and (max-width: 620px) {
-							width: 100%;
-						}
-					}
-					
-					&.size1-3 {
-						width: 22.66666%;
-						@media screen and (max-width: 1024px) {
-							width: 33.33334%;
-						}
-						@media screen and (max-width: 620px) {
-							width: 100%;
-						}
-					}
-				}
-				
-				& [for="commission"] {
-					margin-right: -10px;
 				}
 			}
 		}
@@ -354,9 +344,9 @@
 					justify-content: center;
 				}
 				& .item {
-					margin-bottom: 12px;
 					position: relative;
 					width: 100%;
+					margin-bottom: 12px;
 					& label {
 						font-weight: 400;
 						font-size: 14px;
@@ -750,7 +740,7 @@
 			
 			& .item-textareaText {
 				
-				height: 130px;
+				height: 200px;
 			}
 		}
 	}
@@ -1255,4 +1245,7 @@
 
 .photo-info-item {
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+body {
+	background-color: green !important;
 }
