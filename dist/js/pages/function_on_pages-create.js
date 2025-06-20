@@ -1,3 +1,5 @@
+"use strict";
+
 class FileUploader {
 	constructor (options) {
 		// Обов'язкові параметри
@@ -263,6 +265,7 @@ class FileUploader {
 		});
 	}
 }
+
 class PhotoLoader {
 	constructor (options) {
 		// Перевірка обов'язкових параметрів
@@ -779,10 +782,10 @@ class PhotoLoader {
 		img.src = photo.objectUrl;
 	}
 	
-	initImageEditor(imageSrc, photoItem) {
+	initImageEditor (imageSrc, photoItem) {
 		const isMobile = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && window.innerWidth < 1024;
 		
-		if (!document.body.classList.contains('lock')) {
+		if ( !document.body.classList.contains('lock')) {
 			document.body.classList.add('lock');
 		}
 		
@@ -827,8 +830,8 @@ class PhotoLoader {
 				const scaleFactor = Math.min(2, Math.max(0.5, maxDimension / referenceSize));
 
 // Обмеження розмірів (min/max)
-				const desktopLimits = { min: 25, max: 150 }; // Для ПК
-				const mobileLimits = { min: 55, max: 150 };   // Для телефонів
+				const desktopLimits = {min: 25, max: 150}; // Для ПК
+				const mobileLimits = {min: 55, max: 150};   // Для телефонів
 
 // Фінальний розрахунок
 				let cornerSize;
@@ -964,7 +967,7 @@ class PhotoLoader {
 						const $lockCheckbox = $('.tie-lock-aspect-ratio');
 						if ($lockCheckbox.length) {
 							$lockCheckbox.trigger('change');
-							$('.tie-height-range.tui-image-editor-range, .tie-width-range.tui-image-editor-range, .tie-rotate-range.tui-image-editor-range' ).hide();
+							$('.tie-height-range.tui-image-editor-range, .tie-width-range.tui-image-editor-range, .tie-rotate-range.tui-image-editor-range').hide();
 						}
 					}, 300);
 					
@@ -980,7 +983,7 @@ class PhotoLoader {
 		};
 	}
 	
-	addEditorButtons(editorContainer, photoItem) {
+	addEditorButtons (editorContainer, photoItem) {
 		const buttonContainer = document.createElement('div');
 		buttonContainer.className = 'btn-tui-wrapper';
 		
@@ -999,8 +1002,8 @@ class PhotoLoader {
 		editorContainer.appendChild(buttonContainer);
 	}
 	
-	saveEditedImage(photoItem) {
-		if (!this.imageEditor) return;
+	saveEditedImage (photoItem) {
+		if ( !this.imageEditor) return;
 		
 		// Get edited image as blob
 		const editedImageData = this.imageEditor.toDataURL();
@@ -1291,8 +1294,9 @@ class PhotoLoader {
 		});
 	}
 }
+
 class PhoneInputManager {
-	constructor(options) {
+	constructor (options) {
 		this.options = {...options};
 		this.phoneCounter = 1;
 		this.btnAddTel = document.querySelector(this.options.btnSelector);
@@ -1304,8 +1308,8 @@ class PhoneInputManager {
 		});
 	}
 	
-	init() {
-		if (!this.btnAddTel || !this.wrapper) return;
+	init () {
+		if ( !this.btnAddTel || !this.wrapper) return;
 		
 		// Рахуємо початкову кількість телефонів
 		this.phoneCounter = this.wrapper.querySelectorAll('[data-phone-item]').length;
@@ -1332,7 +1336,7 @@ class PhoneInputManager {
 		}
 	}
 	
-	addPhoneField(e) {
+	addPhoneField (e) {
 		const currentPhones = this.wrapper.querySelectorAll('[data-phone-item]').length;
 		
 		if (currentPhones >= this.options.maxPhones) {
@@ -1352,7 +1356,7 @@ class PhoneInputManager {
 		}
 	}
 	
-	createPhoneField() {
+	createPhoneField () {
 		const newItem = document.createElement('div');
 		newItem.className = 'item';
 		newItem.setAttribute('data-phone-item', '');
@@ -1373,7 +1377,7 @@ class PhoneInputManager {
 		return newItem;
 	}
 	
-	addDeleteButton(item) {
+	addDeleteButton (item) {
 		const btnContainer = item.querySelector('.add_new-tel');
 		const btn = btnContainer.querySelector('.btn-new-tel');
 		
@@ -1391,7 +1395,7 @@ class PhoneInputManager {
 		});
 	}
 	
-	removePhoneField(item) {
+	removePhoneField (item) {
 		item.remove();
 		
 		// Показуємо кнопку додавання, якщо кількість номерів менше максимальної
@@ -1404,7 +1408,7 @@ class PhoneInputManager {
 		this.phoneCounter = currentPhones;
 	}
 	
-	initTelInput(inputElement) {
+	initTelInput (inputElement) {
 		const $input = $(inputElement);
 		
 		// Перевіряємо, чи вже ініціалізовано для цього поля
@@ -1440,7 +1444,7 @@ class PhoneInputManager {
 		});
 		
 		$input.on('keypress', (e) => {
-			if (!/[0-9]/.test(String.fromCharCode(e.which))) {
+			if ( !/[0-9]/.test(String.fromCharCode(e.which))) {
 				e.preventDefault();
 			}
 		});
@@ -1463,13 +1467,14 @@ class PhoneInputManager {
 		}, 100);
 	}
 }
+
 class RealEstateDescriptionGenerator {
-	constructor(apiKey, options ) {
+	constructor (apiKey, options) {
 		// Обов'язковий API ключ
 		this.apiKey = apiKey;
 		
 		// Об'єднання налаштувань
-		this.options = { ...options };
+		this.options = {...options};
 		
 		// DOM елементи
 		this.btnElement = document.querySelector(this.options.btnSelector);
@@ -1478,8 +1483,8 @@ class RealEstateDescriptionGenerator {
 		this.init();
 	}
 	
-	init() {
-		if (!this.btnElement) {
+	init () {
+		if ( !this.btnElement) {
 			console.error('Не знайдено кнопку генерації');
 			return;
 		}
@@ -1488,10 +1493,10 @@ class RealEstateDescriptionGenerator {
 	}
 	
 	// Генеруємо опис нерухомості
-	async generateDescription(e) {
+	async generateDescription (e) {
 		e.preventDefault();
 		
-		if (!this.apiKey) {
+		if ( !this.apiKey) {
 			console.error('API ключ не вказано');
 			return;
 		}
@@ -1509,7 +1514,7 @@ class RealEstateDescriptionGenerator {
 	}
 	
 	// Формуємо запит до GPT
-	buildPrompt() {
+	buildPrompt () {
 		const obj_gpt = {
 			location: `Локація: Парус`,
 			city: 'місто: Дніпро',
@@ -1524,7 +1529,7 @@ class RealEstateDescriptionGenerator {
 		
 		// Отримуємо чисті значення без міток
 		const getCleanValue = (field) => {
-			if (!obj_gpt[field]) return null;
+			if ( !obj_gpt[field]) return null;
 			return obj_gpt[field].split(':').slice(1).join(':').trim();
 		};
 		
@@ -1548,7 +1553,7 @@ class RealEstateDescriptionGenerator {
 	}
 	
 	// Відправляємо запит до GPT API
-	async fetchGPTResponse(prompt) {
+	async fetchGPTResponse (prompt) {
 		const url = 'https://api.openai.com/v1/chat/completions';
 		
 		const response = await fetch(url, {
@@ -1566,7 +1571,7 @@ class RealEstateDescriptionGenerator {
 			})
 		});
 		
-		if (!response.ok) {
+		if ( !response.ok) {
 			throw new Error(`HTTP помилка! Статус: ${response.status}`);
 		}
 		
@@ -1575,7 +1580,7 @@ class RealEstateDescriptionGenerator {
 	}
 	
 	// Оновлюємо текстові поля з перекладами
-	updateTextareas(text) {
+	updateTextareas (text) {
 		const translations = this.parseTranslations(text);
 		const textareas = document.querySelectorAll(this.options.textareaSelector);
 		
@@ -1588,7 +1593,7 @@ class RealEstateDescriptionGenerator {
 	}
 	
 	// Парсимо відповідь GPT на окремі переклади
-	parseTranslations(text) {
+	parseTranslations (text) {
 		const splitText = text.trim().split('\n\n');
 		const texts = {};
 		
@@ -1605,8 +1610,9 @@ class RealEstateDescriptionGenerator {
 		return texts;
 	}
 }
+
 class GoogleMapsManager {
-	constructor() {
+	constructor () {
 		this.map = null;
 		this.marker = null;
 		this.geocoder = null;
@@ -1616,7 +1622,7 @@ class GoogleMapsManager {
 	}
 	
 	// Load Google Maps API
-	loadAPI() {
+	loadAPI () {
 		return new Promise((resolve, reject) => {
 			if (this.googleMapsAPILoaded) {
 				resolve();
@@ -1659,17 +1665,17 @@ class GoogleMapsManager {
 	}
 	
 	// Initialize the map
-	initializeMap(containerId) {
+	initializeMap (containerId) {
 		try {
-			if (!this.googleMapsAPILoaded || !google.maps || !google.maps.Map || !google.maps.marker) {
+			if ( !this.googleMapsAPILoaded || !google.maps || !google.maps.Map || !google.maps.marker) {
 				throw new Error('Google Maps API not loaded correctly');
 			}
 			
-			const { AdvancedMarkerElement } = google.maps.marker;
+			const {AdvancedMarkerElement} = google.maps.marker;
 			
 			// Create map
 			this.map = new google.maps.Map(document.getElementById(containerId), {
-				center: { lat: 50.4501, lng: 30.5234 },
+				center: {lat: 50.4501, lng: 30.5234},
 				zoom: 12,
 				mapId: 'YOUR_MAP_ID',
 				streetViewControl: false,
@@ -1707,7 +1713,7 @@ class GoogleMapsManager {
 	}
 	
 	// Initialize address autocomplete
-	initAutocomplete() {
+	initAutocomplete () {
 		try {
 			this.autocomplete = new google.maps.places.Autocomplete(
 				document.getElementById('address'),
@@ -1719,7 +1725,7 @@ class GoogleMapsManager {
 			
 			this.autocomplete.addListener('place_changed', () => {
 				const place = this.autocomplete.getPlace();
-				if (!place.geometry) {
+				if ( !place.geometry) {
 					alert("Place not found: '" + place.name + "'");
 					return;
 				}
@@ -1738,8 +1744,8 @@ class GoogleMapsManager {
 	}
 	
 	// Update address from location
-	updateAddressFromLocation(location) {
-		this.geocoder.geocode({ 'location': location }, (results, status) => {
+	updateAddressFromLocation (location) {
+		this.geocoder.geocode({'location': location}, (results, status) => {
 			if (status === 'OK' && results[0]) {
 				$('#address').val(results[0].formatted_address);
 			}
@@ -1747,17 +1753,142 @@ class GoogleMapsManager {
 	}
 	
 	// Update form fields with coordinates
-	updateFormFields(latLng) {
+	updateFormFields (latLng) {
 		$('#latitude').val(latLng.lat().toFixed(6));
 		$('#longitude').val(latLng.lng().toFixed(6));
 		this.updateAddressFromLocation(latLng);
 	}
 	
 	// Clear form fields
-	clearFields() {
+	clearFields () {
 		$('#address, #latitude, #longitude').val('');
 	}
 }
 
+class RowManager {
+	constructor (options) {
+		this.options = {
+			addBtnSelector: '.btn-primary',
+			rowSelector: '.create-filter-row',
+			rowContainerSelector: '.create-filter-container', // Додайте цей контейнер у ваш HTML
+			...options
+		};
+		this.rowCounter = 1;
+		this.init();
+	}
+	
+	init () {
+		// Знаходимо всі існуючі рядки для підрахунку
+		const existingRows = document.querySelectorAll(this.options.rowSelector);
+		this.rowCounter = existingRows.length;
+		
+		// Додаємо обробник кліку на кнопку додавання у першому рядку
+		document.querySelector(this.options.addBtnSelector)?.addEventListener('click', () => this.addNewRow());
+		
+		// Додаємо кнопки видалення до всіх рядків, крім першого
+		existingRows.forEach((row, index) => {
+			if (index > 0) {
+				this.addDeleteButton(row);
+			}
+		});
+	}
+	
+	addNewRow () {
+		this.rowCounter++;
+		const newRow = this.createNewRow();
+		const container = document.querySelector(this.options.rowContainerSelector) ||
+			document.querySelector(this.options.rowSelector)?.parentElement;
+		
+		if (container) {
+			container.appendChild(newRow);
+			this.initSelect2(newRow);
+		}
+	}
+	
+	createNewRow () {
+		const newRow = document.createElement('div');
+		newRow.className = 'create-filter-row row2';
+		newRow.innerHTML = `
+      <div class="item size-btn">
+        <button class="btn btn-danger btn-remove" type="button">
+         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+		   <path d="M2.62231 9.62222C2.4631 9.46301 2.36455 9.24298 2.36455 9C2.36455 8.51389 2.75842 8.12003 3.24453 8.12003L14.7556 8.12003C15.2416 8.12011 15.6355 8.51397 15.6356 9C15.6356 9.48595 15.2416 9.87989 14.7557 9.87989L3.24461 9.87989C3.00155 9.87997 2.78152 9.78143 2.62231 9.62222Z" fill="#fff" />
+		 </svg>
+        </button>
+      </div>
+      <div class="item size-1-2">
+        <span>
+          <label class="item-label" for="counter-section-${this.rowCounter}">Секция</label>
+        </span>
+        <input class="item-inputText" id="counter-section-${this.rowCounter}" type="text" autocomplete="off">
+      </div>
+      <div class="item selects">
+        <label class="item-label" for="counter-street-${this.rowCounter}">Улица</label>
+        <select id="counter-street-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
+          <option value=""></option>
+          <option value="company">Тенистая</option>
+        </select>
+      </div>
+      <div class="item size0-5">
+        <span>
+          <label class="item-label" for="counter-number-house-${this.rowCounter}">№ Дом</label>
+        </span>
+        <input class="item-inputText" id="counter-number-house-${this.rowCounter}" type="text" autocomplete="off">
+      </div>
+      <div class="item size0-5">
+        <span>
+          <label class="item-label" for="counter-floor-${this.rowCounter}">Этажн.</label>
+        </span>
+        <input class="item-inputText" id="counter-floor-${this.rowCounter}" type="text" autocomplete="off">
+      </div>
+      <div class="item selects size0-5">
+        <label class="item-label" for="years-building-${this.rowCounter}">Год</label>
+        <select id="years-building-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
+          <option value=""></option>
+          <option value="brick">2030</option>
+        </select>
+      </div>
+      <div class="item selects">
+        <label class="item-label" for="heating-${this.rowCounter}">Отопление</label>
+        <select id="heating-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
+          <option value=""></option>
+          <option value="brick">Централизованное</option>
+        </select>
+      </div>
+      <div class="item selects">
+        <label class="item-label" for="wall-type-${this.rowCounter}">Тип стен</label>
+        <select id="wall-type-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
+          <option value=""></option>
+          <option value="brick">Кирпич</option>
+        </select>
+      </div>
+    `;
+		
+		this.addDeleteButton(newRow);
+		return newRow;
+	}
+	
+	addDeleteButton (row) {
+		const btn = row.querySelector('.btn-remove');
+		if (btn) {
+			btn.addEventListener('click', () => {
+				row.remove();
+				this.rowCounter--;
+			});
+		}
+	}
+	
+	initSelect2 (row) {
+		if (typeof jQuery !== 'undefined' && jQuery.fn.select2) {
+			row.querySelectorAll('.my-select2').forEach(select => {
+				if ( !jQuery(select).data('select2')) {
+					jQuery(select).select2({
+						width: 'resolve',
+					});
+				}
+			});
+		}
+	}
+}
 
-export {FileUploader,PhotoLoader,PhoneInputManager, RealEstateDescriptionGenerator, GoogleMapsManager};
+export {FileUploader, PhotoLoader, PhoneInputManager, RealEstateDescriptionGenerator, GoogleMapsManager, RowManager};
