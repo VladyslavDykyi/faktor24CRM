@@ -144,6 +144,9 @@
 					@media screen and (max-width: 1280px) {
 						width: 38px;
 					}
+					@media screen and (max-width: 1024px) {
+						width: 38px !important;
+					}
 					& .btn {
 						padding: 2px 5px;
 					}
@@ -154,7 +157,7 @@
 				& .item {
 					&:nth-child(3) {
 						@media screen and (max-width: 1024px) {
-							padding-right: 0;
+							//padding-right: 0;
 						}
 						@media screen and (max-width: 620px) {
 							width: 100%;
@@ -188,7 +191,7 @@
 					&.size3 {
 						width: 50.00001%;
 						@media screen and (max-width: 1024px) {
-							width: 100%;
+							width: 66.66667%;
 							padding-right: 0;
 						}
 						@media screen and (max-width: 620px) {
@@ -202,13 +205,29 @@
 				& .item {
 					@media screen and (max-width: 1024px) {
 						width: 33.33334%;
+						&:nth-child(4),
+						&:nth-child(7) {
+							padding-right: 0;
+						}
 					}
 					@media screen and (max-width: 620px) {
 						width: 100%;
 						padding-right: 0;
 					}
+					&.selects {
+						@media screen and (max-width: 1024px) {
+							&:last-child {
+								padding-right: 8px;
+							}
+						}
+						@media screen and (max-width: 620px) {
+							&:last-child {
+								padding-right: 0;
+							}
+						}
+					}
 					&.size0-5 {
-						width: 8.33334%;
+						width: 8.501%;
 						@media screen and (max-width: 1024px) {
 							width: 33.33334%;
 						}
@@ -236,10 +255,15 @@
 						}
 					}
 					&.size-1-2 {
-						width: calc(23.3960% - 30px);
-						
+						width: calc(23.1% - 30px);
+						@media screen and (max-width: 1540px) {
+							width: calc(23% - 30px);
+						}
+						@media screen and (max-width: 1450px) {
+							width: calc(22.7% - 30px);
+						}
 						@media screen and (max-width: 1024px) {
-							width: 33.33334%;
+							width: calc(33.33334% - 38px);
 						}
 						@media screen and (max-width: 620px) {
 							width: 100%;
@@ -314,8 +338,14 @@
 				& .item {
 					width: 33.33334%;
 					padding-right: 20px;
+					@media screen and (max-width: 1280px) {
+						padding-right: 8px;
+					}
 					@media screen and (max-width: 1024px) {
 						width: 33.33334%;
+						&:last-child {
+							padding-right: 0;
+						}
 					}
 					@media screen and (max-width: 620px) {
 						width: 100%;
@@ -989,10 +1019,7 @@
 		}
 	}
 	&-left {
-		width: 50%;
-		@media screen and (max-width: 620px) {
-			width: 100%;
-		}
+		width: 100%;
 		&-title {
 			font-weight: 400;
 			font-size: 14px;
@@ -1248,4 +1275,11 @@
 }
 body {
 	background-color: green !important;
+}
+.btn-remove,
+.btn-plus-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 30px;
 }
