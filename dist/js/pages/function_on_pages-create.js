@@ -1783,7 +1783,10 @@ class RowManager {
 		this.rowCounter = existingRows.length;
 		
 		// Додаємо обробник кліку на кнопку додавання у першому рядку
-		document.querySelector(this.options.addBtnSelector)?.addEventListener('click', () => this.addNewRow());
+		const addBtn = document.querySelector(this.options.addBtnSelector);
+		if (addBtn) {
+			addBtn.addEventListener('click', () => this.addNewRow());
+		}
 		
 		// Додаємо кнопки видалення до всіх рядків, крім першого
 		existingRows.forEach((row, index) => {
@@ -1797,7 +1800,8 @@ class RowManager {
 		this.rowCounter++;
 		const newRow = this.createNewRow();
 		const container = document.querySelector(this.options.rowContainerSelector) ||
-			document.querySelector(this.options.rowSelector)?.parentElement;
+			(document.querySelector(this.options.rowSelector) &&
+				document.querySelector(this.options.rowSelector).parentElement);
 		
 		if (container) {
 			container.appendChild(newRow);
