@@ -922,16 +922,7 @@ ul {
   border-color: #3585F5;
 }
 
-.full-filter .item.filter-btn-outline {
-  width: calc(14.47487% - 16.66667px);
-}
-
-.full-filter .item.filter-btn {
-  width: calc(16% - 16.66667px);
-}
-
 .full-filter .item.date {
-  width: calc(20.33334% - 16.66667px);
   min-width: 200px;
 }
 
@@ -941,10 +932,6 @@ ul {
   line-height: normal;
   color: #111;
   margin-bottom: 6px;
-}
-
-.full-filter .item.search-on-id {
-  width: calc(33.33334% - 33.33334px);
 }
 
 .full-filter .item.search-on-id label {
@@ -1972,12 +1959,6 @@ ul {
 @media screen and (min-width: 1680px) {
   .geo_card {
     width: calc(25% - 9px);
-  }
-}
-
-@media screen and (max-width: 1250px) {
-  .full-filter .item.search-on-id {
-    width: calc(30% - 33.33334px);
   }
 }
 
