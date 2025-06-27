@@ -480,6 +480,10 @@ ul {
   color: #fff;
 }
 
+body {
+  background-color: grey;
+}
+
 .create {
   padding-top: 10px;
   padding-bottom: 95px;
@@ -713,20 +717,30 @@ ul {
 }
 
 .create-filter-client .left {
+  width: 100%;
+}
+
+.create-filter-client .left .create-filter-row:nth-child(2) {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.create-filter-client .left .create-filter-row:nth-child(3) .item:nth-child(1) {
   width: 75%;
 }
 
 .create-filter-client .left .item {
-  width: 33.33334%;
+  width: 25%;
   padding-right: 20px;
 }
 
-.create-filter-client .right {
+.create-filter-client .phone {
   width: 25%;
   position: relative;
 }
 
-.create-filter-client .right .btn-new-tel {
+.create-filter-client .phone .btn-new-tel {
   position: absolute;
   top: 0;
   right: 0;
@@ -745,13 +759,13 @@ ul {
           justify-content: center;
 }
 
-.create-filter-client .right .item {
+.create-filter-client .phone .item {
   margin-bottom: 12px;
   position: relative;
-  width: 100%;
+  width: 100% !important;
 }
 
-.create-filter-client .right .item label {
+.create-filter-client .phone .item label {
   font-weight: 400;
   font-size: 14px;
   color: #111;
@@ -2313,15 +2327,15 @@ body.lock {
             flex-direction: column;
   }
 
-  .create-filter-client .left {
-    width: 100%;
+  .create-filter-client .left .create-filter-row:nth-child(3) .item:nth-child(1) {
+    width: 50%;
   }
 
   .create-filter-client .left .item {
-    width: 33.33334%;
+    width: 50%;
   }
 
-  .create-filter-client .right {
+  .create-filter-client .phone {
     width: 100%;
     margin-bottom: 20px;
   }
@@ -2489,6 +2503,11 @@ body.lock {
 
   .create-filter-row.row5 .item.size1-3 {
     width: 100%;
+  }
+
+  .create-filter-client .left .create-filter-row:nth-child(3) .item:nth-child(1) {
+    width: 100%;
+    padding-right: 0;
   }
 
   .create-filter-client .left .item {

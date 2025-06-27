@@ -61,7 +61,7 @@ new RealEstateDescriptionGenerator('ваш_api_ключ', {
 
 new PhoneInputManager({
 	btnSelector: '.btn-new-tel',
-	wrapperSelector: '.create-filter-client-wrapper .right',
+	wrapperSelector: '.create-filter-client-wrapper .phone',
 	inputClass: 'tel-contact',
 	maxPhones: 5,
 	initialCountry: 'ua',

@@ -1,4 +1,6 @@
-
+body {
+	background-color: grey;
+}
 .create {
 	padding-top: 10px;
 	padding-bottom: 95px;
@@ -316,16 +318,25 @@
 			}
 			
 			& .left {
-				width: 75%;
-				@media screen and (max-width: 1024px) {
-					width: 100%;
+				width: 100%;
+				& .create-filter-row:nth-child(2) {
+					align-items: flex-start;
 				}
-				
+				& .create-filter-row:nth-child(3) .item:nth-child(1){
+					width: 75%;
+					@media screen and (max-width: 1024px) {
+						width: 50%;
+					}
+					@media screen and (max-width: 620px) {
+						width: 100%;
+						padding-right: 0;
+					}
+				}
 				& .item {
-					width: 33.33334%;
+					width: 25%;
 					padding-right: 20px;
 					@media screen and (max-width: 1024px) {
-						width: 33.33334%;
+						width: 50%;
 					}
 					@media screen and (max-width: 620px) {
 						width: 100%;
@@ -334,7 +345,7 @@
 				}
 			}
 			
-			& .right {
+			& .phone {
 				width: 25%;
 				position: relative;
 				@media screen and (max-width: 1024px) {
@@ -356,7 +367,7 @@
 				& .item {
 					margin-bottom: 12px;
 					position: relative;
-					width: 100%;
+					width: 100% !important;
 					& label {
 						font-weight: 400;
 						font-size: 14px;
