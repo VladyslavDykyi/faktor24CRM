@@ -1,0 +1,14 @@
+.block-my-services {
+	& .block-row{
+		&:first-of-type {
+			margin-bottom: 10px;
+		}
+		&:last-of-type {
+			margin-bottom: 20px;
+		}
+	}
+	& .item .btn {
+		max-width: 142px;
+		width: 100%;
+	}
+}

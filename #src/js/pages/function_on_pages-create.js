@@ -1295,6 +1295,652 @@ class PhotoLoader {
 	}
 }
 
+class PhotoLoaderMini {
+	constructor (options) {
+		if ( !options.inputId) {
+			throw new Error('Необходимо указать inputId');
+		}
+		
+		// Обов'язкові параметри
+		this.inputId = options.inputId;
+		this.wrapperClass = options.wrapperClass || 'photo-info-list';
+		this.checkImageSize = options.checkImageSize !== false;
+		
+		// Мінімальні розміри зображень
+		this.minWidth = options.minWidth || 800;
+		this.minHeight = options.minHeight || 800;
+		
+		// Максимальна кількість фото (1)
+		this.maxPhotos = 1;
+		
+		// DOM елементи
+		this.input = document.querySelector(`#${this.inputId}`);
+		this.wrapper = document.querySelector(`.${this.wrapperClass}`);
+		this.errorContainer = document.querySelector('.photo-info-list-wrapper > .error-container');
+		this.renderContainer = document.querySelector('.photo-info-list');
+		
+		// Масиви для зберігання фото
+		this.validPhotos = [];
+		this.invalidPhotos = [];
+		this.photoArray = [];
+		
+		// Інші властивості
+		this.tooltips = new Map();
+		this.isProcessing = false;
+		this.globalLoader = null;
+		
+		// Додаємо посилання на кнопку
+		this.uploadButton = null;
+		
+		if (this.input && this.wrapper) {
+			this.createGlobalLoader();
+			this.init();
+			// Знаходимо кнопку в DOM
+			this.uploadButton = document.querySelector('.photo-info-list .photo-info-btn-wrapper');
+		} else {
+			console.error('Не удалось найти необходимые DOM-элементы');
+		}
+	}
+	
+	createGlobalLoader () {
+		this.globalLoader = document.createElement('div');
+		this.globalLoader.className = 'photo-loader-global';
+		this.globalLoader.innerHTML = `
+      <div class="photo-loader-content">
+        <div class="photo-loader-spinner"></div>
+        <div class="photo-loader-text">Загрузка фото...</div>
+        <div class="photo-loader-progress">0%</div>
+      </div>
+    `;
+		document.body.appendChild(this.globalLoader);
+		this.globalLoader.style.display = 'none';
+	}
+	
+	showLoader () {
+		if (this.globalLoader) {
+			this.globalLoader.style.display = 'flex';
+		}
+	}
+	
+	hideLoader () {
+		if (this.globalLoader) {
+			this.globalLoader.style.display = 'none';
+		}
+	}
+	
+	updateProgress (loaded, total) {
+		if ( !this.globalLoader) return;
+		const progress = Math.round((loaded / total) * 100);
+		const progressElement = this.globalLoader.querySelector('.photo-loader-progress');
+		if (progressElement) {
+			progressElement.textContent = `${progress}%`;
+		}
+	}
+	
+	init () {
+		this.input.addEventListener('change', async (e) => {
+			if (this.isProcessing) return;
+			this.isProcessing = true;
+			this.wrapper.classList.add('loading');
+			this.showLoader();
+			
+			try {
+				// Очищаємо попередні фото
+				this.clearOldObjectUrls();
+				this.photoArray = [];
+				this.validPhotos = [];
+				this.invalidPhotos = [];
+				this.renderContainer.innerHTML = '';
+				
+				let loadedFiles = 0;
+				const totalFiles = e.target.files.length;
+				
+				const progressCallback = () => {
+					loadedFiles++;
+					this.updateProgress(loadedFiles, totalFiles);
+				};
+				
+				await this.handleFileUpload(e, progressCallback);
+			} catch (error) {
+				console.error('Ошибка загрузки файлов:', error);
+			} finally {
+				this.isProcessing = false;
+				this.wrapper.classList.remove('loading');
+				this.hideLoader();
+				this.updateProgress(0, 1);
+			}
+		});
+	}
+	
+	async handleFileUpload (event, progressCallback) {
+		const files = Array.from(event.target.files);
+		
+		if (this.photoArray.length + files.length > this.maxPhotos) {
+			this.invalidPhotos.push({
+				text: `Можно загрузить только 1 фото. Лишние файлы будут проигнорированы.`
+			});
+			this.displayErrors();
+			return;
+		}
+		
+		const processingPromises = files.map((file) => {
+			return new Promise((resolve) => {
+				if (file.type.match('image.*') ||
+					file.name.toLowerCase().endsWith('.heic') ||
+					file.name.toLowerCase().endsWith('.heif')) {
+					this.handleImage(file)
+						.then(() => {
+							progressCallback();
+							resolve();
+						})
+						.catch((error) => {
+							console.error('Ошибка обработки изображения:', error);
+							progressCallback();
+							resolve();
+						});
+				} else {
+					this.handleInvalidFile(file);
+					progressCallback();
+					resolve();
+				}
+			});
+		});
+		
+		await Promise.all(processingPromises);
+		this.displayResults();
+	}
+	
+	handleImage (file) {
+		return new Promise((resolve, reject) => {
+			const isHeic = file.type === 'image/heic' ||
+				file.type === 'image/heif' ||
+				file.name.toLowerCase().endsWith('.heic') ||
+				file.name.toLowerCase().endsWith('.heif');
+			
+			if (isHeic && typeof heic2any !== 'undefined') {
+				this.convertHeicToJpg(file)
+					.then(convertedFile => this.processImageFile(convertedFile, resolve, reject))
+					.catch(reject);
+			} else {
+				this.processImageFile(file, resolve, reject);
+			}
+		});
+	}
+	
+	convertHeicToJpg (file) {
+		return new Promise((resolve, reject) => {
+			heic2any({
+				blob: file,
+				toType: 'image/jpeg',
+				quality: 0.8
+			}).then(conversionResult => {
+				const newFile = new File(
+					[conversionResult],
+					file.name.replace(/\.(heic|heif)$/i, '.jpg'),
+					{type: 'image/jpeg', lastModified: Date.now()}
+				);
+				resolve(newFile);
+			}).catch(reject);
+		});
+	}
+	
+	processImageFile (file, resolve, reject) {
+		const img = new Image();
+		const url = URL.createObjectURL(file);
+		
+		img.onerror = () => {
+			URL.revokeObjectURL(url);
+			this.invalidPhotos.push({
+				text: `Ошибка загрузки изображения: ${file.name}`,
+				file: file
+			});
+			reject(new Error(`Ошибка загрузки изображения: ${file.name}`));
+		};
+		
+		img.onload = () => {
+			URL.revokeObjectURL(url);
+			
+			try {
+				const width = img.naturalWidth;
+				const height = img.naturalHeight;
+				
+				// Автоматичне масштабування до 800px по меншій стороні
+				this.resizeImageToMinimum(file, {width, height})
+					.then(resizedPhoto => {
+						this.validPhotos.push(resizedPhoto);
+						this.photoArray.push(resizedPhoto);
+						resolve();
+					})
+					.catch(error => {
+						console.error('Ошибка при изменении размера изображения:', error);
+						this.invalidPhotos.push({
+							text: `Ошибка обработки изображения: ${file.name}`,
+							file: file
+						});
+						reject(error);
+					});
+			} catch (error) {
+				console.error('Ошибка обработки изображения:', error);
+				this.invalidPhotos.push({
+					text: `Ошибка обработки изображения: ${file.name}`,
+					file: file
+				});
+				reject(error);
+			}
+		};
+		
+		img.src = url;
+	}
+	
+	resizeImageToMinimum (file, originalDimensions) {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			const url = URL.createObjectURL(file);
+			
+			img.onload = () => {
+				URL.revokeObjectURL(url);
+				
+				try {
+					let width = originalDimensions.width;
+					let height = originalDimensions.height;
+					
+					// Визначаємо меншу сторону
+					const minSide = Math.min(width, height);
+					const scaleFactor = this.minWidth / minSide;
+					
+					// Масштабуємо обидві сторони
+					const newWidth = Math.round(width * scaleFactor);
+					const newHeight = Math.round(height * scaleFactor);
+					
+					const canvas = document.createElement('canvas');
+					canvas.width = newWidth;
+					canvas.height = newHeight;
+					const ctx = canvas.getContext('2d');
+					
+					ctx.imageSmoothingQuality = 'high';
+					ctx.drawImage(img, 0, 0, newWidth, newHeight);
+					
+					canvas.toBlob(blob => {
+						if ( !blob) {
+							reject(new Error('Ошибка при создании blob из canvas'));
+							return;
+						}
+						
+						const resizedFile = new File([blob], file.name, {
+							type: 'image/jpeg',
+							lastModified: Date.now()
+						});
+						
+						const photoItem = {
+							id: this.generateUniqueId(),
+							name: file.name,
+							size: blob.size,
+							width: newWidth,
+							height: newHeight,
+							file: resizedFile,
+							isCheked: true,
+							objectUrl: null,
+							originalFileType: file.type
+						};
+						
+						resolve(photoItem);
+					}, 'image/jpeg', 0.9);
+				} catch (error) {
+					reject(error);
+				}
+			};
+			
+			img.onerror = () => {
+				URL.revokeObjectURL(url);
+				reject(new Error('Ошибка загрузки изображения для изменения размера'));
+			};
+			
+			img.src = url;
+		});
+	}
+	
+	generateUniqueId () {
+		return Date.now().toString(36) + Math.random().toString(36).substr(2);
+	}
+	
+	handleInvalidFile (file) {
+		this.invalidPhotos.push({
+			text: `Файл "${file.name}" не является изображением. Допустимы только изображения (JPG/PNG/HEIC/HEIF).`,
+			file: file
+		});
+	}
+	
+	displayResults () {
+		this.displayErrors();
+		this.render();
+	}
+	
+	clearOldObjectUrls () {
+		this.photoArray.forEach(item => {
+			if (item.objectUrl) {
+				URL.revokeObjectURL(item.objectUrl);
+				item.objectUrl = null;
+			}
+		});
+	}
+	
+	clearErrors () {
+		if ( !this.wrapper || !this.errorContainer) return;
+		
+		this.wrapper.classList.remove('error');
+		const errorElements = this.errorContainer.querySelectorAll('.error');
+		errorElements.forEach(element => element.remove());
+	}
+	
+	displayErrors () {
+		if ( !this.wrapper || !this.errorContainer) return;
+		
+		this.clearErrors();
+		
+		if (this.invalidPhotos.length > 0) {
+			this.wrapper.classList.add('error');
+			
+			this.invalidPhotos.forEach(item => {
+				const errorItem = document.createElement('div');
+				errorItem.textContent = item.text;
+				errorItem.classList.add('error');
+				this.errorContainer.appendChild(errorItem);
+			});
+		}
+	}
+	
+	render () {
+		if ( !this.renderContainer) return;
+		
+		this.destroyAllTooltips();
+		
+		// Видаляємо тільки фото-елементи
+		const photoItems = this.renderContainer.querySelectorAll('.photo-info-item');
+		photoItems.forEach(item => item.remove());
+		
+		// Додаємо всі фото
+		this.photoArray.forEach(item => {
+			if ( !item.objectUrl) {
+				item.objectUrl = URL.createObjectURL(item.file);
+			}
+			const photoItem = this.createPhotoElement(item);
+			
+			// Якщо кнопка існує і знаходиться в renderContainer, додаємо перед нею
+			if (this.uploadButton && this.uploadButton.parentNode === this.renderContainer) {
+				this.renderContainer.insertBefore(photoItem, this.uploadButton);
+			} else {
+				// Інакше просто додаємо в кінець
+				this.renderContainer.appendChild(photoItem);
+			}
+		});
+		
+		// Якщо кнопки немає в renderContainer, додаємо її
+		if (this.uploadButton && this.uploadButton.parentNode !== this.renderContainer) {
+			this.renderContainer.appendChild(this.uploadButton);
+		}
+		
+		this.toggleUploadButtonVisibility();
+		this.initTooltips();
+		this.initFancybox();
+		this.initEventHandlers();
+	}
+	
+	toggleUploadButtonVisibility () {
+		if (this.uploadButton) {
+			this.uploadButton.style.display = this.photoArray.length === 0 ? 'block' : 'none';
+		}
+	}
+	
+	createSpinnerElement () {
+		const spinnerDiv = document.createElement('div');
+		spinnerDiv.className = 'spinner-border text-primary';
+		spinnerDiv.style.width = '50px';
+		spinnerDiv.style.height = '50px';
+		spinnerDiv.setAttribute('role', 'status');
+		
+		const spinnerSpan = document.createElement('span');
+		spinnerSpan.className = 'visually-hidden';
+		spinnerSpan.textContent = 'Загрузка...';
+		
+		spinnerDiv.appendChild(spinnerSpan);
+		return spinnerDiv;
+	}
+	
+	createPhotoElement (item) {
+		const photoItem = document.createElement('li');
+		photoItem.classList.add('photo-info-item');
+		photoItem.setAttribute('data-photo-id', item.id);
+		
+		const spinner = this.createSpinnerElement();
+		
+		photoItem.innerHTML = `
+      <label>
+        <input type="checkbox" ${item.isCheked ? 'checked' : ''}
+               data-cheked-photo-id="${item.id}">
+        <div class="image-container">
+        </div>
+      </label>
+      <div class="photo-info-item-actions">
+        <button type="button" class="btn-see" aria-label="eye"
+                data-fancybox data-src="${item.objectUrl}">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
+            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#3585F5" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button type="button" class="btn-delete" data-delete-id="${item.id}">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.30007 12.4999C4.09537 12.4999 3.89057 12.4218 3.73437 12.2656C3.42188 11.9531 3.42188 11.4467 3.73437 11.1342L11.1343 3.7343C11.4468 3.4219 11.9532 3.4219 12.2657 3.7343C12.5781 4.0467 12.5781 4.55319 12.2657 4.86559L4.86576 12.2655C4.70956 12.4218 4.50477 12.4999 4.30007 12.4999Z" fill="#3585F5" />
+            <path d="M11.7 12.4998C11.4952 12.4998 11.2905 12.4217 11.1343 12.2655L3.73437 4.86559C3.42188 4.55319 3.42188 4.0467 3.73437 3.7343C4.04677 3.4219 4.55327 3.4219 4.86566 3.7343L12.2656 11.1342C12.578 11.4467 12.578 11.9531 12.2656 12.2656C12.1095 12.4217 11.9048 12.4998 11.7 12.4998Z" fill="#3585F5" />
+          </svg>
+        </button>
+      </div>
+    `;
+		
+		const imageContainer = photoItem.querySelector('.image-container');
+		imageContainer.appendChild(spinner);
+		
+		const img = new Image();
+		img.src = item.objectUrl;
+		img.alt = item.name;
+		img.dataset.bsToggle = 'tooltip';
+		img.dataset.bsPlacement = 'top';
+		img.dataset.bsTitle = item.isCheked ? 'Не отображать фото' :
+			'Отображать фото';
+		
+		img.onload = () => {
+			spinner.style.display = 'none';
+			imageContainer.appendChild(img);
+			
+			if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+				const tooltip = new bootstrap.Tooltip(img, {
+					trigger: 'hover',
+					placement: 'top'
+				});
+				this.tooltips.set(img, tooltip);
+			}
+		};
+		
+		img.onerror = () => {
+			spinner.style.display = 'none';
+			const errorMsg = document.createElement('div');
+			errorMsg.className = 'text-danger';
+			errorMsg.textContent = 'Ошибка загрузки изображения';
+			imageContainer.appendChild(errorMsg);
+		};
+		
+		return photoItem;
+	}
+	
+	initEventHandlers () {
+		if ( !this.renderContainer) return;
+		
+		this.renderContainer.addEventListener('change', (e) => {
+			if (e.target.matches('input[type="checkbox"][data-cheked-photo-id]')) {
+				const photoId = e.target.dataset.chekedPhotoId;
+				this.togglePhotoSelection(photoId);
+			}
+		});
+		
+		this.renderContainer.addEventListener('click', (e) => {
+			if (e.target.closest('.btn-delete')) {
+				const btn = e.target.closest('.btn-delete');
+				const photoId = btn.dataset.deleteId;
+				this.deletePhoto(photoId);
+				e.preventDefault();
+			}
+		});
+	}
+	
+	togglePhotoSelection (photoId) {
+		const photo = this.photoArray.find(p => p.id === photoId);
+		if ( !photo) return;
+		
+		photo.isCheked = !photo.isCheked;
+		
+		const img = this.renderContainer.querySelector(`[data-photo-id="${photoId}"] img`);
+		if (img) {
+			img.setAttribute('data-bs-title',
+				photo.isCheked ? 'Не показывать в объявлении' :
+					'Показывать в объявлении');
+			
+			const tooltip = bootstrap.Tooltip.getInstance(img);
+			if (tooltip) {
+				tooltip.dispose();
+				this.tooltips.delete(img);
+			}
+			
+			const newTooltip = new bootstrap.Tooltip(img, {
+				trigger: 'hover',
+				title: img.getAttribute('data-bs-title')
+			});
+			this.tooltips.set(img, newTooltip);
+		}
+	}
+	
+	deletePhoto (photoId) {
+		const photoElement = this.renderContainer.querySelector(`[data-photo-id="${photoId}"]`);
+		if ( !photoElement) return;
+		
+		const photoIndex = this.photoArray.findIndex(photo => photo.id === photoId);
+		if (photoIndex === -1) return;
+		
+		// Видаляємо URL зображення
+		const photoToDelete = this.photoArray[photoIndex];
+		if (photoToDelete.objectUrl) {
+			URL.revokeObjectURL(photoToDelete.objectUrl);
+		}
+		
+		// Видаляємо фото з масивів
+		this.photoArray.splice(photoIndex, 1);
+		this.validPhotos = this.validPhotos.filter(photo => photo.id !== photoId);
+		
+		// Видаляємо елемент з DOM
+		photoElement.remove();
+		
+		// Очищаємо значення input
+		this.input.value = ''; // ← Додайте цей рядок
+		
+		// Оновлюємо видимість кнопки завантаження
+		this.toggleUploadButtonVisibility();
+	}
+	
+	initFancybox () {
+		if (typeof Fancybox === 'undefined') return;
+		
+		if (Fancybox.getInstance()) {
+			Fancybox.getInstance().destroy();
+		}
+		
+		Fancybox.bind("[data-fancybox]", {
+			Thumbs: false,
+			Toolbar: {
+				display: {
+					left: ["infobar"],
+					middle: [],
+					right: ["close"],
+				},
+			},
+			Images: {
+				zoom: true,
+			},
+			on: {
+				close: () => {
+					const instance = Fancybox.getInstance();
+					if (instance) {
+						const slides = instance.getSlides();
+						slides && slides.forEach(slide => {
+							if (slide.content.src.startsWith('blob:')) {
+								URL.revokeObjectURL(slide.content.src);
+							}
+						});
+					}
+				}
+			}
+		});
+	}
+	
+	initTooltips () {
+		if (typeof bootstrap === 'undefined' || !bootstrap.Tooltip) return;
+		
+		const tooltipElements = this.renderContainer && this.renderContainer.querySelectorAll('[data-bs-toggle="tooltip"]') || [];
+		
+		tooltipElements.forEach(el => {
+			try {
+				if ( !this.tooltips.has(el)) {
+					const tooltip = new bootstrap.Tooltip(el, {
+						trigger: 'hover',
+						placement: 'top'
+					});
+					this.tooltips.set(el, tooltip);
+				}
+			} catch (e) {
+				console.warn('Ошибка при инициализации тултипа:', e);
+			}
+		});
+	}
+	
+	destroyAllTooltips () {
+		this.tooltips.forEach((tooltip, element) => {
+			try {
+				if (tooltip && typeof tooltip.dispose === 'function') {
+					tooltip.dispose();
+				}
+			} catch (e) {
+				console.warn('Ошибка при уничтожении тултипа:', e);
+			}
+		});
+		this.tooltips.clear();
+	}
+	
+	getSelectedPhotos () {
+		return this.photoArray.filter(photo => photo.isCheked);
+	}
+	
+	destroy () {
+		this.clearOldObjectUrls();
+		this.destroyAllTooltips();
+		
+		if (this.globalLoader) {
+			this.globalLoader.remove();
+			this.globalLoader = null;
+		}
+		
+		if (typeof Fancybox !== 'undefined' && Fancybox.getInstance()) {
+			Fancybox.getInstance().destroy();
+		}
+		
+		if (this.input) {
+			this.input.removeEventListener('change', this.handleFileUpload);
+		}
+		
+		if (this.renderContainer) {
+			this.renderContainer.removeEventListener('change', this.togglePhotoSelection);
+			this.renderContainer.removeEventListener('click', this.handleContainerClick);
+		}
+	}
+}
+
 class PhoneInputManager {
 	constructor (options) {
 		this.options = {...options};
@@ -1895,4 +2541,259 @@ class RowManager {
 	}
 }
 
-export {FileUploader, PhotoLoader, PhoneInputManager, RealEstateDescriptionGenerator, GoogleMapsManager, RowManager};
+class RowManagerDevelopers {
+	constructor (options) {
+		this.options = {
+			addBtnSelector: '.btn-plus-row',
+			rowSelector: '.create-filter-row',
+			rowContainerSelector: '.create-filter-container',
+			...options
+		};
+		this.rowCounter = 1;
+		this.init();
+	}
+	
+	init () {
+		const existingRows = document.querySelectorAll(this.options.rowSelector);
+		this.rowCounter = existingRows.length;
+		
+		const addBtn = document.querySelector(this.options.addBtnSelector);
+		if (addBtn) {
+			addBtn.addEventListener('click', () => this.addNewRow());
+		}
+		
+		existingRows.forEach((row, index) => {
+			if (index > 0) {
+				this.addDeleteButton(row);
+			}
+			this.initDropdownForRow(row);
+		});
+	}
+	
+	addNewRow () {
+		this.rowCounter++;
+		const newRow = this.createNewRow();
+		const container = document.querySelector(this.options.rowContainerSelector) ||
+			(document.querySelector(this.options.rowSelector) &&
+				document.querySelector(this.options.rowSelector).parentElement);
+		
+		if (container) {
+			container.appendChild(newRow);
+			this.initDropdownForRow(newRow);
+		}
+	}
+	
+	createNewRow () {
+		const newRow = document.createElement('div');
+		newRow.className = 'create-filter-row row2';
+		newRow.innerHTML = `
+      <div class="item size-btn">
+        <button class="btn btn-danger btn-remove" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.62231 9.62222C2.4631 9.46301 2.36455 9.24298 2.36455 9C2.36455 8.51389 2.75842 8.12003 3.24453 8.12003L14.7556 8.12003C15.2416 8.12011 15.6355 8.51397 15.6356 9C15.6356 9.48595 15.2416 9.87989 14.7557 9.87989L3.24461 9.87989C3.00155 9.87997 2.78152 9.78143 2.62231 9.62222Z" fill="#fff"/>
+          </svg>
+        </button>
+      </div>
+      <div class="item size3">
+        <label>Локация</label>
+        <div class="my-dropdown" data-row="${this.rowCounter}">
+          <div class="my-dropdown-input-wrapper">
+            <button class="my-dropdown-geo-btn" data-bs-toggle="modal" data-bs-target="#geoModal">
+              <img src="./img/icon/geo.svg" alt="">
+            </button>
+            <label class="my-dropdown-label">
+              <input class="my-dropdown-input" type="text" autocomplete="off" placeholder="Введите название">
+            </label>
+            <button class="my-dropdown-btn arrow-down btn-open-menu" type="button">
+              <img src="./img/icon/arrow-right-white.svg" alt="">
+            </button>
+          </div>
+          <div class="my-dropdown-list-wrapper" style="display: none">
+            <div class="my-dropdown-list">
+              <div class="scroller">
+                <div class="my-dropdown-item">
+                  <label class="my-dropdown-item-label-radio">
+                    <input class="my-dropdown-item-radio" type="radio" name="country-${this.rowCounter}">
+                    <span class="my-dropdown-item-radio-text">Україна (<span>24</span>)</span>
+                  </label>
+                  <div class="my-dropdown-next-list" style="display: none">
+                    <div class="my-dropdown-item">
+                      <label class="my-dropdown-item-label-radio">
+                        <input class="my-dropdown-item-radio" type="radio" name="district-${this.rowCounter}">
+                        <span class="my-dropdown-item-radio-text">Дніпропетровська обл. (<span>24</span>)</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="my-dropdown-list second" style="display: none">
+              <div class="scroller">
+                <div class="my-dropdown-item">
+                  <label class="my-dropdown-item-label-checkbox">
+                    <input class="my-dropdown-item-checkbox" type="checkbox">
+                    <span class="my-dropdown-item-checkbox-text">Дніпро (<span>24</span>)</span>
+                  </label>
+                  <div class="my-dropdown-next-list" style="display: none">
+                    <div class="my-dropdown-item">
+                      <label class="my-dropdown-item-label-checkbox">
+                        <input class="my-dropdown-item-checkbox" type="checkbox">
+                        <span class="my-dropdown-item-checkbox-text">Індустріальний район (<span>24</span>)</span>
+                      </label>
+                      <div class="my-dropdown-next-next-list" style="display: none">
+                        <div class="my-dropdown-item">
+                          <label class="my-dropdown-item-label-checkbox">
+                            <input class="my-dropdown-item-checkbox" type="checkbox">
+                            <span class="my-dropdown-item-checkbox-text">Лівобережний 3 (<span>24</span>)</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="my-dropdown-search-wrapper" style="display: none">
+            <div class="my-dropdown-search-list">
+              <div class="scroller">
+                <div class="my-dropdown-search-item">
+                  <div class="eqweqw">Одесская обл (24)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item size1">
+        <span>
+          <label class="item-label" for="year-${this.rowCounter}">Год</label>
+        </span>
+        <input class="item-inputText" id="year-${this.rowCounter}" type="text" autocomplete="off" placeholder="Имя Фамилия Отчество">
+      </div>
+      <div class="item size1">
+        <span>
+          <label class="item-label" for="google-disk-${this.rowCounter}">Google Диск (объекты девелопера)</label>
+        </span>
+        <input class="item-inputText" id="google-disk-${this.rowCounter}" type="url" autocomplete="off" placeholder="https://">
+      </div>
+    `;
+		
+		this.addDeleteButton(newRow);
+		return newRow;
+	}
+	
+	addDeleteButton (row) {
+		const btn = row.querySelector('.btn-remove');
+		if (btn) {
+			btn.addEventListener('click', () => {
+				row.remove();
+				this.rowCounter--;
+			});
+		}
+	}
+	
+	initDropdownForRow (row) {
+		const dropdown = row.querySelector('.my-dropdown');
+		if ( !dropdown) return;
+		
+		const rowId = dropdown.getAttribute('data-row');
+		const btnOpenMenu = dropdown.querySelector('.btn-open-menu');
+		const dropdownInput = dropdown.querySelector('.my-dropdown-input');
+		const dropdownListWrapper = dropdown.querySelector('.my-dropdown-list-wrapper');
+		const searchWrapper = dropdown.querySelector('.my-dropdown-search-wrapper');
+		
+		// Відкриття/закриття меню
+		btnOpenMenu.addEventListener('click', function () {
+			dropdownListWrapper.style.display = dropdownListWrapper.style.display === 'none' ? 'block' : 'none';
+			this.classList.toggle('active');
+			searchWrapper.style.display = 'none';
+		});
+		
+		// Пошук
+		dropdownInput.addEventListener('input', function () {
+			const searchText = this.value.trim();
+			if (searchText.length > 0) {
+				searchWrapper.style.display = 'block';
+				dropdownListWrapper.style.display = 'none';
+			} else {
+				searchWrapper.style.display = 'none';
+				dropdownListWrapper.style.display = 'block';
+			}
+		});
+		
+		// Обробники для радіокнопок і чекбоксів
+		dropdown.querySelectorAll(`.my-dropdown-item-radio[name="country-${rowId}"]`).forEach(radio => {
+			radio.addEventListener('click', function () {
+				dropdown.querySelectorAll('.my-dropdown-next-list').forEach(list => {
+					list.style.display = 'none';
+				});
+				this.closest('.my-dropdown-item').querySelector('.my-dropdown-next-list').style.display = 'flex';
+				dropdown.querySelector('.my-dropdown-list.second').style.display = 'none';
+				clearSecondBlockCheckboxes(dropdown);
+				clearDistrictRadios(dropdown, rowId);
+			});
+		});
+		
+		dropdown.querySelectorAll(`.my-dropdown-item-radio[name="district-${rowId}"]`).forEach(radio => {
+			radio.addEventListener('click', function () {
+				if (this.checked) {
+					dropdown.querySelector('.my-dropdown-list.second').style.display = 'flex';
+				}
+			});
+		});
+		
+		dropdown.querySelectorAll('.my-dropdown-item-checkbox').forEach(checkbox => {
+			checkbox.addEventListener('change', function () {
+				const nextList = this.closest('.my-dropdown-item').querySelector('.my-dropdown-next-list');
+				if (this.checked) {
+					nextList.style.display = 'flex';
+				} else {
+					nextList.style.display = 'none';
+					clearInnerCheckboxes(nextList);
+				}
+			});
+		});
+		
+		// Закриття при кліку поза меню
+		document.addEventListener('click', function (event) {
+			if ( !dropdown.contains(event.target)) {
+				dropdownListWrapper.style.display = 'none';
+				searchWrapper.style.display = 'none';
+				btnOpenMenu.classList.remove('active');
+				clearSecondBlockCheckboxes(dropdown);
+			}
+		});
+		
+		function clearSecondBlockCheckboxes (dropdownElement) {
+			dropdownElement.querySelectorAll('.my-dropdown-list.second .my-dropdown-item-checkbox').forEach(checkbox => {
+				checkbox.checked = false;
+				const nextList = checkbox.closest('.my-dropdown-item').querySelector('.my-dropdown-next-list');
+				if (nextList) nextList.style.display = 'none';
+			});
+		}
+		
+		function clearInnerCheckboxes (parentElement) {
+			parentElement.querySelectorAll('.my-dropdown-item-checkbox').forEach(checkbox => {
+				checkbox.checked = false;
+			});
+		}
+		
+		function clearDistrictRadios (dropdownElement, rowId) {
+			dropdownElement.querySelectorAll(`.my-dropdown-next-list .my-dropdown-item-radio[name="district-${rowId}"]`).forEach(radio => {
+				radio.checked = false;
+			});
+		}
+	}
+}
+
+export {
+	FileUploader,
+	PhotoLoader,
+	PhotoLoaderMini,
+	PhoneInputManager,
+	RealEstateDescriptionGenerator,
+	GoogleMapsManager,
+	RowManager,
+	RowManagerDevelopers
+};
