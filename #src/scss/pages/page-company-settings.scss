@@ -1,0 +1,20 @@
+@import "_default";
+@import "./page-company-settings/_header-my-settings";
+@import "_side-bar";
+@import "_my-dropdown";
+
+@import "./_phone";
+@import "./page-company-settings/_page-company-settings";
+@import "./page-company-settings/_all-info";
+@import "./page-company-settings/_offices";
+@import "./page-company-settings/_my-btns";
+
+
+
+.container-fluid {
+	width: calc(100% - 70px);
+}
+
+
+
+@import "_modal";

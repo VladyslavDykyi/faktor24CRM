@@ -1945,8 +1945,9 @@ class PhoneInputManager {
 	constructor (options) {
 		this.options = {...options};
 		this.phoneCounter = 1;
-		this.btnAddTel = document.querySelector(this.options.btnSelector);
 		this.wrapper = document.querySelector(this.options.wrapperSelector);
+		this.btnAddTel = this.wrapper.querySelector(this.options.btnSelector);
+		
 		
 		// Чекаємо повного завантаження DOM
 		document.addEventListener('DOMContentLoaded', () => {
