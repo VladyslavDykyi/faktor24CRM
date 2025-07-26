@@ -4,7 +4,6 @@ import {
 	FileUploader,
 	PhoneInputManager,
 	RealEstateDescriptionGenerator,
-	RowManagerDevelopers,
 } from "./function_on_pages-create.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,17 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}, 100);
 });
+
 $(".js-example-responsive2").select2({
 	width: 'resolve',
 	placeholder: 'Выбрать',
 	minimumResultsForSearch: -1,
 });
 
-new RowManagerDevelopers({
-	addBtnSelector: '.btn-plus-row', // селектор кнопки додавання
-	rowSelector: '.create-filter-row', // селектор рядка
-	rowContainerSelector: '.create-filter-container' // селектор контейнера
-});
 new RealEstateDescriptionGenerator('ваш_api_ключ', {
 	model: 'gpt-3.5-turbo',
 	temperature: 1,
@@ -61,7 +56,7 @@ new PhoneInputManager({
 function initFileUploaders () {
 	// Для документів (без перевірки розміру)
 	new FileUploader({
-		inputId: 'download-logo',
+		inputId: 'document',
 		wrapperClass: 'loading-documents',
 		checkImageSize: false,
 		// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
@@ -79,6 +74,7 @@ if (typeof Fancybox !== 'undefined') {
 		}
 	}, 200);
 }
+
 $(document).ready(function () {
 	// Обробник відкриття меню
 	$('.multiple-menu-btn').on('click', function (event) {

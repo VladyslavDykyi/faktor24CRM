@@ -4,6 +4,7 @@
 @import "_my-dropdown";
 
 @import "_modal";
+
 .js-example-responsive2,
 .js-example-responsive3 {
 	background-color: #fff;
@@ -17,6 +18,68 @@
 	width: 100%;
 }
 
+.filter-tags {
+	padding-bottom: 0;
+	
+	& .badge {
+		text-wrap: auto;
+		text-align: left;
+		padding: 2px 9px;
+		display: flex;
+		align-items: center;
+		grid-gap: 8px;
+		font-weight: 400;
+		height: 24px;
+		font-size: 14px;
+		line-height: 18px;
+		letter-spacing: .01em;
+		border-radius: 6px !important;
+		border: 1px solid #d5dbe3;
+		background-color: #fff;
+		color: #111;
+		& .btn {
+			border: none;
+			background: none;
+		}
+		
+	}
+	.badge button {
+		display: flex;
+		align-items: center;
+		padding: 0;
+		border: none;
+		background: 0 0;
+		outline: 0;
+		cursor: pointer;
+	}
+}
+
+.document-item {
+	position: relative;
+	padding-left: 30px !important;
+	
+	&:before {
+		content: '';
+		display: block;
+		width: 16px;
+		height: 16px;
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M8.50627 13.2938C7.81303 13.9437 6.89417 14.2986 5.94403 14.2833C4.99388 14.2679 4.08694 13.8837 3.41499 13.2117C2.74305 12.5398 2.35879 11.6329 2.34348 10.6827C2.32817 9.73256 2.683 8.81371 3.33294 8.12046L9.17294 2.28713C9.52011 1.94269 9.96138 1.70858 10.4412 1.61425C10.9211 1.51991 11.4181 1.56956 11.8699 1.75695C12.3216 1.94433 12.7078 2.2611 12.98 2.6674C13.2522 3.0737 13.3982 3.55141 13.3996 4.04046C13.3992 4.36567 13.3342 4.68757 13.2083 4.98743C13.0824 5.28729 12.8982 5.55912 12.6663 5.78713L7.11294 11.3338C6.93932 11.4722 6.72095 11.5421 6.49924 11.5302C6.27753 11.5183 6.06789 11.4254 5.91008 11.2692C5.75226 11.1131 5.65723 10.9044 5.64302 10.6828C5.6288 10.4613 5.69638 10.2422 5.83294 10.0671L11.3929 4.50713L10.4463 3.56713L4.88627 9.12713C4.48502 9.55082 4.26495 10.1144 4.27289 10.6978C4.28082 11.2813 4.51614 11.8387 4.92876 12.2513C5.34138 12.6639 5.89874 12.8992 6.48222 12.9072C7.0657 12.9151 7.62925 12.695 8.05294 12.2938L13.6196 6.73379C14.3357 6.01859 14.7383 5.04822 14.739 4.03615C14.7396 3.02408 14.3381 2.05321 13.6229 1.33713C12.9077 0.621043 11.9374 0.218399 10.9253 0.217774C9.91323 0.217149 8.94236 0.618593 8.22627 1.33379L2.38627 7.18046C1.48313 8.1234 0.985245 9.38258 0.999314 10.6882C1.01338 11.9938 1.53828 13.2419 2.46154 14.1652C3.38479 15.0885 4.63295 15.6133 5.93855 15.6274C7.24416 15.6415 8.50334 15.1436 9.44627 14.2405L14.7263 8.95379L13.7863 8.00046L8.50627 13.2938Z' fill='%23AAAAAA' /%3e%3c/svg%3e");
+		background-repeat: no-repeat;
+		position: absolute;
+		left: 6px;
+		top: calc(50% - 8px);
+	}
+	
+	&.badge [aria-label="eye"] path {
+		fill: transparent;
+		stroke: #111111;
+	}
+	
+	&.badge [aria-label="Close"] path {
+		fill: #111111;
+	}
+}
+
 .my-dropdown {
 	max-width: 100%;
 }
@@ -24,6 +87,7 @@
 .iti {
 	width: 100%;
 }
+
 .iti__flag {
 	background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/img/flags.png");
 }

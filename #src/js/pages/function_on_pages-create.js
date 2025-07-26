@@ -1652,8 +1652,6 @@ class PhotoLoaderMini {
 	render () {
 		if ( !this.renderContainer) return;
 		
-		this.destroyAllTooltips();
-		
 		// Видаляємо тільки фото-елементи
 		const photoItems = this.renderContainer.querySelectorAll('.photo-info-item');
 		photoItems.forEach(item => item.remove());
@@ -1680,7 +1678,6 @@ class PhotoLoaderMini {
 		}
 		
 		this.toggleUploadButtonVisibility();
-		this.initTooltips();
 		this.initFancybox();
 		this.initEventHandlers();
 	}
@@ -1714,12 +1711,8 @@ class PhotoLoaderMini {
 		const spinner = this.createSpinnerElement();
 		
 		photoItem.innerHTML = `
-      <label>
-        <input type="checkbox" ${item.isCheked ? 'checked' : ''}
-               data-cheked-photo-id="${item.id}">
         <div class="image-container">
         </div>
-      </label>
       <div class="photo-info-item-actions">
         <button type="button" class="btn-see" aria-label="eye"
                 data-fancybox data-src="${item.objectUrl}">
@@ -1743,22 +1736,10 @@ class PhotoLoaderMini {
 		const img = new Image();
 		img.src = item.objectUrl;
 		img.alt = item.name;
-		img.dataset.bsToggle = 'tooltip';
-		img.dataset.bsPlacement = 'top';
-		img.dataset.bsTitle = item.isCheked ? 'Не отображать фото' :
-			'Отображать фото';
 		
 		img.onload = () => {
 			spinner.style.display = 'none';
 			imageContainer.appendChild(img);
-			
-			if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-				const tooltip = new bootstrap.Tooltip(img, {
-					trigger: 'hover',
-					placement: 'top'
-				});
-				this.tooltips.set(img, tooltip);
-			}
 		};
 		
 		img.onerror = () => {
@@ -1778,7 +1759,6 @@ class PhotoLoaderMini {
 		this.renderContainer.addEventListener('change', (e) => {
 			if (e.target.matches('input[type="checkbox"][data-cheked-photo-id]')) {
 				const photoId = e.target.dataset.chekedPhotoId;
-				this.togglePhotoSelection(photoId);
 			}
 		});
 		
@@ -1792,31 +1772,6 @@ class PhotoLoaderMini {
 		});
 	}
 	
-	togglePhotoSelection (photoId) {
-		const photo = this.photoArray.find(p => p.id === photoId);
-		if ( !photo) return;
-		
-		photo.isCheked = !photo.isCheked;
-		
-		const img = this.renderContainer.querySelector(`[data-photo-id="${photoId}"] img`);
-		if (img) {
-			img.setAttribute('data-bs-title',
-				photo.isCheked ? 'Не показывать в объявлении' :
-					'Показывать в объявлении');
-			
-			const tooltip = bootstrap.Tooltip.getInstance(img);
-			if (tooltip) {
-				tooltip.dispose();
-				this.tooltips.delete(img);
-			}
-			
-			const newTooltip = new bootstrap.Tooltip(img, {
-				trigger: 'hover',
-				title: img.getAttribute('data-bs-title')
-			});
-			this.tooltips.set(img, newTooltip);
-		}
-	}
 	
 	deletePhoto (photoId) {
 		const photoElement = this.renderContainer.querySelector(`[data-photo-id="${photoId}"]`);
@@ -1880,46 +1835,8 @@ class PhotoLoaderMini {
 		});
 	}
 	
-	initTooltips () {
-		if (typeof bootstrap === 'undefined' || !bootstrap.Tooltip) return;
-		
-		const tooltipElements = this.renderContainer && this.renderContainer.querySelectorAll('[data-bs-toggle="tooltip"]') || [];
-		
-		tooltipElements.forEach(el => {
-			try {
-				if ( !this.tooltips.has(el)) {
-					const tooltip = new bootstrap.Tooltip(el, {
-						trigger: 'hover',
-						placement: 'top'
-					});
-					this.tooltips.set(el, tooltip);
-				}
-			} catch (e) {
-				console.warn('Ошибка при инициализации тултипа:', e);
-			}
-		});
-	}
-	
-	destroyAllTooltips () {
-		this.tooltips.forEach((tooltip, element) => {
-			try {
-				if (tooltip && typeof tooltip.dispose === 'function') {
-					tooltip.dispose();
-				}
-			} catch (e) {
-				console.warn('Ошибка при уничтожении тултипа:', e);
-			}
-		});
-		this.tooltips.clear();
-	}
-	
-	getSelectedPhotos () {
-		return this.photoArray.filter(photo => photo.isCheked);
-	}
-	
 	destroy () {
 		this.clearOldObjectUrls();
-		this.destroyAllTooltips();
 		
 		if (this.globalLoader) {
 			this.globalLoader.remove();
@@ -1935,7 +1852,6 @@ class PhotoLoaderMini {
 		}
 		
 		if (this.renderContainer) {
-			this.renderContainer.removeEventListener('change', this.togglePhotoSelection);
 			this.renderContainer.removeEventListener('click', this.handleContainerClick);
 		}
 	}
@@ -2542,252 +2458,6 @@ class RowManager {
 	}
 }
 
-class RowManagerDevelopers {
-	constructor (options) {
-		this.options = {
-			addBtnSelector: '.btn-plus-row',
-			rowSelector: '.create-filter-row',
-			rowContainerSelector: '.create-filter-container',
-			...options
-		};
-		this.rowCounter = 1;
-		this.init();
-	}
-	
-	init () {
-		const existingRows = document.querySelectorAll(this.options.rowSelector);
-		this.rowCounter = existingRows.length;
-		
-		const addBtn = document.querySelector(this.options.addBtnSelector);
-		if (addBtn) {
-			addBtn.addEventListener('click', () => this.addNewRow());
-		}
-		
-		existingRows.forEach((row, index) => {
-			if (index > 0) {
-				this.addDeleteButton(row);
-			}
-			this.initDropdownForRow(row);
-		});
-	}
-	
-	addNewRow () {
-		this.rowCounter++;
-		const newRow = this.createNewRow();
-		const container = document.querySelector(this.options.rowContainerSelector) ||
-			(document.querySelector(this.options.rowSelector) &&
-				document.querySelector(this.options.rowSelector).parentElement);
-		
-		if (container) {
-			container.appendChild(newRow);
-			this.initDropdownForRow(newRow);
-		}
-	}
-	
-	createNewRow () {
-		const newRow = document.createElement('div');
-		newRow.className = 'create-filter-row row2';
-		newRow.innerHTML = `
-      <div class="item size-btn">
-        <button class="btn btn-danger btn-remove" type="button">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.62231 9.62222C2.4631 9.46301 2.36455 9.24298 2.36455 9C2.36455 8.51389 2.75842 8.12003 3.24453 8.12003L14.7556 8.12003C15.2416 8.12011 15.6355 8.51397 15.6356 9C15.6356 9.48595 15.2416 9.87989 14.7557 9.87989L3.24461 9.87989C3.00155 9.87997 2.78152 9.78143 2.62231 9.62222Z" fill="#fff"/>
-          </svg>
-        </button>
-      </div>
-      <div class="item size3">
-        <label>Локация</label>
-        <div class="my-dropdown" data-row="${this.rowCounter}">
-          <div class="my-dropdown-input-wrapper">
-            <button class="my-dropdown-geo-btn" data-bs-toggle="modal" data-bs-target="#geoModal">
-              <img src="./img/icon/geo.svg" alt="">
-            </button>
-            <label class="my-dropdown-label">
-              <input class="my-dropdown-input" type="text" autocomplete="off" placeholder="Введите название">
-            </label>
-            <button class="my-dropdown-btn arrow-down btn-open-menu" type="button">
-              <img src="./img/icon/arrow-right-white.svg" alt="">
-            </button>
-          </div>
-          <div class="my-dropdown-list-wrapper" style="display: none">
-            <div class="my-dropdown-list">
-              <div class="scroller">
-                <div class="my-dropdown-item">
-                  <label class="my-dropdown-item-label-radio">
-                    <input class="my-dropdown-item-radio" type="radio" name="country-${this.rowCounter}">
-                    <span class="my-dropdown-item-radio-text">Україна (<span>24</span>)</span>
-                  </label>
-                  <div class="my-dropdown-next-list" style="display: none">
-                    <div class="my-dropdown-item">
-                      <label class="my-dropdown-item-label-radio">
-                        <input class="my-dropdown-item-radio" type="radio" name="district-${this.rowCounter}">
-                        <span class="my-dropdown-item-radio-text">Дніпропетровська обл. (<span>24</span>)</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="my-dropdown-list second" style="display: none">
-              <div class="scroller">
-                <div class="my-dropdown-item">
-                  <label class="my-dropdown-item-label-checkbox">
-                    <input class="my-dropdown-item-checkbox" type="checkbox">
-                    <span class="my-dropdown-item-checkbox-text">Дніпро (<span>24</span>)</span>
-                  </label>
-                  <div class="my-dropdown-next-list" style="display: none">
-                    <div class="my-dropdown-item">
-                      <label class="my-dropdown-item-label-checkbox">
-                        <input class="my-dropdown-item-checkbox" type="checkbox">
-                        <span class="my-dropdown-item-checkbox-text">Індустріальний район (<span>24</span>)</span>
-                      </label>
-                      <div class="my-dropdown-next-next-list" style="display: none">
-                        <div class="my-dropdown-item">
-                          <label class="my-dropdown-item-label-checkbox">
-                            <input class="my-dropdown-item-checkbox" type="checkbox">
-                            <span class="my-dropdown-item-checkbox-text">Лівобережний 3 (<span>24</span>)</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="my-dropdown-search-wrapper" style="display: none">
-            <div class="my-dropdown-search-list">
-              <div class="scroller">
-                <div class="my-dropdown-search-item">
-                  <div class="eqweqw">Одесская обл (24)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item size1">
-        <span>
-          <label class="item-label" for="year-${this.rowCounter}">Год</label>
-        </span>
-        <input class="item-inputText" id="year-${this.rowCounter}" type="text" autocomplete="off" placeholder="Имя Фамилия Отчество">
-      </div>
-      <div class="item size1">
-        <span>
-          <label class="item-label" for="google-disk-${this.rowCounter}">Google Диск (объекты девелопера)</label>
-        </span>
-        <input class="item-inputText" id="google-disk-${this.rowCounter}" type="url" autocomplete="off" placeholder="https://">
-      </div>
-    `;
-		
-		this.addDeleteButton(newRow);
-		return newRow;
-	}
-	
-	addDeleteButton (row) {
-		const btn = row.querySelector('.btn-remove');
-		if (btn) {
-			btn.addEventListener('click', () => {
-				row.remove();
-				this.rowCounter--;
-			});
-		}
-	}
-	
-	initDropdownForRow (row) {
-		const dropdown = row.querySelector('.my-dropdown');
-		if ( !dropdown) return;
-		
-		const rowId = dropdown.getAttribute('data-row');
-		const btnOpenMenu = dropdown.querySelector('.btn-open-menu');
-		const dropdownInput = dropdown.querySelector('.my-dropdown-input');
-		const dropdownListWrapper = dropdown.querySelector('.my-dropdown-list-wrapper');
-		const searchWrapper = dropdown.querySelector('.my-dropdown-search-wrapper');
-		
-		// Відкриття/закриття меню
-		btnOpenMenu.addEventListener('click', function () {
-			dropdownListWrapper.style.display = dropdownListWrapper.style.display === 'none' ? 'block' : 'none';
-			this.classList.toggle('active');
-			searchWrapper.style.display = 'none';
-		});
-		
-		// Пошук
-		dropdownInput.addEventListener('input', function () {
-			const searchText = this.value.trim();
-			if (searchText.length > 0) {
-				searchWrapper.style.display = 'block';
-				dropdownListWrapper.style.display = 'none';
-			} else {
-				searchWrapper.style.display = 'none';
-				dropdownListWrapper.style.display = 'block';
-			}
-		});
-		
-		// Обробники для радіокнопок і чекбоксів
-		dropdown.querySelectorAll(`.my-dropdown-item-radio[name="country-${rowId}"]`).forEach(radio => {
-			radio.addEventListener('click', function () {
-				dropdown.querySelectorAll('.my-dropdown-next-list').forEach(list => {
-					list.style.display = 'none';
-				});
-				this.closest('.my-dropdown-item').querySelector('.my-dropdown-next-list').style.display = 'flex';
-				dropdown.querySelector('.my-dropdown-list.second').style.display = 'none';
-				clearSecondBlockCheckboxes(dropdown);
-				clearDistrictRadios(dropdown, rowId);
-			});
-		});
-		
-		dropdown.querySelectorAll(`.my-dropdown-item-radio[name="district-${rowId}"]`).forEach(radio => {
-			radio.addEventListener('click', function () {
-				if (this.checked) {
-					dropdown.querySelector('.my-dropdown-list.second').style.display = 'flex';
-				}
-			});
-		});
-		
-		dropdown.querySelectorAll('.my-dropdown-item-checkbox').forEach(checkbox => {
-			checkbox.addEventListener('change', function () {
-				const nextList = this.closest('.my-dropdown-item').querySelector('.my-dropdown-next-list');
-				if (this.checked) {
-					nextList.style.display = 'flex';
-				} else {
-					nextList.style.display = 'none';
-					clearInnerCheckboxes(nextList);
-				}
-			});
-		});
-		
-		// Закриття при кліку поза меню
-		document.addEventListener('click', function (event) {
-			if ( !dropdown.contains(event.target)) {
-				dropdownListWrapper.style.display = 'none';
-				searchWrapper.style.display = 'none';
-				btnOpenMenu.classList.remove('active');
-				clearSecondBlockCheckboxes(dropdown);
-			}
-		});
-		
-		function clearSecondBlockCheckboxes (dropdownElement) {
-			dropdownElement.querySelectorAll('.my-dropdown-list.second .my-dropdown-item-checkbox').forEach(checkbox => {
-				checkbox.checked = false;
-				const nextList = checkbox.closest('.my-dropdown-item').querySelector('.my-dropdown-next-list');
-				if (nextList) nextList.style.display = 'none';
-			});
-		}
-		
-		function clearInnerCheckboxes (parentElement) {
-			parentElement.querySelectorAll('.my-dropdown-item-checkbox').forEach(checkbox => {
-				checkbox.checked = false;
-			});
-		}
-		
-		function clearDistrictRadios (dropdownElement, rowId) {
-			dropdownElement.querySelectorAll(`.my-dropdown-next-list .my-dropdown-item-radio[name="district-${rowId}"]`).forEach(radio => {
-				radio.checked = false;
-			});
-		}
-	}
-}
-
 export {
 	FileUploader,
 	PhotoLoader,
@@ -2796,5 +2466,4 @@ export {
 	RealEstateDescriptionGenerator,
 	GoogleMapsManager,
 	RowManager,
-	RowManagerDevelopers
 };
