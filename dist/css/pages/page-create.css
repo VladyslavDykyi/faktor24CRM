@@ -188,7 +188,7 @@ ul {
   display: none;
 }
 
-.my-custom-input input:checked + span:before {
+.my-custom-input input:checked + .my-custom-box:before {
   content: '';
   position: absolute;
   top: calc(50% - 8px);
@@ -202,14 +202,20 @@ ul {
   height: 16px;
 }
 
-.my-custom-input span {
+.my-custom-input .my-custom-box {
   position: relative;
   border: 1px solid #aaa;
   border-radius: 6px;
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   background: #fff;
   display: inline-block;
+}
+
+.my-custom-input .my-custom-text::first-letter {
+  text-transform: uppercase !important;
 }
 
 #photo-preview-popup {

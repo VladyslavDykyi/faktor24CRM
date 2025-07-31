@@ -127,7 +127,7 @@ ul {
 	cursor: pointer;
 	& input {
 		display: none;
-		&:checked + span:before {
+		&:checked + .my-custom-box:before {
 			content: '';
 			position: absolute;
 			top: calc(50% - 8px);
@@ -141,14 +141,21 @@ ul {
 			height: 16px;
 		}
 	}
-	& span {
+	& .my-custom-box {
 		position: relative;
 		border: 1px solid #aaa;
 		border-radius: 6px;
 		width: 20px;
 		height: 20px;
+		min-width: 20px;
+		min-height: 20px;
 		background: #fff;
 		display: inline-block;
+	}
+	& .my-custom-text {
+		&::first-letter {
+			text-transform: uppercase !important;
+		}
 	}
 }
 #photo-preview-popup {
