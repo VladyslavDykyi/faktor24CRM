@@ -1128,15 +1128,7 @@
 		}
 	}
 }
-.my-custom-input {
-	display: flex;
-	grid-gap: 10px;
-	align-items: center;
-	& span {
-		min-width: 20px;
-		min-height: 20px;
-	}
-}
+
 .history-info {
 	margin-top: 6px;
 	border: 1px solid #d5dbe3;

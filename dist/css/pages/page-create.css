@@ -181,6 +181,13 @@ ul {
 }
 
 .my-custom-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 10px;
   cursor: pointer;
 }
 
@@ -212,6 +219,13 @@ ul {
   min-height: 20px;
   background: #fff;
   display: inline-block;
+}
+
+.my-custom-input .my-custom-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
 }
 
 .my-custom-input .my-custom-text::first-letter {
@@ -480,6 +494,28 @@ ul {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 8px;
+}
+
+.sidebar .nav-info-item .dropdown .dropdown-toggle {
+  width: 100%;
+  border-radius: 0;
+  --bs-btn-color: #FFFFFF;
+  --bs-btn-hover-color: #FFFFFF;
+  --bs-btn-hover-bg: #fffFFF1A;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: #FFFFFF;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+}
+
+.sidebar .nav-info-item .dropdown .dropdown-toggle.show::after {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.sidebar .nav-info-item .dropdown-menu.show {
+  min-width: 100%;
 }
 
 .sidebar .nav-info-link {
@@ -1621,21 +1657,6 @@ ul {
   display: -ms-flexbox;
   display: flex;
   grid-gap: 10px;
-}
-
-.my-custom-input {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  grid-gap: 10px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.my-custom-input span {
-  min-width: 20px;
-  min-height: 20px;
 }
 
 .history-info {

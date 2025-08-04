@@ -124,6 +124,9 @@ ul {
 }
 
 .my-custom-input {
+	display: flex;
+	align-items: center;
+	grid-gap: 10px;
 	cursor: pointer;
 	& input {
 		display: none;
@@ -153,6 +156,10 @@ ul {
 		display: inline-block;
 	}
 	& .my-custom-text {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: normal;
+		color: #111;
 		&::first-letter {
 			text-transform: uppercase !important;
 		}

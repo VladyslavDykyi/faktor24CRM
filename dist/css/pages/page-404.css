@@ -181,6 +181,13 @@ ul {
 }
 
 .my-custom-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 10px;
   cursor: pointer;
 }
 
@@ -212,6 +219,13 @@ ul {
   min-height: 20px;
   background: #fff;
   display: inline-block;
+}
+
+.my-custom-input .my-custom-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
 }
 
 .my-custom-input .my-custom-text::first-letter {

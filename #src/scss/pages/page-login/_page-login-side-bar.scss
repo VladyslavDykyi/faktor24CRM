@@ -1,9 +1,17 @@
+.wrapper {
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
+}
 .sidebar {
 	max-width: 70px;
 	width: 100%;
 	min-height: 100vh;
 	background-color: #04254E;
-	
+	@media screen and (max-width: 768px) {
+		max-width: 100%;
+		min-height: auto;
+	}
 	&-logo {
 		display: flex;
 		align-items: center;
@@ -11,6 +19,10 @@
 		width: 100%;
 		padding: 23px 0;
 		box-shadow: inset 0 0 0 2px #04254E;
+		@media screen and (max-width: 768px) {
+			padding: 10px 0;
+			max-width: 110px;
+		}
 		&:hover {
 			background-color: #FFFFFF1A;
 			cursor: pointer;
@@ -30,6 +42,12 @@
 	position: sticky;
 	top: 0;
 	left: 0;
+	@media screen and (max-width: 768px) {
+		height: auto;
+		flex-direction: row;
+		overflow-Y: visible;
+		overflow-X: visible;
+	}
 	&::-webkit-scrollbar {
 		width: 2px;
 		padding-right: 8px;
@@ -51,7 +69,42 @@
 				& .nav-list-link {
 					background-color: #fff;
 					padding-bottom: 23px;
+					@media screen and (max-width: 768px) {
+						padding-bottom: 10px;
+					}
 				}
+			}
+		}
+	}
+	&-info {
+		width: 100%;
+		margin-bottom: 0;
+		@media screen and (max-width: 768px) {
+			width: auto;
+		}
+		&-item {
+			padding-bottom: 60px;
+			@media screen and (max-width: 768px) {
+				padding-bottom: 0;
+			}
+			& .dropdown .dropdown-toggle {
+				width: 100%;
+				border-radius: 0;
+				--bs-btn-color: #FFFFFF;
+				--bs-btn-hover-color: #FFFFFF;
+				--bs-btn-hover-bg: #fffFFF1A;
+				--bs-btn-hover-border-color: transparent;
+				--bs-btn-active-color: #FFFFFF;
+				--bs-btn-active-bg: transparent;
+				--bs-btn-active-border-color: transparent;
+				&.show {
+					&::after {
+						transform: rotate(180deg);
+					}
+				}
+			}
+			& .dropdown-menu.show {
+				min-width: 100%;
 			}
 		}
 	}

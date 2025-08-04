@@ -7,6 +7,8 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Page-home</title>
 	<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
 	<link rel="stylesheet" href="./css/lib/select2.min.css">
 	<link rel="stylesheet" href="./css/lib/bootstrap.v5.3.3.min.css">
 	<link rel="stylesheet" href="./css/lib/data-range-picker.min.css">
@@ -34,226 +36,225 @@
 <script src="./js/pages/full-filter.min.js"></script>
 <script src="./js/pages/my-dropdown.min.js"></script>
 <script src="./js/pages/page-geo-locations.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-JxH1yXZg7DPInjpOmGFMvCNX5vFPzkg&callback=initMap" async defer></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Підключаємо плагін для маркерів з текстом -->
+<script src="https://unpkg.com/leaflet-text-icon@1.0.0/dist/leaflet.text-icon.js"></script>
+<!-- Підключаємо плагін для редагування фігур -->
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
 <script>
 	function initMap() {
-		let map = new google.maps.Map(document.getElementById("map"), {
-			center: { lat: 46.4825, lng: 30.7233 },
-			zoom: 12,
-		});
+		// Ініціалізуємо карту
+		let map = L.map('map').setView([46.4825, 30.7233], 12);
 		
-		// Створюємо інформаційне вікно
-		let infoWindow = new google.maps.InfoWindow({
-			maxWidth: 216,
-		});
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
 		
-		// Масив з координатами маркерів
+		// Масив маркерів
 		let locations = [
-			{ lat: 46.4775, lng: 30.7326, title: "агент 1", quantityOfObjects: '1', id:22, },
-			{ lat: 46.4875, lng: 30.7426, title: "агент 2", quantityOfObjects: '5', id:23, },
-			{ lat: 46.4825, lng: 30.7333, title: "агент 1", quantityOfObjects: '15', id:24, },
+			{ lat: 46.4775, lng: 30.7326, title: "агент 1", quantityOfObjects: '1', id:22 },
+			{ lat: 46.4875, lng: 30.7426, title: "агент 2", quantityOfObjects: '5', id:23 },
+			{ lat: 46.4825, lng: 30.7333, title: "агент 1", quantityOfObjects: '15', id:24 },
 		];
 		
-		// Функція для створення іконки маркера
-		function getMarkerIcon(text, textColor = '#ffffff') {
-			const svg = `
-            <svg width="27" height="36" viewBox="0 0 27 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M23.3573 21.4394L23.3573 21.4395C21.5933 24.7529 19.23 28.0986 17.294 30.6295C16.3285 31.8916 15.4746 32.9442 14.8627 33.6805C14.5568 34.0485 14.3117 34.3372 14.1437 34.5332C14.0597 34.6312 13.9949 34.706 13.9516 34.7559L13.9027 34.8119L13.8908 34.8255L13.888 34.8287L13.8875 34.8293L13.8875 34.8293L13.8874 34.8294L13.887 34.8299C13.7961 34.9333 13.6554 35 13.5 35C13.3446 35 13.2039 34.9333 13.113 34.8299L13.1126 34.8294L13.1125 34.8293L13.1125 34.8293L13.112 34.8287L13.1092 34.8255L13.0973 34.8119L13.0484 34.7559C13.0051 34.706 12.9403 34.6312 12.8563 34.5332C12.6883 34.3372 12.4432 34.0485 12.1373 33.6805C11.5254 32.9442 10.6715 31.8916 9.70601 30.6295C7.76999 28.0986 5.40666 24.7529 3.64271 21.4395L3.64268 21.4394C2.02765 18.4062 1 15.5045 1 13.2733C1 6.51156 6.58979 1 13.5 1C20.4102 1 26 6.51156 26 13.2733C26 15.5045 24.9723 18.4062 23.3573 21.4394Z" fill="#3585F5" stroke="white" stroke-width="2"/>
-                <text x="50%" y="45%" font-family="Arial" font-size="12" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${text}</text>
-            </svg>
-        `;
-			return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-		}
-		
-		// Масив для зберігання маркерів
 		let markers = [];
-		let circle = null; // Початково коло відсутнє
+		let circleGroup = null;
 		
-		// Додаємо маркери на карту
-		locations.forEach(function(location) {
-			let marker = new google.maps.Marker({
-				position: { lat: location.lat, lng: location.lng },
-				map: map,
-				title: location.title,
-				icon: {
-					url: getMarkerIcon(location.quantityOfObjects, '#ffffff'),
-					scaledSize: new google.maps.Size(27, 36),
-				},
-			});
+		// Функція для створення маркерів
+		function createMarker(location) {
+			const marker = L.marker([location.lat, location.lng], {
+				title: location.title
+			}).addTo(map);
 			
-			// HTML-контент для infoWindow
-			let content = `
-			<div class="geo_card small">
-				<div class="geo_card-img">
-					<div id="${location.id}" class="carousel slide">
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src="./img/1.jpg" alt="">
-							</div>
-							<div class="carousel-item">
-								<img src="./img/1.jpg" alt="">
-							</div>
-							<div class="carousel-item">
-								<img src="./img/1.jpg" alt="">
-							</div>
-						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#${location.id}" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#${location.id}" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
-					</div>
-					<div class="geo_card-img-name">${location.title}</div>
-				</div>
-				<div class="geo_card-active">
-					<div class="thead-wrapper checkBox">
-						<label class="my-custom-input">
-							<input type="checkbox">
-							<span></span>
-						</label>
-					</div>
-					<div class="tbody-wrapper block-actions">
-						<div class="block-actions-wrapper">
-							<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
-							   data-bs-title="Написать">
-								<img src="./img/icon/mail.svg" alt="">
-							</a>
-							<label class="bookmark">
-								<input type="checkbox">
-								<span>
-									<img class="non-checked" src="./img/icon/bookmark.svg" alt="">
-									<img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
-								</span>
-							</label>
-							<div class="menu-burger">
-								<div class="dropdown">
-									<button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-										<img src="./img/icon/burger-blue.svg" alt="">
-									</button>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Обновить</a></li>
-										<li><a class="dropdown-item" href="#">Редактировать</a></li>
-										<li><a class="dropdown-item" href="#">Удалить</a></li>
-										<li><a class="dropdown-item" href="#">Отложить</a></li>
-										<li><a class="dropdown-item" href="#">Передать</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="menu-info">
-								<div class="dropdown">
-									<button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-										<img src="./img/icon/copylinked.svg" alt="">
-									</button>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#"><span>На сайте</span></a></li>
-										<li><a class="dropdown-item" href="#"><span>На Rem.ua</span></a></li>
-										<li><a class="dropdown-item" href="#"><span>Видео Youtube</span></a></li>
-										<li><a class="dropdown-item" href="#"><span>На карте</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<button type="button" class="details-control">
-								<img src="./img/icon/plus.svg" alt="">
-							</button>
-						</div>
-					</div>
-				</div>
-				<div class="geo_card-info">
-					<div class="geo_card-address">
-						<strong>Южная Пальмира,</strong>
-						<span>ул. Генуэзская/Посмитного длинн...</span>
-						<span>Аркадия, Одесса</span>
-					</div>
-					<div class="geo_card-params">
-						<p>2 к / Квартира / S 300/40/15 / 5 сот / 14 из 25 эт / С ремонтом</p>
-					</div>
-					<div class="geo_card-price">
-						<p>USD 85 000 <span>(850/м²)</span></p>
-					</div>
-					<div class="geo_card-contact">
-						<p>
-							<span>Имядлинное Фамилия</span>
-							<a href="tel:380968796542">+380968796542</a>
-						</p>
-					</div>
-				</div>
-			</div>`;
-			
-			marker.addListener("click", function() {
-				infoWindow.setContent(content);
-				infoWindow.open(map, marker);
-			});
+			marker.bindPopup(`<b>${location.title}</b><br>Об'єктів: ${location.quantityOfObjects}`);
 			
 			markers.push(marker);
-		});
+			return marker;
+		}
+		
+		// Додаємо всі маркери
+		locations.forEach(createMarker);
 		
 		// Функція для фільтрації маркерів
 		function filterMarkers() {
-			if (!circle) return;
+			if (!circleGroup || !circleGroup.circle) return;
 			
-			const center = circle.getCenter();
-			const radius = circle.getRadius();
+			const center = circleGroup.circle.getLatLng();
+			const radius = circleGroup.circle.getRadius();
 			
 			markers.forEach(marker => {
-				const distance = google.maps.geometry.spherical.computeDistanceBetween(
-					center,
-					marker.getPosition()
-				);
-				marker.setVisible(distance <= radius);
+				const distance = center.distanceTo(marker.getLatLng());
+				marker.setOpacity(distance <= radius ? 1 : 0.3);
 			});
+			
+			updateResizeHandlePosition();
 		}
 		
-		// Функція для створення/видалення круга
-		function toggleCircle() {
-			if (circle) {
-				circle.setMap(null);
-				circle = null;
-				markers.forEach(marker => marker.setVisible(true));
-				circleBtn.textContent = 'Увімкнути фільтр по зоні';
-			} else {
-				circle = new google.maps.Circle({
-					map: map,
-					center: map.getCenter(),
-					radius: 1000,
-					fillColor: '#3585F5',
-					fillOpacity: 0.2,
-					strokeColor: '#3585F5',
-					strokeOpacity: 0.8,
-					strokeWeight: 2,
-					editable: true,
-					draggable: true
-				});
-				
-				circle.addListener('radius_changed', filterMarkers);
-				circle.addListener('center_changed', filterMarkers);
+		// Оновлення позиції кнопки зміни розміру
+		function updateResizeHandlePosition() {
+			if (!circleGroup) return;
+			
+			const center = circleGroup.circle.getLatLng();
+			const radius = circleGroup.circle.getRadius();
+			
+			// Точніший розрахунок позиції на краю кола
+			const angle = 0; // 0 градусів - праворуч
+			const dx = radius * Math.cos(angle * Math.PI / 180);
+			const dy = radius * Math.sin(angle * Math.PI / 180);
+			
+			// Конвертуємо метри в градуси (приблизно 111320 метрів у градусі)
+			const dLng = dx / (111320 * Math.cos(center.lat * Math.PI / 180));
+			const dLat = dy / 111320;
+			
+			const edgePoint = L.latLng(
+				center.lat + dLat,
+				center.lng + dLng
+			);
+			
+			circleGroup.resizeHandle.setLatLng(edgePoint);
+		}
+		
+		// Функція для створення круга з елементами управління
+		function createCircleWithControls(center, radius) {
+			// Основний круг
+			const circle = L.circle(center, {
+				radius: radius,
+				color: '#3585F5',
+				fillColor: '#3585F5',
+				fillOpacity: 0.2,
+				weight: 2
+			}).addTo(map);
+			
+			// Розраховуємо точку на краю кола (праворуч)
+			const edgePoint = L.latLng(
+				center.lat,
+				center.lng + (radius / 111320 * Math.cos(center.lat * Math.PI / 180))
+			);
+			
+			// Кнопка зміни розміру (завжди видима на краю кола)
+			const resizeHandle = L.marker(edgePoint, {
+				icon: L.divIcon({
+					className: 'resize-handle',
+					html: '<div class="resize-button">↔</div>',
+					iconSize: [30, 30]
+				}),
+				draggable: true,
+				zIndexOffset: 1000
+			}).addTo(map);
+			
+			// Центральний маркер для переміщення
+			const centerHandle = L.marker(center, {
+				icon: L.divIcon({
+					className: 'center-handle',
+					html: '<div class="move-button">⤡</div>',
+					iconSize: [30, 30]
+				}),
+				draggable: true,
+				zIndexOffset: 1000
+			}).addTo(map);
+			
+			// Обробник перетягування кнопки зміни розміру
+			resizeHandle.on('drag', function(e) {
+				const newCenter = centerHandle.getLatLng();
+				const newRadius = newCenter.distanceTo(e.target.getLatLng());
+				circle.setRadius(newRadius);
 				filterMarkers();
-				circleBtn.textContent = 'Вимкнути фільтр по зоні';
-			}
+			});
+			
+			// Обробник перетягування центрального маркера
+			centerHandle.on('drag', function(e) {
+				const newCenter = e.target.getLatLng();
+				circle.setLatLng(newCenter);
+				centerHandle.setLatLng(newCenter);
+				filterMarkers();
+			});
+			
+			return {
+				circle: circle,
+				resizeHandle: resizeHandle,
+				centerHandle: centerHandle,
+				remove: function() {
+					map.removeLayer(circle);
+					map.removeLayer(resizeHandle);
+					map.removeLayer(centerHandle);
+				}
+			};
 		}
 		
-		// Створюємо кнопку для управління фільтром
-		const circleBtn = document.createElement('button');
-		circleBtn.textContent = 'Увімкнути фільтр по зоні';
-		circleBtn.style.cssText = `
-			margin: 10px;
-			padding: 8px 16px;
-			background: #3585F5;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-			font-size: 14px;
-		`;
+		// Стилі для елементів управління
+		const style = document.createElement('style');
+		style.textContent = `
+            .resize-handle .resize-button {
+                width: 30px;
+                height: 30px;
+                background-color: white;
+                border: 3px solid #3585F5;
+                border-radius: 50%;
+                cursor: ew-resize;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                color: #3585F5;
+                font-size: 14px;
+                box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            }
+            .center-handle .move-button {
+                width: 30px;
+                height: 30px;
+                background-color: #3585F5;
+                border: 2px solid white;
+                border-radius: 50%;
+                cursor: move;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                font-size: 14px;
+                box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            }
+        `;
+		document.head.appendChild(style);
 		
-		// Додаємо кнопку на карту
-		map.controls[google.maps.ControlPosition.TOP_CENTER].push(circleBtn);
-		// Обробник кліку для кнопки
-		circleBtn.addEventListener('click', toggleCircle);
+		// Кнопка для управління фільтром
+		const filterBtn = document.createElement('button');
+		filterBtn.textContent = 'Увімкнути фільтр по зоні';
+		filterBtn.style.cssText = `
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 8px 16px;
+            background: #3585F5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        `;
+		document.getElementById('map').appendChild(filterBtn);
+		
+		// Обробник кліку для кнопки фільтра
+		filterBtn.addEventListener('click', function() {
+			if (circleGroup) {
+				circleGroup.remove();
+				circleGroup = null;
+				markers.forEach(marker => marker.setOpacity(1));
+				filterBtn.textContent = 'Увімкнути фільтр по зоні';
+			} else {
+				circleGroup = createCircleWithControls(map.getCenter(), 1000);
+				filterMarkers();
+				filterBtn.textContent = 'Вимкнути фільтр по зоні';
+			}
+		});
 	}
+	
+	document.addEventListener('DOMContentLoaded', initMap);
 </script>
+
 
 
 

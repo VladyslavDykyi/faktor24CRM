@@ -1,11 +1,48 @@
 <div class="container-fluid">
 	<div class="login">
 		<form class="login-form" action="#">
-			<div class="login-row"></div>
-			<div class="login-row"></div>
-			<div class="login-row"></div>
-			<div class="login-row"></div>
-			<div class="login-row"></div>
+			<div class="login-row">
+				<div class="item">
+					<span>
+						<label class="item-label" for="login">Логин</label>
+					</span>
+					<input class="item-inputText" id="login" type="text" autocomplete="off">
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="item">
+					<span>
+						<label class="item-label" for="password">Пароль</label>
+					</span>
+					<input class="item-inputText" id="password" type="password" autocomplete="off">
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="item">
+					<label class="my-custom-input" for="remember_me">
+						<input type="checkbox" name="remember_me" id="remember_me">
+						<span class="my-custom-box"></span>
+						<span class="my-custom-text">Запомнить меня</span>
+					</label>
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="item">
+					<a class="link" href="#">
+						Восстановить пароль?
+					</a>
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="item">
+					<a class="btn btn-outline-secondary disabled" aria-disabled="true" href="#">
+						Регистрация
+					</a>
+					<button class="btn btn-primary" type="button">
+						Войти
+					</button>
+				</div>
+			</div>
 		</form>
 	</div>
 </div>
