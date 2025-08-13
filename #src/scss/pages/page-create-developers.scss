@@ -90,5 +90,6 @@
 .iti__flag {
 	background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/img/flags.png");
 }
-
-@import "_page-create-tui";
+.create-filter-row.row1 {
+	align-items: flex-start;
+}
