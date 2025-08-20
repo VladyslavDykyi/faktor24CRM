@@ -186,6 +186,7 @@ $(document).ready(function () {
 	$('#example tbody').on('click', '.btn-others', function () {
 		const button = $(this);
 		const dopInfoRow = button.closest('.dop-info-row');
+		console.log(dopInfoRow);
 		const tbodyDopInfo = dopInfoRow.find('.tbody-dop-info');
 		const isOthersTableAdded = tbodyDopInfo.next().hasClass('table-for-others');
 		
