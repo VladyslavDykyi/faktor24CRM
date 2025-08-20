@@ -194,7 +194,14 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							display: flex;
 						}
 					}
-					
+					&.photo {
+						& img {
+							width: 40px;
+							height: 40px;
+							object-fit: cover;
+							border-radius: 8px;
+						}
+					}
 					&.developer {
 						& .developer-wrapper {
 							display: flex;
@@ -412,6 +419,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 								border-bottom-color: #D5DBE3;
 								
 								& .tbody-wrapper {
+									&.photo {
+										& img {
+											width: auto;
+											height:  auto;
+											object-fit: none;
+										}
+									}
 								}
 							}
 						}

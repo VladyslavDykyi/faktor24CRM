@@ -53,6 +53,11 @@
 	border: none;
 	padding: 6px 10px;
 }
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+	font-weight: 700;
+	font-size: 14px;
+	color: #aaa;
+}
 #example tbody tr.dop-info-row td .table-for-others {
 	margin: 0 12px 20px;
 	&-info {
