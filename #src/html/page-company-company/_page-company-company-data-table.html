@@ -3,9 +3,9 @@
 	<table id="example" class="display" style="width:100%">
 		<col width="3.0%" valign="middle">
 		<col width="6.0%" valign="middle">
-		<col width="15.038%" valign="middle">
+		<col width="24.038%" valign="middle">
 		<col width="14.587%" valign="middle">
-		<col width="14.587%" valign="middle">
+		<col width="5.587%" valign="middle">
 		<col width="6.0%" valign="middle">
 		<col width="6.0%" valign="middle">
 		<col width="6.0%" valign="middle">
@@ -28,18 +28,30 @@
 				</div>
 			</th>
 			<th>
-				<div class="thead-wrapper agent">
-					<p>Агент</p>
+				<div class="thead-wrapper company">
+					<p>Компания</p>
 				</div>
 			</th>
 			<th>
-				<div class="thead-wrapper position">
-					<p>Должность</p>
+				<div class="thead-wrapper responsible">
+					<p>Ответственный</p>
 				</div>
 			</th>
 			<th>
 				<div class="thead-wrapper offices">
-					<p>Офис</p>
+					<p>Офисы</p>
+				</div>
+			</th>
+			<th>
+				<div class="thead-wrapper command">
+					<p>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+							<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+						</svg>
+						<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Команда">
+							<img src="./img/icon/icon-info.svg" alt="">
+						</span>
+					</p>
 				</div>
 			</th>
 			<th>
@@ -92,8 +104,8 @@
 				</div>
 			</th>
 			<th>
-				<div class="thead-wrapper activeuntil">
-					<p>Активный до</p>
+				<div class="thead-wrapper commission">
+					<p>Комиссия</p>
 				</div>
 			</th>
 			<th>
@@ -153,74 +165,55 @@
 				</div>
 			</td>
 			<td>
-				<div class="tbody-wrapper agent">
+				<div class="tbody-wrapper company">
+						<strong>Название компании 1</strong>
+						<p>Генуэзская 1, офис 100</p>
+						<span>Аркадия, Одесса, Одесский длинный, Украина</span>
+				</div>
+			</td>
+			<td>
+				<div class="tbody-wrapper responsible">
 					<div>
 						<p>Длинное имя Добровольский</p>
-						<p>Real Estate Name</p>
+						<span>Менеджер</span>
 						<a href="tel:380968796542">+380968796542</a>
 					</div>
 				</div>
 			</td>
 			<td>
-				<div class="tbody-wrapper position">
-					<label>
-						<select class="js-example-responsive3 position-select">
-							<option></option>
-							<option>
-								USD
-							</option>
-							<option>
-								UAH
-							</option>
-							<option>
-								EUR
-							</option>
-						</select>
-					</label>
+				<div class="tbody-wrapper offices">
+					<p><button class="info-footer-btn btn-others" type="button">10</button></p>
 				</div>
 			</td>
 			<td>
-				<div class="tbody-wrapper offices">
-					<label>
-						<select class="js-example-responsive3 offices-select">
-							<option></option>
-							<option>
-								Офис 1
-							</option>
-							<option>
-								Офис 2
-							</option>
-							<option>
-								Офис 3
-							</option>
-						</select>
-					</label>
+				<div class="tbody-wrapper command">
+					<p><button class="info-footer-btn btn-others" type="button">1000</button></p>
 				</div>
 			</td>
 			<td>
 				<div class="tbody-wrapper object">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
+					<p><button class="info-footer-btn btn-others" type="button">10000</button></p>
 				</div>
 			</td>
 			<td>
 				<div class="tbody-wrapper client">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
+					<p><button class="info-footer-btn btn-others" type="button">1000</button></p>
 				</div>
 			</td>
 			<td>
 				<div class="tbody-wrapper succeed">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
+					<p><button class="info-footer-btn btn-others" type="button">100000</button></p>
 				</div>
 			</td>
 			<td>
 				<div class="tbody-wrapper nosucceed">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
+					<p><button class="info-footer-btn btn-others" type="button">100</button></p>
 				</div>
 			</td>
 			<td>
-				<div class="tbody-wrapper activeuntil">
-					<p>00:00</p>
-					<span>01.01.2024</span>
+				<div class="tbody-wrapper commission">
+					<p>от 1000</p>
+					<span>до 1000000</span>
 				</div>
 			</td>
 			<td>
@@ -230,13 +223,6 @@
 						<img src="./img/icon/mail.svg" alt="">
 					</a>
 					<div class="block-actions-wrapper">
-						<label class="bookmark">
-							<input type="checkbox">
-							<span>
-								<img class="non-checked" src="./img/icon/bookmark.svg" alt="">
-								<img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
-							</span>
-						</label>
 						<div class="menu-burger">
 							<div class="dropdown">
 								<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -251,135 +237,6 @@
 								</ul>
 							</div>
 						</div>
-						<div class="menu-info">
-							<div class="dropdown">
-								<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="./img/icon/copylinked.svg" alt="">
-								</button>
-								<ul class="dropdown-menu">
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>На сайте</span>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>На Rem.ua</span>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>Видео Youtube</span>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>	На карте</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="tbody-wrapper checkBox">
-					<label class="my-custom-input">
-						<input type="checkbox">
-						<span class="my-custom-box"></span>
-					</label>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper photo">
-					<div class="developer-wrapper">
-						<div>
-							<img src="./img/complex2.png" alt="">
-						</div>
-					</div>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper agent">
-					<div>
-						<p>Длинное имя Добровольский</p>
-						<p>Real Estate Name</p>
-						<a href="tel:380968796542">+380968796542</a>
-					</div>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper position">
-					<label>
-						<select class="js-example-responsive3 position-select">
-							<option></option>
-							<option>
-								USD
-							</option>
-							<option>
-								UAH
-							</option>
-							<option>
-								EUR
-							</option>
-						</select>
-					</label>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper offices">
-					<label>
-						<select class="js-example-responsive3 offices-select">
-							<option></option>
-							<option>
-								Офис 1
-							</option>
-							<option>
-								Офис 2
-							</option>
-							<option>
-								Офис 3
-							</option>
-						</select>
-					</label>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper object">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper client">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper succeed">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper nosucceed">
-					<p><button class="info-footer-btn btn-others" type="button">3</button></p>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper activeuntil">
-					<p>00:00</p>
-					<span>01.01.2024</span>
-				</div>
-			</td>
-			<td>
-				<div class="tbody-wrapper block-actions">
-					<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top"
-					   data-bs-title="Написать">
-						<img src="./img/icon/mail.svg" alt="">
-					</a>
-					<div class="block-actions-wrapper">
 						<label class="bookmark">
 							<input type="checkbox">
 							<span>
@@ -387,49 +244,6 @@
 								<img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
 							</span>
 						</label>
-						<div class="menu-burger">
-							<div class="dropdown">
-								<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="./img/icon/burger-blue.svg" alt="">
-								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">Обновить</a></li>
-									<li><a class="dropdown-item" href="#">Редактировать</a></li>
-									<li><a class="dropdown-item" href="#">Удалить</a></li>
-									<li><a class="dropdown-item" href="#">Отложить</a></li>
-									<li><a class="dropdown-item" href="#">Передать</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="menu-info">
-							<div class="dropdown">
-								<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="./img/icon/copylinked.svg" alt="">
-								</button>
-								<ul class="dropdown-menu">
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>На сайте</span>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>На Rem.ua</span>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>Видео Youtube</span>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">
-											<span>	На карте</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
 					</div>
 				</div>
 			</td>

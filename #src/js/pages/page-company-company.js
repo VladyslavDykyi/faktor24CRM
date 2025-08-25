@@ -24,14 +24,15 @@ $(document).ready(function () {
 				}
 			},
 			{ data: 'photo', name: 'Фото' },
-			{ data: 'agent', name: 'Агент' },
-			{ data: 'position', name: 'Должность' },
+			{ data: 'company', name: 'Компания' },
+			{ data: 'responsible', name: 'Ответственный' },
 			{ data: 'offices', name: 'Офис' },
+			{ data: 'command', name: 'Команда' },
 			{ data: 'object', name: 'Объ' },
 			{ data: 'client', name: 'Кли' },
 			{ data: 'succeed', name: 'Усп' },
 			{ data: 'nosucceed', name: 'Не усп' },
-			{ data: 'activeuntil', name: 'Активный до' },
+			{ data: 'commission', name: 'Комиссия' },
 			{
 				data: null,
 				orderable: false,
@@ -44,13 +45,6 @@ $(document).ready(function () {
 							<img src="./img/icon/mail.svg" alt="">
 						</a>
                         <div class="block-actions-wrapper">
-                           <label class="bookmark">
-                              <input type="checkbox">
-                              <span>
-                                  <img class="non-checked" src="./img/icon/bookmark.svg" alt="">
-                                  <img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
-                              </span>
-                           </label>
                            <div class="menu-burger">
                               <div class="dropdown">
                                  <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,54 +59,23 @@ $(document).ready(function () {
                                  </ul>
                               </div>
                            </div>
-                           <div class="menu-info">
-                              <div class="dropdown">
-                                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                     <img src="./img/icon/copylinked.svg" alt="">
-                                 </button>
-                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><span>На сайте</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span>На Rem.ua</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span>Видео Youtube</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span>На карте</span></a></li>
-                                 </ul>
-                              </div>
-                           </div>
+                           <label class="bookmark">
+                              <input type="checkbox">
+                              <span>
+                                  <img class="non-checked" src="./img/icon/bookmark.svg" alt="">
+                                  <img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
+                              </span>
+                           </label>
                         </div>
                     </div>
                     `;
 				}
 			}
 		],
-		// Добавьте этот callback для инициализации после создания таблицы
-		initComplete: function(settings, json) {
-			// Инициализация Select2 для элементов, которые уже есть в DOM
-			$(".js-example-responsive3.position-select").select2({
-				width: 'resolve',
-				placeholder: 'Должность',
-			});
-			// Инициализация Select2 для элементов, которые уже есть в DOM
-			$(".js-example-responsive3.offices-select").select2({
-				width: 'resolve',
-				placeholder: 'Офис',
-			});
-		},
-		// Или используйте drawCallback для инициализации при каждом перерисовывании таблицы
-		drawCallback: function(settings) {
-			$(".js-example-responsive3.position-select").select2({
-				width: 'resolve',
-				placeholder: 'Должность',
-			});
-			// Инициализация Select2 для элементов, которые уже есть в DOM
-			$(".js-example-responsive3.offices-select").select2({
-				width: 'resolve',
-				placeholder: 'Офис',
-			});
-		}
 	});
 	// Обробник кліку на кнопку "btn-others"
 	// Обробник кліку на кнопку "btn-others" в блоці client
-	$('#example tbody').on('click', '.object .btn-others', function(e) {
+	$('#example tbody').on('click', '.offices .btn-others', function(e) {
 		e.stopPropagation(); // Зупиняємо спливання події
 		
 		const button = $(this);
@@ -125,10 +88,62 @@ $(document).ready(function () {
 		// Створюємо новий рядок з таблицею
 		const dopInfoRow = `
         <tr class="dop-info-row">
-            <td colspan="11">
+            <td colspan="12">
                 <div class="table-for-others-info">
                     <p class="paragraph">Объекты</p>
-                    <button class="info-footer-btn btn-collapse" type="button">Свернуть</button>
+                    <div>
+						<div class="thead-wrapper command">
+							<p>
+								<img src="./img/icon/icon-table/people-fill.svg" alt="">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Команда">
+									<img src="./img/icon/icon-info.svg" alt="">
+								</span>
+							</p>
+						</div>
+					</div>
+					<div>
+						<div class="thead-wrapper object">
+							<p>
+								<img src="./img/icon/icon-table/house-fill.svg" alt="">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Объект">
+									<img src="./img/icon/icon-info.svg" alt="">
+								</span>
+							</p>
+						</div>
+					</div>
+					<div>
+						<div class="thead-wrapper client">
+							<p>
+								<img src="./img/icon/icon-table/person-fill.svg" alt="">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Клиенты ">
+									<img src="./img/icon/icon-info.svg" alt="">
+								</span>
+							</p>
+						</div>
+					</div>
+					<div>
+						<div class="thead-wrapper succeed">
+							<p>
+								<img src="./img/icon/icon-table/hand-thumbs-up-fill.svg" alt="">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Успевает">
+									<img src="./img/icon/icon-info.svg" alt="">
+								</span>
+							</p>
+						</div>
+					</div>
+					<div>
+						<div class="thead-wrapper nosucceed">
+							<p>
+								<img src="./img/icon/icon-table/hand-thumbs-down-fill.svg" alt="">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Не успевает">
+									<img src="./img/icon/icon-info.svg" alt="">
+								</span>
+							</p>
+						</div>
+					</div>
+                    <div class="wrapper-btn-collapse">
+	                    <button class="info-footer-btn btn-collapse" type="button">Свернуть</button>
+					</div>
 				</div>
                 <div class="table-for-others">
                     <table id="example2" style="width:98%;  margin: auto;">
@@ -142,57 +157,64 @@ $(document).ready(function () {
                         <col width="19.38062%" valign="middle">
                         <tbody>
                         <tr>
-                            <td>
-                                <div class="tbody-wrapper location">
-                                    <p>Южная Пальмира</p>
-                                    <p>Генуэзская/Посмитного</p>
-                                    <span>Аркадия, Одесса, Одесская, Украина</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tbody-wrapper type">
-                                    <p>2к</p>
-                                    <span>Квартира</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tbody-wrapper area">
-                                    <p>60/40/15</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tbody-wrapper condition">
-                                    <p>С ремонтом</p>
-                                    <p>Новострой</p>
-                                    <span> Монолит</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="tbody-wrapper floor">
-                                    <p>4/25 <span>эт</span></p>
-                                </div>
-                            </td>
-                            <td>
+                        	<td>
                                 <div class="tbody-wrapper photo">
                                     <img src="./img/image.png" alt="">
                                 </div>
                             </td>
+                             <td>
+                                <div class="tbody-wrapper company">
+									<strong>Название компании 1</strong>
+                                	<p>Генуэзская 1, офис 100</p>
+									<span>Аркадия, Одесса, Одесский длинный, Украина</span>
+								</div>
+                            </td>
                             <td>
-                                <div class="tbody-wrapper price">
-                                    <p>85000</p>
-                                    <span>850/м <sup>2</sup></span>
+                                <div class="tbody-wrapper location">
+                                    <p>Длинное имя Добровольский</p>
+									<span>Менеджер</span>
+									<a href="tel:380968796542">+380968796542</a>
+                                </div>
+                            </td>
+                            <td>
+								<div class="tbody-wrapper command">
+									<p><button class="info-footer-btn btn-others" type="button">1000</button></p>
+								</div>
+							</td>
+							<td>
+								<div class="tbody-wrapper object">
+									<p><button class="info-footer-btn btn-others" type="button">10000</button></p>
+								</div>
+							</td>
+							<td>
+								<div class="tbody-wrapper client">
+									<p><button class="info-footer-btn btn-others" type="button">1000</button></p>
+								</div>
+							</td>
+							<td>
+								<div class="tbody-wrapper succeed">
+									<p><button class="info-footer-btn btn-others" type="button">100000</button></p>
+								</div>
+							</td>
+							<td>
+								<div class="tbody-wrapper nosucceed">
+									<p><button class="info-footer-btn btn-others" type="button">100</button></p>
+								</div>
+							</td>
+                            
+                            <td>
+                                <div class="tbody-wrapper commission">
+                                    <p>от 1000</p>
+									<span>до 1000000</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="tbody-wrapper block-actions">
+	                                <a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top"
+									   data-bs-title="Написать">
+										<img src="./img/icon/mail.svg" alt="">
+									</a>
                                     <div class="block-actions-wrapper">
-                                        <label class="bookmark">
-                                            <input type="checkbox">
-                                            <span>
-                                                <img class="non-checked" src="./img/icon/bookmark.svg" alt="">
-                                                <img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
-                                            </span>
-                                        </label>
                                         <div class="menu-burger">
                                             <div class="dropdown">
                                                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -207,23 +229,14 @@ $(document).ready(function () {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="menu-info">
-                                            <div class="dropdown">
-                                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <img src="./img/icon/copylinked.svg" alt="">
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><span>На сайте</span></a></li>
-                                                    <li><a class="dropdown-item" href="#"><span>На Rem.ua</span></a></li>
-                                                    <li><a class="dropdown-item" href="#"><span>Видео Youtube</span></a></li>
-                                                    <li><a class="dropdown-item" href="#"><span>На карте</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                         <label class="bookmark">
+                                            <input type="checkbox">
+                                            <span>
+                                                <img class="non-checked" src="./img/icon/bookmark.svg" alt="">
+                                                <img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
+                                            </span>
+                                        </label>
                                     </div>
-                                    <button type="button" class="details-control-dop">
-                                        <img src="./img/icon/plus.svg" alt="">
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -280,22 +293,16 @@ $(document).ready(function () {
 			
 		}, 0);
 	});
-	$(".js-example-responsive2.position").select2({
+	$(".js-example-responsive2.currency").select2({
 		width: 'resolve',
-		placeholder: 'Должность',
+		minimumResultsForSearch: -1,
 	});
-	$(".js-example-responsive2.statusagents").select2({
-		width: 'resolve',
-		placeholder: 'Статус агентов',
-	});
+	
 	$(".js-example-responsive2.company").select2({
 		width: 'resolve',
 		placeholder: 'Компания',
 	});
-	$(".js-example-responsive2.offices").select2({
-		width: 'resolve',
-		placeholder: 'Офис',
-	});
+
 	
 	function initPhotoHoverPreview() {
 		// Створюємо попап для прев'ю фото (якщо ще не існує)
@@ -344,7 +351,7 @@ $(document).ready(function () {
 			$popup.hide();
 		});
 	}
-
+	
 	// Ініціалізуємо функціонал при завантаженні сторінки
 	initPhotoHoverPreview();
 	// Викликаємо ініціалізацію Tooltip після оновлення таблиці

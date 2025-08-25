@@ -39,7 +39,7 @@ $(document).ready(function () {
 				render: function (data, type, row) {
 					return `
                      <div class="tbody-wrapper block-actions">
-                     	<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
+                     	<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top"
 						   data-bs-title="Написать">
 							<img src="./img/icon/mail.svg" alt="">
 						</a>

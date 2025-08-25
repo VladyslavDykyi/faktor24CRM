@@ -332,6 +332,11 @@ ul {
   min-height: 30px;
 }
 
+.custom-tooltip {
+  --bs-tooltip-bg: #3585F5;
+  --bs-tooltip-color: #fff;
+}
+
 .sidebar {
   max-width: 70px;
   width: 100%;
