@@ -537,6 +537,14 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example tbody tr.dop-info-row td .table-for-others {
 	margin: 0 12px 20px;
+	& .responsible {
+		display: flex;
+		flex-direction: column;
+		& a {
+			font-size: 12px;
+			color: #111;
+		}
+	}
 	&-info {
 		display: flex;
 		align-items: center;
@@ -567,7 +575,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		}
 		& .wrapper-btn-collapse {
 			width: 18.1%;
-			//background-color: red;
 			display: flex;
 			justify-content: flex-end;
 			& .info-footer-btn.btn-collapse {

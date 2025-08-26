@@ -170,7 +170,7 @@ $(document).ready(function () {
 								</div>
                             </td>
                             <td>
-                                <div class="tbody-wrapper location">
+                                <div class="tbody-wrapper responsible">
                                     <p>Длинное имя Добровольский</p>
 									<span>Менеджер</span>
 									<a href="tel:380968796542">+380968796542</a>
@@ -201,7 +201,6 @@ $(document).ready(function () {
 									<p><button class="info-footer-btn btn-others" type="button">100</button></p>
 								</div>
 							</td>
-                            
                             <td>
                                 <div class="tbody-wrapper commission">
                                     <p>от 1000</p>
