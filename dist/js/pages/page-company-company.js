@@ -105,7 +105,7 @@ $(document).ready(function () {
 						<div class="thead-wrapper object">
 							<p>
 								<img src="./img/icon/icon-table/house-fill.svg" alt="">
-								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Объект">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Объекты">
 									<img src="./img/icon/icon-info.svg" alt="">
 								</span>
 							</p>
@@ -115,7 +115,7 @@ $(document).ready(function () {
 						<div class="thead-wrapper client">
 							<p>
 								<img src="./img/icon/icon-table/person-fill.svg" alt="">
-								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Клиенты ">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Клиенты">
 									<img src="./img/icon/icon-info.svg" alt="">
 								</span>
 							</p>
@@ -125,7 +125,7 @@ $(document).ready(function () {
 						<div class="thead-wrapper succeed">
 							<p>
 								<img src="./img/icon/icon-table/hand-thumbs-up-fill.svg" alt="">
-								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Успевает">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Успешные сделки">
 									<img src="./img/icon/icon-info.svg" alt="">
 								</span>
 							</p>
@@ -135,7 +135,7 @@ $(document).ready(function () {
 						<div class="thead-wrapper nosucceed">
 							<p>
 								<img src="./img/icon/icon-table/hand-thumbs-down-fill.svg" alt="">
-								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Не успевает">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Неуспешные сделки">
 									<img src="./img/icon/icon-info.svg" alt="">
 								</span>
 							</p>
