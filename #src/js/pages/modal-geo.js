@@ -87,8 +87,6 @@
 							statusElement.className = "address-status success";
 						}
 						
-						// Додатковий вивід для дебагіння (можна видалити)
-						console.log("Повна відповідь від Nominatim:", data);
 					} else {
 						const addressField = document.getElementById('address');
 						if (addressField) addressField.value = "Адресу не знайдено";
