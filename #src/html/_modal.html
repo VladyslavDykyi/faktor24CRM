@@ -1,38 +1,40 @@
 <div class="modal fade" id="geoModal" tabindex="-1" aria-labelledby="geoModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title fs-5" id="exampleModalLabel">
-					Локация
-				</h4>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
 			<div class="modal-body">
+				<div class="modal-body-l d-flex align-items-center justify-content-between">
+					<h4 class="modal-title fs-5" id="exampleModalLabel">
+						<span>Локация</span>
+					</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
 				<div class="modal-body-l">
 					<label for="address">Адрес</label>
-					<input type="text" id="address">
+					<input type="text" id="address" class="form-control">
+					<div id="addressStatus" class="address-status">Оберіть місце на карті</div>
 				</div>
 				<div class="modal-body-l">
 					<div class="row">
 						<div class="col-12">
-							<span>
-								Координаты
-							</span>
+							<span class="label">Координаты</span>
 						</div>
 						<div class="col-6">
-							<label>
-								<input type="text" id="latitude">
+							<label class="d-block">
+								<input type="text" id="latitude" class="form-control" placeholder="Широта" readonly>
 							</label>
 						</div>
 						<div class="col-6">
-							<label>
-								<input type="text" id="longitude">
+							<label class="d-block">
+								<input type="text" id="longitude" class="form-control" placeholder="Долгота"
+									   readonly>
 							</label>
 						</div>
 					</div>
 				</div>
-				<!-- Змінив клас "map" на "map-container" і додав стилі -->
-				<div id="map-container" style="height: 400px; width: 100%; margin-top: 15px;"></div>
+				<div id="map-container"></div>
+				<div class="modal-body-l mt-3">
+					<button id="saveLocation" class="btn btn-primary">Сохранить</button>
+				</div>
 			</div>
 		</div>
 	</div>

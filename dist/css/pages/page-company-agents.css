@@ -1677,10 +1677,60 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   border-radius: 6px;
 }
 
-.modal {
-  --bs-modal-width: 1040px;
-  --bs-modal-padding: 47px 75px 46px;
-  --bs-modal-bg: #EEF5FB;
+#map-container {
+  height: 400px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.modal-dialog-centered {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-body-l {
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.my-dropdown-geo-btn {
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.my-dropdown-geo-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.address-status {
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+.loading {
+  color: #0d6efd;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.success {
+  color: #198754;
 }
 
 .full-filter-btn-wrapper {
@@ -1740,17 +1790,5 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
   #example tbody tr td .tbody-dop-info {
     padding: 8px 6px;
-  }
-}
-
-@media screen and (max-width: 850px) {
-  .modal {
-    --bs-modal-padding: 40px;
-  }
-}
-
-@media screen and (max-width: 520px) {
-  .modal {
-    --bs-modal-padding: 15px;
   }
 }
