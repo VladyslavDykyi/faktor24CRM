@@ -1,6 +1,19 @@
 "use strict";
 (function () {
 	$(document).ready(function() {
+		// Додаємо обробники подій для модального вікна
+		$('#geoModal').on('show.bs.modal', function () {
+			$('.my-dropdown-geo-btn').addClass('active');
+		});
+		
+		$('#geoModal').on('hide.bs.modal', function () {
+			$('.my-dropdown-geo-btn').removeClass('active');
+		});
+
+// Додатково: обробник для події hidden (коли модалка повністю прихована)
+		$('#geoModal').on('hidden.bs.modal', function () {
+			$('.my-dropdown-geo-btn').removeClass('active');
+		});
 		// Відкриття/закриття головного меню по кнопці
 		$('#btn-open-menu').on('click', function() {
 			$('.my-dropdown-list-wrapper').toggle();

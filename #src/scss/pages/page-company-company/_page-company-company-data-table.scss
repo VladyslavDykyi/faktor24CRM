@@ -91,16 +91,14 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					&.client,
 					&.succeed,
 					&.nosucceed {
-						
 						text-align: center;
 						& p {
 							display: inline-block;
-							padding-right: 20px;
 							position: relative;
 						}
 						& span {
 							position: absolute;
-							right: 0;
+							right: -20px;
 							top: -5px;
 						}
 					}
@@ -563,13 +561,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			text-align: center;
 			& p {
 				display: inline-block;
-				padding-right: 20px;
 				position: relative;
 				margin-bottom: 0;
 			}
 			& span {
 				position: absolute;
-				right: 0;
+				right: -20px;
 				top: -5px;
 			}
 		}

@@ -1298,7 +1298,7 @@ ul {
   color: #111;
   line-height: normal;
   outline: none;
-  padding: 6px 53px 6px 28px;
+  padding: 6px 54px 6px 32px;
   border: none;
   border-radius: 6px;
 }
@@ -1331,7 +1331,7 @@ ul {
   width: 24px;
   height: 24px;
   border: none;
-  background-color: transparent;
+  background-color: #aaa !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1342,6 +1342,10 @@ ul {
       -ms-flex-pack: center;
           justify-content: center;
   outline: none;
+}
+
+.my-dropdown-geo-btn.active {
+  background-color: #3585f5 !important;
 }
 
 .my-dropdown-geo-btn picture {
