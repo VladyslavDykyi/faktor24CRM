@@ -104,7 +104,7 @@ $(document).ready(function () {
 					<div class="thead-wrapper client">
 						<p>
 							<img src="./img/icon/icon-table/person-fill.svg" alt="">
-							<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Клиенты">
+							<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Сделки">
 								<img src="./img/icon/icon-info.svg" alt="">
 							</span>
 						</p>
