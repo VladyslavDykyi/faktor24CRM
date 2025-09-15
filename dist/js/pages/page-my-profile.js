@@ -2,7 +2,6 @@
 
 import {
 	PhoneInputManager, PhotoLoaderMini,
-	// RealEstateDescriptionGenerator,
 } from "./function_on_pages-create.js";
 
 $(".js-example-responsive2").select2({

@@ -337,6 +337,13 @@ ul {
   --bs-tooltip-color: #fff;
 }
 
+.custom-tooltip-red {
+  --bs-tooltip-bg: #fda9a9;
+  --bs-tooltip-color: #000;
+  text-wrap: nowrap;
+  --bs-tooltip-max-width: auto;
+}
+
 .header-wrapper {
   padding: 10px 0;
   display: -webkit-box;

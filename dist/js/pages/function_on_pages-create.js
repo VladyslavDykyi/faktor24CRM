@@ -1862,13 +1862,10 @@ class PhoneInputManager {
 		this.options = {...options};
 		this.phoneCounter = 1;
 		this.wrapper = document.querySelector(this.options.wrapperSelector);
-		this.btnAddTel = this.wrapper.querySelector(this.options.btnSelector);
-		
-		
-		// Чекаємо повного завантаження DOM
-		document.addEventListener('DOMContentLoaded', () => {
-			this.init();
-		});
+		if (this.wrapper) {
+			this.btnAddTel = this.wrapper.querySelector(this.options.btnSelector);
+			this.init(); // Викликаємо одразу, без очікування DOMContentLoaded
+		}
 	}
 	
 	init () {

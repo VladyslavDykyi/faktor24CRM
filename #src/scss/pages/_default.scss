@@ -247,4 +247,10 @@ ul {
 .custom-tooltip {
 	--bs-tooltip-bg: #3585F5;
 	--bs-tooltip-color: #fff;
+	&-red {
+		--bs-tooltip-bg: #fda9a9;
+		--bs-tooltip-color: #000;
+		text-wrap: nowrap;
+		--bs-tooltip-max-width: auto;
+	}
 }
