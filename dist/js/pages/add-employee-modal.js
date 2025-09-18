@@ -1,4 +1,4 @@
-import {PhotoLoaderMini, PhoneInputManager, } from "./function_on_pages-create.js";
+import {PhotoLoaderMini, PhoneInputManager } from "./function_on_pages-create.js";
 class FileUploader {
 	constructor(options) {
 		// Обов'язкові параметри
@@ -315,7 +315,7 @@ function initSelect2() {
 	// Масив всіх Select2, які потрібно ініціалізувати
 	const select2Configs = [
 		{
-			selector: '#tags-client',
+			selector: '#tags-employee-modal',
 			options: {
 				dropdownParent: $('#add-employee-modal'),
 				width: '100%',
@@ -324,7 +324,7 @@ function initSelect2() {
 			}
 		},
 		{
-			selector: '#employee-role',
+			selector: '#role-employee-modal',
 			options: {
 				dropdownParent: $('#add-employee-modal'),
 				width: '100%',
@@ -333,7 +333,7 @@ function initSelect2() {
 			}
 		},
 		{
-			selector: '#employee-offices',
+			selector: '#offices-employee-modal',
 			options: {
 				dropdownParent: $('#add-employee-modal'),
 				width: '100%',
@@ -385,14 +385,14 @@ function initPhotoLoader() {
 // Ініціалізація FileUploader для документів
 function initFileUploaders() {
 	// Перевіряємо, чи існують необхідні елементи в модалці
-	const documentInput = document.querySelector('#document');
+	const documentInput = document.querySelector('#document-employee-modal');
 	const loadingDocuments = document.querySelector('.loading-documents');
 	const renderContainer = document.querySelector('[data-render-document]');
 	
 	if (documentInput && loadingDocuments && renderContainer) {
 		// Для документів (без перевірки розміру)
 		new FileUploader({
-			inputId: 'document',
+			inputId: 'document-employee-modal',
 			wrapperClass: 'loading-documents',
 			renderContainerSelector: '[data-render-document]',
 			checkImageSize: false,
@@ -424,7 +424,7 @@ if (modal) {
 		}
 		
 		// Очищаємо всі Select2
-		const select2Selectors = ['#tags-client', '#employee-role', '#employee-offices'];
+		const select2Selectors = ['#tags-employee-modal', '#role-employee-modal', '#offices-employee-modal'];
 		select2Selectors.forEach(selector => {
 			if ($(selector).data('select2')) {
 				$(selector).select2('destroy');

@@ -324,6 +324,10 @@ ul {
   display: block;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #aaa;
+}
+
 .select2-container--default.select2-container--focus .select2-selection--multiple {
   border: none;
 }
@@ -342,6 +346,19 @@ ul {
   --bs-tooltip-color: #000;
   text-wrap: nowrap;
   --bs-tooltip-max-width: auto;
+}
+
+.blue-select2 .select2-container .select2-selection--single {
+  border-color: #e6f1ff;
+  background-color: #e6f1ff;
+}
+
+.blue-select2 .select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #3585f5;
+}
+
+.blue-select2 .select2-container--default .select2-selection--single .select2-selection__arrow b {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.545438 0.207001C0.275938 0.474274 0.275938 0.905183 0.545438 1.17246L5.11594 5.70518C5.33044 5.91791 5.67694 5.91791 5.89144 5.70518L10.4619 1.17246C10.7314 0.905183 10.7314 0.474274 10.4619 0.207001C10.1924 -0.0602717 9.75794 -0.0602717 9.48844 0.207001L5.50094 4.15609L1.51344 0.201546C1.24944 -0.0602718 0.809438 -0.0602717 0.545438 0.207001Z' fill='%233585F5' /%3e%3c/svg%3e");
 }
 
 .header-wrapper {

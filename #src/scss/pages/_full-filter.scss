@@ -140,10 +140,39 @@
 				color: #111;
 				margin-bottom: 6px;
 			}
+			& > span {
+				display: block;
+			}
+			& span:last-of-type {
+				position: relative;
+				background-color: #fff;
+				border-radius: 6px;
+				border: none;
+				outline: 0;
+				width: 100%;
+				font-weight: 700;
+				font-size: 14px;
+				line-height: normal;
+				color: #111;
+				& input {
+					background-color: transparent;
+					position: relative;
+					z-index: 10;
+				}
+				& img {
+					position: absolute;
+					z-index: 1;
+					top: 50%;
+					right: 5px;
+					transform: translateY(-50%);
+				}
+			}
 		}
 		
 		&.search-on-id {
-			
+			@media screen and (max-width: 1440px) {
+				width: calc(24.6% - 16.66667px);
+			}
 			& label {
 				font-weight: 400;
 				font-size: 14px;
@@ -177,7 +206,7 @@
 			font-size: 14px;
 			line-height: normal;
 			color: #111;
-			padding: 6px 10px;
+			padding: 6px 28px 6px 10px;
 			
 			&::placeholder {
 				font-weight: 700;

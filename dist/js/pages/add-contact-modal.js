@@ -315,29 +315,29 @@ function initSelect2() {
 	// Масив всіх Select2, які потрібно ініціалізувати
 	const select2Configs = [
 		{
-			selector: '#tags-employee-modal',
+			selector: '#tags-client-modal',
 			options: {
-				dropdownParent: $('#add-employee-modal'),
+				dropdownParent: $('#add-contact-modal'),
 				width: '100%',
 				placeholder: 'Выберите теги',
 				language: { noResults: () => "Результатов не найдено" }
 			}
 		},
 		{
-			selector: '#role-employee-modal',
+			selector: '#type-contact-modal',
 			options: {
-				dropdownParent: $('#add-employee-modal'),
+				dropdownParent: $('#add-contact-modal'),
 				width: '100%',
-				placeholder: 'Выберите роль',
+				placeholder: 'Выберите тип',
 				language: { noResults: () => "Результатов не найдено" }
 			}
 		},
 		{
-			selector: '#offices-employee-modal',
+			selector: '#source-contact-modal',
 			options: {
-				dropdownParent: $('#add-employee-modal'),
+				dropdownParent: $('#add-contact-modal'),
 				width: '100%',
-				placeholder: 'Выберите офис',
+				placeholder: 'Выберите источник',
 				language: { noResults: () => "Результатов не найдено" }
 			}
 		}
@@ -385,14 +385,14 @@ function initPhotoLoader() {
 // Ініціалізація FileUploader для документів
 function initFileUploaders() {
 	// Перевіряємо, чи існують необхідні елементи в модалці
-	const documentInput = document.querySelector('#document-employee-modal');
+	const documentInput = document.querySelector('#document-contact-modal');
 	const loadingDocuments = document.querySelector('.loading-documents');
 	const renderContainer = document.querySelector('[data-render-document]');
 	
 	if (documentInput && loadingDocuments && renderContainer) {
 		// Для документів (без перевірки розміру)
 		new FileUploader({
-			inputId: 'document-employee-modal',
+			inputId: 'document-contact-modal',
 			wrapperClass: 'loading-documents',
 			renderContainerSelector: '[data-render-document]',
 			checkImageSize: false,
@@ -410,7 +410,7 @@ function initModalComponents() {
 }
 
 // Обробник для модалки
-const modal = document.getElementById('add-employee-modal');
+const modal = document.getElementById('add-contact-modal');
 if (modal) {
 	modal.addEventListener('shown.bs.modal', function() {
 		setTimeout(initModalComponents, 300);
@@ -424,7 +424,7 @@ if (modal) {
 		}
 		
 		// Очищаємо всі Select2
-		const select2Selectors = ['#tags-employee-modal', '#role-employee-modal', '#offices-employee-modal'];
+		const select2Selectors = ['#tags-client-modal', '#type-contact-modal', '#source-contact-modal'];
 		select2Selectors.forEach(selector => {
 			if ($(selector).data('select2')) {
 				$(selector).select2('destroy');

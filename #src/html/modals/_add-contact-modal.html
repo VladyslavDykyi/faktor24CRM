@@ -1,10 +1,10 @@
-<div class="modal fade" id="add-employee-modal" tabindex="-1" aria-labelledby="geoModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-contact-modal" tabindex="-1" aria-labelledby="geoModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-xl">
 		<div class="modal-content">
 			<div class="modal-body">
 				<div class="modal-body-l d-flex align-items-center mb-0 justify-content-between">
 					<h2 class="modal-title fs-5" id="exampleModalLabel">
-						<span>Сотрудник ID1234567</span>
+						<span>Контакт ID1234567</span>
 					</h2>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
@@ -14,23 +14,23 @@
 					</h3>
 					<div class="modal-row">
 						<div class="item">
-							<label for="name-employee-modal" class="green">Имя</label>
+							<label for="name-contact-modal" class="green">Имя</label>
 							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="name-employee-modal" type="text" autocomplete="off"
+								<input class="item-inputText" id="name-contact-modal" type="text" autocomplete="off"
 									   placeholder="Имя">
 							</div>
 						</div>
 						<div class="item">
-							<label for="surname-employee-modal" class="green">Фамилия</label>
+							<label for="surname-contact-modal">Фамилия</label>
 							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="surname-employee-modal" type="text" autocomplete="off"
+								<input class="item-inputText" id="surname-contact-modal" type="text" autocomplete="off"
 									   placeholder="Фамилия">
 							</div>
 						</div>
 						<div class="item">
-							<label for="father-name-employee-modal">Отчество</label>
+							<label for="father-name-contact-modal">Отчество</label>
 							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="father-name-employee-modal" type="text" autocomplete="off"
+								<input class="item-inputText" id="father-name-contact-modal" type="text" autocomplete="off"
 									   placeholder="Отчество">
 							</div>
 						</div>
@@ -46,21 +46,21 @@
 										</svg>
 									</button>
 								</div>
-								<label for="tel-contact-employee-modal" class="green">Телефон / Логин</label>
+								<label for="tel-contact1-modal" class="green">Телефон / Логин</label>
 								<div class="item-inputText-wrapper">
-									<input class="item-inputText tel-contact" id="tel-contact-employee-modal" type="tel" autocomplete="off">
+									<input class="item-inputText tel-contact" id="tel-contact1-modal" type="tel" autocomplete="off">
 								</div>
 							</div>
 						</div>
 						<div class="item">
-							<label for="email-employee-modal" class="green">Email</label>
+							<label for="email-contact-modal">Email</label>
 							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="email-employee-modal" type="email" autocomplete="off">
+								<input class="item-inputText " id="email-contact-modal" type="email" autocomplete="off" placeholder="email@gmail.com">
 							</div>
 						</div>
 						<div class="item selects">
-							<label class="item-label" for="tags-employee-modal">Теги</label>
-							<select id="tags-employee-modal" class="js-example-responsive2 my-select2" autocomplete="off">
+							<label class="item-label green" for="tags-client-modal">Теги</label>
+							<select id="tags-client-modal" class="js-example-responsive2 my-select2" autocomplete="off">
 								<option></option>
 								<option value="company1">
 									Посредник1
@@ -76,50 +76,50 @@
 					</div>
 					<div class="modal-row">
 						<div class="item selects">
-							<label class="item-label" for="role-employee-modal">Роль</label>
-							<select id="role-employee-modal" class="js-example-responsive2 my-select2" autocomplete="off">
+							<label class="item-label green" for="type-contact-modal">Тип контакта</label>
+							<select id="type-contact-modal" class="js-example-responsive2 my-select2" autocomplete="off">
 								<option></option>
 								<option value="company1">
-									Роль1
+									тип1
 								</option>
 								<option value="company2">
-									Роль2
+									тип2
 								</option>
 								<option value="company3">
-									Роль3
+									тип3
 								</option>
 							</select>
 						</div>
 						<div class="item selects">
-							<label class="item-label" for="offices-employee-modal">Офис</label>
-							<select id="offices-employee-modal" class="js-example-responsive2 my-select2" autocomplete="off">
+							<label class="item-label green" for="source-contact-modal">Источник</label>
+							<select id="source-contact-modal" class="js-example-responsive2 my-select2" autocomplete="off">
 								<option></option>
 								<option value="company1">
-									Офис1
+									Рекомендации 1
 								</option>
 								<option value="company2">
-									Офис2
+									Рекомендации 2
 								</option>
 								<option value="company3">
-									Офис3
+									Рекомендации 3
 								</option>
 							</select>
 						</div>
 						<div class="item data">
 							<span>
-								<label for="datapiker-employee-modal">День рождения</label>
+								<label for="datapiker-contact-modal">День рождения</label>
 							</span>
 							<span>
-								<input class="item-inputText date-piker" type="text" id="datapiker-employee-modal" autocomplete="off">
+								<input class="item-inputText date-piker" type="text" id="datapiker-contact-modal" autocomplete="off">
 								<img src="./img/icon/calendar.svg" alt="">
 							</span>
 						</div>
 					</div>
 					<div class="modal-row">
 						<div class="item w100">
-							<label for="comment-employee-modal" >Комментарий</label>
+							<label for="comment-contact-modal" >Комментарий</label>
 							<div class="item-inputText-wrapper">
-								<input class="item-inputText" id="comment-employee-modal" type="text" autocomplete="off" >
+								<input class="item-inputText" id="comment-contact-modal" type="text" autocomplete="off" >
 							</div>
 						</div>
 					</div>
@@ -147,21 +147,21 @@
 						</div>
 						<div class="item-row">
 							<div class="item w50">
-								<label for="passport-employee-modal" >Паспорт</label>
+								<label for="passport-contact-modal" >Паспорт</label>
 								<div class="item-inputText-wrapper">
-									<input class="item-inputText" id="passport-employee-modal" type="text" autocomplete="off" placeholder="АА123456">
+									<input class="item-inputText" id="passport-contact-modal" type="text" autocomplete="off" placeholder="АА123456">
 								</div>
 							</div>
 							<div class="item w50">
-								<label for="inn-employee-modal" >ИНН</label>
+								<label for="inn-contact-modal" >ИНН</label>
 								<div class="item-inputText-wrapper">
-									<input class="item-inputText" id="inn-employee-modal" type="text" autocomplete="off" placeholder="1234567890">
+									<input class="item-inputText" id="inn-contact-modal" type="text" autocomplete="off" placeholder="1234567890">
 								</div>
 							</div>
 							<div class="item w100">
 								<div class="loading-documents">
-									<label for="document-employee-modal">
-										<input type="file" id="document-employee-modal" name="document-employee-modal" multiple accept="image/png, image/jpeg, application/pdf">
+									<label for="document-contact-modal">
+										<input type="file" id="document-contact-modal" name="document-contact-modal" multiple accept="image/png, image/jpeg, application/pdf">
 										<span>
 											<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
 												 xmlns="http://www.w3.org/2000/svg">
