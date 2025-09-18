@@ -348,11 +348,13 @@ ul {
   --bs-tooltip-max-width: auto;
 }
 
+.blue-select2 select,
 .blue-select2 .select2-container .select2-selection--single {
   border-color: #e6f1ff;
   background-color: #e6f1ff;
 }
 
+.blue-select2 select,
 .blue-select2 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #3585f5;
 }

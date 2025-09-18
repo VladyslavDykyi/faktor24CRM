@@ -17,7 +17,7 @@ $(document).ready(function () {
                       <div class="tbody-wrapper checkBox">
                           <label class="my-custom-input">
                               <input type="checkbox">
-                              <span></span>
+                              <span class="my-custom-box"></span>
                           </label>
                       </div>
                     `;
@@ -89,7 +89,7 @@ $(document).ready(function () {
 		const recordsDisplay = table.page.info().recordsDisplay;
 		
 		// Змінюємо текст елемента, обгортаючи кількість записів у тег <b>
-		$('#example_info').html('Количество комплексов: <b>' + recordsDisplay + '</b>');
+		$('#example_info').html('Всего: <b>' + recordsDisplay + '</b>');
 	});
 	
 	// Обробник кліку на кнопку "деталі" всередині таблиці

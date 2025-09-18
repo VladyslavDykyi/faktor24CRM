@@ -644,13 +644,16 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			color: #111;
 		}
 		& select {
-			border: 1px solid transparent;
-			border-radius: 6px;
-			background-color: #fff;
+			border: 1px dashed transparent;
+			border-bottom-color: #3585f5;
+			border-radius: 0;
+			padding: 0;
+			background-color: transparent;
 			font-size: 14px;
 			line-height: normal;
 			font-weight: 700;
 			color: #3585f5;
+			outline: none;
 		}
 	}
 	

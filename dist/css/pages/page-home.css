@@ -348,11 +348,13 @@ ul {
   --bs-tooltip-max-width: auto;
 }
 
+.blue-select2 select,
 .blue-select2 .select2-container .select2-selection--single {
   border-color: #e6f1ff;
   background-color: #e6f1ff;
 }
 
+.blue-select2 select,
 .blue-select2 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #3585f5;
 }
@@ -1373,13 +1375,16 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 #example_wrapper div.dt-layout-row:nth-child(1) select {
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background-color: #fff;
+  border: 1px dashed transparent;
+  border-bottom-color: #3585f5;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
   font-size: 14px;
   line-height: normal;
   font-weight: 700;
   color: #3585f5;
+  outline: none;
 }
 
 #example_wrapper div.dt-layout-row:nth-child(2) {

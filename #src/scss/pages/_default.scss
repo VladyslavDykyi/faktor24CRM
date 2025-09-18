@@ -258,10 +258,12 @@ ul {
 	}
 }
 .blue-select2 {
+	& select,
 	& .select2-container .select2-selection--single {
 		border-color: #e6f1ff;
 		background-color: #e6f1ff;
 	}
+	& select,
 	& .select2-container--default .select2-selection--single .select2-selection__rendered {
 		color: #3585f5;
 	}

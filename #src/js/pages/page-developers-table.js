@@ -17,7 +17,7 @@ $(document).ready(function () {
                       <div class="tbody-wrapper checkBox">
                           <label class="my-custom-input">
                               <input type="checkbox">
-                              <span></span>
+                             <span class="my-custom-box"></span>
                           </label>
                       </div>
                     `;
@@ -84,7 +84,7 @@ $(document).ready(function () {
 		const recordsDisplay = table.page.info().recordsDisplay;
 		
 		// Змінюємо текст елемента, обгортаючи кількість записів у тег <b>
-		$('#example_info').html('Количество деволоперов: <b>' + recordsDisplay + '</b>');
+		$('#example_info').html('Всего: <b>' + recordsDisplay + '</b>');
 	});
 	// Обробник кліку на кнопку "деталі" всередині таблиці
 	$('#example tbody').on('click', '.details-control', function () {
@@ -124,7 +124,15 @@ $(document).ready(function () {
                             <div class="info-footer">
                                 <p class="info-footer-data">ID: <span>1234567</span></p>
                                 <p class="info-footer-data">Добавлено: <span>01.02.2025</span></p>
-                                <p class="info-footer-data">Обновлено: <span>10.02.2025</span></p>
+                                <p class="info-footer-data">Обновлено: <span>10.02.2025</span>
+                                 <!-- ця кнопка є в залежності від ролі/прав користувача -->
+	                                <button class="btn" type="button">
+		                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5FB343" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+										  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+										  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+										</svg>
+									</button>
+                                </p>
                                 <p class="info-footer-data">Комплексы: <button class="info-footer-btn btn-others" type="button">3</button></p>
                             	<button class="info-footer-btn ms-auto close-btn-other" type="button">Свернуть</button>
                             </div>
@@ -208,8 +216,10 @@ $(document).ready(function () {
                             <td>
                                 <div class="tbody-wrapper contact">
                                     <div>
-	                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Гефест">Гефест</p>
-	                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Компания">Компания</p>
+	                                    <a href="#" class="link-name" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="\tAlden Bailey">
+											Alden Bailey
+										</a>
+	                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Компания">Компания</p>
 	                                    <a href="tel:380968796542">+380968796542</a>
 									</div>
                                     <div>
@@ -267,6 +277,10 @@ $(document).ready(function () {
         `;
 			tbodyDopInfo.after(othersTable);
 			infoFooterBtn.addClass('active'); // Додаємо клас "active", якщо таблиця додається
+			// 08.05.2025
+			initPhotoHoverPreview();
+			// Ініціалізуємо тултіпи для новостворених елементів
+			initTooltips();
 		}
 	});
 	
@@ -321,7 +335,15 @@ $(document).ready(function () {
                             <div class="info-footer">
                                 <p class="info-footer-data">ID: <span>1234567</span></p>
                                 <p class="info-footer-data">Добавлено: <span>01.02.2025</span></p>
-                                <p class="info-footer-data">Обновлено: <span>10.02.2025</span></p>
+                                <p class="info-footer-data">Обновлено: <span>10.02.2025</span>
+                                 <!-- ця кнопка є в залежності від ролі/прав користувача -->
+	                                <button class="btn" type="button">
+		                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5FB343" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+										  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+										  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+										</svg>
+									</button>
+                                </p>
                             </div>
                         </div>
                     </td>
@@ -395,8 +417,63 @@ $(document).ready(function () {
 	// Викликаємо ініціалізацію Tooltip після оновлення таблиці
 	table.on('draw', function () {
 		initTooltips();
+		initPhotoHoverPreview();
 	});
-	
+	// Додаємо цей код до вашого існуючого $(document).ready()
+	// 08.05.2025
+	function initPhotoHoverPreview() {
+		// Створюємо попап для прев'ю фото (якщо ще не існує)
+		if ($('#photo-preview-popup').length === 0) {
+			$('body').append(`
+            <div id="photo-preview-popup">
+                <img src="" alt="">
+            </div>
+        `);
+		}
+		
+		const $popup = $('#photo-preview-popup');
+		const $popupImg = $popup.find('img');
+		const $closeBtn = $('#close-photo-preview');
+		let hoverTimeout;
+		
+		// Обробник наведення на фото
+		$('.tbody-wrapper.photo img').hover(
+			function() {
+				const $img = $(this);
+				const imgSrc = $img.attr('src');
+				
+				// Пропускаємо якщо це дефолтна іконка
+				// if (imgSrc.includes('default-foto.svg')) return;
+				
+				hoverTimeout = setTimeout(function() {
+					$popupImg.attr('src', imgSrc);
+					$popup.show();
+				}, 300);
+			},
+			function() {
+				clearTimeout(hoverTimeout);
+				$popup.hide();
+			}
+		);
+		
+		// Обробник наведення на сам попап
+		$popup.hover(
+			function() {
+				// Не ховаємо попап при наведенні на нього
+			},
+			function() {
+				$popup.hide();
+			}
+		);
+		
+		// Обробник кліку на кнопку закриття
+		$closeBtn.on('click', function() {
+			$popup.hide();
+		});
+	}
+
+// Ініціалізуємо функціонал при завантаженні сторінки
+	initPhotoHoverPreview();
 	// Викликаємо ініціалізацію Tooltip після динамічного додавання рядків
 	$('#example tbody').on('click', '.details-control, .details-control-dop, #btn-others', function () {
 		setTimeout(() => {

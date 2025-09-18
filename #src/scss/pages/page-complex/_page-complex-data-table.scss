@@ -145,11 +145,11 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		border-radius: 8px;
 		
 		& tr {
-			&:first-child td:first-child {
+			& td:first-child {
 				border-radius: 8px 0 0 8px;
 			}
 			
-			&:last-child td:last-child {
+			& td:last-child {
 				border-radius: 0 8px 8px 0;
 			}
 			
@@ -182,6 +182,14 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						font-size: 12px;
 						color: #111;
 						text-decoration: underline;
+					}
+					
+					& .link-name {
+						color: #3585F5;
+						text-decoration: none;
+						&:hover {
+							text-decoration: underline;
+						}
 					}
 					
 					&.checkBox {
@@ -238,8 +246,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						display: flex;
 						align-items: center;
 						grid-gap: 10px;
-						
+						& a:not(.link-name) {
+							font-size: 12px;
+							font-weight: 700;
+							text-decoration: underline dashed;
+						}
 						& p {
+							font-size: 12px;
 							text-overflow: ellipsis;
 							white-space: nowrap;
 							overflow: hidden;
@@ -330,6 +343,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									padding: 0 3px;
 									background-color: transparent;
 									color: #3585F5;
+									border-radius: 0;
 									border-bottom: 1px dashed #3585F5;
 								}
 								
@@ -355,6 +369,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					}
 					
 					& .info-footer {
+						padding-top: 10px;
 						display: flex;
 						align-items: center;
 						
@@ -490,13 +505,16 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			color: #111;
 		}
 		& select {
-			border: 1px solid transparent;
-			border-radius: 6px;
-			background-color: #fff;
+			border: 1px dashed transparent;
+			border-bottom-color: #3585f5;
+			border-radius: 0;
+			padding: 0;
+			background-color: transparent;
 			font-size: 14px;
 			line-height: normal;
 			font-weight: 700;
 			color: #3585f5;
+			outline: none;
 		}
 	}
 	
