@@ -356,7 +356,12 @@ ul {
 
 .blue-select2 select,
 .blue-select2 .select2-container--default .select2-selection--single .select2-selection__rendered {
-  color: #3585f5;
+  color: #3585f5 !important;
+}
+
+.blue-select2 select .select2-selection__placeholder,
+.blue-select2 .select2-container--default .select2-selection--single .select2-selection__rendered .select2-selection__placeholder {
+  color: #3585f5 !important;
 }
 
 .blue-select2 .select2-container--default .select2-selection--single .select2-selection__arrow b {
