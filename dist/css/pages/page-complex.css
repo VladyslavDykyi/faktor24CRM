@@ -1056,11 +1056,38 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   line-height: normal;
   color: #111;
   margin-right: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  grid-gap: 6px;
 }
 
 #example tbody tr td .tbody-dop-info .info-footer-data span {
   font-weight: 400;
   font-size: 12px;
+}
+
+#example tbody tr td .tbody-dop-info .info-footer-data .btn {
+  padding: 0;
+  outline: none;
+  border: none;
+  line-height: normal;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#example tbody tr td .tbody-dop-info .info-footer-data .btn:active {
+  outline: none;
 }
 
 #example tbody tr td .tbody-dop-info .info-footer-btn {
@@ -1083,9 +1110,20 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example tbody tr td .type-areas {
   padding-top: 15px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 #example tbody tr td .type-areas-list {
+  margin-left: 16px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1095,6 +1133,21 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+#example tbody tr td .type-areas-item-info > strong.type-areas-title {
+  padding: 0;
+}
+
+#example tbody tr td .type-areas-item-info strong {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: normal;
+  color: #111;
+}
+
+#example tbody tr td .type-areas-item-info p strong {
+  color: #aaa;
 }
 
 #example tbody tr td .type-areas-item.active .type-areas-title {
@@ -1132,6 +1185,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-size: 12px;
   line-height: normal;
   color: #111;
+  display: inline-block;
+  margin-bottom: 2px;
 }
 
 #example tbody tr td .type-areas-text span:first-child {
@@ -1142,7 +1197,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-shadow: inset 0 0 0 1px #D5DBE3;
           box-shadow: inset 0 0 0 1px #D5DBE3;
   padding: 1px;
-  margin: 0 0 20px;
+  margin: 20px 0 0;
   border-radius: 8px;
 }
 

@@ -130,36 +130,147 @@ $(document).ready(function () {
                                         <div class="badge rounded-pill qwe2">Параметр из фильтра</div>
                                         <div class="badge rounded-pill qwe2">Параметр из фильтра</div>
                                     </div>
+                                    <div class="table-for-others">
+						                <table id="example2" style="width:98%; margin: auto;">
+						                    <tbody>
+						                        <tr>
+						                            <td>
+						                                <div class="tbody-wrapper location">
+						                                    <p>Южная Пальмира дом 1 2024 г.</p>
+						                                    <p>Генуэзская 5/1</p>
+						                                    <span>Аркадия, Одесса, Одесская длинная, Украина</span>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper condition">
+						                                    <p>С ремонтом</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper condition">
+						                                    <p>Новострой</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper condition">
+						                                    <p> Монолит</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper floor">
+						                                    <p>25 этажей</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper photo">
+						                                    <img src="./img/image.png" alt="">
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper price">
+						                                    <p>от 85000</p>
+						                                    <span>от 850/м <sup>2</sup></span>
+						                                </div>
+						                            </td>
+						                        </tr>
+						                        <tr>
+						                            <td>
+						                                <div class="tbody-wrapper location">
+						                                    <p>Южная Пальмира дом 1 2024 г.</p>
+						                                    <p>Генуэзская 5/1</p>
+						                                    <span>Аркадия, Одесса, Одесская длинная, Украина</span>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper condition">
+						                                    <p>С ремонтом</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper condition">
+						                                    <p>Новострой</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper condition">
+						                                    <p> Монолит</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper floor">
+						                                    <p>25 этажей</p>
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper photo">
+						                                    <img src="./img/image.png" alt="">
+						                                </div>
+						                            </td>
+						                            <td>
+						                                <div class="tbody-wrapper price">
+						                                    <p>от 85000</p>
+						                                    <span>от 850/м <sup>2</sup></span>
+						                                </div>
+						                            </td>
+						                        </tr>
+						                    </tbody>
+						                </table>
+						            </div>
+                                    <div class="info-footer">
+					                    <p class="info-footer-data">ID: <span>1234567</span></p>
+					                    <p class="info-footer-data">Добавлено: <span>01.02.2025</span></p>
+					                    <p class="info-footer-data">Обновлено: <span>10.02.2025</span>
+					                    <!-- ця кнопка є в залежності від ролі/прав користувача -->
+					                        <button class="btn" type="button">
+						                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5FB343" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+												  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+												  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+												</svg>
+											</button>
+					                    </p>
+		                   			 </div>
                                 </div>
                             </div>
                             <div class="type-areas">
 	                            <ul class="type-areas-list">
+	                            	<li class="type-areas-item-info">
+	                            		<strong class="type-areas-title">В базе:</strong>
+	                            		<p class="type-areas-text">
+		                                    <strong>Площадь, м2:</strong>
+		                                    <strong>Цена за м2, USD:</strong>
+		                                    <strong>Цена за Объект, USD:</strong>
+										</p>
+									</li>
 	                            	<li class="type-areas-item">
 	                            		<strong class="type-areas-title">Студии</strong>
 	                            		<p class="type-areas-text">
-		                                    <span>S от 23 м²</span>
-		                                    <span>от 18 000$</span>
+		                                    <span>от 23</span>
+		                                    <span>от 10 000</span>
+		                                    <span>от 100 000</span>
 										</p>
 									</li>
 									<li class="type-areas-item">
 	                                    <strong class="type-areas-title">1 комн</strong>
 	                                    <p class="type-areas-text">
-		                                    <span>S от 30 м²</span>
-		                                    <span>от 18 000$</span>
+		                                    <span>от 30</span>
+		                                    <span>от 15 000</span>
+		                                    <span>от 150 000</span>
 										</p>
 									</li>
 									<li class="type-areas-item">
 	                            		<strong class="type-areas-title">2 комн</strong>
 	                            		<p class="type-areas-text">
-		                                    <span>S от 56 м²</span>
-		                                    <span>от 18 000$</span>
+		                                    <span>от 56</span>
+		                                    <span>от 25 000</span>
+		                                    <span>от 250 000</span>
 										</p>
 									</li>
 									<li class="type-areas-item">
 	                            		<strong class="type-areas-title">3 комн</strong>
 	                            		<p class="type-areas-text">
-		                                    <span>S от 87 м²</span>
-		                                    <span>от 18 000$</span>
+		                                    <span>от 87</span>
+		                                    <span>от 35 000</span>
+		                                    <span>от 350 000</span>
 										</p>
 									</li>
 									<li class="type-areas-item">
@@ -177,110 +288,21 @@ $(document).ready(function () {
 									<li class="type-areas-item">
 	                            		<strong class="type-areas-title">Коммерческая</strong>
 	                            		<p class="type-areas-text">
-		                                    <span>S от 23 м²</span>
-		                                    <span>от 18 000$</span>
+		                                    <span>от 23</span>
+		                                    <span>от 18 000</span>
+		                                    <span>от 100 000</span>
 										</p>
 									</li>
 	                            	<li class="type-areas-item">
 	                            		<strong class="type-areas-title">Дома</strong>
 	                            		<p class="type-areas-text">
-		                                    <span>S от 23 м²</span>
-		                                    <span>от 18 000$</span>
+		                                    <span>от 23</span>
+		                                    <span>от 18 000</span>
+		                                    <span>от 100 000</span>
 										</p>
 									</li>
 								</ul>
 							</div>
-                            <div class="table-for-others">
-				                <table id="example2" style="width:98%; margin: auto;">
-				                    <tbody>
-				                        <tr>
-				                            <td>
-				                                <div class="tbody-wrapper location">
-				                                    <p>Южная Пальмира дом 1 2024 г.</p>
-				                                    <p>Генуэзская 5/1</p>
-				                                    <span>Аркадия, Одесса, Одесская длинная, Украина</span>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper condition">
-				                                    <p>С ремонтом</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper condition">
-				                                    <p>Новострой</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper condition">
-				                                    <p> Монолит</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper floor">
-				                                    <p>25 этажей</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper photo">
-				                                    <img src="./img/image.png" alt="">
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper price">
-				                                    <p>от 85000</p>
-				                                    <span>от 850/м <sup>2</sup></span>
-				                                </div>
-				                            </td>
-				                        </tr>
-				                        <tr>
-				                            <td>
-				                                <div class="tbody-wrapper location">
-				                                    <p>Южная Пальмира дом 1 2024 г.</p>
-				                                    <p>Генуэзская 5/1</p>
-				                                    <span>Аркадия, Одесса, Одесская длинная, Украина</span>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper condition">
-				                                    <p>С ремонтом</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper condition">
-				                                    <p>Новострой</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper condition">
-				                                    <p> Монолит</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper floor">
-				                                    <p>25 этажей</p>
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper photo">
-				                                    <img src="./img/image.png" alt="">
-				                                </div>
-				                            </td>
-				                            <td>
-				                                <div class="tbody-wrapper price">
-				                                    <p>от 85000</p>
-				                                    <span>от 850/м <sup>2</sup></span>
-				                                </div>
-				                            </td>
-				                        </tr>
-				                    </tbody>
-				                </table>
-				            </div>
-                            <div class="info-footer">
-                                <p class="info-footer-data">ID: <span>1234567</span></p>
-                                <p class="info-footer-data">Добавлено: <span>01.02.2025</span></p>
-                                <p class="info-footer-data">Обновлено: <span>10.02.2025</span></p>
-                            </div>
                         </div>
                     </td>
                 </tr>
