@@ -432,6 +432,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						display: flex;
 						align-items: flex-start;
 						justify-content: space-between;
+						margin-bottom: 0;
 					}
 					&-item {
 						&-info {
@@ -713,4 +714,20 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		border: none;
 		background-color: transparent;
 	}
+}
+.info-complex-wrapper {
+	display: flex;
+}
+.info-complex-btn {
+	border: none;
+	outline: none;
+	background-color: transparent;
+	margin-left: 2px;
+	font-size: 14px;
+	font-weight: 700;
+	padding: 0 3px;
+	color: #3585F5;
+	border-radius: 0;
+	border-bottom: 1px dashed #3585F5;
+	cursor: pointer;
 }

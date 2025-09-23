@@ -96,12 +96,16 @@ $(document).ready(function () {
 	$('#example tbody').on('click', '.details-control', function () {
 		const button = $(this);
 		const img = button.find('img');
-		toggleImage(img);
 		const row = button.closest('tr');
 		const isExpanded = row.next().hasClass('dop-info-row');
+		
 		if (isExpanded) {
+			// Якщо вже розгорнуто - згортаємо
 			row.next().remove();
+			toggleImage(img);
 		} else {
+			// Якщо згорнуто - розгортаємо
+			toggleImage(img);
 			const dopInfoRow = `
                 <tr class="dop-info-row">
                     <td colspan="10" style="border-bottom: none;">
@@ -303,6 +307,9 @@ $(document).ready(function () {
 									</li>
 								</ul>
 							</div>
+							<div class="info-complex-wrapper">
+								 <button class="info-complex-btn ms-auto close-btn-other" type="button">Свернуть</button>
+							</div>
                         </div>
                     </td>
                 </tr>
@@ -311,6 +318,24 @@ $(document).ready(function () {
 			// 08.05.2025
 			initPhotoHoverPreview();
 		}
+	});
+	
+	// Обробник кліку на кнопку "Свернуть"
+	$('#example tbody').on('click', '.info-complex-btn', function () {
+		const button = $(this);
+		// Знаходимо батьківський рядок з деталями
+		const dopInfoRow = button.closest('.dop-info-row');
+		// Знаходимо попередній рядок (основний)
+		const mainRow = dopInfoRow.prev();
+		// Знаходимо кнопку details-control в основному рядку
+		const detailsControl = mainRow.find('.details-control');
+		const img = detailsControl.find('img');
+		
+		// Змінюємо зображення назад на "+"
+		toggleImage(img);
+		
+		// Видаляємо рядок з деталями
+		dopInfoRow.remove();
 	});
 	
 	// Обробник кліку на кнопку "btn-show-text"
@@ -337,6 +362,7 @@ $(document).ready(function () {
 		const isPlus = img.attr('src').includes('plus.svg');
 		img.attr('src', img.attr('src').replace(isPlus ? 'plus.svg' : 'minus.svg', isPlus ? 'minus.svg' : 'plus.svg'));
 	}
+	
 	$('thead .my-custom-input input').on('change', function() {
 		let isChecked = $(this).prop('checked');
 		$('tbody .my-custom-input input').prop('checked', isChecked);
@@ -368,9 +394,6 @@ $(document).ready(function () {
 		}, 0);
 	});
 	
-	
-	
-	// Додаємо цей код до вашого існуючого $(document).ready()
 	// 08.05.2025
 	function initPhotoHoverPreview() {
 		// Створюємо попап для прев'ю фото (якщо ще не існує)
@@ -422,10 +445,7 @@ $(document).ready(function () {
 			$popup.hide();
 		});
 	}
-
-// Ініціалізуємо функціонал при завантаженні сторінки
-	initPhotoHoverPreview();
-
-
 	
+	// Ініціалізуємо функціонал при завантаженні сторінки
+	initPhotoHoverPreview();
 });
