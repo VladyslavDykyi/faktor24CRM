@@ -1120,7 +1120,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 #example tbody tr td .type-areas-list {
-  margin-left: 16px;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -1138,6 +1137,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example tbody tr td .type-areas-item-info > strong.type-areas-title {
   padding: 0;
+  text-align: left;
 }
 
 #example tbody tr td .type-areas-item-info strong {
@@ -1161,7 +1161,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  padding: 0 29px 3px;
+  padding: 0 0 3px;
+  display: block;
   color: #aaa;
   border-bottom: 2px solid transparent;
 }

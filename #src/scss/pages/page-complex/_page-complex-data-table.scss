@@ -427,7 +427,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					
 					}
 					&-list {
-						margin-left: 16px;
 						flex-grow: 1;
 						display: flex;
 						align-items: flex-start;
@@ -438,6 +437,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						&-info {
 							& > strong.type-areas-title {
 								padding: 0;
+								text-align: left;
 							}
 							& strong {
 								font-weight: 700;
@@ -461,7 +461,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						font-size: 14px;
 						line-height: 20px;
 						text-align: center;
-						padding: 0 29px 3px;
+						padding: 0 0 3px;
+						display: block;
 						color: #aaa;
 						border-bottom: 2px solid transparent;
 					}
