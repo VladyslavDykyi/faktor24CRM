@@ -9,6 +9,7 @@
 	<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./css/lib/select2.min.css">
 	<link rel="stylesheet" href="./css/lib/bootstrap.v5.3.3.min.css">
+	<link rel="stylesheet" href="./css/lib/data-range-picker.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
 	<link rel="stylesheet"
 		  href="https://cdnjs.cloudflare.com/ajax/libs/tui-image-editor/3.15.0/tui-image-editor.min.css">
@@ -32,11 +33,14 @@
 </main>
 <!-- початок цей блок ще в розробці _modal	-->
 @@include('./html/modals/_geo-location-modal.html')
+@@include('./html/modals/_add-contact-modal.html')
 <!-- кінець цей блок ще в розробці _modal	-->
 <script src="./js/lib/popper.v2.11.8.min.js"></script>
 <script src="./js/lib/bootstrap.v5.3.3.min.js"></script>
 <script src="./js/lib/jquery.v3.7.1.min.js"></script>
 <script src="./js/lib/select2.min.js"></script>
+<script src="./js/lib/moment.min.js"></script>
+<script src="./js/lib/data-range-picker.min.js"></script>
 <script src="./js/lib/fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
@@ -56,8 +60,7 @@
 <!-- для роботи Гео Модалки 27.08.2025 -->
 <script src="./js/pages/function_on_pages-create.min.js" type="module"></script>
 <script src="./js/pages/my-dropdown.min.js"></script>
-<!--<script src="./js/pages/full-filter.min.js"></script>-->
 <script src="./js/pages/page-create-developers.js" type="module"></script>
-<script src="./js/pages/geo-search.min.js" type="module"></script>
+<script src="./js/pages/add-contact-modal.min.js" type="module"></script>
 </body>
 </html>

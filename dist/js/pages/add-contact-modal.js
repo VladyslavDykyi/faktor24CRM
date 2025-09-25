@@ -4,7 +4,7 @@ class FileUploader {
 		// Обов'язкові параметри
 		this.inputId = options.inputId;
 		this.wrapperClass = options.wrapperClass;
-		
+		this.renderContainerSelector = options.renderContainerSelector;
 		// Параметри з перевіркою розміру (за замовчуванням true)
 		this.checkImageSize = options.checkImageSize !== false;
 		
@@ -14,15 +14,11 @@ class FileUploader {
 			this.minHeight = options.minHeight || 800;
 		}
 		
-		// Додаткові параметри
-		this.renderContainerSelector = options.renderContainerSelector || '[data-render-document]';
-		
 		// Знаходимо DOM-елементи
 		this.input = document.querySelector(`#${this.inputId}`);
 		this.wrapper = document.querySelector(`.${this.wrapperClass}`);
 		this.errorContainer = this.wrapper;
 		this.renderContainer = document.querySelector(this.renderContainerSelector);
-		
 		// Масиви для файлів
 		this.validDocuments = [];
 		this.invalidDocuments = [];
@@ -394,7 +390,7 @@ function initFileUploaders() {
 		new FileUploader({
 			inputId: 'document-contact-modal',
 			wrapperClass: 'loading-documents',
-			renderContainerSelector: '[data-render-document]',
+			renderContainerSelector: '.on-modals > [data-render-document]',
 			checkImageSize: false,
 		});
 		console.log('FileUploader initialized in modal');
@@ -436,7 +432,8 @@ if (modal) {
 	});
 }
 
-$('#datapiker').daterangepicker({
+$('#datapiker-contact-modal').daterangepicker({
+	singleDatePicker: true,
 	"locale": {
 		"format": "DD-MM-YYYY",
 		"separator": " - ",

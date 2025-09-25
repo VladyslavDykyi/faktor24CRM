@@ -166,6 +166,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						line-height: 108%;
 						color: #aaa;
 						margin: 0;
+						&:first-letter {
+							text-transform: uppercase;
+						}
 					}
 				}
 			}
@@ -176,6 +179,16 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		border-radius: 8px;
 		
 		& tr {
+			&.active {
+				& td {
+					background-color: #F6F8FB;
+				}
+				& + .dop-info-row {
+					& td {
+						background-color: #F6F8FB;
+					}
+				}
+			}
 			& td:first-child {
 				border-radius: 8px 0 0 8px;
 			}
@@ -276,7 +289,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						& > a:not(.link-name) {
 							font-size: 12px;
 							font-weight: 700;
-							text-decoration: underline dashed;
+							text-decoration: none;
 						}
 						& > p {
 							font-size: 12px;
@@ -325,10 +338,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 				
 				& .tbody-dop-info {
 					width: 100%;
-					padding: 16px 10px;
-					@media screen and (max-width: 1280px) {
-						padding: 8px 6px;
-					}
+					padding: 8px 6px;
+					background-color: #F6F8FB;
 					
 					& .info-main {
 						display: flex;
@@ -344,7 +355,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							}
 							
 							& .description {
-								flex: 1 2 65%;
+								flex: 1 2 60.5%;
 								padding-right: 10px;
 								
 								&-title {
@@ -352,7 +363,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									font-size: 16px;
 									line-height: normal;
 									color: #111;
-									margin-bottom: 15px;
+									margin-bottom: 6px;
 								}
 								
 								&-text {
@@ -360,7 +371,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									font-size: 14px;
 									line-height: normal;
 									color: #111;
-									padding-bottom: 15px;
+									padding-bottom: 6px;
 									margin-bottom: 0;
 									position: relative;
 								}
@@ -382,7 +393,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									font-size: 14px;
 									line-height: normal;
 									color: #aaa;
-									margin-bottom: 13px;
+									margin-bottom: 6px;
 									
 									& span {
 										font-weight: 400;
@@ -392,7 +403,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							}
 							
 							& .block-info {
-								flex: 1 2 35%;
+								flex: 1 2 22%;
 								
 								& p.info-description {
 									margin-bottom: 10px;
@@ -414,7 +425,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					}
 					
 					& .info-footer {
-						padding-top: 10px;
+						padding-top: 6px;
 						display: flex;
 						align-items: center;
 						
@@ -467,7 +478,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 				& .table-for-others {
 					box-shadow: inset 0 0 0 1px #D5DBE3;
 					padding: 1px;
-					margin: 0 0 20px;
+					margin: 0 0 10px;
 					border-radius: 8px;
 					
 					& tbody {
@@ -501,127 +512,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		}
 	}
 }
-.block-info {
-	width: 100%;
-	
-	&-item {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		margin-bottom: 8px;
-	}
-	& .info-title {
-		font-weight: 700;
-		font-size: 14px;
-		line-height: normal;
-		color: #aaa;
-		margin-bottom: 0;
-		&-wrapper {
-			flex: 0 1 100%;
-			display: flex;
-			align-items: center;
-			grid-gap: 10px;
-			margin-bottom: 5px;
-			& .btn{
-				padding: 0;
-				border: none;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-		}
-	}
-	
-	& .info-btn-wrapper {
-		& .btn {
-			padding: 5px 6px;
-			font-weight: 700;
-			font-size: 14px;
-			line-height: normal;
-			text-align: center;
-		}
-		& .btn-outline-primary {
-			--bs-btn-color: #3585f5;
-			--bs-btn-border-color: #3585f5;
-			--bs-btn-hover-color: #fff;
-			--bs-btn-hover-bg: #3585f5;
-			--bs-btn-hover-border-color:#3585f5;
-			--bs-btn-focus-shadow-rgb: 25, 135, 84;
-			--bs-btn-active-color: #fff;
-			--bs-btn-active-bg:#3585f5;
-			--bs-btn-active-border-color: #3585f5;
-			--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-			--bs-btn-disabled-color: rgba(53, 133, 245, 0.7);
-			--bs-btn-disabled-bg: transparent;
-			--bs-btn-disabled-border-color: rgba(53, 133, 245, 0.7);
-			--bs-gradient: none;
-		}
-	}
-	
-	& .info-links {
-		display: flex;
-		align-items: center;
-		grid-gap: 10px;
-		& > a {
-			text-decoration: none;
-		}
-	}
-	& .info-avatar {
-		flex: 0 1 50px;
-		margin-right: 10px;
-		
-		& img {
-			width: 50px;
-			height: 50px;
-			object-fit: contain;
-		}
-	}
-	& .info-description {
-		font-size: 12px;
-		line-height: normal;
-		font-weight: 400;
-		color: #111;
-		margin: 0;
-	}
-	& .info-contacts {
-		flex: 0 1 calc(100% - 60px);
-		display: flex;
-		flex-direction: column;
-		
-		&-name {
-			font-weight: 400;
-			font-size: 14px;
-			line-height: normal;
-			color: #111;
-			margin: 0;
-		}
-		
-		&-company {
-			font-weight: 400;
-			line-height: normal;
-			color: #111;
-			font-size: 12px;
-			margin: 0 0 10px 0;
-		}
-		
-		&-tel {
-			font-weight: 700;
-			font-size: 14px;
-			line-height: normal;
-			color: #111;
-			text-decoration: underline dashed;
-		}
-		
-		&-mail {
-			font-weight: 700;
-			font-size: 14px;
-			line-height: normal;
-			color: #111;
-			text-decoration: underline;
-			margin-bottom: 10px;
-		}
-	}
-}
+
 #example_wrapper {
 	flex-wrap: wrap;
 	flex-direction: row;

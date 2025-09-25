@@ -368,6 +368,38 @@ ul {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.545438 0.207001C0.275938 0.474274 0.275938 0.905183 0.545438 1.17246L5.11594 5.70518C5.33044 5.91791 5.67694 5.91791 5.89144 5.70518L10.4619 1.17246C10.7314 0.905183 10.7314 0.474274 10.4619 0.207001C10.1924 -0.0602717 9.75794 -0.0602717 9.48844 0.207001L5.50094 4.15609L1.51344 0.201546C1.24944 -0.0602718 0.809438 -0.0602717 0.545438 0.207001Z' fill='%233585F5' /%3e%3c/svg%3e");
 }
 
+table.dataTable.hover > tbody > tr:hover > *,
+table.dataTable.display > tbody > tr:hover > * {
+  -webkit-box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+          box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+}
+
+table.dataTable.stripe > tbody > tr:nth-child(odd) > *,
+table.dataTable.display > tbody > tr:nth-child(odd) > * {
+  -webkit-box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+          box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+}
+
+.daterangepicker .drp-buttons .btn.btn-primary {
+  --bs-btn-bg: #3585f5;
+  --bs-btn-border-color: #3585f5;
+  --bs-btn-hover-bg: #3585f5;
+  --bs-btn-hover-border-color: #3585f5;
+  --bs-btn-active-bg: #3585f5;
+  --bs-btn-active-border-color: #3585f5;
+  --bs-btn-disabled-bg: #3585f5;
+  --bs-btn-disabled-border-color: #3585f5;
+}
+
+.daterangepicker td.in-range {
+  background-color: #e6f1ff;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+  background-color: #3585f5;
+}
+
 .header-wrapper {
   padding: 10px 0;
   display: -webkit-box;
@@ -970,6 +1002,9 @@ ul {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   grid-gap: 16px 20px;
   margin-bottom: 16px;
 }
@@ -1003,6 +1038,8 @@ ul {
 .full-filter .item.filter-btn-outline,
 .full-filter .item.filter-btn {
   margin-top: auto;
+  width: auto;
+  min-width: 150px;
 }
 
 .full-filter .item.filter-btn-outline .btn,
@@ -1012,7 +1049,8 @@ ul {
   text-align: center;
   color: #fff;
   border-radius: 6px;
-  padding: 6px 10px;
+  padding: 5px 10px;
+  line-height: normal;
   width: 100%;
 }
 
@@ -1039,7 +1077,6 @@ ul {
   font-size: 14px;
   line-height: normal;
   color: #111;
-  margin-bottom: 6px;
 }
 
 .full-filter .item.date > span {
@@ -1093,6 +1130,7 @@ ul {
   padding: 0;
   width: 16px;
   height: 16px;
+  border-radius: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1110,6 +1148,7 @@ ul {
   outline: none;
   background-color: #fff;
   font-weight: 700;
+  border-radius: 6px;
   font-size: 14px;
   line-height: normal;
   color: #111;
@@ -1253,6 +1292,7 @@ ul {
   color: #111;
   text-align: left;
   position: relative;
+  border-radius: 6px;
 }
 
 .multiple-menu-btn[data-open-menu="false"] + .multiple-menu-wrapper {
@@ -2157,8 +2197,9 @@ ul {
   }
 }
 
-@media screen and (max-width: 1440px) {
-  .full-filter .item.search-on-id {
-    width: calc(24.6% - 16.66667px);
+@media screen and (max-width: 1280px) {
+  .full-filter .item.filter-btn-outline,
+  .full-filter .item.filter-btn {
+    min-width: 11%;
   }
 }

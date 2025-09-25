@@ -135,6 +135,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						line-height: 108%;
 						color: #aaa;
 						margin: 0;
+						&:first-letter {
+							text-transform: uppercase;
+						}
 					}
 				}
 			}
@@ -145,6 +148,16 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		border-radius: 8px;
 		
 		& tr {
+			&.active {
+				& td {
+					background-color: #F6F8FB;
+				}
+				& + .dop-info-row {
+					& td {
+						background-color: #F6F8FB;
+					}
+				}
+			}
 			& td:first-child {
 				border-radius: 8px 0 0 8px;
 			}
@@ -242,14 +255,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					}
 					
 					&.contact {
-						max-width: 131px;
 						display: flex;
 						align-items: center;
 						grid-gap: 10px;
 						& a:not(.link-name) {
 							font-size: 12px;
 							font-weight: 700;
-							text-decoration: underline dashed;
+							text-decoration: none;
 						}
 						& p {
 							font-size: 12px;
@@ -297,11 +309,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 				}
 				
 				& .tbody-dop-info {
-					padding: 16px 10px;
+					padding: 8px 6px;
 					background-color: #F6F8FB;
-					@media screen and (max-width: 1280px) {
-						padding: 8px 6px;
-					}
 					
 					& .info-main {
 						display: flex;
@@ -326,13 +335,17 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									font-size: 14px;
 									line-height: normal;
 									color: #111;
-									padding-bottom: 15px;
+									padding-bottom: 6px;
 									margin-bottom: 0;
 									position: relative;
 									& strong {
 										font-weight: 700;
 										color: #aaa;
 									}
+								}
+								
+								&-wrapper {
+									flex: 1 2 50%;
 								}
 								
 								& .btn {
@@ -346,20 +359,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 									border-radius: 0;
 									border-bottom: 1px dashed #3585F5;
 								}
-								
-								&-note {
-									flex: 1 2 50%;
-									font-weight: 700;
-									font-size: 14px;
-									line-height: normal;
-									color: #aaa;
-									margin-bottom: 13px;
-									
-									& span {
-										font-weight: 400;
-										color: #111;
-									}
-								}
 							}
 							& .filter-tags {
 								width: 100%;
@@ -369,7 +368,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					}
 					
 					& .info-footer {
-						padding-top: 10px;
+						padding-top: 6px;
 						display: flex;
 						align-items: center;
 						
@@ -419,7 +418,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 					}
 				}
 				& .type-areas {
-					padding-top: 15px;
+					padding-top: 6px;
 					width: 100%;
 					display: flex;
 					align-items: flex-start;
@@ -470,7 +469,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
-						padding-top: 7px;
+						margin-bottom: 6px;
 						& span {
 							font-weight: 400;
 							text-align: center;
@@ -478,7 +477,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							line-height: normal;
 							color: #111;
 							display: inline-block;
-							margin-bottom: 2px;
 						}
 						& span:first-child {
 							font-size: 14px;
@@ -488,7 +486,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 				& .table-for-others {
 					box-shadow: inset 0 0 0 1px #D5DBE3;
 					padding: 1px;
-					margin: 20px 0 0;
+					margin: 10px 0 0;
 					border-radius: 8px;
 					
 					& tbody {
@@ -511,8 +509,48 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							& td {
 								background-color: transparent;
 								border-bottom-color: #D5DBE3;
-								
+								&:nth-child(1) {width: 3.478%;}
+								&:nth-child(2) {width: 22.174%;}
+								&:nth-child(3) {width: 6.695%;}
+								&:nth-child(4) {width: 7.478%;}
+								&:nth-child(5) {width: 9.13%;}
+								&:nth-child(6) {width: 5.217%;}
+								&:nth-child(7) {width: 6.956%;}
+								&:nth-child(8) {width: 6.782%;}
+								&:nth-child(9) {width: 14.525%;}
+								&:nth-child(10) {width: 17.565%;}
 								& .tbody-wrapper {
+									&.checkBox {
+									}
+									&.location {
+									
+									}
+									&.type {
+									
+									}
+									&.area {
+									
+									}
+									&.condition {
+										& > p {
+											text-wrap: initial;
+										}
+									}
+									&.floor {
+									
+									}
+									&.photo {
+									
+									}
+									&.price {
+									
+									}
+									&.contact {
+									
+									}
+									&.block-actions {
+									
+									}
 								}
 							}
 						}

@@ -94,8 +94,10 @@ $(document).ready(function () {
 		const row = button.closest('tr');
 		const isExpanded = row.next().hasClass('dop-info-row');
 		if (isExpanded) {
+			row[0].classList.remove('active');
 			row.next().remove();
 		} else {
+			row[0].classList.add('active');
 			const dopInfoRow = `
                 <tr class="dop-info-row">
                     <td colspan="10" style="border-bottom: none;">
@@ -174,9 +176,9 @@ $(document).ready(function () {
                         <tr>
                             <td>
                                 <div class="tbody-wrapper location">
-                                    <p><strong>Комплекс Название 1 </strong><span>2024 г.</span></p>
-                                    <p>Генуэзская</p>
-                                    <span>Аркадия, Одесса, Одесский, Украина</span>
+                                    <p>Южная Пальмира дом 1</p>
+	                                <p>Генуэзская 5/1</p>
+	                                <span>Аркадия, Одесса, Одесский</span>
                                 </div>
                             </td>
                             <td>
@@ -314,20 +316,34 @@ $(document).ready(function () {
                         <div class="info-main">
                             <div class="info-main-left">
                                 <div class="info-main-left-wrapper">
-                                    <div class="description">
+                                    	<div class="description">
                                             <p class="description-text">
-                                                <strong>Примечание для агентов:</strong>
-                                                Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть
-                                                вся мебель и техника и еще описание
+                                                <strong>О комплексе:</strong>
+                                               Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть вся мебель и техника и еще описание
+												Еще строка текста и если текст длиннее этого то добавляется кнопка развернуть
                                                 <span class="more-text" style="display: none;">
                                                     Полное описание квартиры с деталями, которые скрыты по умолчанию.
                                                 </span>
                                                 <button class="btn btn-show-text" type="button">Ещё</button>
                                             </p>
-                                            <p class="description-note">
-                                                <strong>Примечание для агентов:</strong>
-                                                <span>Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть вся мебель и техника и еще описание</span>
-                                            </p>
+                                           <div class="description-wrapper">
+	                                            <p class="description-text">
+	                                                <strong>Примечание для агентов:</strong>
+	                                                <span>Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий.</span>
+	                                                <span class="more-text" style="display: none;">
+                                                    	Полное описание квартиры с деталями, которые скрыты по умолчанию.
+                                                	</span>
+	                                                <button class="btn btn-show-text" type="button">Ещё</button>
+	                                            </p>
+	                                            <p class="description-text">
+	                                                <strong>Специальные условия:</strong>
+	                                                <span>Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий.</span>
+	                                                <span class="more-text" style="display: none;">
+                                                   		Полное описание квартиры с деталями, которые скрыты по умолчанию.
+                                                	</span>
+	                                                <button class="btn btn-show-text" type="button">Ещё</button>
+	                                            </p>
+											</div>
                                         </div>
                                     </div>
                                 </div>

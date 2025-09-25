@@ -368,6 +368,38 @@ ul {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.545438 0.207001C0.275938 0.474274 0.275938 0.905183 0.545438 1.17246L5.11594 5.70518C5.33044 5.91791 5.67694 5.91791 5.89144 5.70518L10.4619 1.17246C10.7314 0.905183 10.7314 0.474274 10.4619 0.207001C10.1924 -0.0602717 9.75794 -0.0602717 9.48844 0.207001L5.50094 4.15609L1.51344 0.201546C1.24944 -0.0602718 0.809438 -0.0602717 0.545438 0.207001Z' fill='%233585F5' /%3e%3c/svg%3e");
 }
 
+table.dataTable.hover > tbody > tr:hover > *,
+table.dataTable.display > tbody > tr:hover > * {
+  -webkit-box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+          box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+}
+
+table.dataTable.stripe > tbody > tr:nth-child(odd) > *,
+table.dataTable.display > tbody > tr:nth-child(odd) > * {
+  -webkit-box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+          box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+}
+
+.daterangepicker .drp-buttons .btn.btn-primary {
+  --bs-btn-bg: #3585f5;
+  --bs-btn-border-color: #3585f5;
+  --bs-btn-hover-bg: #3585f5;
+  --bs-btn-hover-border-color: #3585f5;
+  --bs-btn-active-bg: #3585f5;
+  --bs-btn-active-border-color: #3585f5;
+  --bs-btn-disabled-bg: #3585f5;
+  --bs-btn-disabled-border-color: #3585f5;
+}
+
+.daterangepicker td.in-range {
+  background-color: #e6f1ff;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+  background-color: #3585f5;
+}
+
 .header-wrapper {
   padding: 10px 0;
   display: -webkit-box;
@@ -790,8 +822,20 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   margin: 0;
 }
 
+#example thead tr th .thead-wrapper p:first-letter {
+  text-transform: uppercase;
+}
+
 #example tbody {
   border-radius: 8px;
+}
+
+#example tbody tr.active td {
+  background-color: #F6F8FB;
+}
+
+#example tbody tr.active + .dop-info-row td {
+  background-color: #F6F8FB;
 }
 
 #example tbody tr td:first-child {
@@ -869,7 +913,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 #example tbody tr td .tbody-wrapper.contact {
-  max-width: 131px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -882,8 +925,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 #example tbody tr td .tbody-wrapper.contact a:not(.link-name) {
   font-size: 12px;
   font-weight: 700;
-  -webkit-text-decoration: underline dashed;
-          text-decoration: underline dashed;
+  text-decoration: none;
 }
 
 #example tbody tr td .tbody-wrapper.contact p {
@@ -946,7 +988,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 #example tbody tr td .tbody-dop-info {
-  padding: 16px 10px;
+  padding: 8px 6px;
   background-color: #F6F8FB;
 }
 
@@ -996,7 +1038,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-size: 14px;
   line-height: normal;
   color: #111;
-  padding-bottom: 15px;
+  padding-bottom: 6px;
   margin-bottom: 0;
   position: relative;
 }
@@ -1004,6 +1046,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 #example tbody tr td .tbody-dop-info .info-main-left .description-text strong {
   font-weight: 700;
   color: #aaa;
+}
+
+#example tbody tr td .tbody-dop-info .info-main-left .description-wrapper {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 2 50%;
+          flex: 1 2 50%;
 }
 
 #example tbody tr td .tbody-dop-info .info-main-left .description .btn {
@@ -1018,29 +1066,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   border-bottom: 1px dashed #3585F5;
 }
 
-#example tbody tr td .tbody-dop-info .info-main-left .description-note {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 2 50%;
-          flex: 1 2 50%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-  margin-bottom: 13px;
-}
-
-#example tbody tr td .tbody-dop-info .info-main-left .description-note span {
-  font-weight: 400;
-  color: #111;
-}
-
 #example tbody tr td .tbody-dop-info .info-main-left .filter-tags {
   width: 100%;
   padding-bottom: 0;
 }
 
 #example tbody tr td .tbody-dop-info .info-footer {
-  padding-top: 10px;
+  padding-top: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1109,7 +1141,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 #example tbody tr td .type-areas {
-  padding-top: 15px;
+  padding-top: 6px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1178,7 +1210,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 7px;
+  margin-bottom: 6px;
 }
 
 #example tbody tr td .type-areas-text span {
@@ -1188,7 +1220,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   line-height: normal;
   color: #111;
   display: inline-block;
-  margin-bottom: 2px;
 }
 
 #example tbody tr td .type-areas-text span:first-child {
@@ -1199,7 +1230,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-shadow: inset 0 0 0 1px #D5DBE3;
           box-shadow: inset 0 0 0 1px #D5DBE3;
   padding: 1px;
-  margin: 20px 0 0;
+  margin: 10px 0 0;
   border-radius: 8px;
 }
 
@@ -1222,6 +1253,50 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 #example tbody tr td .table-for-others tbody tr td {
   background-color: transparent;
   border-bottom-color: #D5DBE3;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(1) {
+  width: 3.478%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(2) {
+  width: 22.174%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(3) {
+  width: 6.695%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(4) {
+  width: 7.478%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(5) {
+  width: 9.13%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(6) {
+  width: 5.217%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(7) {
+  width: 6.956%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(8) {
+  width: 6.782%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(9) {
+  width: 14.525%;
+}
+
+#example tbody tr td .table-for-others tbody tr td:nth-child(10) {
+  width: 17.565%;
+}
+
+#example tbody tr td .table-for-others tbody tr td .tbody-wrapper.condition > p {
+  text-wrap: initial;
 }
 
 #example_wrapper {
@@ -1800,6 +1875,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   grid-gap: 16px 20px;
   margin-bottom: 16px;
 }
@@ -1833,6 +1911,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .full-filter .item.filter-btn-outline,
 .full-filter .item.filter-btn {
   margin-top: auto;
+  width: auto;
+  min-width: 150px;
 }
 
 .full-filter .item.filter-btn-outline .btn,
@@ -1842,7 +1922,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   text-align: center;
   color: #fff;
   border-radius: 6px;
-  padding: 6px 10px;
+  padding: 5px 10px;
+  line-height: normal;
   width: 100%;
 }
 
@@ -1869,7 +1950,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-size: 14px;
   line-height: normal;
   color: #111;
-  margin-bottom: 6px;
 }
 
 .full-filter .item.date > span {
@@ -1923,6 +2003,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding: 0;
   width: 16px;
   height: 16px;
+  border-radius: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1940,6 +2021,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   outline: none;
   background-color: #fff;
   font-weight: 700;
+  border-radius: 6px;
   font-size: 14px;
   line-height: normal;
   color: #111;
@@ -2083,6 +2165,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   color: #111;
   text-align: left;
   position: relative;
+  border-radius: 6px;
 }
 
 .multiple-menu-btn[data-open-menu="false"] + .multiple-menu-wrapper {
@@ -2487,12 +2570,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   color: #198754;
 }
 
-@media screen and (max-width: 1440px) {
-  .full-filter .item.search-on-id {
-    width: calc(24.6% - 16.66667px);
-  }
-}
-
 @media screen and (max-width: 1280px) {
   .container-fluid {
     padding-right: 10px;
@@ -2507,7 +2584,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
     padding: 7px 6px;
   }
 
-  #example tbody tr td .tbody-dop-info {
-    padding: 8px 6px;
+  .full-filter .item.filter-btn-outline,
+  .full-filter .item.filter-btn {
+    min-width: 11%;
   }
 }

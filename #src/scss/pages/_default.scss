@@ -274,3 +274,28 @@ ul {
 		background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.545438 0.207001C0.275938 0.474274 0.275938 0.905183 0.545438 1.17246L5.11594 5.70518C5.33044 5.91791 5.67694 5.91791 5.89144 5.70518L10.4619 1.17246C10.7314 0.905183 10.7314 0.474274 10.4619 0.207001C10.1924 -0.0602717 9.75794 -0.0602717 9.48844 0.207001L5.50094 4.15609L1.51344 0.201546C1.24944 -0.0602718 0.809438 -0.0602717 0.545438 0.207001Z' fill='%233585F5' /%3e%3c/svg%3e");
 	}
 }
+table.dataTable.hover>tbody>tr:hover>*, table.dataTable.display>tbody>tr:hover>* {
+	box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+}
+table.dataTable.stripe>tbody>tr:nth-child(odd)>*, table.dataTable.display>tbody>tr:nth-child(odd)>* {
+	box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+}
+.daterangepicker .drp-buttons .btn {
+	&.btn-primary {
+		--bs-btn-bg:#3585f5;
+		--bs-btn-border-color: #3585f5;
+		--bs-btn-hover-bg: #3585f5;
+		--bs-btn-hover-border-color:#3585f5;
+		--bs-btn-active-bg: #3585f5;
+		--bs-btn-active-border-color: #3585f5;
+		--bs-btn-disabled-bg: #3585f5;
+		--bs-btn-disabled-border-color: #3585f5;
+	}
+}
+.daterangepicker td.in-range {
+	background-color: #e6f1ff;
+}
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+	background-color: #3585f5;
+}

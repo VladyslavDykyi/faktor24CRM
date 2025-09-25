@@ -146,11 +146,21 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		border-radius: 8px;
 		
 		& tr {
-			&:first-child td:first-child {
+			&.active {
+				& td {
+					background-color: #F6F8FB;
+				}
+				& + .dop-info-row {
+					& td {
+						background-color: #F6F8FB;
+					}
+				}
+			}
+			& td:first-child {
 				border-radius: 8px 0 0 8px;
 			}
 			
-			&:last-child td:last-child {
+			& td:last-child {
 				border-radius: 0 8px 8px 0;
 			}
 			

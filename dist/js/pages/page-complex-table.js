@@ -103,7 +103,9 @@ $(document).ready(function () {
 			// Якщо вже розгорнуто - згортаємо
 			row.next().remove();
 			toggleImage(img);
+			row[0].classList.remove('active');
 		} else {
+			row[0].classList.add('active');
 			// Якщо згорнуто - розгортаємо
 			toggleImage(img);
 			const dopInfoRow = `
@@ -117,16 +119,30 @@ $(document).ready(function () {
                                             <p class="description-text">
                                                 <strong>О комплексе:</strong>
                                                Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть вся мебель и техника и еще описание
-Еще строка текста и если текст длиннее этого то добавляется кнопка развернуть
+												Еще строка текста и если текст длиннее этого то добавляется кнопка развернуть
                                                 <span class="more-text" style="display: none;">
                                                     Полное описание квартиры с деталями, которые скрыты по умолчанию.
                                                 </span>
                                                 <button class="btn btn-show-text" type="button">Ещё</button>
                                             </p>
-                                            <p class="description-note">
-                                                <strong>Примечание для агентов:</strong>
-                                                <span>Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий. Есть вся мебель и техника и еще описание</span>
-                                            </p>
+                                           <div class="description-wrapper">
+	                                            <p class="description-text">
+	                                                <strong>Примечание для агентов:</strong>
+	                                                <span>Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий.</span>
+	                                                <span class="more-text" style="display: none;">
+                                                    	Полное описание квартиры с деталями, которые скрыты по умолчанию.
+                                                	</span>
+	                                                <button class="btn btn-show-text" type="button">Ещё</button>
+	                                            </p>
+	                                            <p class="description-text">
+	                                                <strong>Специальные условия:</strong>
+	                                                <span>Текст примечание для агентов Отличная квартира сдается длительно порядочным людям. Евроремонт свежий.</span>
+	                                                <span class="more-text" style="display: none;">
+                                                   		Полное описание квартиры с деталями, которые скрыты по умолчанию.
+                                                	</span>
+	                                                <button class="btn btn-show-text" type="button">Ещё</button>
+	                                            </p>
+											</div>
                                         </div>
                                     </div>
                                     <div class="filter-tags">
@@ -136,33 +152,44 @@ $(document).ready(function () {
                                     </div>
                                     <div class="table-for-others">
 						                <table id="example2" style="width:98%; margin: auto;">
+						                <col width="3.478%" valign="middle">
+										<col width="22.174%" valign="middle">
+										<col width="6.695%" valign="middle">
+										<col width="7.478%" valign="middle">
+										<col width="9.13%" valign="middle">
+										<col width="5.217%" valign="middle">
+										<col width="6.956%" valign="middle">
+										<col width="6.782%" valign="middle">
+										<col width="14.525%" valign="middle">
+										<col width="17.565%" valign="middle">
 						                    <tbody>
 						                        <tr>
-						                            <td>
+						                        	<td>
+						                            	<div class="tbody-wrapper checkBox">
+						                            	
+														</div>
+						                            </td>
+						                            <td colspan="2">
 						                                <div class="tbody-wrapper location">
-						                                    <p>Южная Пальмира дом 1 2024 г.</p>
+						                                    <p>Южная Пальмира дом 1</p>
 						                                    <p>Генуэзская 5/1</p>
-						                                    <span>Аркадия, Одесса, Одесская длинная, Украина</span>
+						                                    <span>Аркадия, Одесса, Одесский</span>
 						                                </div>
 						                            </td>
 						                            <td>
-						                                <div class="tbody-wrapper condition">
-						                                    <p>С ремонтом</p>
-						                                </div>
+						                            	<div class="tbody-wrapper">
+						                            	
+														</div>
 						                            </td>
 						                            <td>
 						                                <div class="tbody-wrapper condition">
-						                                    <p>Новострой</p>
-						                                </div>
-						                            </td>
-						                            <td>
-						                                <div class="tbody-wrapper condition">
-						                                    <p> Монолит</p>
+						                                    <p>Монолит</p>
+						                                    <p>Автономное отопление</p>
 						                                </div>
 						                            </td>
 						                            <td>
 						                                <div class="tbody-wrapper floor">
-						                                    <p>25 этажей</p>
+						                                    <p>25</p>
 						                                </div>
 						                            </td>
 						                            <td>
@@ -171,51 +198,20 @@ $(document).ready(function () {
 						                                </div>
 						                            </td>
 						                            <td>
-						                                <div class="tbody-wrapper price">
-						                                    <p>от 85000</p>
-						                                    <span>от 850/м <sup>2</sup></span>
-						                                </div>
-						                            </td>
-						                        </tr>
-						                        <tr>
-						                            <td>
-						                                <div class="tbody-wrapper location">
-						                                    <p>Южная Пальмира дом 1 2024 г.</p>
-						                                    <p>Генуэзская 5/1</p>
-						                                    <span>Аркадия, Одесса, Одесская длинная, Украина</span>
-						                                </div>
+						                            	<div class="tbody-wrapper">
+						                            	
+														</div>
 						                            </td>
 						                            <td>
-						                                <div class="tbody-wrapper condition">
-						                                    <p>С ремонтом</p>
-						                                </div>
+						                            	<div class="tbody-wrapper">
+						                            	
+														</div>
 						                            </td>
 						                            <td>
-						                                <div class="tbody-wrapper condition">
-						                                    <p>Новострой</p>
-						                                </div>
-						                            </td>
-						                            <td>
-						                                <div class="tbody-wrapper condition">
-						                                    <p> Монолит</p>
-						                                </div>
-						                            </td>
-						                            <td>
-						                                <div class="tbody-wrapper floor">
-						                                    <p>25 этажей</p>
-						                                </div>
-						                            </td>
-						                            <td>
-						                                <div class="tbody-wrapper photo">
-						                                    <img src="./img/image.png" alt="">
-						                                </div>
-						                            </td>
-						                            <td>
-						                                <div class="tbody-wrapper price">
-						                                    <p>от 85000</p>
-						                                    <span>от 850/м <sup>2</sup></span>
-						                                </div>
-						                            </td>
+							                            <div class="tbody-wrapper">
+							                            	2020 г.
+														</div>
+													</td>
 						                        </tr>
 						                    </tbody>
 						                </table>
@@ -330,7 +326,7 @@ $(document).ready(function () {
 		// Знаходимо кнопку details-control в основному рядку
 		const detailsControl = mainRow.find('.details-control');
 		const img = detailsControl.find('img');
-		
+		mainRow[0].classList.remove('active');
 		// Змінюємо зображення назад на "+"
 		toggleImage(img);
 		

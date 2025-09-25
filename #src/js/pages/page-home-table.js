@@ -104,10 +104,13 @@ $(document).ready(function () {
 		const img = button.find('img');
 		toggleImage(img);
 		const row = button.closest('tr');
+		
 		const isExpanded = row.next().hasClass('dop-info-row');
 		if (isExpanded) {
+			row[0].classList.remove('active');
 			row.next().remove();
 		} else {
+			row[0].classList.add('active');
 			const dopInfoRow = `
                 <tr class="dop-info-row">
                     <td colspan="10" style="border-bottom: none;">
@@ -254,6 +257,7 @@ $(document).ready(function () {
 			tbodyDopInfo.next().remove();
 			infoFooterBtn.removeClass('active'); // Видаляємо клас "active", якщо таблиця видаляється
 		} else {
+			// клас last-update у табличці нище з'являеться лише тоді коли довго не оновлювався об'єкт і перший td
 			const othersTable = `
             <div class="table-for-others">
                 <table id="example2" style="width:100%;">
@@ -266,7 +270,7 @@ $(document).ready(function () {
                                 <div class="tbody-wrapper location">
                                     <p>Южная Пальмира</p>
                                     <p>Генуэзская/Посмитного</p>
-                                    <span>Аркадия, Одесса, Одесская, Украина</span>
+                                    <span>Аркадия, Одесса, Одесская обл</span>
                                 </div>
                             </td>
                             <td>
@@ -278,7 +282,103 @@ $(document).ready(function () {
                             <td>
                                 <div class="tbody-wrapper area">
                                     <p>60/40/15</p>
-                                    <span>5сот</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper condition">
+                                    <p>С ремонтом</p>
+                                    <p>Новострой</p>
+                                    <span> Монолит</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper floor">
+                                    <p>4/25</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper photo">
+                                    <img src="./img/image.png" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper price">
+                                    <p>85000</p>
+                                    <span>850/м <sup>2</sup></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper contact">
+                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Имя Фамилия">Имя Фамилия</p>
+                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Real Estate Name">Real Estate Name</p>
+                                    <a href="tel:380968796542">+380968796542</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper block-actions">
+                                    <a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Написать">
+                                        <img src="./img/icon/mail.svg" alt="">
+                                    </a>
+                                    <div class="block-actions-wrapper">
+                                        <label class="bookmark">
+                                            <input type="checkbox">
+                                            <span>
+                                                <img class="non-checked" src="./img/icon/bookmark.svg" alt="">
+                                                <img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
+                                            </span>
+                                        </label>
+                                        <div class="menu-burger">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="./img/icon/burger-blue.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Обновить</a></li>
+                                                    <li><a class="dropdown-item" href="#">Редактировать</a></li>
+                                                    <li><a class="dropdown-item" href="#">Удалить</a></li>
+                                                    <li><a class="dropdown-item" href="#">Отложить</a></li>
+                                                    <li><a class="dropdown-item" href="#">Передать</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="menu-info">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="./img/icon/copylinked.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><span>На сайте</span></a></li>
+                                                    <li><a class="dropdown-item" href="#"><span>На Rem.ua</span></a></li>
+                                                    <li><a class="dropdown-item" href="#"><span>Видео Youtube</span></a></li>
+                                                    <li><a class="dropdown-item" href="#"><span>На карте</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="details-control-dop">
+                                        <img src="./img/icon/plus.svg" alt="">
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                         <tr >
+                        	<td></td>
+                            <td>
+                                <div class="tbody-wrapper location">
+                                    <p>Южная Пальмира</p>
+                                    <p>Генуэзская/Посмитного</p>
+                                    <span>Аркадия, Одесса, Одесская обл</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper type">
+                                    <p>2к</p>
+                                    <span>Квартира</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="tbody-wrapper area">
+                                    <p>60/40/15</p>
                                 </div>
                             </td>
                             <td>

@@ -120,10 +120,13 @@ $(document).ready(function () {
 		const isExpanded = row.next().hasClass('dop-info-row');
 		
 		// Якщо рядок вже розгорнутий - нічого не робимо
-		if (isExpanded) return;
-		
-		// Створюємо новий рядок з таблицею
-		const dopInfoRow = `
+		if (isExpanded) {
+			row[0].classList.remove('active');
+			row.next().remove();
+		} else {
+			row[0].classList.add('active');
+			// Створюємо новий рядок з таблицею
+			const dopInfoRow = `
         <tr class="dop-info-row">
             <td colspan="11">
                 <div class="table-for-others-info">
@@ -233,9 +236,9 @@ $(document).ready(function () {
             </td>
         </tr>
     `;
-		
-		// Додаємо новий рядок після поточного
-		row.after(dopInfoRow);
+			// Додаємо новий рядок після поточного
+			row.after(dopInfoRow);
+		};
 		
 		// Ініціалізуємо tooltips для нових елементів
 		initTooltips();
@@ -246,8 +249,16 @@ $(document).ready(function () {
 		e.stopPropagation();
 		
 		const closeButton = $(this);
-		// Знаходимо батьківський рядок dop-info-row і видаляємо його
+		// Знаходимо батьківський рядок dop-info-row
 		const dopInfoRow = closeButton.closest('.dop-info-row');
+		
+		// Знаходимо попередній рядок (основний) - використовуємо jQuery об'єкт
+		const mainRow = dopInfoRow.prev();
+		
+		// Видаляємо клас active з основного рядка
+		mainRow.removeClass('active');
+		
+		// Видаляємо рядок з деталями
 		dopInfoRow.remove();
 	});
 	// робота інтупів

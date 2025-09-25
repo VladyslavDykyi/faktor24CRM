@@ -2,9 +2,10 @@
 @import "_side-bar";
 @import "page-create-developers/_page-create-developers";
 @import "_my-dropdown";
-
+@import "_block-info";
+@import "_my-dropdown";
 @import "_modal";
-
+@import "modals/add-employee-or-contact-modal";
 .js-example-responsive2,
 .js-example-responsive3 {
 	background-color: #fff;
