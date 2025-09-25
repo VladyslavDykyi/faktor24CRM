@@ -2739,6 +2739,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   fill: #fff;
 }
 
+@media (min-width: 576px) {
+  .modal-dialog {
+    --bs-modal-width: 95%;
+  }
+}
+
 @media (min-width: 1200px) {
   .modal-xl {
     --bs-modal-width: 906px;
@@ -2793,10 +2799,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 @media screen and (max-width: 620px) {
-  .modal-body-l:last-of-type .btn {
-    width: 100%;
-  }
-
   .photo-info {
     grid-gap: 16px;
     -webkit-box-orient: vertical;
@@ -2837,6 +2839,47 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
   .loading-documents .error-list {
     width: auto;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .modal-body-l:last-of-type {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    grid-gap: 12px;
+  }
+
+  .modal-body-l:last-of-type .btn {
+    width: 100%;
+  }
+
+  .modal-row .item.w50 {
+    width: 100%;
+  }
+
+  .modal-row .item-row {
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    grid-gap: 12px;
+  }
+
+  .modal-row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    grid-gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .modal-row .item {
+    width: 100%;
+    margin-bottom: 0;
   }
 }
 

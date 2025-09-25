@@ -3,6 +3,11 @@
 		--bs-modal-width: 906px;
 	}
 }
+@media (min-width: 576px) {
+	.modal-dialog {
+		--bs-modal-width: 95%;
+	}
+}
 .modal {
 	z-index: 1041 !important;
 	&-backdrop {
@@ -31,6 +36,10 @@
 			    display: flex;
 			    justify-content: space-between;
 			    align-items: center;
+			    @media screen and (max-width: 576px) {
+				    flex-direction: column;
+				    grid-gap: 12px;
+			    }
 			    & .btn {
 				    min-width: 160px;
 				    padding: 5px 6px;
@@ -38,7 +47,7 @@
 				    font-size: 14px;
 				    line-height: normal;
 				    text-align: center;
-				    @media screen and (max-width: 620px) {
+				    @media screen and (max-width: 576px) {
 					    width: 100%;
 				    }
 			    }
@@ -142,6 +151,9 @@
 			}
 			&.w50 {
 				width: calc(50% - 8px);
+				@media screen and (max-width: 576px) {
+					width: 100%;
+				}
 			}
 			&-row {
 				width: calc(100% - 150px);
@@ -150,6 +162,11 @@
 				display: flex;
 				flex-wrap: wrap;
 				align-items: flex-start;
+				@media screen and (max-width: 576px) {
+					width: 100%;
+					flex-direction: column;
+					grid-gap: 12px;
+				}
 			}
 			&.phone [data-phone-item] {
 				position: relative;
@@ -186,6 +203,11 @@
 	align-items: flex-start;
 	flex-wrap: wrap;
 	width: 100%;
+	@media screen and (max-width: 576px) {
+		flex-direction: column;
+		grid-gap: 12px;
+		margin-bottom: 12px;
+	}
 	
 	& .item-label,
 	& label {
@@ -203,6 +225,10 @@
 		width: calc(33.33333% - 13.33333px);
 		padding-right: 0;
 		margin-bottom: 12px;
+		@media screen and (max-width: 576px) {
+			width: 100%;
+			margin-bottom: 0;
+		}
 		&.photo-loader {
 			min-width: 150px;
 			width: auto;
