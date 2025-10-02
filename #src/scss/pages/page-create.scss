@@ -4,6 +4,10 @@
 @import "_my-dropdown";
 
 @import "_modal";
+@import "modals/add-employee-or-contact-modal";
+@import "_loading-documents";
+@import "_filter-tags";
+@import "_photo-loader";
 .js-example-responsive2,
 .js-example-responsive3 {
 	background-color: #fff;

@@ -623,44 +623,6 @@
 	}
 }
 
-.filter-tags {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	grid-gap: 8px;
-	padding-bottom: 10px;
-	
-	& .badge {
-		padding: 2px 9px;
-		display: flex;
-		align-items: center;
-		grid-gap: 8px;
-		font-weight: 400;
-		height: 24px;
-		font-size: 14px;
-		line-height: 18px;
-		letter-spacing: 0.01em;
-		border-radius: 6px !important;
-		border: 1px solid #D5DBE3;
-		background-color: #FFFFFF;
-		color: #111111;
-		
-		& button {
-			display: flex;
-			align-items: center;
-			padding: 0;
-			border: none;
-			background: none;
-			outline: none;
-			cursor: pointer;
-			
-			& path {
-				fill: #AAAAAA;
-			}
-		}
-	}
-}
-
 .tab-content {
 	margin-top: 16px;
 	margin-bottom: 16px;
@@ -806,7 +768,6 @@
 		}
 	}
 	& .filter-tags {
-		padding-bottom: 0;
 		& .badge {
 			text-wrap: auto;
 			height: auto;

@@ -1875,7 +1875,6 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 }
 
 .modal-dialog-centered {
-  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

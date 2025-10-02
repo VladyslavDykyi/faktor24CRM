@@ -136,6 +136,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						line-height: 108%;
 						color: #aaa;
 						margin: 0;
+						&:first-letter {
+							text-transform: uppercase;
+						}
 					}
 				}
 			}
@@ -193,7 +196,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 						color: #111;
 						text-decoration: underline;
 					}
-					
+					& .link-name {
+						color: #3585F5;
+						text-decoration: none;
+						&:hover {
+							text-decoration: underline;
+						}
+					}
 					&.checkBox {
 						max-width: 50px;
 						
@@ -221,6 +230,17 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							display: flex;
 							flex-direction: column;
 							align-items: flex-start;
+							& > a:not(.link-name) {
+								font-size: 12px;
+								font-weight: 700;
+								text-decoration: none;
+							}
+							& > p {
+								font-size: 12px;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								overflow: hidden;
+							}
 						}
 					}
 					&.offices,
@@ -597,4 +617,16 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 			}
 		}
 	}
+}
+#example_wrapper div.dt-layout-row:nth-child(1) select {
+	border: 1px dashed transparent;
+	border-bottom-color: #3585f5;
+	border-radius: 0;
+	padding: 0;
+	background-color: transparent;
+	font-size: 14px;
+	line-height: normal;
+	font-weight: 700;
+	color: #3585f5;
+	outline: 0;
 }

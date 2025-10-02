@@ -4,8 +4,6 @@ import {
 	FileUploader,
 	PhotoLoader,
 	PhoneInputManager,
-	RealEstateDescriptionGenerator,
-	RowManager
 } from "./function_on_pages-create.js";
 
 $(".js-example-responsive2-currency").select2({
@@ -49,18 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	}, 100);
 });
 
-new RowManager();
-
-new RealEstateDescriptionGenerator('ваш_api_ключ', {
-	model: 'gpt-3.5-turbo',
-	temperature: 1,
-	minWords: 2000,
-	textareaSelector: '.description-for-advertising',
-	btnSelector: '#generation-chat-gpt',
-	languages: ['ua', 'ru', 'en'],
-	// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
-});
-
 new PhoneInputManager({
 	btnSelector: '.btn-new-tel',
 	wrapperSelector: '.create-filter-client-wrapper .right',
@@ -84,18 +70,43 @@ new PhoneInputManager({
 
 // Ініціалізація FileUploader після завантаження Fancybox
 function initFileUploaders () {
+	new FileUploader({
+		inputIdSelector: '#document-logo',
+		wrapperClassSelector: '.loading-logo',
+		renderContainerSelector: '.loading-logo [data-render-document]',
+		errorContainer: '.loading-logo .error-container',
+		maxCountPhoto: 1,
+		checkImageSize: false,
+		// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
+	});
 	// Для документів (без перевірки розміру)
 	new FileUploader({
-		inputId: 'document',
-		wrapperClass: 'loading-documents',
+		inputIdSelector: '#document',
+		wrapperClassSelector: '.loading-documents',
+		renderContainerSelector: '.document [data-render-document]',
+		errorContainer: '.document .error-container',
+		maxCountPhoto: 10,
+		checkImageSize: false,
+		// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
+	});
+	// Для плану (з перевіркою розміру)
+	new FileUploader({
+		inputIdSelector: '#loading-plan',
+		wrapperClassSelector: '.loading-plan',
+		renderContainerSelector: '.loading-plan [data-render-document]',
+		errorContainer: '.loading-plan .error-container',
+		maxCountPhoto: 10,
 		checkImageSize: false,
 		// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
 	});
 	
-	// Для плану (з перевіркою розміру)
+	// цей код для ініціалізації завантаження планів для секцій\корпусів
 	new FileUploader({
-		inputId: 'plan',
-		wrapperClass: 'loading-plan',
+		inputIdSelector: '#loading-plan-1',
+		wrapperClassSelector: '[data-plan-id="plan-1"]',
+		renderContainerSelector: '[data-plan-id="plan-file-error-1"] [data-render-document]',
+		errorContainer: '[data-plan-id="plan-file-error-1"] .error-container',
+		maxCountPhoto: 2,
 		checkImageSize: false,
 		// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
 	});
@@ -122,48 +133,3 @@ if (typeof Fancybox !== 'undefined') {
 		}
 	}, 200);
 }
-$(document).ready(function () {
-	// Обробник відкриття меню
-	$('.multiple-menu-btn').on('click', function (event) {
-		event.stopPropagation(); // Зупиняємо всплиття
-		const currentState = $(this).attr('data-open-menu');
-		const newState = currentState === 'false' ? 'true' : 'false';
-		$(this).attr('data-open-menu', newState);
-	});
-	
-	// Обробник кліку поза меню
-	$(document).on('click', function () {
-		$('.multiple-menu-btn').attr('data-open-menu', 'false');
-	});
-	
-	// Обробник кліку всередині меню, щоб не закривалося при кліку на елементи меню
-	$('.multiple-menu-wrapper').on('click', function (event) {
-		event.stopPropagation();
-	});
-	
-	// Обробник для всіх чекбоксів
-	$(document).on('change', '.multiple-menu-list input[type="checkbox"]', function () {
-		const $currentList = $(this).closest('.multiple-menu-list'); // Поточний список
-		const $allCheckbox = $currentList.find('input[data-name="checkbox-all"]'); // Чекбокс "Все" в поточному списку
-		const $otherCheckboxes = $currentList.find('input[type="checkbox"]').not($allCheckbox); // Інші чекбокси
-		if ($(this).data('name') === 'checkbox-all') {
-			// Якщо змінений чекбокс "Все"
-			if ($(this).is(':checked')) {
-				// Якщо "Все" обрано, знімаємо галочки з інших чекбоксів
-				$otherCheckboxes.prop('checked', false);
-			}
-		} else {
-			// Якщо змінений будь-який інший чекбокс
-			if ($(this).is(':checked')) {
-				// Якщо обрано інший чекбокс, знімаємо галочку з "Все"
-				$allCheckbox.prop('checked', false);
-			}
-			// Перевіряємо, чи всі інші чекбокси не вибрані
-			if ($otherCheckboxes.filter(':checked').length === 0) {
-				// Якщо жоден інший чекбокс не вибрано, ставимо галочку на "Все"
-				$allCheckbox.prop('checked', true);
-			}
-		}
-	});
-});
-

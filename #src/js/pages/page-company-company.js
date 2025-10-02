@@ -73,6 +73,13 @@ $(document).ready(function () {
 			}
 		],
 	});
+	table.on('draw', function() {
+		// Отримуємо кількість записів, які відображаються
+		const recordsDisplay = table.page.info().recordsDisplay;
+		
+		// Змінюємо текст елемента, обгортаючи кількість записів у тег <b>
+		$('#example_info').html('Всего: <b>' + recordsDisplay + '</b>');
+	});
 	// Обробник кліку на кнопку "btn-others"
 	// Обробник кліку на кнопку "btn-others" в блоці client
 	$('#example tbody').on('click', '.offices .btn-others', function(e) {
@@ -169,12 +176,12 @@ $(document).ready(function () {
                                 <div class="tbody-wrapper company">
 									<strong>Название компании 1</strong>
                                 	<p>Генуэзская 1, офис 100</p>
-									<span>Аркадия, Одесса, Одесский длинный, Украина</span>
+									<span>Аркадия, Одесса, Одесский длинный</span>
 								</div>
                             </td>
                             <td>
                                 <div class="tbody-wrapper responsible">
-                                    <p>Длинное имя Добровольский</p>
+                                	<a href="#" class="link-name" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Длинное имя Добровольский">Длинное имя Добровольский</a>
 									<span>Менеджер</span>
 									<a href="tel:380968796542">+380968796542</a>
                                 </div>

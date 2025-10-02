@@ -1068,7 +1068,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 #example tbody tr td .tbody-dop-info .info-main-left .filter-tags {
   width: 100%;
-  padding-bottom: 0;
 }
 
 #example tbody tr td .tbody-dop-info .info-footer {
@@ -1276,7 +1275,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 #example tbody tr td .table-for-others tbody tr td:nth-child(6) {
-  width: 5.217%;
+  width: 12.217%;
 }
 
 #example tbody tr td .table-for-others tbody tr td:nth-child(7) {
@@ -2522,7 +2521,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .modal-dialog-centered {
-  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

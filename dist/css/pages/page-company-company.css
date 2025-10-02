@@ -944,6 +944,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   margin: 0;
 }
 
+#example thead tr th .thead-wrapper p:first-letter {
+  text-transform: uppercase;
+}
+
 #example tbody {
   border-radius: 8px;
 }
@@ -994,6 +998,15 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   text-decoration: underline;
 }
 
+#example tbody tr td .tbody-wrapper .link-name {
+  color: #3585F5;
+  text-decoration: none;
+}
+
+#example tbody tr td .tbody-wrapper .link-name:hover {
+  text-decoration: underline;
+}
+
 #example tbody tr td .tbody-wrapper.checkBox {
   max-width: 50px;
 }
@@ -1033,6 +1046,19 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+
+#example tbody tr td .tbody-wrapper.responsible > div > a:not(.link-name) {
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#example tbody tr td .tbody-wrapper.responsible > div > p {
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #example tbody tr td .tbody-wrapper.offices,
@@ -1488,6 +1514,19 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding: 0;
 }
 
+#example_wrapper div.dt-layout-row:nth-child(1) select {
+  border: 1px dashed transparent;
+  border-bottom-color: #3585f5;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: normal;
+  font-weight: 700;
+  color: #3585f5;
+  outline: 0;
+}
+
 .filter-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1814,7 +1853,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .modal-dialog-centered {
-  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

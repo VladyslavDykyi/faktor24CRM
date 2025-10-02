@@ -84,6 +84,7 @@ $(document).ready(function () {
 				}
 			}
 		],
+		
 		// Добавьте этот callback для инициализации после создания таблицы
 		initComplete: function(settings, json) {
 			// Инициализация Select2 для элементов, которые уже есть в DOM
@@ -109,6 +110,13 @@ $(document).ready(function () {
 				placeholder: 'Офис',
 			});
 		}
+	});
+	table.on('draw', function() {
+		// Отримуємо кількість записів, які відображаються
+		const recordsDisplay = table.page.info().recordsDisplay;
+		
+		// Змінюємо текст елемента, обгортаючи кількість записів у тег <b>
+		$('#example_info').html('Всего: <b>' + recordsDisplay + '</b>');
 	});
 	// Обробник кліку на кнопку "btn-others"
 	// Обробник кліку на кнопку "btn-others" в блоці client
@@ -149,7 +157,7 @@ $(document).ready(function () {
                                 <div class="tbody-wrapper location">
                                     <p>Южная Пальмира</p>
                                     <p>Генуэзская/Посмитного</p>
-                                    <span>Аркадия, Одесса, Одесская, Украина</span>
+                                    <span>Аркадия, Одесса, Одесская</span>
                                 </div>
                             </td>
                             <td>

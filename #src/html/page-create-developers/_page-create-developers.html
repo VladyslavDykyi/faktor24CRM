@@ -26,7 +26,7 @@
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="en-tab" data-bs-toggle="tab"
 											data-bs-target="#en-tab-pane" type="button" role="tab"
-											aria-controls="en-tab-pane" aria-selected="false">ENG
+											aria-controls="en-tab-pane" aria-selected="false">EN
 									</button>
 								</li>
 							</ul>
@@ -97,12 +97,12 @@
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="en-tab-about-developer" data-bs-toggle="tab"
 											data-bs-target="#en-tab-pane-about-developer" type="button" role="tab"
-											aria-controls="en-tab-pane-about-developer" aria-selected="false">ENG
+											aria-controls="en-tab-pane-about-developer" aria-selected="false">EN
 									</button>
 								</li>
 								<li class="nav-item">
 									<button id="generation-ai-about-developer" class="nav-link ai" type="button">
-										<span>Сгенерировать с ИИ</span>
+										<span>AI Text</span>
 									</button>
 								</li>
 							</ul>
@@ -228,9 +228,9 @@
 							</li>
 						</ul>
 					</div>
-					<div class="loading-documents">
-						<label for="document">
-							<input type="file" id="document" name="document" multiple accept="image/png, image/jpeg, application/pdf">
+					<div class="loading-documents loading-logo">
+						<label for="document-logo">
+							<input type="file" id="document-logo" name="document-logo" accept="image/png, image/jpeg, application/pdf">
 							<span>
 								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
 									 xmlns="http://www.w3.org/2000/svg">
@@ -244,6 +244,7 @@
 							</span>
 						</label>
 						<div class="filter-tags" data-render-document></div>
+						<div class="error-container" data-error></div>
 					</div>
 					<div class="item">
 						<label for="note-for-agents">Примечание для агентов</label>

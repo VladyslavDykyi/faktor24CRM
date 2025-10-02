@@ -17,8 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function initFileUploaders () {
 	// Для документів (без перевірки розміру)
 	new FileUploader({
-		inputId: 'document',
-		wrapperClass: 'loading-documents',
+		inputIdSelector: '#document-logo',
+		wrapperClassSelector: '.loading-logo',
+		renderContainerSelector: '.loading-logo [data-render-document]',
+		errorContainer: '.loading-logo .error-container',
+		maxCountPhoto: 1,
 		checkImageSize: false,
 		// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
 	});

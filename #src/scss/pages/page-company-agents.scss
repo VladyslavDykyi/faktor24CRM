@@ -9,7 +9,9 @@
 
 @import "modals/add-employee-or-contact-modal";
 @import "_modal";
-
+@import "_loading-documents";
+@import "_filter-tags";
+@import "_photo-loader";
 .full-filter-btn-wrapper {
 	position: relative;
 	& .full-filter-counter {

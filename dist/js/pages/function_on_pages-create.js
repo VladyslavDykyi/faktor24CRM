@@ -1,13 +1,15 @@
 "use strict";
 
 class FileUploader {
-	constructor (options) {
+	constructor(options) {
 		// Обов'язкові параметри
-		this.inputId = options.inputId;
-		this.wrapperClass = options.wrapperClass;
-		
+		this.inputIdSelector = options.inputIdSelector;
+		this.wrapperClassSelector = options.wrapperClassSelector;
+		this.renderContainerSelector = options.renderContainerSelector;
 		// Параметри з перевіркою розміру (за замовчуванням true)
 		this.checkImageSize = options.checkImageSize !== false;
+		// Максимальна кількість фото (якщо не вказано - без обмежень)
+		this.maxCountPhoto = options.maxCountPhoto || null;
 		
 		// Мінімальні розміри тільки якщо перевірка увімкнена
 		if (this.checkImageSize) {
@@ -16,36 +18,46 @@ class FileUploader {
 		}
 		
 		// Знаходимо DOM-елементи
-		this.input = document.querySelector(`#${this.inputId}`);
-		this.wrapper = document.querySelector(`.${this.wrapperClass}`);
-		this.errorContainer = this.wrapper;
-		// ? this.wrapper.querySelector(`.${this.wrapperClass}`)
-		// : null;
+		this.input = document.querySelector(`${this.inputIdSelector}`);
+		this.wrapper = document.querySelector(`${this.wrapperClassSelector}`);
 		
-		// Визначаємо контейнер для рендерингу
-		this.renderContainer = document.querySelector(
-			this.inputId === 'document'
-				? '[data-render-document]'
-				: '[data-render-plan]'
-		);
+		// Контейнер для помилок (якщо не вказано - використовуємо wrapper)
+		this.errorContainer = options.errorContainer
+			? document.querySelector(options.errorContainer)
+			: this.wrapper;
 		
+		this.renderContainer = document.querySelector(this.renderContainerSelector);
 		// Масиви для файлів
 		this.validDocuments = [];
 		this.invalidDocuments = [];
-		// Ініціалізація
-		if (this.input && this.wrapper && this.errorContainer) {
+		this.pendingImages = 0; // Лічильник для асинхронної обробки
+		this.idCounter = 0; // Лічильник для унікальних ID
+		// Перевіряємо, чи всі необхідні елементи існують
+		if (this.input && this.wrapper && this.renderContainer) {
 			this.init();
 		} else {
-			console.error('Не удалось найти необходимые DOM-элементы');
+			console.error('Не удалось найти необходимые DOM-элементы:', {
+				input: this.input,
+				wrapper: this.wrapper,
+				errorContainer: this.errorContainer,
+				renderContainer: this.renderContainer
+			});
 		}
 	}
 	
-	init () {
-		this.input.addEventListener('change', (e) => this.handleFileUpload(e));
+	// Метод для генерації унікальних ID
+	generateUniqueId() {
+		this.idCounter++;
+		return `file_${this.idCounter}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 	}
 	
-	clearErrors () {
-		if ( !this.wrapper || !this.errorContainer) return;
+	init() {
+		this.input.addEventListener('change', (e) => this.handleFileUpload(e));
+		console.log('FileUploader initialized for input:', this.inputIdSelector);
+	}
+	
+	clearErrors() {
+		if (!this.wrapper || !this.errorContainer) return;
 		
 		this.wrapper.classList.remove('error');
 		this.wrapper.style.marginBottom = '';
@@ -53,8 +65,8 @@ class FileUploader {
 		errorElements.forEach(element => element.remove());
 	}
 	
-	displayErrors () {
-		if ( !this.wrapper || !this.errorContainer) return;
+	displayErrors() {
+		if (!this.wrapper || !this.errorContainer) return;
 		
 		// Очищаємо попередні помилки
 		this.clearErrors();
@@ -78,42 +90,66 @@ class FileUploader {
 		}
 	}
 	
-	handleFileUpload (event) {
+	handleFileUpload(event) {
 		const files = Array.from(event.target.files);
 		
-		// Очищаємо масиви
-		this.validDocuments = [];
-		this.invalidDocuments = [];
+		// Перевіряємо обмеження кількості файлів
+		if (this.maxCountPhoto !== null) {
+			const currentCount = this.validDocuments.length;
+			if (currentCount + files.length > this.maxCountPhoto) {
+				const availableSlots = this.maxCountPhoto - currentCount;
+				if (availableSlots <= 0) {
+					this.invalidDocuments.push({
+						type: 'max_count',
+						text: `Достигнуто максимальное количество файлов: ${this.maxCountPhoto}. Удалите существующие файлы перед добавлением новых.`
+					});
+					this.displayErrors();
+					this.render();
+					event.target.value = ''; // Очищаємо input
+					return;
+				} else {
+					// Обрізаємо масив файлів до доступної кількості
+					files.splice(availableSlots);
+					this.invalidDocuments.push({
+						type: 'max_count',
+						text: `Можно загрузить только ${availableSlots} файл(ов). Максимальное количество: ${this.maxCountPhoto}.`
+					});
+				}
+			}
+		}
 		
-		// Обробляємо файли
-		files.forEach((file, index) => {
+		this.pendingImages = files.filter(file => file.type.match('image.*')).length;
+		const hasImages = this.pendingImages > 0;
+		
+		files.forEach((file) => {
 			if (file.type === 'application/pdf') {
-				this.handlePDF(file);
+				this.validDocuments.push({
+					id: this.generateUniqueId(), // Унікальний ID
+					name: file.name,
+					size: file.size,
+					width: null,
+					height: null,
+					file: file
+				});
 			} else if (file.type.match('image.*')) {
-				this.handleImage(file, index, files.length);
+				this.handleImage(file);
 			} else {
-				this.handleInvalidFile(file);
+				this.invalidDocuments.push({
+					type: 'invalid_type',
+					fileName: file.name,
+					text: `Файл "${file.name}" не является изображением или PDF.`
+				});
 			}
 		});
 		
-		// Якщо всі файли PDF (не потребують асинхронної обробки)
-		if (files.every(file => file.type === 'application/pdf')) {
+		// Якщо немає зображень (тільки PDF), оновлюємо одразу
+		if (!hasImages) {
 			this.displayErrors();
 			this.render();
 		}
 	}
 	
-	handlePDF (file) {
-		this.validDocuments.push({
-			id: this.validDocuments.length,
-			name: file.name,
-			size: file.size,
-			width: null,
-			height: null,
-		});
-	}
-	
-	handleImage (file, index, totalFiles) {
+	handleImage(file) {
 		const img = new Image();
 		const url = URL.createObjectURL(file);
 		
@@ -123,33 +159,25 @@ class FileUploader {
 			const width = img.width;
 			const height = img.height;
 			
-			if ( !this.checkImageSize) {
-				// Якщо перевірка вимкнена
+			if (!this.checkImageSize || (width >= this.minWidth && height >= this.minHeight)) {
 				this.validDocuments.push({
-					id: this.validDocuments.length,
+					id: this.generateUniqueId(), // Унікальний ID
 					name: file.name,
 					size: file.size,
 					width: width,
 					height: height,
-				});
-			} else if (width >= this.minWidth && height >= this.minHeight) {
-				// Якщо перевірка увімкнена і розмір підходить
-				this.validDocuments.push({
-					id: this.validDocuments.length,
-					name: file.name,
-					size: file.size,
-					width: width,
-					height: height,
+					file: file
 				});
 			} else {
-				// Якщо перевірка увімкнена і розмір не підходить
 				this.invalidDocuments.push({
+					type: 'small_size',
+					fileName: file.name,
 					text: `Изображение "${file.name}" (${width}x${height}) маловатое. Минимальный размер: ${this.minWidth}x${this.minHeight} пікселів.`
 				});
 			}
 			
-			// Оновлюємо помилки після обробки останнього файлу
-			if (index === totalFiles - 1) {
+			this.pendingImages--;
+			if (this.pendingImages === 0) {
 				this.displayErrors();
 				this.render();
 			}
@@ -158,22 +186,25 @@ class FileUploader {
 		img.onerror = () => {
 			URL.revokeObjectURL(url);
 			this.invalidDocuments.push({
+				type: 'load_error',
+				fileName: file.name,
 				text: `Ошибка загрузки изображения: ${file.name}`
 			});
-			this.displayErrors();
+			this.pendingImages--;
+			if (this.pendingImages === 0) {
+				this.displayErrors();
+				this.render();
+			}
 		};
 		
 		img.src = url;
 	}
 	
-	handleInvalidFile (file) {
-		this.invalidDocuments.push({
-			text: `Файл "${file.name}" не является изображением или PDF. Допустимы только изображения (JPG/PNG) и PDF.`
-		});
-	}
-	
-	render () {
-		if ( !this.renderContainer) return;
+	render() {
+		if (!this.renderContainer) {
+			console.error('Render container not found:', this.renderContainerSelector);
+			return;
+		}
 		
 		// Очищаємо контейнер перед рендерингом
 		this.renderContainer.innerHTML = '';
@@ -182,21 +213,21 @@ class FileUploader {
 		this.validDocuments.forEach(item => {
 			const documentItem = document.createElement('div');
 			documentItem.className = 'badge rounded-pill document-item';
-			if (this.inputId === 'plan') {
+			
+			if (this.inputIdSelector === 'plan') {
 				documentItem.setAttribute('data-plan-id', item.id);
 			} else {
 				documentItem.setAttribute('data-document-id', item.id);
 			}
+			
 			// Визначаємо тип контенту та джерело для Fancybox
 			const isPDF = item.name.toLowerCase().endsWith('.pdf');
 			const fancyboxType = isPDF ? 'iframe' : 'image';
-			const fancyboxSrc = isPDF ?
-				URL.createObjectURL(this.getFileByName(item.name)) :
-				URL.createObjectURL(this.getFileByName(item.name));
+			const fileURL = URL.createObjectURL(item.file);
 			
 			documentItem.innerHTML = `
                 <span>${item.name}</span>
-                <button type="button" class="fancybox-button" data-fancybox data-type="${fancyboxType}" data-src="${fancyboxSrc}" aria-label="eye" data-id="${item.id}">
+                <button type="button" class="fancybox-button" data-fancybox data-type="${fancyboxType}" data-src="${fileURL}" aria-label="eye" data-id="${item.id}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z"
                       stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
@@ -224,37 +255,62 @@ class FileUploader {
 		this.initFancybox();
 	}
 	
-	addRemoveHandlers () {
+	addRemoveHandlers() {
 		const removeButtons = this.renderContainer.querySelectorAll('.remove-document');
 		removeButtons.forEach(button => {
 			button.addEventListener('click', (e) => {
 				e.preventDefault();
-				const id = parseInt(button.getAttribute('data-id'));
+				const id = button.getAttribute('data-id');
 				this.removeDocument(id);
 			});
 		});
 	}
 	
-	removeDocument (id) {
+	removeDocument(id) {
+		// Знаходимо файл, який видаляємо
+		const removedFile = this.validDocuments.find(doc => doc.id === id);
+		
 		// Видаляємо документ з масиву
 		this.validDocuments = this.validDocuments.filter(doc => doc.id !== id);
 		
-		// Оновлюємо ID для залишених документів
-		this.validDocuments.forEach((doc, index) => {
-			doc.id = index;
-		});
+		// Очищаємо помилки, які більше не актуальні
+		this.cleanupErrors(removedFile);
 		
 		// Перерендеримо список
 		this.render();
 	}
 	
-	getFileByName (filename) {
-		// Шукаємо файл у input.files за ім'ям
-		const files = Array.from(this.input.files);
-		return files.find(file => file.name === filename);
+	cleanupErrors(removedFile) {
+		if (!removedFile) return;
+		
+		// Видаляємо помилки, пов'язані з видаленим файлом
+		this.invalidDocuments = this.invalidDocuments.filter(error =>
+			error.fileName !== removedFile.name
+		);
+		
+		// Перевіряємо помилки максимальної кількості
+		if (this.maxCountPhoto !== null) {
+			const currentCount = this.validDocuments.length;
+			
+			// Якщо кількість файлів стала меншою за максимальну, видаляємо помилки про перевищення
+			if (currentCount < this.maxCountPhoto) {
+				this.invalidDocuments = this.invalidDocuments.filter(error =>
+					error.type !== 'max_count'
+				);
+			}
+		}
+		
+		// Відображаємо оновлені помилки
+		this.displayErrors();
 	}
 	
-	initFancybox () {
+	initFancybox() {
+		// Перевіряємо, чи Fancybox доступний
+		if (typeof Fancybox === 'undefined') {
+			console.warn('Fancybox is not available');
+			return;
+		}
+		
 		// Ініціалізація Fancybox для всіх кнопок перегляду
 		Fancybox.bind("[data-fancybox]", {
 			Thumbs: false,
@@ -263,6 +319,26 @@ class FileUploader {
 				zoom: true,
 			},
 		});
+	}
+	
+	// Додатковий метод для отримання всіх валідних файлів
+	getValidFiles() {
+		return this.validDocuments.map(doc => doc.file);
+	}
+	
+	// Додатковий метод для очищення всіх файлів
+	clearAllFiles() {
+		this.validDocuments = [];
+		this.invalidDocuments = [];
+		this.pendingImages = 0;
+		this.input.value = ''; // Очищаємо input
+		this.clearErrors();
+		this.render();
+	}
+	
+	// Додатковий метод для перевірки, чи є файли
+	hasFiles() {
+		return this.validDocuments.length > 0;
 	}
 }
 
@@ -1297,14 +1373,17 @@ class PhotoLoader {
 
 class PhotoLoaderMini {
 	constructor (options) {
-		if ( !options.inputId) {
+		if ( !options.inputIdSelector) {
 			throw new Error('Необходимо указать inputId');
 		}
 		
 		// Обов'язкові параметри
-		this.inputId = options.inputId;
-		this.wrapperClass = options.wrapperClass || 'photo-info-list';
+		this.inputId = options.inputIdSelector;
+		this.wrapperClass = options.wrapperClassSelector || 'photo-info-list';
 		this.checkImageSize = options.checkImageSize !== false;
+		
+		// Визначаємо контекст пошуку елементів
+		this.context = options.context || document;
 		
 		// Мінімальні розміри зображень
 		this.minWidth = options.minWidth || 800;
@@ -1313,11 +1392,11 @@ class PhotoLoaderMini {
 		// Максимальна кількість фото (1)
 		this.maxPhotos = 1;
 		
-		// DOM елементи
-		this.input = document.querySelector(`#${this.inputId}`);
-		this.wrapper = document.querySelector(`.${this.wrapperClass}`);
-		this.errorContainer = document.querySelector('.photo-info-list-wrapper > .error-container');
-		this.renderContainer = document.querySelector('.photo-info-list');
+		// DOM елементи - шукаємо в заданому контексті
+		this.input = this.context.querySelector(`${this.inputId}`);
+		this.wrapper = this.context.querySelector(`${this.wrapperClass}`);
+		this.errorContainer = this.context.querySelector('.photo-info-list-wrapper > .error-container');
+		this.renderContainer = this.wrapper;
 		
 		// Масиви для зберігання фото
 		this.validPhotos = [];
@@ -1329,16 +1408,17 @@ class PhotoLoaderMini {
 		this.isProcessing = false;
 		this.globalLoader = null;
 		
-		// Додаємо посилання на кнопку
-		this.uploadButton = null;
+		// Додаємо посилання на кнопку - шукаємо в контексті
+		this.uploadButton = this.context.querySelector('.photo-info-list .photo-info-btn-wrapper');
 		
 		if (this.input && this.wrapper) {
 			this.createGlobalLoader();
 			this.init();
-			// Знаходимо кнопку в DOM
-			this.uploadButton = document.querySelector('.photo-info-list .photo-info-btn-wrapper');
 		} else {
-			console.error('Не удалось найти необходимые DOM-элементы');
+			console.error('Не удалось найти необходимые DOM-элементы в заданном контексте');
+			console.error('Input selector:', this.inputId, 'found:', !!this.input);
+			console.error('Wrapper selector:', this.wrapperClass, 'found:', !!this.wrapper);
+			console.error('Context:', this.context);
 		}
 	}
 	
@@ -1794,7 +1874,7 @@ class PhotoLoaderMini {
 		photoElement.remove();
 		
 		// Очищаємо значення input
-		this.input.value = ''; // ← Додайте цей рядок
+		this.input.value = '';
 		
 		// Оновлюємо видимість кнопки завантаження
 		this.toggleUploadButtonVisibility();
@@ -1835,18 +1915,44 @@ class PhotoLoaderMini {
 		});
 	}
 	
-	destroy () {
+	destroy() {
+		// 1. Очистити всі blob URLs
 		this.clearOldObjectUrls();
 		
+		// 2. Видалити всі створені фото-елементи
+		if (this.renderContainer) {
+			const photoItems = this.renderContainer.querySelectorAll('.photo-info-item');
+			photoItems.forEach(item => item.remove());
+		}
+		
+		// 3. Очистити помилки
+		this.clearErrors();
+		
+		// 4. Скинути input
+		if (this.input) {
+			this.input.value = '';
+		}
+		
+		// 5. Показати кнопку завантаження
+		this.toggleUploadButtonVisibility();
+		
+		// 6. Очистити масиви
+		this.photoArray = [];
+		this.validPhotos = [];
+		this.invalidPhotos = [];
+		
+		// 7. Видалити глобальний лоадер
 		if (this.globalLoader) {
 			this.globalLoader.remove();
 			this.globalLoader = null;
 		}
 		
+		// 8. Знищити Fancybox
 		if (typeof Fancybox !== 'undefined' && Fancybox.getInstance()) {
 			Fancybox.getInstance().destroy();
 		}
 		
+		// 9. Видалити обробники подій
 		if (this.input) {
 			this.input.removeEventListener('change', this.handleFileUpload);
 		}
@@ -2028,149 +2134,6 @@ class PhoneInputManager {
 	}
 }
 
-class RealEstateDescriptionGenerator {
-	constructor (apiKey, options) {
-		// Обов'язковий API ключ
-		this.apiKey = apiKey;
-		
-		// Об'єднання налаштувань
-		this.options = {...options};
-		
-		// DOM елементи
-		this.btnElement = document.querySelector(this.options.btnSelector);
-		
-		// Ініціалізація
-		this.init();
-	}
-	
-	init () {
-		if ( !this.btnElement) {
-			console.error('Не знайдено кнопку генерації');
-			return;
-		}
-		
-		this.btnElement.addEventListener('click', (e) => this.generateDescription(e));
-	}
-	
-	// Генеруємо опис нерухомості
-	async generateDescription (e) {
-		e.preventDefault();
-		
-		if ( !this.apiKey) {
-			console.error('API ключ не вказано');
-			return;
-		}
-		
-		try {
-			const prompt = this.buildPrompt();
-			const response = await this.fetchGPTResponse(prompt);
-			
-			if (response) {
-				this.updateTextareas(response);
-			}
-		} catch (error) {
-			console.error('Помилка генерації опису:', error);
-		}
-	}
-	
-	// Формуємо запит до GPT
-	buildPrompt () {
-		const obj_gpt = {
-			location: `Локація: Парус`,
-			city: 'місто: Дніпро',
-			district: 'район: Індустріальний',
-			street: 'вулиця: набережна Перемоги',
-			residentialComplex: 'назва комплексу: Sun City',
-			typeRealEstate: 'тип нерухомості: квартира',
-			numberRooms: 'кількість кімнат: 3',
-			condition: 'стан нерухомості: без ремонту',
-			tags: 'перелік додаткових тегів: парковка, дитячий майданчик, поруч магазини, панорамний вид з вікна',
-		};
-		
-		// Отримуємо чисті значення без міток
-		const getCleanValue = (field) => {
-			if ( !obj_gpt[field]) return null;
-			return obj_gpt[field].split(':').slice(1).join(':').trim();
-		};
-		
-		// Фільтруємо заповнені поля
-		const filledFields = Object.entries({
-			'Локація': getCleanValue('location'),
-			'Місто': getCleanValue('city'),
-			'Район': getCleanValue('district'),
-			'Вулиця': getCleanValue('street'),
-			'Житловий комплекс': getCleanValue('residentialComplex'),
-			'Тип нерухомості': getCleanValue('typeRealEstate'),
-			'Кількість кімнат': getCleanValue('numberRooms'),
-			'Стан': getCleanValue('condition'),
-			'Додаткові переваги': getCleanValue('tags')
-		}).filter(([_, value]) => value !== null);
-		
-		// Формуємо фінальний запит
-		return `Згенеруй привабливий опис для оголошення нерухомості мінімум на ${this.options.minWords} слів
-      українською мовою, російською, англійською. Розділи ці 3 переклади через коди мов ua,ru,en. Ось дані об'єкта:
-      ${filledFields.map(([key, value]) => `- ${key}: ${value}`).join('\n')}`;
-	}
-	
-	// Відправляємо запит до GPT API
-	async fetchGPTResponse (prompt) {
-		const url = 'https://api.openai.com/v1/chat/completions';
-		
-		const response = await fetch(url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': `Bearer ${this.apiKey}`,
-			},
-			body: JSON.stringify({
-				model: this.options.model,
-				messages: [
-					{role: 'user', content: prompt}
-				],
-				temperature: this.options.temperature
-			})
-		});
-		
-		if ( !response.ok) {
-			throw new Error(`HTTP помилка! Статус: ${response.status}`);
-		}
-		
-		const data = await response.json();
-		return data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-	}
-	
-	// Оновлюємо текстові поля з перекладами
-	updateTextareas (text) {
-		const translations = this.parseTranslations(text);
-		const textareas = document.querySelectorAll(this.options.textareaSelector);
-		
-		textareas.forEach(textarea => {
-			const lang = textarea.dataset.textareaLang;
-			if (translations[lang]) {
-				textarea.value = translations[lang];
-			}
-		});
-	}
-	
-	// Парсимо відповідь GPT на окремі переклади
-	parseTranslations (text) {
-		const splitText = text.trim().split('\n\n');
-		const texts = {};
-		
-		splitText.forEach(block => {
-			const [langPart, ...contentParts] = block.split(':');
-			const lang = langPart.trim();
-			const content = contentParts.join(':').trim();
-			
-			if (this.options.languages.includes(lang)) {
-				texts[lang] = content;
-			}
-		});
-		
-		return texts;
-	}
-}
-
 class GoogleMapsManager {
 	constructor () {
 		this.map = null;
@@ -2325,142 +2288,10 @@ class GoogleMapsManager {
 	}
 }
 
-class RowManager {
-	constructor (options) {
-		this.options = {
-			addBtnSelector: '.btn-primary',
-			rowSelector: '.create-filter-row',
-			rowContainerSelector: '.create-filter-container', // Додайте цей контейнер у ваш HTML
-			...options
-		};
-		this.rowCounter = 1;
-		this.init();
-	}
-	
-	init () {
-		// Знаходимо всі існуючі рядки для підрахунку
-		const existingRows = document.querySelectorAll(this.options.rowSelector);
-		this.rowCounter = existingRows.length;
-		
-		// Додаємо обробник кліку на кнопку додавання у першому рядку
-		const addBtn = document.querySelector(this.options.addBtnSelector);
-		if (addBtn) {
-			addBtn.addEventListener('click', () => this.addNewRow());
-		}
-		
-		// Додаємо кнопки видалення до всіх рядків, крім першого
-		existingRows.forEach((row, index) => {
-			if (index > 0) {
-				this.addDeleteButton(row);
-			}
-		});
-	}
-	
-	addNewRow () {
-		this.rowCounter++;
-		const newRow = this.createNewRow();
-		const container = document.querySelector(this.options.rowContainerSelector) ||
-			(document.querySelector(this.options.rowSelector) &&
-				document.querySelector(this.options.rowSelector).parentElement);
-		
-		if (container) {
-			container.appendChild(newRow);
-			this.initSelect2(newRow);
-		}
-	}
-	
-	createNewRow () {
-		const newRow = document.createElement('div');
-		newRow.className = 'create-filter-row row2';
-		newRow.innerHTML = `
-      <div class="item size-btn">
-        <button class="btn btn-danger btn-remove" type="button">
-         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-		   <path d="M2.62231 9.62222C2.4631 9.46301 2.36455 9.24298 2.36455 9C2.36455 8.51389 2.75842 8.12003 3.24453 8.12003L14.7556 8.12003C15.2416 8.12011 15.6355 8.51397 15.6356 9C15.6356 9.48595 15.2416 9.87989 14.7557 9.87989L3.24461 9.87989C3.00155 9.87997 2.78152 9.78143 2.62231 9.62222Z" fill="#fff" />
-		 </svg>
-        </button>
-      </div>
-      <div class="item size-1-2">
-        <span>
-          <label class="item-label" for="counter-section-${this.rowCounter}">Секция</label>
-        </span>
-        <input class="item-inputText" id="counter-section-${this.rowCounter}" type="text" autocomplete="off">
-      </div>
-      <div class="item selects">
-        <label class="item-label" for="counter-street-${this.rowCounter}">Улица</label>
-        <select id="counter-street-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
-          <option value=""></option>
-          <option value="company">Тенистая</option>
-        </select>
-      </div>
-      <div class="item size0-5">
-        <span>
-          <label class="item-label" for="counter-number-house-${this.rowCounter}">№ Дом</label>
-        </span>
-        <input class="item-inputText" id="counter-number-house-${this.rowCounter}" type="text" autocomplete="off">
-      </div>
-      <div class="item size0-5">
-        <span>
-          <label class="item-label" for="counter-floor-${this.rowCounter}">Этажн.</label>
-        </span>
-        <input class="item-inputText" id="counter-floor-${this.rowCounter}" type="text" autocomplete="off">
-      </div>
-      <div class="item selects size0-5">
-        <label class="item-label" for="years-building-${this.rowCounter}">Год</label>
-        <select id="years-building-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
-          <option value=""></option>
-          <option value="brick">2030</option>
-        </select>
-      </div>
-      <div class="item selects">
-        <label class="item-label" for="heating-${this.rowCounter}">Отопление</label>
-        <select id="heating-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
-          <option value=""></option>
-          <option value="brick">Централизованное</option>
-        </select>
-      </div>
-      <div class="item selects">
-        <label class="item-label" for="wall-type-${this.rowCounter}">Тип стен</label>
-        <select id="wall-type-${this.rowCounter}" class="js-example-responsive3 my-select2" autocomplete="off">
-          <option value=""></option>
-          <option value="brick">Кирпич</option>
-        </select>
-      </div>
-    `;
-		
-		this.addDeleteButton(newRow);
-		return newRow;
-	}
-	
-	addDeleteButton (row) {
-		const btn = row.querySelector('.btn-remove');
-		if (btn) {
-			btn.addEventListener('click', () => {
-				row.remove();
-				this.rowCounter--;
-			});
-		}
-	}
-	
-	initSelect2 (row) {
-		if (typeof jQuery !== 'undefined' && jQuery.fn.select2) {
-			row.querySelectorAll('.my-select2').forEach(select => {
-				if ( !jQuery(select).data('select2')) {
-					jQuery(select).select2({
-						width: 'resolve',
-					});
-				}
-			});
-		}
-	}
-}
-
 export {
 	FileUploader,
 	PhotoLoader,
 	PhotoLoaderMini,
 	PhoneInputManager,
-	RealEstateDescriptionGenerator,
 	GoogleMapsManager,
-	RowManager,
 };
