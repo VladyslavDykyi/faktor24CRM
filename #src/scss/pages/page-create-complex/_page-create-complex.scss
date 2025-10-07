@@ -193,14 +193,11 @@
 			}
 			& .item {
 				margin-bottom: 15px;
+				& #tab-the-name,
 				& #tab-about-developer {
-					@media screen and (max-width: 576px) {
-						width: 140px;
-						justify-content: space-between;
-					}
 					& + .tab-content label {
 						@media screen and (max-width: 576px) {
-							margin-bottom: 32px;
+							margin-top: 32px;
 						}
 					}
 				}
