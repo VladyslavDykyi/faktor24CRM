@@ -4,15 +4,6 @@ import {
 	FileUploader
 } from "./function_on_pages-create.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-	setTimeout(() => {
-		document.querySelectorAll('input, select').forEach(el => {
-			el.value = '';
-			el.autocomplete = 'new-password';
-		});
-	}, 100);
-});
-
 // Ініціалізація FileUploader після завантаження Fancybox
 function initFileUploaders () {
 	// Для документів (без перевірки розміру)

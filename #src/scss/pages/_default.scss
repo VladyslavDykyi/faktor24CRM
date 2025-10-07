@@ -53,6 +53,7 @@ ul {
 	font-weight: 700;
 	font-size: 14px;
 	color: #111;
+	min-height: 30px;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M1.20169 4.20114C0.932188 4.46841 0.932188 4.89932 1.20169 5.1666L5.77219 9.69932C5.98669 9.91205 6.33319 9.91205 6.54769 9.69932L11.1182 5.1666C11.3877 4.89932 11.3877 4.46841 11.1182 4.20114C10.8487 3.93387 10.4142 3.93387 10.1447 4.20114L6.15719 8.15023L2.16969 4.19569C1.90569 3.93387 1.46569 3.93387 1.20169 4.20114Z' fill='%23111111'/%3e%3c/svg%3e");
@@ -158,7 +159,7 @@ ul {
 	& .my-custom-text {
 		font-weight: 400;
 		font-size: 14px;
-		line-height: normal;
+		line-height: 100%;
 		color: #111;
 		&::first-letter {
 			text-transform: uppercase !important;
@@ -192,7 +193,7 @@ ul {
 		font-weight: 400;
 		font-size: 14px;
 		color: #111;
-		line-height: normal;
+		line-height: 100%;
 	}
 	& input {
 		padding: 6px 10px;
@@ -203,7 +204,7 @@ ul {
 		width: 100%;
 		font-weight: 700;
 		font-size: 14px;
-		line-height: normal;
+		line-height: 100%;
 		color: #111;
 		&:focus {
 			box-shadow: none;
@@ -213,7 +214,7 @@ ul {
 	& .modal-title {
 		font-weight: 700;
 		font-size: 16px;
-		line-height: normal;
+		line-height: 100%;
 		color: #aaa;
 		display: flex;
 		align-items: center;

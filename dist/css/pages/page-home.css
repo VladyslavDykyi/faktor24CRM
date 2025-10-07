@@ -95,6 +95,7 @@ ul {
   font-weight: 700;
   font-size: 14px;
   color: #111;
+  min-height: 30px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -224,7 +225,7 @@ ul {
 .my-custom-input .my-custom-text {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -267,7 +268,7 @@ ul {
   font-weight: 400;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
 }
 
 .modal#geoModal input {
@@ -279,7 +280,7 @@ ul {
   width: 100%;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -292,7 +293,7 @@ ul {
 .modal#geoModal .modal-title {
   font-weight: 700;
   font-size: 16px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1758,7 +1759,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .full-filter-title {
   font-weight: 700;
   font-size: 16px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1787,12 +1788,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  grid-gap: 16px 20px;
+  grid-gap: 16px;
   margin-bottom: 16px;
 }
 
 .full-filter-row:first-child .item {
-  width: calc(25% - 15px);
+  width: calc(25% - 12px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1807,7 +1808,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .full-filter .item {
-  width: calc(16.66667% - 16.66667px);
+  width: calc(16.66667% - 13.4px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1832,8 +1833,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   color: #fff;
   border-radius: 6px;
   padding: 5px 10px;
-  line-height: normal;
+  line-height: 100%;
   width: 100%;
+  min-height: 30px;
 }
 
 .full-filter .item.filter-btn-outline .btn.btn-outline-primary,
@@ -1854,10 +1856,11 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   min-width: 200px;
 }
 
+.full-filter .item.date .label,
 .full-filter .item.date label {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -1874,7 +1877,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   width: 100%;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -1897,7 +1900,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .full-filter .item.search-on-id label {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   margin-bottom: 6px;
 }
@@ -1932,7 +1935,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-weight: 700;
   border-radius: 6px;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   padding: 6px 28px 6px 10px;
 }
@@ -1979,7 +1982,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .full-filter .item-label {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   margin-bottom: 6px;
 }
@@ -1993,7 +1996,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   width: 100%;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -2070,7 +2073,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding: 6px 10px;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
+  min-height: 30px;
   color: #111;
   text-align: left;
   position: relative;
@@ -2174,7 +2178,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   margin-bottom: 0 !important;
   width: 100%;
   background-color: #fff;
-  border: 1px solid #d5dbe3;
+  -webkit-box-shadow: 0 0 0 1px #d5dbe3;
+          box-shadow: 0 0 0 1px #d5dbe3;
   border-radius: 6px;
 }
 
@@ -2475,18 +2480,18 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   margin-bottom: 8px;
 }
 
 .block-info .info-title {
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   margin-bottom: 0;
 }
@@ -2506,6 +2511,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .block-info .info-title-wrapper .btn {
+  height: 18px;
+  width: 18px;
   padding: 0;
   border: none;
   display: -webkit-box;
@@ -2523,7 +2530,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding: 5px 6px;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   text-align: center;
 }
 
@@ -2552,6 +2559,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
       -ms-flex-align: center;
           align-items: center;
   grid-gap: 10px;
+  padding-top: 6px;
 }
 
 .block-info .info-links > a {
@@ -2574,7 +2582,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
 .block-info .info-description {
   font-size: 12px;
-  line-height: normal;
+  line-height: 100%;
   font-weight: 400;
   color: #111;
   margin: 0;
@@ -2596,23 +2604,24 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .block-info .info-contacts-name {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   margin: 0;
 }
 
 .block-info .info-contacts-company {
   font-weight: 400;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   font-size: 12px;
   margin: 0 0 10px 0;
 }
 
 .block-info .info-contacts-tel {
+  margin-top: 6px;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   -webkit-text-decoration: underline dashed;
           text-decoration: underline dashed;
@@ -2621,7 +2630,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .block-info .info-contacts-mail {
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   text-decoration: underline;
   margin-bottom: 10px;
@@ -2642,7 +2651,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .modal-title {
   font-weight: 400;
   font-size: 24px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   margin-bottom: 0;
 }
@@ -2669,7 +2678,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding: 5px 6px;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   text-align: center;
 }
 
@@ -2711,7 +2720,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   width: 100%;
   font-weight: 700;
   font-size: 16px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2815,8 +2824,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   right: 0;
   padding: 0;
   border: none;
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2855,7 +2864,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-weight: 400;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
 }
 
 .modal-row .item-label.green,
@@ -2870,9 +2879,14 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   margin-bottom: 12px;
 }
 
+.modal-row .item.phone {
+  margin-bottom: 0;
+}
+
 .modal-row .item.photo-loader {
   min-width: 150px;
   width: auto;
+  margin-bottom: 0;
 }
 
 .modal-row .item.selects .select2-container {
@@ -2921,7 +2935,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 .history-info-item span {
   font-weight: 700;
   font-size: 12px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
 }
 
@@ -2929,7 +2943,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   font-weight: 700;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
   margin-bottom: 0;
 }
 
@@ -2949,56 +2963,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   width: 100% !important;
 }
 
-.item-inputText {
-  padding: 6px 10px;
-  background-color: #fff;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  width: 100%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #111;
-}
-
-.item-inputText::-webkit-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::-moz-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText:-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
 .data > span {
-  display: block;
+  line-height: 100%;
+  font-size: 14px;
 }
 
 .data span:last-of-type {
@@ -3009,8 +2976,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   outline: 0;
   width: 100%;
   font-weight: 700;
+  line-height: 100%;
   font-size: 14px;
-  line-height: normal;
+  display: block;
   color: #111;
 }
 
@@ -3028,6 +2996,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+
+.iti--inline-dropdown .iti__dropdown-content {
+  z-index: 10001;
 }
 
 .loading-plan,

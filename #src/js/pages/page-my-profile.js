@@ -48,15 +48,6 @@ new PhoneInputManager({
 	// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-	setTimeout(() => {
-		document.querySelectorAll('input, select').forEach(el => {
-			el.value = '';
-			el.autocomplete = 'new-password';
-		});
-	}, 100);
-});
-
 $('#datapiker').daterangepicker({
 	autoUpdateInput: true,
 	singleDatePicker: true,

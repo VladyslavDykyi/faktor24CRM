@@ -3,14 +3,14 @@
 	
 	&-item {
 		display: flex;
-		align-items: center;
 		flex-wrap: wrap;
+		align-items: flex-start;
 		margin-bottom: 8px;
 	}
 	& .info-title {
 		font-weight: 700;
 		font-size: 14px;
-		line-height: normal;
+		line-height: 100%;
 		color: #aaa;
 		margin-bottom: 0;
 		&-wrapper {
@@ -19,7 +19,9 @@
 			align-items: center;
 			grid-gap: 10px;
 			margin-bottom: 5px;
-			& .btn{
+			& .btn {
+				height: 18px;
+				width: 18px;
 				padding: 0;
 				border: none;
 				display: flex;
@@ -34,7 +36,7 @@
 			padding: 5px 6px;
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			text-align: center;
 		}
 		& .btn-outline-primary {
@@ -59,6 +61,7 @@
 		display: flex;
 		align-items: center;
 		grid-gap: 10px;
+		padding-top: 6px;
 		& > a {
 			text-decoration: none;
 		}
@@ -75,7 +78,7 @@
 	}
 	& .info-description {
 		font-size: 12px;
-		line-height: normal;
+		line-height: 100%;
 		font-weight: 400;
 		color: #111;
 		margin: 0;
@@ -88,23 +91,24 @@
 		&-name {
 			font-weight: 400;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			margin: 0;
 		}
 		
 		&-company {
 			font-weight: 400;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			font-size: 12px;
 			margin: 0 0 10px 0;
 		}
 		
 		&-tel {
+			margin-top: 6px;
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			text-decoration: underline dashed;
 		}
@@ -112,7 +116,7 @@
 		&-mail {
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			text-decoration: underline;
 			margin-bottom: 10px;

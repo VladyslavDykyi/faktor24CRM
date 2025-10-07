@@ -95,6 +95,7 @@ ul {
   font-weight: 700;
   font-size: 14px;
   color: #111;
+  min-height: 30px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -224,7 +225,7 @@ ul {
 .my-custom-input .my-custom-text {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -267,7 +268,7 @@ ul {
   font-weight: 400;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
 }
 
 .modal#geoModal input {
@@ -279,7 +280,7 @@ ul {
   width: 100%;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -292,7 +293,7 @@ ul {
 .modal#geoModal .modal-title {
   font-weight: 700;
   font-size: 16px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -619,6 +620,214 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   color: #fff;
 }
 
+.item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  position: relative;
+}
+
+.item .add_new-tel {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.item .add_new-tel .btn {
+  min-width: 0 !important;
+  padding: 0;
+  border: none;
+  width: 14px;
+  height: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.item .label,
+.item-label,
+.item label {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  line-height: 100%;
+  margin-bottom: 6px;
+}
+
+.item .label.green,
+.item-label.green,
+.item label.green {
+  font-weight: 700;
+  color: #5FB343;
+}
+
+.item-textareaText {
+  padding: 6px 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #111;
+  resize: none;
+}
+
+.item-textareaText::-webkit-input-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-textareaText::-moz-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-textareaText:-ms-input-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-textareaText::-ms-input-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-textareaText::placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-textareaText::-webkit-scrollbar {
+  width: 4px;
+  padding-right: 8px;
+}
+
+.item-textareaText::-webkit-scrollbar-track {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+}
+
+.item-textareaText::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #aaa;
+}
+
+.item-inputText {
+  padding: 6px 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #111;
+}
+
+.item-inputText::-webkit-input-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-inputText::-moz-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-inputText:-ms-input-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-inputText::-ms-input-placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-inputText::placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #aaa;
+}
+
+.item-inputText-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 20px;
+  position: relative;
+}
+
+.item-inputText-wrapper.shtrih::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 2px;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 2px);
+  background-color: #aaa;
+}
+
+.item-inputText-wrapper.shtrih2::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 2px;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(66% - -4px);
+  background-color: #aaa;
+}
+
+.item-inputText-wrapper.shtrih2::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 2px;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(33% - 4px);
+  background-color: #aaa;
+}
+
 .create {
   padding-top: 10px;
   padding-bottom: 95px;
@@ -770,8 +979,8 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
 }
 
 .create-filter-left .item.locations .my-dropdown {
@@ -918,138 +1127,6 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   grid-gap: 10px;
 }
 
-.item-label,
-.item label {
-  display: inline-block;
-  margin-bottom: 6px;
-}
-
-.item-label.green,
-.item label.green {
-  font-weight: 700;
-  color: #5FB343;
-}
-
-.item-textareaText {
-  padding: 6px 10px;
-  background-color: #fff;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  width: 100%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #111;
-  resize: none;
-}
-
-.item-textareaText::-webkit-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-textareaText::-moz-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-textareaText:-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-textareaText::-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-textareaText::placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-textareaText::-webkit-scrollbar {
-  width: 4px;
-  padding-right: 8px;
-}
-
-.item-textareaText::-webkit-scrollbar-track {
-  background-color: #FFFFFF;
-  border-radius: 4px;
-}
-
-.item-textareaText::-webkit-scrollbar-thumb {
-  border-radius: 2px;
-  background-color: #aaa;
-}
-
-.item-inputText {
-  padding: 6px 10px;
-  background-color: #fff;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  width: 100%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #111;
-}
-
-.item-inputText::-webkit-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::-moz-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText:-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  grid-gap: 20px;
-  position: relative;
-}
-
 .has-iframe .fancybox__content {
   height: 90% !important;
   padding: 0 !important;
@@ -1120,7 +1197,8 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   margin-bottom: 0 !important;
   width: 100%;
   background-color: #fff;
-  border: 1px solid #d5dbe3;
+  -webkit-box-shadow: 0 0 0 1px #d5dbe3;
+          box-shadow: 0 0 0 1px #d5dbe3;
   border-radius: 6px;
 }
 
@@ -1377,18 +1455,18 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   margin-bottom: 8px;
 }
 
 .block-info .info-title {
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   margin-bottom: 0;
 }
@@ -1408,6 +1486,8 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 }
 
 .block-info .info-title-wrapper .btn {
+  height: 18px;
+  width: 18px;
   padding: 0;
   border: none;
   display: -webkit-box;
@@ -1425,7 +1505,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   padding: 5px 6px;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   text-align: center;
 }
 
@@ -1454,6 +1534,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
       -ms-flex-align: center;
           align-items: center;
   grid-gap: 10px;
+  padding-top: 6px;
 }
 
 .block-info .info-links > a {
@@ -1476,7 +1557,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 
 .block-info .info-description {
   font-size: 12px;
-  line-height: normal;
+  line-height: 100%;
   font-weight: 400;
   color: #111;
   margin: 0;
@@ -1498,23 +1579,24 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 .block-info .info-contacts-name {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   margin: 0;
 }
 
 .block-info .info-contacts-company {
   font-weight: 400;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   font-size: 12px;
   margin: 0 0 10px 0;
 }
 
 .block-info .info-contacts-tel {
+  margin-top: 6px;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   -webkit-text-decoration: underline dashed;
           text-decoration: underline dashed;
@@ -1523,7 +1605,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 .block-info .info-contacts-mail {
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   text-decoration: underline;
   margin-bottom: 10px;
@@ -1599,7 +1681,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 .modal-title {
   font-weight: 400;
   font-size: 24px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
   margin-bottom: 0;
 }
@@ -1626,7 +1708,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   padding: 5px 6px;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   text-align: center;
 }
 
@@ -1668,7 +1750,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   width: 100%;
   font-weight: 700;
   font-size: 16px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1772,8 +1854,8 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   right: 0;
   padding: 0;
   border: none;
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1812,7 +1894,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   font-weight: 400;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
 }
 
 .modal-row .item-label.green,
@@ -1827,9 +1909,14 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   margin-bottom: 12px;
 }
 
+.modal-row .item.phone {
+  margin-bottom: 0;
+}
+
 .modal-row .item.photo-loader {
   min-width: 150px;
   width: auto;
+  margin-bottom: 0;
 }
 
 .modal-row .item.selects .select2-container {
@@ -1878,7 +1965,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 .history-info-item span {
   font-weight: 700;
   font-size: 12px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
 }
 
@@ -1886,7 +1973,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   font-weight: 700;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
   margin-bottom: 0;
 }
 
@@ -1906,56 +1993,9 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   width: 100% !important;
 }
 
-.item-inputText {
-  padding: 6px 10px;
-  background-color: #fff;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  width: 100%;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #111;
-}
-
-.item-inputText::-webkit-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::-moz-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText:-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::-ms-input-placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
-.item-inputText::placeholder {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: normal;
-  color: #aaa;
-}
-
 .data > span {
-  display: block;
+  line-height: 100%;
+  font-size: 14px;
 }
 
 .data span:last-of-type {
@@ -1966,8 +2006,9 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   outline: 0;
   width: 100%;
   font-weight: 700;
+  line-height: 100%;
   font-size: 14px;
-  line-height: normal;
+  display: block;
   color: #111;
 }
 
@@ -1985,6 +2026,10 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+
+.iti--inline-dropdown .iti__dropdown-content {
+  z-index: 10001;
 }
 
 .loading-plan,

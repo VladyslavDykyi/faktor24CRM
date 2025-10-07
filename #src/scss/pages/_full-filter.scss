@@ -59,7 +59,7 @@
 	&-title {
 		font-weight: 700;
 		font-size: 16px;
-		line-height: normal;
+		line-height: 100%;
 		color: #aaa;
 		display: flex;
 		align-items: center;
@@ -83,12 +83,12 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-end;
-		grid-gap: 16px 20px;
+		grid-gap: 16px;
 		margin-bottom: 16px;
 		
 		&:first-child {
 			& .item {
-				width: calc(25% - 15px);
+				width: calc(25% - 12px);
 				display: flex;
 				flex-direction: column;
 			}
@@ -100,7 +100,7 @@
 	}
 	
 	& .item {
-		width: calc(16.66667% - 16.66667px);
+		width: calc(16.66667% - 13.4px);
 		display: flex;
 		flex-direction: column;
 		&.filter-btn-outline,
@@ -118,9 +118,9 @@
 				color: #fff;
 				border-radius: 6px;
 				padding: 5px 10px;
-				line-height: normal;
+				line-height: 100%;
 				width: 100%;
-				
+				min-height: 30px;
 				&.btn-outline-primary {
 					border-color: #3585F5;
 					color: #3585f5;
@@ -137,11 +137,11 @@
 		
 		&.date {
 			min-width: 200px;
-			
+			& .label,
 			& label {
 				font-weight: 400;
 				font-size: 14px;
-				line-height: normal;
+				line-height: 100%;
 				color: #111;
 			}
 			& > span {
@@ -156,7 +156,7 @@
 				width: 100%;
 				font-weight: 700;
 				font-size: 14px;
-				line-height: normal;
+				line-height: 100%;
 				color: #111;
 				& input {
 					background-color: transparent;
@@ -177,7 +177,7 @@
 			& label {
 				font-weight: 400;
 				font-size: 14px;
-				line-height: normal;
+				line-height: 100%;
 				color: #111;
 				margin-bottom: 6px;
 			}
@@ -207,7 +207,7 @@
 			font-weight: 700;
 			border-radius: 6px;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			padding: 6px 28px 6px 10px;
 			
@@ -226,7 +226,7 @@
 		&-label {
 			font-weight: 400;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			margin-bottom: 6px;
 		}
@@ -240,7 +240,7 @@
 			width: 100%;
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			
 			&::placeholder {
@@ -289,7 +289,8 @@
 		padding: 6px 10px;
 		font-weight: 700;
 		font-size: 14px;
-		line-height: normal;
+		line-height: 100%;
+		min-height: 30px;
 		color: #111;
 		text-align: left;
 		position: relative;

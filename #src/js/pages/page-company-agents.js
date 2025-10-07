@@ -370,4 +370,42 @@ $(document).ready(function () {
 	table.on('draw', function () {
 		initPhotoHoverPreview();
 	});
+	
+	$('#datapiker').daterangepicker({
+		"locale": {
+			"format": "DD-MM-YYYY",
+			"separator": " - ",
+			"applyLabel": "Применить",
+			"cancelLabel": "Отмена",
+			"fromLabel": "From",
+			"toLabel": "To",
+			"customRangeLabel": "Custom",
+			"weekLabel": "Н",
+			"daysOfWeek": [
+				"Вс",
+				"Пн",
+				"Вт",
+				"Ср",
+				"Чт",
+				"Пт",
+				"Сб"
+			],
+			"monthNames": [
+				"Январь",
+				"Февраль",
+				"Март",
+				"Апрель",
+				"Май",
+				"Июнь",
+				"Июль",
+				"Август",
+				"Сентябрь",
+				"Октябрь",
+				"Ноябрь",
+				"Декабрь"
+			],
+			"firstDay": 1
+		},
+		"drops": "auto"
+	});
 });

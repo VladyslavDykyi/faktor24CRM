@@ -9,7 +9,7 @@ function initPhoneInputManager() {
 		try {
 			phoneManager = new PhoneInputManager({
 				btnSelector: '.btn-new-tel',
-				wrapperSelector: '.modal-row .item.phone',
+				wrapperSelector: '#add-employee-modal .modal-row .item.phone',
 				inputClass: 'tel-contact',
 				maxPhones: 5,
 				initialCountry: 'ua',

@@ -22,7 +22,7 @@
 	&-title {
 		font-weight: 400;
 		font-size: 24px;
-		line-height: normal;
+		line-height: 100%;
 		color: #111;
 		margin-bottom: 0;
 	}
@@ -45,7 +45,7 @@
 				    padding: 5px 6px;
 				    font-weight: 700;
 				    font-size: 14px;
-				    line-height: normal;
+				    line-height: 100%;
 				    text-align: center;
 				    @media screen and (max-width: 576px) {
 					    width: 100%;
@@ -89,7 +89,7 @@
 			width: 100%;
 			font-weight: 700;
 			font-size: 16px;
-			line-height: normal;
+			line-height: 100%;
 			color: #aaa;
 			display: flex;
 			align-items: center;
@@ -178,8 +178,8 @@
 					right: 0;
 					padding: 0;
 					border: none;
-					width: 24px;
-					height: 24px;
+					width: 14px;
+					height: 14px;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -214,7 +214,7 @@
 		font-weight: 400;
 		font-size: 14px;
 		color: #111;
-		line-height: normal;
+		line-height: 100%;
 		&.green {
 			font-weight: 700;
 			color: #5FB343;
@@ -229,9 +229,13 @@
 			width: 100%;
 			margin-bottom: 0;
 		}
+		&.phone {
+			margin-bottom: 0;
+		}
 		&.photo-loader {
 			min-width: 150px;
 			width: auto;
+			margin-bottom: 0;
 		}
 		&.selects .select2-container {
 			display: block;
@@ -271,14 +275,14 @@
 		& span {
 			font-weight: 700;
 			font-size: 12px;
-			line-height: normal;
+			line-height: 100%;
 			color: #aaa;
 		}
 		& p {
 			font-weight: 700;
 			font-size: 14px;
 			color: #111;
-			line-height: normal;
+			line-height: 100%;
 			margin-bottom: 0;
 		}
 	}
@@ -296,28 +300,11 @@
 .modal .select2-search__field {
 	width: 100% !important;
 }
-.item-inputText {
-	padding: 6px 10px;
-	background-color: #fff;
-	border-radius: 6px;
-	border: none;
-	outline: none;
-	width: 100%;
-	font-weight: 700;
-	font-size: 14px;
-	line-height: normal;
-	color: #111;
-	
-	&::placeholder {
-		font-weight: 700;
-		font-size: 14px;
-		line-height: normal;
-		color: #aaa;
-	}
-}
+
 .data {
 	& > span {
-		display: block;
+		line-height: 100%;
+		font-size: 14px;
 	}
 	& span:last-of-type {
 		position: relative;
@@ -327,8 +314,9 @@
 		outline: 0;
 		width: 100%;
 		font-weight: 700;
+		line-height: 100%;
 		font-size: 14px;
-		line-height: normal;
+		display: block;
 		color: #111;
 		& input {
 			background-color: transparent;
@@ -344,4 +332,6 @@
 		}
 	}
 }
-
+.iti--inline-dropdown .iti__dropdown-content {
+	z-index: 10001;
+}

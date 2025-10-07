@@ -9,14 +9,15 @@
 	<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./css/lib/select2.min.css">
 	<link rel="stylesheet" href="./css/lib/bootstrap.v5.3.3.min.css">
+	<link rel="stylesheet" href="./css/lib/data-range-picker.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tui-image-editor/3.15.0/tui-image-editor.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tui-color-picker/2.2.6/tui-color-picker.min.css">
 	<link rel="stylesheet" href="./css/lib/fancybox.min.css">
-	<!-- для роботи Гео Модалки 27.08.2025 -->
+	
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
-	<!-- для роботи Гео Модалки 27.08.2025 -->
+	
 	<link rel="stylesheet" href="./css/pages/page-create.min.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -30,18 +31,22 @@
 </main>
 <!-- початок цей блок ще в розробці _modal	-->
 @@include('./html/modals/_geo-location-modal.html')
+@@include('./html/modals/_add-contact-modal.html')
+@@include('./html/modals/_add-employee-modal.html')
 <!-- кінець цей блок ще в розробці _modal	-->
 <script src="./js/lib/popper.v2.11.8.min.js"></script>
 <script src="./js/lib/bootstrap.v5.3.3.min.js"></script>
 <script src="./js/lib/jquery.v3.7.1.min.js"></script>
 <script src="./js/lib/select2.min.js"></script>
+<script src="./js/lib/moment.min.js"></script>
+<script src="./js/lib/data-range-picker.min.js"></script>
 <script src="./js/lib/fancybox.min.js"></script>
-<!-- для роботи Гео Модалки 27.08.2025 -->
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-text-icon@1.0.0/dist/leaflet.text-icon.js"></script>
 <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
 <script src="./js/pages/modal-geo.min.js"></script>
-<!-- для роботи Гео Модалки 27.08.2025 -->
+
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
@@ -55,6 +60,7 @@
 <script src="./js/pages/function_on_pages-create.min.js" type="module"></script>
 <script src="./js/pages/my-dropdown.min.js"></script>
 <script src="./js/pages/page-create.js" type="module"></script>
-<script src="./js/pages/geo-search.min.js" type="module"></script>
+<script src="./js/pages/add-contact-modal.min.js" type="module"></script>
+<script src="./js/pages/add-employee-modal.min.js" type="module"></script>
 </body>
 </html>

@@ -95,6 +95,7 @@ ul {
   font-weight: 700;
   font-size: 14px;
   color: #111;
+  min-height: 30px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -224,7 +225,7 @@ ul {
 .my-custom-input .my-custom-text {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -267,7 +268,7 @@ ul {
   font-weight: 400;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
 }
 
 .modal#geoModal input {
@@ -279,7 +280,7 @@ ul {
   width: 100%;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -292,7 +293,7 @@ ul {
 .modal#geoModal .modal-title {
   font-weight: 700;
   font-size: 16px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;

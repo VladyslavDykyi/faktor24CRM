@@ -12,20 +12,21 @@
 			min-width: 0 !important;
 			padding: 0;
 			border: none;
-			width: 24px;
-			height: 24px;
+			width: 14px;
+			height: 14px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
 	}
+	& .label,
 	&-label,
 	& label {
 		display: inline-block;
 		font-weight: 400;
 		font-size: 14px;
 		color: #111;
-		line-height: normal;
+		line-height: 100%;
 		margin-bottom: 6px;
 		&.green {
 			font-weight: 700;
@@ -42,13 +43,13 @@
 		width: 100%;
 		font-weight: 700;
 		font-size: 14px;
-		line-height: normal;
+		line-height: 100%;
 		color: #111;
 		resize: none;
 		&::placeholder {
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #aaa;
 		}
 		&::-webkit-scrollbar {
@@ -76,13 +77,13 @@
 		width: 100%;
 		font-weight: 700;
 		font-size: 14px;
-		line-height: normal;
+		line-height: 100%;
 		color: #111;
 		
 		&::placeholder {
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #aaa;
 		}
 		

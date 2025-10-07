@@ -95,6 +95,7 @@ ul {
   font-weight: 700;
   font-size: 14px;
   color: #111;
+  min-height: 30px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -224,7 +225,7 @@ ul {
 .my-custom-input .my-custom-text {
   font-weight: 400;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -267,7 +268,7 @@ ul {
   font-weight: 400;
   font-size: 14px;
   color: #111;
-  line-height: normal;
+  line-height: 100%;
 }
 
 .modal#geoModal input {
@@ -279,7 +280,7 @@ ul {
   width: 100%;
   font-weight: 700;
   font-size: 14px;
-  line-height: normal;
+  line-height: 100%;
   color: #111;
 }
 
@@ -292,7 +293,7 @@ ul {
 .modal#geoModal .modal-title {
   font-weight: 700;
   font-size: 16px;
-  line-height: normal;
+  line-height: 100%;
   color: #aaa;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1583,7 +1584,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   margin-bottom: 0 !important;
   width: 100%;
   background-color: #fff;
-  border: 1px solid #d5dbe3;
+  -webkit-box-shadow: 0 0 0 1px #d5dbe3;
+          box-shadow: 0 0 0 1px #d5dbe3;
   border-radius: 6px;
 }
 

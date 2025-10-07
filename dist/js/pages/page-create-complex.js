@@ -2,8 +2,7 @@
 
 import {
 	FileUploader,
-	PhotoLoader,
-	PhoneInputManager,
+	PhotoLoader
 } from "./function_on_pages-create.js";
 
 $(".js-example-responsive2-currency").select2({
@@ -36,36 +35,6 @@ $('.my-select2').on('select2:opening', function (e) {
 
 $('.my-select2').on('select2:closing', function (e) {
 	$('.filter select').attr("style", "display: block !important");
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-	setTimeout(() => {
-		document.querySelectorAll('input, select').forEach(el => {
-			el.value = '';
-			el.autocomplete = 'new-password';
-		});
-	}, 100);
-});
-
-new PhoneInputManager({
-	btnSelector: '.btn-new-tel',
-	wrapperSelector: '.create-filter-client-wrapper .right',
-	inputClass: 'tel-contact',
-	maxPhones: 5,
-	initialCountry: 'ua',
-	utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js',
-	countryMasks: {
-		'ua': '(99) 999-99-99',
-		'us': '(999) 999-9999',
-		'gb': '9999 999999',
-		'de': '999 99999999',
-		'fr': '9 99-99-99-99',
-		'pl': '999 999-999',
-		'it': '999 999-9999',
-		'es': '999 99-99-99',
-		'default': '(999) 999-99-99'
-	},
-	// якщо треба щось дописати то треба дописувати class де зовнішні змінни передавання ззовні(звідси)
 });
 
 // Ініціалізація FileUploader після завантаження Fancybox
@@ -133,3 +102,28 @@ if (typeof Fancybox !== 'undefined') {
 		}
 	}, 200);
 }
+
+$(document).ready(function () {
+	// Обробник відкриття меню
+	$('.multiple-menu-btn').on('click', function (event) {
+		event.stopPropagation();
+		const $this = $(this);
+		const currentState = $this.attr('data-open-menu');
+		const newState = currentState === 'false' ? 'true' : 'false';
+		
+		// Закриваємо всі інші відкриті меню
+		$('.multiple-menu-btn').not($this).attr('data-open-menu', 'false');
+		// Відкриваємо/закриваємо поточне меню
+		$this.attr('data-open-menu', newState);
+	});
+	
+	// Обробник кліку поза меню
+	$(document).on('click', function () {
+		$('.multiple-menu-btn').attr('data-open-menu', 'false');
+	});
+	
+	// Обробник кліку всередині меню, щоб не закривалося при кліку на елементи меню
+	$('.multiple-menu-wrapper').on('click', function (event) {
+		event.stopPropagation();
+	});
+});

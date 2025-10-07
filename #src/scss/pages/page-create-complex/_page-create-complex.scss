@@ -32,7 +32,7 @@
 		
 		&-title {
 			font-weight: 400;
-			line-height: normal;
+			line-height: 100%;
 			font-size: 24px;
 			color: #111;
 			margin-bottom: 0;
@@ -52,7 +52,7 @@
 		&-add {
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			margin-right: 18px;
 			
@@ -64,7 +64,7 @@
 		&-update {
 			font-weight: 700;
 			font-size: 14px;
-			line-height: normal;
+			line-height: 100%;
 			color: #111;
 			
 			& span {
@@ -80,7 +80,7 @@
 		&-title {
 			font-weight: 700;
 			font-size: 16px;
-			line-height: normal;
+			line-height: 100%;
 			color: #aaa;
 			display: flex;
 			align-items: center;
@@ -127,6 +127,10 @@
 			}
 			@media screen and (max-width: 576px) {
 				flex: 1 1 100%;
+			}
+			& > span:first-child {
+				line-height: 100%;
+				font-size: 14px;
 			}
 			&.w100 {
 				flex: 1 1 100%;
@@ -327,7 +331,8 @@
 				padding: 5px 6px;
 				font-weight: 700;
 				font-size: 14px;
-				line-height: normal;
+				min-height: 30px;
+				line-height: 100%;
 				text-align: center;
 				@media screen and (max-width: 620px) {
 					width: 100%;
@@ -453,10 +458,11 @@
 		padding: 6px 10px;
 		font-weight: 700;
 		font-size: 14px;
-		line-height: normal;
+		line-height: 100%;
 		color: #111;
 		text-align: left;
 		position: relative;
+		min-height: 30px;
 		
 		&[data-open-menu="false"] + .multiple-menu-wrapper {
 			display: none;
@@ -558,7 +564,7 @@
 				font-weight: 700;
 				font-size: 14px;
 				text-align: center;
-				line-height: normal;
+				line-height: 100%;
 				color: #3585f5;
 				&.active {
 					color: #aaa;
