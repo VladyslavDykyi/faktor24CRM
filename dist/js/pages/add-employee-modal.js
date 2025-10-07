@@ -144,6 +144,7 @@ if (modal) {
 
 $('#datapiker-employee-modal').daterangepicker({
 	singleDatePicker: true,
+	autoUpdateInput: false,
 	"locale": {
 		"format": "DD-MM-YYYY",
 		"separator": " - ",
