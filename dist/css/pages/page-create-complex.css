@@ -2619,7 +2619,7 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 }
 
 .photo-loader-global {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

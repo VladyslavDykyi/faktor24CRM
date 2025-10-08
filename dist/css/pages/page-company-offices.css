@@ -2915,7 +2915,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 }
 
 .photo-loader-global {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
