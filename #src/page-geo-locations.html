@@ -35,6 +35,7 @@
 <script src="./js/pages/filter1.min.js"></script>
 <script src="./js/pages/full-filter.min.js"></script>
 <script src="./js/pages/my-dropdown.min.js"></script>
+<script src="./js/pages/modal-geo.min.js"></script>
 <script src="./js/pages/page-geo-locations.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <!-- Підключаємо плагін для маркерів з текстом -->
@@ -66,7 +67,143 @@
 				title: location.title
 			}).addTo(map);
 			
-			marker.bindPopup(`<b>${location.title}</b><br>Об'єктів: ${location.quantityOfObjects}`);
+			marker.bindPopup(`
+			<div class="geo_card">
+				<div class="geo_card-img">
+					<div id="carouselExampleMaps1" class="carousel slide">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="./img/1.jpg" alt="">
+							</div>
+							<div class="carousel-item">
+								<img src="./img/1.jpg" alt="">
+							</div>
+							<div class="carousel-item">
+								<img src="./img/1.jpg" alt="">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleMaps1" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleMaps1" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+				<div class="geo_card-content">
+					<div class="geo_card-info">
+						<div class="geo_card-address">
+							<p>
+								<strong>
+									Южная Пальмира,
+								</strong>
+								<span class="street">
+									ул. Генуэзская/Посмитного длинное название
+								</span>
+								<span>
+									Аркадия, Одесса
+								</span>
+							</p>
+							<div>
+								<span class="last-update-item" data-bs-toggle="tooltip" data-bs-placement="top"
+									data-bs-custom-class="custom-tooltip-red" data-bs-title="Обновлено более 30 дней назад"></span>
+							</div>
+						</div>
+						<div class="geo_card-params">
+							<p>
+								2 к <span> · </span> Квартира <span> · </span> 300 м² <span> · </span> 5 сот <span> · </span>
+								Этажность 4/5 <span> · </span> С ремонтом
+							</p>
+						</div>
+						<div class="geo_card-price">
+							<p>
+								USD 85 000 <span> · </span><span class="mert-kvadro2">850/м²</span>
+							</p>
+						</div>
+						<div class="geo_card-contact">
+							<span>
+								<a href="#">Длинноеимя Доброльский</a>
+							</span>
+							<span>Real Estate Name</span>
+							<span>
+								<a href="tel:380968796542">+380968796542</a>
+							</span>
+						</div>
+					</div>
+					<div class="geo_card-active">
+						<div class="thead-wrapper checkBox">
+							<label class="my-custom-input">
+								<input type="checkbox">
+								<span class="my-custom-box"></span>
+							</label>
+						</div>
+						<div class="tbody-wrapper block-actions">
+							<div class="block-actions-wrapper">
+								<div class="menu-burger">
+									<div class="dropdown">
+										<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+											<img src="./img/icon/burger-blue.svg" alt="">
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#">Обновить</a></li>
+											<li><a class="dropdown-item" href="#">Редактировать</a></li>
+											<li><a class="dropdown-item" href="#">Удалить</a></li>
+											<li><a class="dropdown-item" href="#">Отложить</a></li>
+											<li><a class="dropdown-item" href="#">Передать</a></li>
+										</ul>
+									</div>
+								</div>
+								<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
+									data-bs-title="Написать">
+									<img src="./img/icon/mail.svg" alt="">
+								</a>
+								<label class="bookmark">
+									<input type="checkbox">
+									<span>
+										<img class="non-checked" src="./img/icon/bookmark.svg" alt="">
+										<img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
+									</span>
+								</label>
+								<div class="menu-info">
+									<div class="dropdown">
+										<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+											<img src="./img/icon/copylinked.svg" alt="">
+										</button>
+										<ul class="dropdown-menu">
+											<li>
+												<a class="dropdown-item" href="#">
+													<span>На сайте</span>
+												</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="#">
+													<span>На Rem.ua</span>
+												</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="#">
+													<span>Видео Youtube</span>
+												</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="#">
+													<span> На карте</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<button type="button" class="details-control">
+									<img src="./img/icon/plus.svg" alt="">
+								</button>
+							</div>
+			
+						</div>
+					</div>
+				</div>
+			</div>`);
 			
 			markers.push(marker);
 			return marker;
@@ -254,9 +391,5 @@
 	
 	document.addEventListener('DOMContentLoaded', initMap);
 </script>
-
-
-
-
 </body>
 </html>

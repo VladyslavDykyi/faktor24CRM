@@ -1,4 +1,5 @@
-<div class="geo_card">
+<!-- у цього блока може бути класс last-update для відображення інформації про останне оновлення так само як у табличці об'єктів-->
+<div class="geo_card last-update">
 	<div class="geo_card-img">
 		<div id="@@id" class="carousel slide">
 			<div class="carousel-inner">
@@ -21,107 +22,115 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
-		<div class="geo_card-img-name">
-			Real Estate Name
-		</div>
 	</div>
-	<div class="geo_card-active">
-		<div class="thead-wrapper checkBox">
-			<label class="my-custom-input">
-				<input type="checkbox">
-				<span></span>
-			</label>
-		</div>
-		<div class="tbody-wrapper block-actions">
-			<div class="block-actions-wrapper">
-				<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
-				   data-bs-title="Написать">
-					<img src="./img/icon/mail.svg" alt="">
-				</a>
-				<label class="bookmark">
-					<input type="checkbox">
+	<div class="geo_card-content">
+		<div class="geo_card-info">
+			<div class="geo_card-address">
+				<p>
+					<strong>
+						Южная Пальмира,
+					</strong>
+					<span class="street">
+						ул. Генуэзская/Посмитного длинное название
+					</span>
 					<span>
+						Аркадия, Одесса
+					</span>
+				</p>
+				<div>
+					<span class="last-update-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-red" data-bs-title="Обновлено более 30 дней назад"></span>
+				</div>
+			</div>
+			<div class="geo_card-params">
+				<p>
+					2 к <span> · </span> Квартира <span> · </span> 300 м² <span> · </span> 5 сот <span> · </span>
+					Этажность 4/5 <span> · </span> С ремонтом
+				</p>
+			</div>
+			<div class="geo_card-price">
+				<p>
+					USD 85 000 <span> · </span><span class="mert-kvadro2">850/м²</span>
+				</p>
+			</div>
+			<div class="geo_card-contact">
+				<span>
+					<a href="#">Длинноеимя Доброльский</a>
+				</span>
+				<span>Real Estate Name</span>
+				<span>
+					<a href="tel:380968796542">+380968796542</a>
+				</span>
+			</div>
+		</div>
+		<div class="geo_card-active">
+			<div class="thead-wrapper checkBox">
+				<label class="my-custom-input">
+					<input type="checkbox">
+					<span class="my-custom-box"></span>
+				</label>
+			</div>
+			<div class="tbody-wrapper block-actions">
+				<div class="block-actions-wrapper">
+					<div class="menu-burger">
+						<div class="dropdown">
+							<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="./img/icon/burger-blue.svg" alt="">
+							</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Обновить</a></li>
+								<li><a class="dropdown-item" href="#">Редактировать</a></li>
+								<li><a class="dropdown-item" href="#">Удалить</a></li>
+								<li><a class="dropdown-item" href="#">Отложить</a></li>
+								<li><a class="dropdown-item" href="#">Передать</a></li>
+							</ul>
+						</div>
+					</div>
+					<a href="#" class="btn mail-link" data-bs-toggle="tooltip" data-bs-placement="top"
+					   data-bs-title="Написать">
+						<img src="./img/icon/mail.svg" alt="">
+					</a>
+					<label class="bookmark">
+						<input type="checkbox">
+						<span>
 						<img class="non-checked" src="./img/icon/bookmark.svg" alt="">
 						<img class="on-checked" src="./img/icon/bookmark-cheked.svg" alt="">
 					</span>
-				</label>
-				<div class="menu-burger">
-					<div class="dropdown">
-						<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="./img/icon/burger-blue.svg" alt="">
-						</button>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Обновить</a></li>
-							<li><a class="dropdown-item" href="#">Редактировать</a></li>
-							<li><a class="dropdown-item" href="#">Удалить</a></li>
-							<li><a class="dropdown-item" href="#">Отложить</a></li>
-							<li><a class="dropdown-item" href="#">Передать</a></li>
-						</ul>
+					</label>
+					<div class="menu-info">
+						<div class="dropdown">
+							<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="./img/icon/copylinked.svg" alt="">
+							</button>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="#">
+										<span>На сайте</span>
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">
+										<span>На Rem.ua</span>
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">
+										<span>Видео Youtube</span>
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">
+										<span>	На карте</span>
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
+					<button type="button" class="details-control">
+						<img src="./img/icon/plus.svg" alt="">
+					</button>
 				</div>
-				<div class="menu-info">
-					<div class="dropdown">
-						<button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="./img/icon/copylinked.svg" alt="">
-						</button>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="#">
-									<span>На сайте</span>
-								</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">
-									<span>На Rem.ua</span>
-								</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">
-									<span>Видео Youtube</span>
-								</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">
-									<span>	На карте</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<button type="button" class="details-control">
-					<img src="./img/icon/plus.svg" alt="">
-				</button>
+			
 			</div>
-		
-		</div>
-	</div>
-	<div class="geo_card-info">
-		<div class="geo_card-address">
-			<strong>
-				Южная Пальмира,
-			</strong>
-			<span>
-			ул. Генуэзская/Посмитного длинн...
-			</span>
-			<span>
-				Аркадия, Одесса
-			</span>
-		</div>
-		<div class="geo_card-params">
-			<p>
-				2 к / Квартира / S 300/40/15 / 5 сот / 14 из 25 эт / С ремонтом
-			</p>
-		</div>
-		<div class="geo_card-price">
-			<p>
-				USD 85 000 <span>(850/м²)</span>
-			</p>
-		</div>
-		<div class="geo_card-contact">
-			<p>
-				<span>Имядлинное Фамилия</span>
-				<a href="tel:380968796542">+380968796542</a>
-			</p>
 		</div>
 	</div>
 </div>

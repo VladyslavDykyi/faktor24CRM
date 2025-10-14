@@ -11,4 +11,12 @@
 				.prop('checked', $('.geo-list .my-custom-input input:checked').length === total);
 		}
 	});
+	
+	const initTooltips = function () {
+		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+	};
+	
+	// Викликаємо ініціалізацію Tooltip після створення таблиці
+	initTooltips();
 })();

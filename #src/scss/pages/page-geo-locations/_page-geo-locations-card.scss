@@ -1,15 +1,29 @@
 .geo_card {
-	width: calc(33.33333% - 8px);
+	max-width: 360px;
+	width: 100%;
 	display: flex;
-	flex-direction: column;
-	@media screen and (min-width: 1680px) {
-		width: calc(25% - 9px);
+	grid-gap: 10px;
+	padding: 10px;
+	background-color: #FFFFFF;
+	border-radius: 6px;
+	& .last-update-item {
+		display: none;
 	}
-	@media screen and (min-width: 1280px) {
-		width: calc(33.33333% - 8px);
-	}
-	@media screen and (min-width: 1024px) {
-		width: calc(50% - 6px);
+	&.last-update {
+		background-color: #ffecec;
+		& .last-update-item {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='15' height='15' viewBox='0 0 15 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M6.43196 2.41226L1.13821 11.2498C1.02907 11.4388 0.971319 11.6531 0.970708 11.8713C0.970097 12.0896 1.02665 12.3042 1.13473 12.4938C1.24282 12.6835 1.39867 12.8415 1.58678 12.9522C1.7749 13.0629 1.98871 13.1224 2.20696 13.1248H12.7945C13.0127 13.1224 13.2265 13.0629 13.4146 12.9522C13.6028 12.8415 13.7586 12.6835 13.8667 12.4938C13.9748 12.3042 14.0313 12.0896 14.0307 11.8713C14.0301 11.6531 13.9724 11.4388 13.8632 11.2498L8.56947 2.41226C8.45805 2.22858 8.30117 2.07671 8.11396 1.97131C7.92676 1.86592 7.71555 1.81055 7.50072 1.81055C7.28588 1.81055 7.07467 1.86592 6.88747 1.97131C6.70026 2.07671 6.54338 2.22858 6.43196 2.41226Z' stroke='%23F97474' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /%3e%3cpath d='M7.5 5.625V8.125' stroke='%23F97474' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /%3e%3ccircle cx='7.5' cy='10.625' r='0.625' fill='%23F97474' /%3e%3c/svg%3e");
+			background-repeat: no-repeat;
+			width: 15px;
+			height: 15px;
+			display: block;
+		}
+		& .geo_card-address {
+			max-width: 160px;
+			& > div {
+				padding-top: 2px;
+			}
+		}
 	}
 	&.small {
 		width: 100%;
@@ -19,40 +33,35 @@
 		margin-bottom: 0;
 	}
 	&-img {
-		margin-bottom: 10px;
-		position: relative;
+		flex: 1 0 128px;
+		& * {
+			height: 100%;
+		}
 		& picture {
 			display: flex;
 			& img {
 				display: block;
 				width: 100%;
-				height: 113px;
+				max-width: 128px;
+				height: 100%;
 				object-fit: cover;
-				border-radius: 8px;
+				border-radius: 6px;
 			}
 		}
-		&-name {
-			position: absolute;
-			bottom: 3px;
-			left: 3px;
-			width: calc(100% - 6px);
-			border-radius: 80px;
-			background-color: rgba(255, 255, 255, 0.68);
-			font-weight: 400;
-			font-size: 11px;
-			line-height: normal;
-			text-align: center;
-			color: #111;
-		}
+	}
+	&-content {
+	display: flex;
 	}
 	&-active {
-		margin-bottom: 8px;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
 		grid-gap: 8px;
 		& .block-actions-wrapper {
-			grid-gap: 8px;
+			display: flex;
+			flex-direction: column;
+			grid-gap: 0;
 		}
 		& > div {
 			display: flex;
@@ -77,40 +86,85 @@
 		}
 	}
 	&-info {
-	
+		display: flex;
+		flex-direction: column;
 	}
 	&-address {
-		font-weight: 400;
-		font-size: 12px;
-		line-height: 125%;
-		color: #111;
-		margin-bottom: 5px;
+		display: flex;
+		margin-bottom: 6px;
+		& p {
+			width: 100%;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 15px;
+			color: #111;
+			display: flex;
+			flex-direction: column;
+			margin: 0;
+		}
+		& strong {
+			font-weight: 700;
+		}
+		& .street {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			max-width: 170px;
+			overflow: hidden;
+		}
 	}
 	&-params {
-		font-weight: 400;
-		font-size: 12px;
-		line-height: 125%;
-		color: #111;
-		margin-bottom: 4px;
-	}
-	&-price {
-		font-weight: 700;
-		font-size: 14px;
-		line-height: normal;
-		color: #111;
 		margin-bottom: 6px;
-		& span {
+		& p {
+			font-weight: 400;
 			font-size: 12px;
+			line-height: 15px;
+			color: #111;
+			margin: 0;
+		}
+		& span {
 			color: #aaa;
 		}
 	}
+	&-price {
+		margin-bottom: 6px;
+		& p {
+			display: flex;
+			align-items: baseline;
+			grid-gap: 4px;
+			font-weight: 700;
+			font-size: 14px;
+			line-height: 15px;
+			color: #111;
+			margin: 0;
+		}
+		& span {
+			font-size: 12px;
+			font-weight: 400;
+			color: #aaa;
+		}
+		& .mert-kvadro2 {
+			font-weight: 700;
+		}
+	}
 	&-contact {
+		display: inline-flex;
+		flex-direction: column;
 		font-weight: 400;
 		font-size: 12px;
-		line-height: 125%;
 		color: #111;
+		& > * {
+			display: inline-block;
+			line-height: 15px;
+		}
 		& a {
+			text-decoration: none;
+		}
+		& span:first-child a {
+			color: #3585f5;
+		}
+		& span:last-child a {
 			color: #111;
+			font-weight: 700;
 		}
 	}
 }
