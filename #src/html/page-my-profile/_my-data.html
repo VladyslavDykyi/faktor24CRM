@@ -32,23 +32,23 @@
 						<div class="tab-content-right">
 							<div class="text_advertising-wrapper">
 								<div class="item">
-                            <span>
-                                <label class="item-label green" for="ru-name">Имя</label>
-                            </span>
+									<span>
+										<label class="item-label green" for="ru-name">Имя</label>
+									</span>
 									<input class="item-inputText" id="ru-name" type="text" autocomplete="off"
 										   placeholder="Имя">
 								</div>
 								<div class="item">
-                            <span>
-                                <label class="item-label green" for="ru-surname">Фамилия</label>
-                            </span>
+									<span>
+										<label class="item-label green" for="ru-surname">Фамилия</label>
+									</span>
 									<input class="item-inputText" id="ru-surname" type="text" autocomplete="off"
 										   placeholder="Фамилия">
 								</div>
 								<div class="item">
-                            <span>
-                                <label class="item-label" for="ru-patronymic">Отчество</label>
-                            </span>
+									<span>
+										<label class="item-label" for="ru-patronymic">Отчество</label>
+									</span>
 									<input class="item-inputText" id="ru-patronymic" type="text" autocomplete="off"
 										   placeholder="Отчество">
 								</div>
@@ -60,23 +60,23 @@
 						<div class="tab-content-right">
 							<div class="text_advertising-wrapper">
 								<div class="item">
-                            <span>
-                                <label class="item-label green" for="ua-name">Ім'я</label>
-                            </span>
+									<span>
+										<label class="item-label green" for="ua-name">Ім'я</label>
+									</span>
 									<input class="item-inputText" id="ua-name" type="text" autocomplete="off"
 										   placeholder="Ім'я">
 								</div>
 								<div class="item">
-                            <span>
-                                <label class="item-label green" for="ua-surname">Прізвище</label>
-                            </span>
+									<span>
+										<label class="item-label green" for="ua-surname">Прізвище</label>
+									</span>
 									<input class="item-inputText" id="ua-surname" type="text" autocomplete="off"
 										   placeholder="Прізвище">
 								</div>
 								<div class="item">
-                            <span>
-                                <label class="item-label" for="ua-patronymic">По батькові</label>
-                            </span>
+									<span>
+										<label class="item-label" for="ua-patronymic">По батькові</label>
+									</span>
 									<input class="item-inputText" id="ua-patronymic" type="text" autocomplete="off"
 										   placeholder="По батькові">
 								</div>
@@ -88,23 +88,23 @@
 						<div class="tab-content-right">
 							<div class="text_advertising-wrapper">
 								<div class="item">
-                            <span>
-                                <label class="item-label green" for="en-name">First Name</label>
-                            </span>
+									<span>
+										<label class="item-label green" for="en-name">First Name</label>
+									</span>
 									<input class="item-inputText" id="en-name" type="text" autocomplete="off"
 										   placeholder="First Name">
 								</div>
 								<div class="item">
-                            <span>
-                                <label class="item-label green" for="en-surname">Last Name</label>
-                            </span>
+									<span>
+										<label class="item-label green" for="en-surname">Last Name</label>
+									</span>
 									<input class="item-inputText" id="en-surname" type="text" autocomplete="off"
 										   placeholder="Last Name">
 								</div>
 								<div class="item">
-                            <span>
-                                <label class="item-label" for="en-patronymic">Middle Name</label>
-                            </span>
+									<span>
+										<label class="item-label" for="en-patronymic">Middle Name</label>
+									</span>
 									<input class="item-inputText" id="en-patronymic" type="text" autocomplete="off"
 										   placeholder="Middle Name">
 								</div>
@@ -212,21 +212,39 @@
 				</ul>
 				<div class="error-container"></div>
 			</div>
+			<div class="item selects">
+				<label class="item-label green" for="my-company">Компания</label>
+				<input class="item-inputText" id="my-company" type="text" readonly value="FAKTOR" autocomplete="off">
+			</div>
 		</div>
 	</div>
 	<div class="block-row">
 		<div class="item selects">
-			<label class="item-label green" for="my-company">Компания</label>
-			<select id="my-company" class="js-example-responsive2 my-select2" autocomplete="off">
-				<option></option>
-				<option value="1995">
-					1995
+			<label class="item-label green" for="specialization">Специализация</label>
+			<select id="specialization" class="js-example-responsive2 my-select2" multiple autocomplete="off">
+				<option selected value="apartments-for-sale">
+					Продажа квартир
 				</option>
-				<option value="1994">
-					1994
+				<option value="houses-for-sale">
+					Продажа домов
 				</option>
-				<option value="1993">
-					1993
+				<option value="land-sale">
+					Продажа земли
+				</option>
+				<option value="sale-of-commerce">
+					Продажа коммерции
+				</option>
+				<option value="apartment-rental">
+					Аренда квартир
+				</option>
+				<option value="houses-for-rent">
+					Аренда домов
+				</option>
+				<option value="land-rental">
+					Аренда земли
+				</option>
+				<option value="rent-of-commerce">
+					Аренда коммерции
 				</option>
 			</select>
 		</div>

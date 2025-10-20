@@ -5,6 +5,7 @@
 			margin-bottom: 0;
 		}
 		& .item {
+			justify-content: flex-start;
 			&:first-child {
 				& .item {
 					width: 100%;
@@ -13,17 +14,23 @@
 			&:nth-child(2) {
 				& .tab-the-name {
 					& textarea {
-						min-height: 142px;
+						min-height: 164px;
 					}
 				}
 			}
 			&:last-child {
-				justify-content: flex-start;
+				& .item {
+					width: 100%;
+				}
+				& .photo-info-list-wrapper {
+					margin-top: 0;
+				}
 			}
 		}
 	}
 	& .block-row:last-of-type {
 		margin-bottom: 0;
+		align-items: flex-start;
 		& .phone > .item [data-phone-item] {
 			margin-top: 16px;
 		}
@@ -33,6 +40,11 @@
 .tab-the-name {
 	position: relative;
 	width: 100%;
+	& .text_advertising-wrapper {
+		display: flex;
+		flex-direction: column;
+		grid-gap: 16px;
+	}
 	& .nav {
 		&-tabs {
 			padding-bottom: 0;

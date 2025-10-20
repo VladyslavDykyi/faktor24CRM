@@ -1384,10 +1384,20 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   width: 100%;
 }
 
+.header-wrapper {
+  padding-bottom: 0;
+}
+
 .block-my-data .block-row:first-of-type {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+}
+
+.block-my-data .block-row:first-of-type .item {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .block-my-data .block-row:first-of-type .item:first-child .item {
@@ -1395,17 +1405,22 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 }
 
 .block-my-data .block-row:first-of-type .item:nth-child(2) .tab-the-name textarea {
-  min-height: 142px;
+  min-height: 164px;
 }
 
-.block-my-data .block-row:first-of-type .item:last-child {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+.block-my-data .block-row:first-of-type .item:last-child .item {
+  width: 100%;
+}
+
+.block-my-data .block-row:first-of-type .item:last-child .photo-info-list-wrapper {
+  margin-top: 0;
 }
 
 .block-my-data .block-row:last-of-type {
   margin-bottom: 0;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .block-my-data .block-row:last-of-type .phone > .item [data-phone-item] {
@@ -1415,6 +1430,17 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 .tab-the-name {
   position: relative;
   width: 100%;
+}
+
+.tab-the-name .text_advertising-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  grid-gap: 16px;
 }
 
 .tab-the-name .nav-tabs {
