@@ -4,6 +4,10 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	position: relative;
+	&.selects .select2-container {
+		display: block;
+		width: 100% !important;
+	}
 	& .add_new-tel {
 		position: absolute;
 		top: 0;

@@ -1957,6 +1957,11 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   position: relative;
 }
 
+.item.selects .select2-container {
+  display: block;
+  width: 100% !important;
+}
+
 .item .add_new-tel {
   position: absolute;
   top: 0;

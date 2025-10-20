@@ -2,7 +2,7 @@
 @import "_header-my-settings";
 @import "_side-bar";
 @import "_my-dropdown";
-
+@import "_inputs-textareas";
 @import "./_phone";
 @import "./page-my-profile/_page-my-profile";
 @import "./page-my-profile/_my-data";
@@ -10,7 +10,7 @@
 @import "./page-my-profile/_my-password";
 @import "./page-my-profile/_my-services";
 @import "./page-my-profile/_my-btns";
-
+@import "_photo-loader";
 .container-fluid {
 	width: calc(100% - 70px);
 }

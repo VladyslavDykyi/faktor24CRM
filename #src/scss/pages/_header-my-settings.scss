@@ -19,12 +19,9 @@
 		margin-bottom: 0;
 	}
 	&-tabs {
-		@media screen and (max-width: 1024px) {
+		@media screen and (max-width: 992px) {
 			align-self: center;
-		}
-		@media screen and (max-width: 620px) {
-			overflow-x: auto;
-			width: 100%;
+			justify-content: center;
 			order: 1;
 		}
 		& .btn-group a {
@@ -68,8 +65,9 @@
 		align-items: center;
 		justify-content: space-between;
 		grid-gap: 20px;
-		@media screen and (max-width: 1024px) {
+		@media screen and (max-width: 992px) {
 			width: 100%;
+			justify-content: flex-end;
 		}
 		& .link {
 			font-weight: 700;

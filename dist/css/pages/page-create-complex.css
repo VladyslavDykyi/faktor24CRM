@@ -634,6 +634,11 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   position: relative;
 }
 
+.item.selects .select2-container {
+  display: block;
+  width: 100% !important;
+}
+
 .item .add_new-tel {
   position: absolute;
   top: 0;

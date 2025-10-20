@@ -24,8 +24,8 @@ $("#member-organization").select2({
 	minimumResultsForSearch: -1,
 });
 new PhotoLoaderMini({
-	inputId: 'loading-photo',
-	wrapperClass: 'photo-info-list'
+	inputIdSelector: '#loading-photo',
+	wrapperClassSelector: '.photo-info-list',
 });
 new PhoneInputManager({
 	btnSelector: '.btn-new-tel',
