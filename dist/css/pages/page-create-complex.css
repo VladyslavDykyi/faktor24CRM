@@ -2073,6 +2073,12 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
           flex: 1 1 100%;
 }
 
+.modal-row .item.w75 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc(75% - 8px);
+          flex: 1 1 calc(75% - 8px);
+}
+
 .modal-row .item.w50 {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 calc(50% - 8px);
@@ -2083,6 +2089,12 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 calc(33.3333% - 11px);
           flex: 1 1 calc(33.3333% - 11px);
+}
+
+.modal-row .item.w25 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc(25% - 16px);
+          flex: 1 1 calc(25% - 16px);
 }
 
 .modal-row .item-row {
@@ -3297,6 +3309,12 @@ body.lock {
     width: 100%;
   }
 
+  .modal-row .item.w75 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+  }
+
   .modal-row .item.w50 {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 100%;
@@ -3304,6 +3322,12 @@ body.lock {
   }
 
   .modal-row .item.w33 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+  }
+
+  .modal-row .item.w25 {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 100%;
             flex: 1 1 100%;

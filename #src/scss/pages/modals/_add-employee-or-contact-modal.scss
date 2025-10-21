@@ -149,6 +149,12 @@
 			&.w100 {
 				flex: 1 1 100%;
 			}
+			&.w75 {
+				flex: 1 1 calc(75% - 8px);
+				@media screen and (max-width: 576px) {
+					flex: 1 1 100%;
+				}
+			}
 			&.w50 {
 				flex: 1 1 calc(50% - 8px);
 				@media screen and (max-width: 576px) {
@@ -157,6 +163,12 @@
 			}
 			&.w33 {
 				flex: 1 1 calc(33.3333% - 11px);
+				@media screen and (max-width: 576px) {
+					flex: 1 1 100%;
+				}
+			}
+			&.w25 {
+				flex: 1 1 calc(25% - 16px);
 				@media screen and (max-width: 576px) {
 					flex: 1 1 100%;
 				}

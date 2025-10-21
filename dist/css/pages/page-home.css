@@ -3007,6 +3007,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
           flex: 1 1 100%;
 }
 
+.modal-row .item.w75 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc(75% - 8px);
+          flex: 1 1 calc(75% - 8px);
+}
+
 .modal-row .item.w50 {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 calc(50% - 8px);
@@ -3017,6 +3023,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 calc(33.3333% - 11px);
           flex: 1 1 calc(33.3333% - 11px);
+}
+
+.modal-row .item.w25 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc(25% - 16px);
+          flex: 1 1 calc(25% - 16px);
 }
 
 .modal-row .item-row {
@@ -3816,6 +3828,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
     width: 100%;
   }
 
+  .modal-row .item.w75 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+  }
+
   .modal-row .item.w50 {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 100%;
@@ -3823,6 +3841,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   }
 
   .modal-row .item.w33 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+  }
+
+  .modal-row .item.w25 {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 100%;
             flex: 1 1 100%;
