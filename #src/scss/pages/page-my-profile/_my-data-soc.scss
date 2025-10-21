@@ -2,5 +2,14 @@
 	& .block-row {
 		margin-bottom: 0;
 		flex-wrap: wrap;
+		& .item {
+			flex: 1 1 calc(33.3333% - 11px);
+			@media screen and (max-width: 992px ) {
+				flex: 1 1 calc(50% - 8px);
+			}
+			@media screen and (max-width: 574px ) {
+				flex: 1 1 100%;
+			}
+		}
 	}
 }

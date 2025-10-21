@@ -1515,6 +1515,12 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
       flex-wrap: wrap;
 }
 
+.block-my-data-soc .block-row .item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc(33.3333% - 11px);
+          flex: 1 1 calc(33.3333% - 11px);
+}
+
 .block-my-password .block-row {
   margin-bottom: 0;
 }
@@ -2063,6 +2069,12 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
         -ms-flex: 1 1 calc(25% - 15px);
             flex: 1 1 calc(25% - 15px);
   }
+
+  .block-my-data-soc .block-row .item {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 calc(50% - 8px);
+            flex: 1 1 calc(50% - 8px);
+  }
 }
 
 @media screen and (max-width: 620px) {
@@ -2175,6 +2187,12 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 
   .block-my-data .block-row:first-of-type {
     margin-bottom: 0;
+  }
+
+  .block-my-data-soc .block-row .item {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
   }
 }
 
