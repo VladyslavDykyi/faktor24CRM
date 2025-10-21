@@ -14,7 +14,10 @@
 			&:nth-child(2) {
 				& .tab-the-name {
 					& textarea {
-						min-height: 164px;
+						min-height: 174px;
+					}
+					& .text_advertising-wrapper {
+						grid-gap: 0;
 					}
 				}
 			}

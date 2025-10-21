@@ -147,17 +147,23 @@
 		}
 		& .item {
 			&.w100 {
-				width: 100%;
+				flex: 1 1 100%;
 			}
 			&.w50 {
-				width: calc(50% - 8px);
+				flex: 1 1 calc(50% - 8px);
 				@media screen and (max-width: 576px) {
-					width: 100%;
+					flex: 1 1 100%;
+				}
+			}
+			&.w33 {
+				flex: 1 1 calc(33.3333% - 11px);
+				@media screen and (max-width: 576px) {
+					flex: 1 1 100%;
 				}
 			}
 			&-row {
 				width: calc(100% - 150px);
-				grid-gap: 20px 16px;
+				grid-gap: 0 16px;
 				flex-grow: 1;
 				display: flex;
 				flex-wrap: wrap;

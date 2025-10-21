@@ -2230,16 +2230,26 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 }
 
 .modal-row .item.w100 {
-  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
 }
 
 .modal-row .item.w50 {
-  width: calc(50% - 8px);
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc(50% - 8px);
+          flex: 1 1 calc(50% - 8px);
+}
+
+.modal-row .item.w33 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc(33.3333% - 11px);
+          flex: 1 1 calc(33.3333% - 11px);
 }
 
 .modal-row .item-row {
   width: calc(100% - 150px);
-  grid-gap: 20px 16px;
+  grid-gap: 0 16px;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -3431,7 +3441,15 @@ body.lock {
   }
 
   .modal-row .item.w50 {
-    width: 100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+  }
+
+  .modal-row .item.w33 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
   }
 
   .modal-row .item-row {
