@@ -7,7 +7,7 @@
 		display: flex;
 		align-items: center;
 		text-wrap: nowrap;
-		padding: 16px 0 14px;
+		padding: 16px 0 16px;
 		margin-bottom: 0;
 		& >span >span {
 			@media screen and (max-width: 420px) {
@@ -26,9 +26,13 @@
 	&-row {
 		display: flex;
 		align-items: flex-end;
-		grid-gap: 20px;
-		@media screen and (max-width: 1024px) {
-			flex-wrap: wrap;
+		grid-gap: 16px;
+		flex-wrap: wrap;
+		& > .item > .item {
+			margin-bottom: 16px;
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 	& .item-text {
@@ -40,84 +44,80 @@
 		grid-gap: 10px;
 	}
 	& .item {
-		width: calc(25% - 15px);
+		flex: 1 1 calc(25% - 12px);
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
 		@media screen and (max-width: 1024px) {
-			width: calc(50% - 10px);
+			flex: 1 1 calc(50% - 8px);
 		}
 		@media screen and (max-width: 620px) {
-			width: 100%;
+			flex: 1 1 100%;
+		}
+		& > span {
+			display: flex;
+			align-items: baseline;
+			grid-gap: 0 4px;
+			line-height: 100%;
+			font-size: 14px;
 		}
 		& .label,
-		&-label,
 		& label {
-			display: inline-block;
-			font-weight: 400;
-			font-size: 14px;
-			color: #111;
-			margin-bottom: 6px;
+			line-height: 18px;
 		}
-		&.selects .select2-container {
-			display: block;
-			width: 100% !important;
-		}
-		&-inputText {
-			padding: 6px 10px;
-			background-color: #fff;
-			border-radius: 6px;
-			border: none;
-			outline: none;
-			width: 100%;
-			font-weight: 700;
-			font-size: 14px;
-			line-height: normal;
-			color: #111;
-			
-			&::placeholder {
-				font-weight: 700;
-				font-size: 14px;
-				line-height: normal;
-				color: #aaa;
+		& .photo-info-list {
+			margin-bottom: 0;
+			&-wrapper {
+				margin-top: 0;
 			}
 		}
-		& .btn {
-			min-width: 142px;
-			padding: 5px 6px;
-			font-weight: 700;
-			font-size: 14px;
-			line-height: normal;
-			text-align: center;
-			@media screen and (max-width: 620px) {
-				min-width: 100%;
+		&.w75 {
+			flex: 1 1 calc(75% - 4px);
+			& > .tab-the-name {
+				height: calc(100%);
+				& .tab-content {
+					height: calc(100%);
+					& .tab-pane {
+						height: calc(100% );
+						& .tab-content-right {
+							height: calc(100% );
+							& .text_advertising-wrapper {
+								height: calc(100%);
+								& > span {
+									display: flex;
+								}
+								& .item-inputText-wrapper {
+									height: calc(100% - 20px);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
-		& .btn-outline-primary {
-			--bs-btn-color: #3585f5;
-			--bs-btn-border-color: #3585f5;
-			--bs-btn-hover-color: #fff;
-			--bs-btn-hover-bg: #3585f5;
-			--bs-btn-hover-border-color:#3585f5;
-			--bs-btn-focus-shadow-rgb: 25, 135, 84;
-			--bs-btn-active-color: #fff;
-			--bs-btn-active-bg:#3585f5;
-			--bs-btn-active-border-color: #3585f5;
-			--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-			--bs-btn-disabled-color: rgba(53, 133, 245, 0.7);
-			--bs-btn-disabled-bg: transparent;
-			--bs-btn-disabled-border-color: rgba(53, 133, 245, 0.7);
+		&.w50 {
+			flex: 1 1 calc(50% - 16px);
+			@media screen and (max-width: 768px) {
+				flex: 0 1 100%;
+			}
+		}
+		&.w16 {
+			flex: 1 1 calc(16.66667% - 16px);
+			@media screen and (max-width: 992px) {
+				flex: 0 1 calc(33.3333% - 11px);
+			}
+			@media screen and (max-width: 574px) {
+				flex: 0 1 100%;
+			}
+		}
+		&.noresize120 {
+			min-width: 120px;
 		}
 	}
 }
-.select2-selection__placeholder {
-	font-weight: 700;
-	font-size: 14px;
-	color: #aaa !important;
-}
-.js-example-responsive2,
-.js-example-responsive3 {
-	background-color: #fff;
+
+.js-example-responsive3,
+.js-example-responsive2 {
+	background-color: #FFFFFF;
 	font-weight: 700;
 	font-size: 14px;
 	color: #111;
@@ -125,5 +125,9 @@
 	height: 30px;
 	border: none;
 	padding: 6px 10px;
-	width: 100%;
+}
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+	font-weight: 700;
+	font-size: 14px;
+	color: #aaa;
 }

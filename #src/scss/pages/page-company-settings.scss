@@ -2,19 +2,71 @@
 @import "./page-company-settings/_header-my-settings";
 @import "_side-bar";
 @import "_my-dropdown";
-
-@import "./_phone";
+@import "_inputs-textareas";
+@import "_modal";
+@import "./modals/_add-employee-or-contact-modal";
 @import "./page-company-settings/_page-company-settings";
+@import "_block-info";
 @import "./page-company-settings/_all-info";
 @import "./page-company-settings/_offices";
 @import "./page-company-settings/_my-btns";
 
-
-
+@import "_photo-loader";
+.my-dropdown {
+	max-width: 100%;
+}
 .container-fluid {
 	width: calc(100% - 70px);
 }
+.tab-the-name {
+	position: relative;
+	& .nav {
+		&-tabs {
+			padding-bottom: 0;
+			border-bottom: none;
+			grid-gap: 10px;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		&-item {
+			& .nav-link {
+				border: 1px solid #d5dbe3;
+				border-radius: 6px;
+				height: 20px;
+				padding: 0 7px;
+				background: #fff;
+				font-weight: 700;
+				font-size: 14px;
+				text-align: center;
+				line-height: 100%;
+				color: #3585f5;
+				&.active {
+					color: #aaa;
+				}
+				&.ai {
+					background: #3585f5;
+					color: #fff;
+					border-color: #3585f5;
+				}
+			}
+		}
+	}
+}
 
-
-
-@import "_modal";
+.block-info {
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 16px;
+	margin-bottom: 0;
+	&-item {
+		flex: 0 1 calc(25% - 16px);
+		min-width: 210px;
+		@media screen and (max-width: 768px) {
+			flex: 0 1 calc(50% - 8px);
+		}
+		@media screen and (max-width: 574px) {
+			flex: 0 1 100%;
+		}
+	}
+}
