@@ -401,6 +401,16 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   background-color: #3585f5;
 }
 
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 10;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
 .sidebar {
   max-width: 70px;
   width: 100%;
@@ -700,5 +710,13 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
 
   .login {
     min-height: calc(100vh - 44px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  div.dt-container div.dt-layout-row:not(.dt-layout-table) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 }

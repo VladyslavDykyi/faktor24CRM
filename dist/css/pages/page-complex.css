@@ -401,6 +401,16 @@ table.dataTable.display > tbody > tr:nth-child(odd) > * {
   background-color: #3585f5;
 }
 
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 10;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
 .header-wrapper {
   padding: 10px 0;
   display: -webkit-box;
@@ -2590,5 +2600,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   .full-filter .item.filter-btn-outline,
   .full-filter .item.filter-btn {
     min-width: 11%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  div.dt-container div.dt-layout-row:not(.dt-layout-table) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 }

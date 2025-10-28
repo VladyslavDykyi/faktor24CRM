@@ -300,3 +300,15 @@ table.dataTable.stripe>tbody>tr:nth-child(odd)>*, table.dataTable.display>tbody>
 .daterangepicker td.active:hover {
 	background-color: #3585f5;
 }
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
+	position: absolute;
+	bottom: 8px;
+	left: 50%;
+	z-index: 10;
+	transform: translateX(-50%);
+}
+@media screen and (max-width: 767px) {
+	div.dt-container div.dt-layout-row:not(.dt-layout-table) {
+		display: flex;
+	}
+}
