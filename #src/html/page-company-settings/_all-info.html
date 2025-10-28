@@ -4,10 +4,73 @@
 	</h3>
 	<div class="block-row">
 		<div class="item">
-			<span>
-				<label class="item-label green" for="name-company">Название компании</label>
-			</span>
-			<input class="item-inputText" id="name-company" type="text" autocomplete="off" placeholder="Название">
+			<div class="tab-the-name">
+				<ul class="nav nav-tabs" id="tab-the-name" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="ua-tab" data-bs-toggle="tab"
+								data-bs-target="#ua-tab-pane" type="button" role="tab"
+								aria-controls="ua-tab-pane" aria-selected="false">UA
+						</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="ru-tab" data-bs-toggle="tab"
+								data-bs-target="#ru-tab-pane" type="button" role="tab"
+								aria-controls="ru-tab-pane" aria-selected="true">RU
+						</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="en-tab" data-bs-toggle="tab"
+								data-bs-target="#en-tab-pane" type="button" role="tab"
+								aria-controls="en-tab-pane" aria-selected="false">EN
+						</button>
+					</li>
+				</ul>
+				
+				<div class="tab-content">
+					<div class="tab-pane fade" id="ua-tab-pane" role="tabpanel"
+						 aria-labelledby="ua-tab" tabindex="0">
+						<div class="tab-content-right">
+							<div class="text_advertising-wrapper">
+								<label class="green" for="name-company-ua">Назва компанії</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" type="text"
+										   data-input-lang="ua" id="name-company-ua" autocomplete="off"
+										   name="text_advertising-ua"
+										   placeholder="Назва">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade show active" id="ru-tab-pane" role="tabpanel"
+						 aria-labelledby="ru-tab" tabindex="0">
+						<div class="tab-content-right">
+							<div class="text_advertising-wrapper">
+								<label class="green" for="name-company-ru">Название компании</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" type="text"
+										   data-input-lang="ru" id="name-company-ru" autocomplete="off"
+										   name="text_advertising-ru"
+										   placeholder="Название">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="en-tab-pane" role="tabpanel"
+						 aria-labelledby="en-tab" tabindex="0">
+						<div class="tab-content-right">
+							<div class="text_advertising-wrapper">
+								<label class="green" for="name-company-en">The name of the company</label>
+								<div class="item-inputText-wrapper">
+									<input class="item-inputText" type="text"
+										   data-input-lang="en" id="name-company-en" autocomplete="off"
+										   name="text_advertising-en"
+										   placeholder="The name">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="item w50">
 			<div class="add_new-tel">
@@ -70,15 +133,15 @@
 			<div class="tab-the-name">
 				<ul class="nav nav-tabs" id="tab-about-company" role="tablist">
 					<li class="nav-item" role="presentation">
-						<button class="nav-link active" id="ru-tab-about-company" data-bs-toggle="tab"
-								data-bs-target="#ru-tab-pane-about-company" type="button" role="tab"
-								aria-controls="ru-tab-pane-about-company" aria-selected="true">RU
-						</button>
-					</li>
-					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="ua-tab-about-company" data-bs-toggle="tab"
 								data-bs-target="#ua-tab-pane-about-company" type="button" role="tab"
 								aria-controls="ua-tab-pane-about-company" aria-selected="false">UA
+						</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="ru-tab-about-company" data-bs-toggle="tab"
+								data-bs-target="#ru-tab-pane-about-company" type="button" role="tab"
+								aria-controls="ru-tab-pane-about-company" aria-selected="true">RU
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
@@ -95,22 +158,6 @@
 				</ul>
 				
 				<div class="tab-content">
-					<div class="tab-pane fade show active" id="ru-tab-pane-about-company" role="tabpanel"
-						 aria-labelledby="ru-tab-about-company" tabindex="0">
-						<div class="tab-content-right">
-							<div class="text_advertising-wrapper">
-								<span>
-									<label for="about-company-ru">О компании</label>
-								</span>
-								<div class="item-inputText-wrapper">
-									<textarea class="item-textareaText" type="text"
-											  data-input-lang="ru" id="about-company-ru"
-											  autocomplete="off" name="about-company-ru"
-											  placeholder="Введите текст"></textarea>
-								</div>
-							</div>
-						</div>
-					</div>
 					<div class="tab-pane fade" id="ua-tab-pane-about-company" role="tabpanel"
 						 aria-labelledby="ua-tab-about-company" tabindex="0">
 						<div class="tab-content-right">
@@ -123,6 +170,22 @@
 										  data-input-lang="ua" id="about-company-ua"
 										  autocomplete="off" name="about-company-ua"
 										  placeholder="Введіть текст"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade show active" id="ru-tab-pane-about-company" role="tabpanel"
+						 aria-labelledby="ru-tab-about-company" tabindex="0">
+						<div class="tab-content-right">
+							<div class="text_advertising-wrapper">
+								<span>
+									<label for="about-company-ru">О компании</label>
+								</span>
+								<div class="item-inputText-wrapper">
+									<textarea class="item-textareaText" type="text"
+											  data-input-lang="ru" id="about-company-ru"
+											  autocomplete="off" name="about-company-ru"
+											  placeholder="Введите текст"></textarea>
 								</div>
 							</div>
 						</div>
