@@ -1,0 +1,133 @@
+.block {
+	&-title {
+		font-weight: 700;
+		font-size: 16px;
+		line-height: normal;
+		color: #aaa;
+		display: flex;
+		align-items: center;
+		text-wrap: nowrap;
+		padding: 16px 0 16px;
+		margin-bottom: 0;
+		& >span >span {
+			@media screen and (max-width: 420px) {
+				display: block;
+			}
+		}
+		&:after {
+			content: "";
+			display: block;
+			width: 100%;
+			margin-left: 10px;
+			height: 1px;
+			background-color: #d5dbe3;
+		}
+	}
+	&-row {
+		display: flex;
+		align-items: flex-end;
+		grid-gap: 16px;
+		flex-wrap: wrap;
+		& > .item > .item {
+			margin-bottom: 16px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	& .item-text {
+		min-width: 320px;
+		width: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		grid-gap: 10px;
+	}
+	& .item {
+		flex: 1 1 calc(25% - 12px);
+		display: flex;
+		flex-direction: column;
+		@media screen and (max-width: 1024px) {
+			flex: 1 1 calc(50% - 8px);
+		}
+		@media screen and (max-width: 620px) {
+			flex: 1 1 100%;
+		}
+		& > span {
+			display: flex;
+			align-items: baseline;
+			grid-gap: 0 4px;
+			line-height: 100%;
+			font-size: 14px;
+		}
+		& .label,
+		& label {
+			line-height: 18px;
+		}
+		& .photo-info-list {
+			margin-bottom: 0;
+			&-wrapper {
+				margin-top: 0;
+			}
+		}
+		&.w75 {
+			flex: 1 1 calc(75% - 4px);
+			& > .tab-the-name {
+				height: calc(100%);
+				& .tab-content {
+					height: calc(100%);
+					& .tab-pane {
+						height: calc(100% );
+						& .tab-content-right {
+							height: calc(100% );
+							& .text_advertising-wrapper {
+								height: calc(100%);
+								& > span {
+									display: flex;
+								}
+								& .item-inputText-wrapper {
+									height: calc(100% - 20px);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		&.w50 {
+			flex: 1 1 calc(50% - 16px);
+			@media screen and (max-width: 768px) {
+				flex: 0 1 100%;
+			}
+		}
+		&.w16 {
+			flex: 1 1 calc(16.66667% - 16px);
+			@media screen and (max-width: 992px) {
+				flex: 0 1 calc(33.3333% - 11px);
+			}
+			@media screen and (max-width: 574px) {
+				flex: 0 1 100%;
+			}
+		}
+		&.noresize120 {
+			min-width: 120px;
+		}
+	}
+}
+
+.js-example-responsive3,
+.js-example-responsive2 {
+	background-color: #FFFFFF;
+	font-weight: 700;
+	font-size: 14px;
+	color: #111;
+	border-radius: 6px;
+	height: 30px;
+	border: none;
+	padding: 6px 10px;
+}
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+	font-weight: 700;
+	font-size: 14px;
+	color: #aaa;
+}

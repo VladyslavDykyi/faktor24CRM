@@ -1,0 +1,47 @@
+.block-all-info {
+	& .block-row {
+		margin-bottom: 16px;
+		&:last-child {
+			align-items: stretch;
+			margin-bottom: 0;
+		}
+	}
+}
+.block-info-list {
+	& .block-info {
+		& .info-title-wrapper:after {
+			content: "";
+			display: block;
+			width: 100%;
+			margin-left: 10px;
+			height: 1px;
+			background-color: #d5dbe3;
+		}
+	}
+}
+.data {
+	& span:last-of-type {
+		position: relative;
+		background-color: #fff;
+		border-radius: 6px;
+		border: none;
+		outline: 0;
+		width: 100%;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: normal;
+		color: #111;
+		& input {
+			background-color: transparent;
+			position: relative;
+			z-index: 10;
+		}
+		& img {
+			position: absolute;
+			z-index: 1;
+			top: 50%;
+			right: 5px;
+			transform: translateY(-50%);
+		}
+	}
+}

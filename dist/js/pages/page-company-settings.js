@@ -9,6 +9,11 @@ $("#select-company").select2({
 	placeholder: 'Выберите компанию',
 	minimumResultsForSearch: -1,
 });
+$("#company-branch-metro").select2({
+	width: 'resolve',
+	placeholder: '-',
+	minimumResultsForSearch: -1,
+});
 
 $(".js-example-responsive2").select2({
 	width: 'resolve',

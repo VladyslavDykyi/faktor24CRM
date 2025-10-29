@@ -1,0 +1,28 @@
+.block-offices {
+	& .block-row {
+		margin-bottom: 16px;
+		&:first-of-type {
+			align-items: flex-start;
+		}
+	}
+	& .block-info-item {
+		flex: 0 1 calc(33.33333% - 10.66667px);
+		margin-bottom: 0;
+		@media screen and (max-width: 768px) {
+			flex: 0 1 calc(50% - 8px);
+		}
+		@media screen and (max-width: 574px) {
+			flex: 0 1 100%;
+		}
+		& .info-title {
+			font-weight: 400;
+			color: #111;
+		}
+	}
+	&-list {
+	
+	}
+	&-item {
+		width: 100%;
+	}
+}

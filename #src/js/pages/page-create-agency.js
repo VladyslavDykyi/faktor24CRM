@@ -4,12 +4,7 @@ import {
 	PhotoLoaderMini,
 } from "./function_on_pages-create.js";
 
-$("#select-company").select2({
-	width: 'resolve',
-	placeholder: 'Выберите компанию',
-	minimumResultsForSearch: -1,
-});
-$("#company-branch-metro").select2({
+$("#agency-branch-metro").select2({
 	width: 'resolve',
 	placeholder: '-',
 	minimumResultsForSearch: -1,
