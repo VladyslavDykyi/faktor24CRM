@@ -1,0 +1,129 @@
+#info-agent-modal {
+	& .info-user {
+		margin-top: 16px;
+		&-item {
+			margin-bottom: 8px;
+			display: flex;
+			grid-gap: 8px;
+			& .left {
+				flex: 0 0 72px;
+				& picture,
+				& source,
+				& img {
+					width: 50px;
+					height: 50px;
+				}
+				& img {
+					display: block;
+					border-radius: 8px;
+					object-fit: contain;
+				}
+				& p {
+					font-size: 14px;
+					line-height: 100%;
+					font-weight: 700;
+					color: #AAAAAA;
+					margin-bottom: 0;
+				}
+			}
+			& .right {
+				flex: 0 1 calc(100% - 80px);
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				position: relative;
+				& p {
+					margin-bottom: 0;
+				}
+			}
+		}
+		& + .modal-body-l .btn {
+			width: 100%;
+			margin-top: 12px;
+			padding: 7px 8px;
+		}
+		&-name {
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 100%;
+			color: #111;
+			padding-right: 20px;
+		}
+		&-agency {
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 125%;
+			color: #111;
+			padding-right: 20px;
+		}
+		&-city {
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 125%;
+			color: #111;
+		}
+		&-chat {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: flex;
+			& svg {
+				fill: #3585f5;
+			}
+		}
+		&-phone {
+			font-weight: 700;
+			font-size: 14px;
+			line-height: 107%;
+			color: #111;
+			text-decoration: none;
+		}
+		&-email {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 107%;
+			color: #111;
+			text-decoration: none;
+		}
+		&-socList {
+			margin-top: 12px;
+			display: flex;
+			flex-wrap: wrap;
+			grid-gap: 10px;
+			line-height: 100%;
+			& a {
+				display: block;
+				text-decoration: none;
+				border-radius: 50%;
+			}
+		}
+		&-description-text {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 107%;
+			color: #111;
+			& .btn {
+				margin-left: 2px;
+				font-size: 12px;
+				font-weight: 700;
+				line-height: 125%;
+				border: none;
+				padding: 0 1px;
+				background-color: transparent;
+				color: #3585f5;
+				border-radius: 0;
+				border-bottom: 1px dashed #3585f5;
+			}
+		}
+	}
+	@media (min-width: 1200px) {
+		.modal-xl {
+			--bs-modal-width: 340px;
+		}
+	}
+	@media (min-width: 576px) {
+		.modal-dialog {
+			--bs-modal-width: 340px;
+		}
+	}
+}
