@@ -3248,27 +3248,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   z-index: 10001;
 }
 
-.hovered-elem .modal-content {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  padding: 16px;
-  z-index: 100;
-  border-radius: 8px;
-  -webkit-box-shadow: 0 0 4px 0 #aaa;
-          box-shadow: 0 0 4px 0 #aaa;
-  max-width: 340px;
-  width: 100%;
-  min-width: 340px;
-}
-
-.hovered-elem .info-contact-modal .info-user,
-.hovered-elem .info-agent-modal .info-user {
+.info-contact-modal .info-user,
+.info-agent-modal .info-user {
   margin-top: 16px;
 }
 
-.hovered-elem .info-contact-modal .info-user-item,
-.hovered-elem .info-agent-modal .info-user-item {
+.info-contact-modal .info-user-item,
+.info-agent-modal .info-user-item {
   margin-bottom: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3276,34 +3262,34 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   grid-gap: 8px;
 }
 
-.hovered-elem .info-contact-modal .info-user-item .left,
-.hovered-elem .info-agent-modal .info-user-item .left {
+.info-contact-modal .info-user-item .left,
+.info-agent-modal .info-user-item .left {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 72px;
           flex: 0 0 72px;
   position: relative;
 }
 
-.hovered-elem .info-contact-modal .info-user-item .left picture,
-.hovered-elem .info-contact-modal .info-user-item .left source,
-.hovered-elem .info-contact-modal .info-user-item .left img,
-.hovered-elem .info-agent-modal .info-user-item .left picture,
-.hovered-elem .info-agent-modal .info-user-item .left source,
-.hovered-elem .info-agent-modal .info-user-item .left img {
+.info-contact-modal .info-user-item .left picture,
+.info-contact-modal .info-user-item .left source,
+.info-contact-modal .info-user-item .left img,
+.info-agent-modal .info-user-item .left picture,
+.info-agent-modal .info-user-item .left source,
+.info-agent-modal .info-user-item .left img {
   width: 50px;
   height: 50px;
 }
 
-.hovered-elem .info-contact-modal .info-user-item .left img,
-.hovered-elem .info-agent-modal .info-user-item .left img {
+.info-contact-modal .info-user-item .left img,
+.info-agent-modal .info-user-item .left img {
   display: block;
   border-radius: 8px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.hovered-elem .info-contact-modal .info-user-item .left p,
-.hovered-elem .info-agent-modal .info-user-item .left p {
+.info-contact-modal .info-user-item .left p,
+.info-agent-modal .info-user-item .left p {
   font-size: 14px;
   line-height: 100%;
   font-weight: 700;
@@ -3311,8 +3297,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   margin-bottom: 0;
 }
 
-.hovered-elem .info-contact-modal .info-user-item .left .btn-icon,
-.hovered-elem .info-agent-modal .info-user-item .left .btn-icon {
+.info-contact-modal .info-user-item .left .btn-icon,
+.info-agent-modal .info-user-item .left .btn-icon {
   position: absolute;
   top: -2px;
   right: 10px;
@@ -3330,8 +3316,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
           justify-content: center;
 }
 
-.hovered-elem .info-contact-modal .info-user-item .right,
-.hovered-elem .info-agent-modal .info-user-item .right {
+.info-contact-modal .info-user-item .right,
+.info-agent-modal .info-user-item .right {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 calc(100% - 80px);
           flex: 0 1 calc(100% - 80px);
@@ -3348,13 +3334,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   position: relative;
 }
 
-.hovered-elem .info-contact-modal .info-user-item .right p,
-.hovered-elem .info-agent-modal .info-user-item .right p {
+.info-contact-modal .info-user-item .right p,
+.info-agent-modal .info-user-item .right p {
   margin-bottom: 0;
 }
 
-.hovered-elem .info-contact-modal .info-user + .modal-body-l,
-.hovered-elem .info-agent-modal .info-user + .modal-body-l {
+.info-contact-modal .info-user + .modal-body-l,
+.info-agent-modal .info-user + .modal-body-l {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3364,15 +3350,15 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
           flex-direction: column;
 }
 
-.hovered-elem .info-contact-modal .info-user + .modal-body-l .btn,
-.hovered-elem .info-agent-modal .info-user + .modal-body-l .btn {
+.info-contact-modal .info-user + .modal-body-l .btn,
+.info-agent-modal .info-user + .modal-body-l .btn {
   width: 100%;
   margin-top: 12px;
   padding: 7px 8px;
 }
 
-.hovered-elem .info-contact-modal .info-user-name,
-.hovered-elem .info-agent-modal .info-user-name {
+.info-contact-modal .info-user-name,
+.info-agent-modal .info-user-name {
   font-weight: 700;
   font-size: 16px;
   line-height: 100%;
@@ -3380,8 +3366,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding-right: 20px;
 }
 
-.hovered-elem .info-contact-modal .info-user-tagList,
-.hovered-elem .info-agent-modal .info-user-tagList {
+.info-contact-modal .info-user-tagList,
+.info-agent-modal .info-user-tagList {
   margin-top: 16px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3391,8 +3377,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   grid-gap: 12px;
 }
 
-.hovered-elem .info-contact-modal .info-user-tagList-item,
-.hovered-elem .info-agent-modal .info-user-tagList-item {
+.info-contact-modal .info-user-tagList-item,
+.info-agent-modal .info-user-tagList-item {
   background: #fff;
   border: 1px solid #d5dbe3;
   border-radius: 6px;
@@ -3403,8 +3389,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   color: #111;
 }
 
-.hovered-elem .info-contact-modal .info-user-agency,
-.hovered-elem .info-agent-modal .info-user-agency {
+.info-contact-modal .info-user-agency,
+.info-agent-modal .info-user-agency {
   font-weight: 400;
   font-size: 12px;
   line-height: 125%;
@@ -3412,16 +3398,16 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   padding-right: 20px;
 }
 
-.hovered-elem .info-contact-modal .info-user-city,
-.hovered-elem .info-agent-modal .info-user-city {
+.info-contact-modal .info-user-city,
+.info-agent-modal .info-user-city {
   font-weight: 400;
   font-size: 12px;
   line-height: 125%;
   color: #111;
 }
 
-.hovered-elem .info-contact-modal .info-user-chat,
-.hovered-elem .info-agent-modal .info-user-chat {
+.info-contact-modal .info-user-chat,
+.info-agent-modal .info-user-chat {
   position: absolute;
   top: 0;
   right: 4px;
@@ -3431,13 +3417,13 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   display: flex;
 }
 
-.hovered-elem .info-contact-modal .info-user-chat svg,
-.hovered-elem .info-agent-modal .info-user-chat svg {
+.info-contact-modal .info-user-chat svg,
+.info-agent-modal .info-user-chat svg {
   fill: #3585f5;
 }
 
-.hovered-elem .info-contact-modal .info-user-phone,
-.hovered-elem .info-agent-modal .info-user-phone {
+.info-contact-modal .info-user-phone,
+.info-agent-modal .info-user-phone {
   font-weight: 700;
   font-size: 14px;
   line-height: 107%;
@@ -3445,8 +3431,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   text-decoration: none;
 }
 
-.hovered-elem .info-contact-modal .info-user-email,
-.hovered-elem .info-agent-modal .info-user-email {
+.info-contact-modal .info-user-email,
+.info-agent-modal .info-user-email {
   font-weight: 400;
   font-size: 14px;
   line-height: 107%;
@@ -3454,8 +3440,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   text-decoration: none;
 }
 
-.hovered-elem .info-contact-modal .info-user-type,
-.hovered-elem .info-agent-modal .info-user-type {
+.info-contact-modal .info-user-type,
+.info-agent-modal .info-user-type {
   margin-top: 6px;
   padding-right: 20px;
   font-weight: 400;
@@ -3464,24 +3450,24 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   color: #111;
 }
 
-.hovered-elem .info-contact-modal .info-user-source,
-.hovered-elem .info-agent-modal .info-user-source {
+.info-contact-modal .info-user-source,
+.info-agent-modal .info-user-source {
   font-weight: 400;
   font-size: 14px;
   line-height: 107%;
   color: #111;
 }
 
-.hovered-elem .info-contact-modal .info-user-budget,
-.hovered-elem .info-agent-modal .info-user-budget {
+.info-contact-modal .info-user-budget,
+.info-agent-modal .info-user-budget {
   font-weight: 700;
   font-size: 14px;
   line-height: 107%;
   color: #111;
 }
 
-.hovered-elem .info-contact-modal .info-user-agent,
-.hovered-elem .info-agent-modal .info-user-agent {
+.info-contact-modal .info-user-agent,
+.info-agent-modal .info-user-agent {
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -3489,8 +3475,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   text-decoration: none;
 }
 
-.hovered-elem .info-contact-modal .info-user-socList,
-.hovered-elem .info-agent-modal .info-user-socList {
+.info-contact-modal .info-user-socList,
+.info-agent-modal .info-user-socList {
   margin-top: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3501,23 +3487,23 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   line-height: 100%;
 }
 
-.hovered-elem .info-contact-modal .info-user-socList a,
-.hovered-elem .info-agent-modal .info-user-socList a {
+.info-contact-modal .info-user-socList a,
+.info-agent-modal .info-user-socList a {
   display: block;
   text-decoration: none;
   border-radius: 50%;
 }
 
-.hovered-elem .info-contact-modal .info-user-description-text,
-.hovered-elem .info-agent-modal .info-user-description-text {
+.info-contact-modal .info-user-description-text,
+.info-agent-modal .info-user-description-text {
   font-weight: 400;
   font-size: 14px;
   line-height: 107%;
   color: #111;
 }
 
-.hovered-elem .info-contact-modal .info-user-description-text .btn,
-.hovered-elem .info-agent-modal .info-user-description-text .btn {
+.info-contact-modal .info-user-description-text .btn,
+.info-agent-modal .info-user-description-text .btn {
   margin-left: 2px;
   font-size: 12px;
   font-weight: 700;
@@ -4035,8 +4021,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
     --bs-modal-width: 95%;
   }
 
-  .hovered-elem .info-contact-modal .modal-dialog,
-  .hovered-elem .info-agent-modal .modal-dialog {
+  .info-contact-modal .modal-dialog,
+  .info-agent-modal .modal-dialog {
     --bs-modal-width: 340px;
   }
 }
@@ -4046,8 +4032,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
     --bs-modal-width: 906px;
   }
 
-  .hovered-elem .info-contact-modal .modal-xl,
-  .hovered-elem .info-agent-modal .modal-xl {
+  .info-contact-modal .modal-xl,
+  .info-agent-modal .modal-xl {
     --bs-modal-width: 340px;
   }
 }

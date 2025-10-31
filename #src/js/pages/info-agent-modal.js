@@ -1,51 +1,33 @@
-// $(document).ready(function () {
-// 	// Обробник кліку на кнопку "btn-show-text2" в модальному вікні
-// 	$('#info-agent-modal').on('click', '.btn-show-text2', function () {
-// 		const button = $(this);
-// 		const container = button.closest('.info-user-description-text');
-// 		const moreText = container.find('.more-text');
-// 		const mainText = container.contents().filter(function () {
-// 			return this.nodeType === 3 && $.trim($(this).text()) !== '';
-// 		});
-//
-// 		if (moreText.is(':visible')) {
-// 			moreText.hide();
-// 			mainText.show();
-// 			button.text('Ещё');
-// 		} else {
-// 			moreText.show();
-// 			mainText.hide();
-// 			button.text('Скрыть');
-// 		}
-// 	});
-// });
-
 const wrapper = document.querySelector('#example');
 let hoverTimeout = null;
 let currentElement = null;
 let hideTimeout = null;
+let isModalVisible = false;
 
 wrapper.addEventListener('mouseover', (e) => {
 	const target = e.target;
 	const elem = target.closest('[data-hover-contact-or-agent]');
 	
 	if (elem) {
-		currentElement = elem;
-		
 		// Очищуємо попередні таймери
 		if (hoverTimeout) {
 			clearTimeout(hoverTimeout);
 		}
-		if (hideTimeout) {
-			clearTimeout(hideTimeout);
-		}
 		
 		// Запускаємо новий таймер на 300ms
 		hoverTimeout = setTimeout(() => {
-			// Перевіряємо, що курсор все ще над цим елементом
-			if (currentElement === elem) {
-				yourCustomFunction(elem);
+			// Якщо це новий елемент - прибираємо підкреслення з попереднього
+			if (currentElement && currentElement !== elem) {
+				currentElement.style.textDecoration = '';
 			}
+			
+			currentElement = elem;
+			
+			// Додаємо підкреслення новому елементу
+			elem.style.textDecoration = 'underline';
+			
+			// Відкриваємо модалку
+			yourCustomFunction(elem);
 		}, 300);
 	}
 });
@@ -55,12 +37,11 @@ wrapper.addEventListener('mouseout', (e) => {
 	const elem = target.closest('[data-hover-contact-or-agent]');
 	
 	if (elem) {
-		// Якщо вийшли з елемента - очищуємо таймер і скидаємо поточний елемент
+		// Очищуємо таймер ховера
 		if (hoverTimeout) {
 			clearTimeout(hoverTimeout);
 			hoverTimeout = null;
 		}
-		currentElement = null;
 		
 		// Запускаємо таймер для приховання модалки через 1000ms
 		startHideTimer();
@@ -93,11 +74,12 @@ function startHideTimer() {
 	}
 	hideTimeout = setTimeout(() => {
 		removeModal();
+		removeTextDecoration();
 	}, 1000);
 }
 
 function yourCustomFunction(element) {
-	// Спочатку видаляємо існуючу модалку
+	// Закриваємо попередню модалку перед відкриттям нової
 	removeModal();
 	
 	const item = document.createElement('div');
@@ -128,74 +110,85 @@ function yourCustomFunction(element) {
                     </div>
                 </div>
                 <div class="info-user-item">
-                <div class="left">
-                <p>Телефон</p>
-                </div>
-                <div class="right">
-                <a class="info-user-phone" href="tel:+381231257869">+38 (123) 125 - 78 - 69</a>
-                <a class="info-user-phone" href="tel:+381231257869">+38 (123) 125 - 78 - 69</a>
-                <div class="info-user-socList">
-                <a href="https://wa.me/380XXXXXXXXX">
-                <img src="./img/icon/icon-table/cnapchat.svg" alt="">
-                </a>
-                <img src="./img/icon/icon-table/viber.svg" alt="">
-                </a>
-                <a href="https://t.me/+380XXXXXXXXX">
-                <img src="./img/icon/icon-table/tg.svg" alt="">
-                <a href="#">
-                <img src="./img/icon/icon-table/instagram.svg" alt="">
-                </a>
-                <a href="#">
-                <img src="./img/icon/icon-table/facebook.svg" alt="">
-                </a>
-                <a href="#">
-                <img src="./img/icon/icon-table/tiktok.svg" alt="">
-                </a>
-                </div>
-                </div>
-                </div>
-                <div class="info-user-item">
-                <div class="left">
-                <p>Email</p>
-                </div>
-                <div class="right">
-                <a class="info-user-email" href="#">email@gmail.com</a>
-                </div>
+                    <div class="left">
+                        <p>Телефон</p>
+                    </div>
+                    <div class="right">
+                        <a class="info-user-phone" href="tel:+381231257869">+38 (123) 125 - 78 - 69</a>
+                        <a class="info-user-phone" href="tel:+381231257869">+38 (123) 125 - 78 - 69</a>
+                        <div class="info-user-socList">
+                            <a href="https://wa.me/380XXXXXXXXX">
+                                <img src="./img/icon/icon-table/cnapchat.svg" alt="">
+                            </a>
+                            <img src="./img/icon/icon-table/viber.svg" alt="">
+                            </a>
+                            <a href="https://t.me/+380XXXXXXXXX">
+                                <img src="./img/icon/icon-table/tg.svg" alt="">
+                            <a href="#">
+                                <img src="./img/icon/icon-table/instagram.svg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="./img/icon/icon-table/facebook.svg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="./img/icon/icon-table/tiktok.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="info-user-item">
-                <div class="left">
-                <p>Обо мне</p>
+                    <div class="left">
+                        <p>Email</p>
+                    </div>
+                    <div class="right">
+                        <a class="info-user-email" href="#">email@gmail.com</a>
+                    </div>
                 </div>
-                <div class="right">
-                <p class="info-user-description-text">
-                <span class="main-text">Текст небольшой о себе об агенте две строки</span>
-                <span class="more-text" style="display: none;">
-                Текст небольшой о себе об агенте две строки
-                </span>
-                <button class="btn btn-show-text2" type="button">Ещё</button>
-                </p>
-                </div>
+                <div class="info-user-item">
+                    <div class="left">
+                        <p>Обо мне</p>
+                    </div>
+                    <div class="right">
+                        <p class="info-user-description-text">
+                            <span class="main-text">Текст небольшой о себе об агенте две строки</span>
+                            <span class="more-text" style="display: none;">
+                            Текст небольшой о себе об агенте две строки Текст небольшой о себе об агенте две строки
+                            </span>
+                            <button class="btn btn-show-text2" type="button">Ещё</button>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="modal-body-l mb-0">
-            <a class="btn btn-primary" href="#">Открыть профиль</a>
+                <a class="btn btn-primary" href="#">Открыть профиль</a>
             </div>
         </div>`;
 	
-	element.parentElement.prepend(item);
+	// Додаємо модалку в body для коректного позиціонування
+	document.body.appendChild(item);
+	
+	// Розраховуємо позицію попапу
+	calculatePopupPosition(item, element);
+	
+	// Встановлюємо прапорець, що модалка відкрита
+	isModalVisible = true;
 	
 	// Додаємо обробник події для кнопки закриття
 	const closeBtn = item.querySelector('.close-modal-btn');
 	if (closeBtn) {
-		closeBtn.addEventListener('click', removeModal);
+		closeBtn.addEventListener('click',  ()=>{
+			removeTextDecoration();
+			removeModal ();
+		});
 	}
 	
 	// Додаємо обробник для кнопки "Ещё"
 	const showMoreBtn = item.querySelector('.btn-show-text2');
 	if (showMoreBtn) {
 		showMoreBtn.addEventListener('click', function() {
-			const moreText = this.previousElementSibling;
-			const mainText = this.parentElement.querySelector('.main-text');
+			const descriptionText = this.closest('.info-user-description-text');
+			const moreText = descriptionText.querySelector('.more-text');
+			const mainText = descriptionText.querySelector('.main-text');
 			
 			if (moreText.style.display === 'none') {
 				moreText.style.display = 'inline';
@@ -210,11 +203,69 @@ function yourCustomFunction(element) {
 	}
 }
 
+function calculatePopupPosition(popup, triggerElement) {
+	// Отримуємо розміри та позицію елемента
+	const triggerRect = triggerElement.getBoundingClientRect();
+	
+	// Отримуємо розміри вікна
+	const windowHeight = window.innerHeight;
+	const windowWidth = window.innerWidth;
+	
+	// Відстань від краю
+	const offset = 20;
+	
+	// Скидаємо стилі
+	popup.style.top = '';
+	popup.style.bottom = '';
+	popup.style.right = '';
+	popup.style.left = '';
+	popup.style.transform = '';
+	
+	// Встановлюємо базові стилі
+	popup.style.position = 'fixed';
+	popup.style.zIndex = '9999';
+	popup.style.width = '340px';
+	popup.style.padding = '16px';
+	popup.style.boxShadow = '0 0 4px 0 #aaa';
+	popup.style.borderRadius = '8px';
+	popup.style.backgroundColor = 'white';
+	
+	// Отримуємо розміри попапу після встановлення ширини
+	const popupRect = popup.getBoundingClientRect();
+	
+	// Визначаємо оптимальну позицію праворуч від елемента
+	let leftPosition = triggerRect.right + offset;
+	let topPosition = triggerRect.top;
+	
+	// Перевіряємо, чи поміщається праворуч
+	if (leftPosition + popupRect.width > windowWidth) {
+		// Якщо не поміщається праворуч - розміщуємо зліва
+		leftPosition = triggerRect.left - popupRect.width;
+	}
+	
+	// Перевіряємо вертикальне розміщення
+	if (topPosition + popupRect.height > windowHeight) {
+		// Якщо не поміщається знизу - зміщуємо вище
+		topPosition = windowHeight - popupRect.height - offset;
+	} else if (topPosition < offset) {
+		// Якщо занадто високо - зміщуємо нижче
+		topPosition = offset;
+	}
+	
+	// Встановлюємо позицію
+	popup.style.left = leftPosition + 'px';
+	popup.style.top = topPosition + 'px';
+}
+
 function removeModal() {
 	const existingModal = document.querySelector('.info-agent-modal');
 	if (existingModal) {
 		existingModal.remove();
 	}
+	
+	// Скидаємо прапорець, що модалка закрита
+	isModalVisible = false;
+	
 	// Очищуємо таймери
 	if (hideTimeout) {
 		clearTimeout(hideTimeout);
@@ -224,12 +275,40 @@ function removeModal() {
 		clearTimeout(hoverTimeout);
 		hoverTimeout = null;
 	}
-	currentElement = null;
+}
+
+function removeTextDecoration() {
+	// Прибираємо підкреслення з поточного елемента при закритті модалки
+	if (currentElement) {
+		currentElement.style.textDecoration = '';
+		currentElement = null;
+	}
 }
 
 // Також додаємо обробник для глобального кліку поза модалкою
 document.addEventListener('click', (e) => {
 	if (!e.target.closest('.info-agent-modal') && !e.target.closest('[data-hover-contact-or-agent]')) {
 		removeModal();
+		removeTextDecoration();
+	}
+});
+
+// Оновлюємо позицію при зміні розміру вікна
+window.addEventListener('resize', () => {
+	const existingModal = document.querySelector('.info-agent-modal');
+	const triggerElement = currentElement;
+	
+	if (existingModal && triggerElement) {
+		calculatePopupPosition(existingModal, triggerElement);
+	}
+});
+
+// Оновлюємо позицію при скролі
+window.addEventListener('scroll', () => {
+	const existingModal = document.querySelector('.info-agent-modal');
+	const triggerElement = currentElement;
+	
+	if (existingModal && triggerElement) {
+		calculatePopupPosition(existingModal, triggerElement);
 	}
 });
