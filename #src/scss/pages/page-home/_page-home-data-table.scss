@@ -316,7 +316,6 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							border: none;
 							background-color: transparent;
 							border-radius: 6px;
-							
 							&:hover {
 								background-color: #F6F8FB;
 							}
@@ -405,10 +404,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 							
 							& .block-info {
 								flex: 1 2 22%;
-								
-								& p.info-description {
-									margin-bottom: 10px;
-								}
+								margin-bottom: 0;
 							}
 							
 							& .filter-tags {
@@ -706,4 +702,8 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		border: none;
 		background-color: transparent;
 	}
+}
+[data-hover-contact],
+[data-hover-agent] {
+	color: #3585f5 !important;
 }

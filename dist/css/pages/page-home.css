@@ -1120,10 +1120,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   -webkit-box-flex: 1;
       -ms-flex: 1 2 22%;
           flex: 1 2 22%;
-}
-
-#example tbody tr td .tbody-dop-info .info-main-left .block-info p.info-description {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 #example tbody tr td .tbody-dop-info .info-main-left .filter-tags {
@@ -1486,6 +1483,11 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   outline: none;
   border: none;
   background-color: transparent;
+}
+
+[data-hover-contact],
+[data-hover-agent] {
+  color: #3585f5 !important;
 }
 
 .filter-header {
