@@ -1,4 +1,11 @@
-'use strict';
+import {HoverOnInformationContact} from "./info-agent-or-contact-modal.js";
+
+new HoverOnInformationContact({
+	containerSelector:'.geo-locations-wrapper',
+	hoverAttribute:'data-hover-contact',
+	modalClass:'info-contact-modal',
+}); // Для контактів
+
 (function () {
 	$('.geo-locations-header .my-custom-input input, .geo-list .my-custom-input input').on('change', function() {
 		const $this = $(this);

@@ -5,18 +5,20 @@ class HoverInformationBase {
 	constructor(containerSelector, hoverAttribute, modalClass) {
 		this.wrapper = document.querySelector(containerSelector);
 		this.hoverAttribute = hoverAttribute;
-		this.modalClass = modalClass; // Унікальний клас для кожного типу модалки
+		this.modalClass = modalClass;
 		this.hoverTimeout = null;
 		this.currentElement = null;
 		this.hideTimeout = null;
 		this.isModalVisible = false;
+		
+		// Статична властивість для відстеження активного екземпляра
+		HoverInformationBase.activeInstance = null;
 		
 		this.init();
 	}
 	
 	init() {
 		if (!this.wrapper) return;
-		
 		this.wrapper.addEventListener('mouseover', this.handleMouseOver.bind(this));
 		this.wrapper.addEventListener('mouseout', this.handleMouseOut.bind(this));
 		
@@ -38,6 +40,15 @@ class HoverInformationBase {
 			}
 			
 			this.hoverTimeout = setTimeout(() => {
+				// Закриваємо попередній активний екземпляр
+				if (HoverInformationBase.activeInstance && HoverInformationBase.activeInstance !== this) {
+					HoverInformationBase.activeInstance.removeModal();
+					HoverInformationBase.activeInstance.removeTextDecoration();
+				}
+				
+				// Встановлюємо поточний екземпляр як активний
+				HoverInformationBase.activeInstance = this;
+				
 				if (this.currentElement && this.currentElement !== elem) {
 					this.currentElement.style.textDecoration = '';
 				}
@@ -84,6 +95,10 @@ class HoverInformationBase {
 		if (!e.target.closest(`.${this.modalClass}`) && !e.target.closest(`[${this.hoverAttribute}]`)) {
 			this.removeModal();
 			this.removeTextDecoration();
+			// Скидаємо активний екземпляр при кліку поза модалкою
+			if (HoverInformationBase.activeInstance === this) {
+				HoverInformationBase.activeInstance = null;
+			}
 		}
 	}
 	
@@ -108,7 +123,11 @@ class HoverInformationBase {
 		this.hideTimeout = setTimeout(() => {
 			this.removeModal();
 			this.removeTextDecoration();
-		}, 1000);
+			// Скидаємо активний екземпляр при автоматичному закритті
+			if (HoverInformationBase.activeInstance === this) {
+				HoverInformationBase.activeInstance = null;
+			}
+		}, 100000);
 	}
 	
 	// Абстрактний метод - має бути реалізований у дочірніх класах
@@ -131,7 +150,7 @@ class HoverInformationBase {
 		
 		const item = document.createElement('div');
 		item.classList.add('modal-content');
-		item.classList.add(this.modalClass); // Використовуємо унікальний клас
+		item.classList.add(this.modalClass);
 		item.innerHTML = this.getModalHTML();
 		
 		document.body.appendChild(item);
@@ -209,6 +228,11 @@ class HoverInformationBase {
 		this.removeModal();
 		this.removeTextDecoration();
 		
+		// Скидаємо активний екземпляр при знищенні
+		if (HoverInformationBase.activeInstance === this) {
+			HoverInformationBase.activeInstance = null;
+		}
+		
 		if (this.wrapper) {
 			this.wrapper.removeEventListener('mouseover', this.handleMouseOver);
 			this.wrapper.removeEventListener('mouseout', this.handleMouseOut);
@@ -224,20 +248,17 @@ class HoverInformationBase {
 	
 	// Метод для AJAX запитів (можна перевизначити у дочірніх класах)
 	fetchData(element) {
-		// Тут можна реалізувати запит на сервер
-		// Наприклад, отримання даних агента/контакта по ID
 		return Promise.resolve({});
 	}
 }
 
 // Дочірній клас для агентів
-class HoverOnInformation extends HoverInformationBase {
+class HoverOnInformationAgent extends HoverInformationBase {
 	constructor(options) {
-		super(options.containerSelector, options.hoverAttribute, options.modalClass); // Унікальний клас для агентів
+		super(options.containerSelector, options.hoverAttribute, options.modalClass);
 	}
 	
 	yourCustomFunction(element) {
-		// Можна додати запит на сервер для отримання даних агента
 		this.fetchData(element).then(data => {
 			this.createModal(element);
 		}).catch(error => {
@@ -260,7 +281,7 @@ class HoverOnInformation extends HoverInformationBase {
                         <img src="./img/avatar-user.jpg" alt="">
                     </div>
                     <div class="right">
-                        <p class="info-user-name">Василий Федотов Иванович</p>
+                        <p class="info-user-name">Федотов Василий Иванович</p>
                         <p class="info-user-agency">Real Estate Name</p>
                         <p class="info-user-city">Manhattan</p>
                         <a class="info-user-chat" href="#">
@@ -321,7 +342,7 @@ class HoverOnInformation extends HoverInformationBase {
                     </div>
                 </div>
             </div>
-            <div class="modal-body-l mb-0">
+            <div class="modal-body-l modal-body-btn mb-0">
                 <a class="btn btn-primary" href="#">Открыть профиль</a>
             </div>
         </div>`;
@@ -333,6 +354,9 @@ class HoverOnInformation extends HoverInformationBase {
 			closeBtn.addEventListener('click', () => {
 				this.removeTextDecoration();
 				this.removeModal();
+				if (HoverInformationBase.activeInstance === this) {
+					HoverInformationBase.activeInstance = null;
+				}
 			});
 		}
 		
@@ -356,21 +380,18 @@ class HoverOnInformation extends HoverInformationBase {
 		}
 	}
 	
-	// Можна перевизначити метод для специфічних запитів агента
 	fetchData(element) {
-		// return fetch(`/api/agents/${agentId}`).then(response => response.json());
 		return Promise.resolve({});
 	}
 }
 
 // Дочірній клас для контактів
-class HoverOnInformation2 extends HoverInformationBase {
+class HoverOnInformationContact extends HoverInformationBase {
 	constructor(options) {
-		super(options.containerSelector, options.hoverAttribute, options.modalClass); // Унікальний клас для контактів
+		super(options.containerSelector, options.hoverAttribute, options.modalClass);
 	}
 	
 	yourCustomFunction(element) {
-		// Можна додати запит на сервер для отримання даних контакта
 		this.fetchData(element).then(data => {
 			this.createModal(element);
 		}).catch(error => {
@@ -400,7 +421,7 @@ class HoverOnInformation2 extends HoverInformationBase {
 						<img src="./img/avatar-user.jpg" alt="">
 					</div>
 					<div class="right">
-					<p class="info-user-name">Василий Федотов</p>
+					<p class="info-user-name">Федотов Василий Иванович</p>
 					<p class="info-user-type">Продавец, Покупатель, Арендодатель</p>
 					<a class="info-user-chat" href="#">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
@@ -460,7 +481,7 @@ class HoverOnInformation2 extends HoverInformationBase {
 			</div>
 		</div>
 	</div>
-	<div class="modal-body-l mb-0">
+	<div class="modal-body-l modal-body-btn mb-0">
 		<a class="btn btn-primary" href="#">Создать сделку</a>
 		<a class="btn btn-outline-primary" href="#">Добавить задачу</a>
 		<a class="btn btn-outline-primary" href="#">Добавить объект</a>
@@ -474,27 +495,17 @@ class HoverOnInformation2 extends HoverInformationBase {
 			closeBtn.addEventListener('click', () => {
 				this.removeTextDecoration();
 				this.removeModal();
+				if (HoverInformationBase.activeInstance === this) {
+					HoverInformationBase.activeInstance = null;
+				}
 			});
 		}
+		
 	}
 	
-	// Можна перевизначити метод для специфічних запитів контакта
 	fetchData(element) {
-		// return fetch(`/api/contacts/${contactId}`).then(response => response.json());
 		return Promise.resolve({});
 	}
 }
 
-// Використання:
-(() => {
-	new HoverOnInformation({
-		containerSelector:'#example',
-		hoverAttribute:'data-hover-agent',
-		modalClass:'info-agent-modal',
-	}); // Для агентів
-	new HoverOnInformation2({
-		containerSelector:'#example',
-		hoverAttribute:'data-hover-contact',
-		modalClass:'info-contact-modal',
-	}); // Для контактів
-})();
+export {HoverOnInformationAgent, HoverOnInformationContact};

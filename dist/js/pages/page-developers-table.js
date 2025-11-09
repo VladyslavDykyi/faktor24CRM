@@ -218,9 +218,9 @@ $(document).ready(function () {
                             <td>
                                 <div class="tbody-wrapper contact">
                                     <div>
-	                                    <a href="#" class="link-name" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="\tAlden Bailey">
-											Alden Bailey
-										</a>
+	                                    <p class="link-name" data-hover-contact>
+											Федотов Василий
+										</p>
 	                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Компания">Компания</p>
 	                                    <a href="tel:380968796542">+380968796542</a>
 									</div>

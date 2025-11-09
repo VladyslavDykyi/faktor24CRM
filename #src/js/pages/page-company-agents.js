@@ -1,3 +1,5 @@
+import {HoverOnInformationAgent} from "./info-agent-or-contact-modal.js";
+
 $(document).ready(function () {
 	const table = $('#example').DataTable({
 		searching: false,
@@ -408,4 +410,9 @@ $(document).ready(function () {
 		},
 		"drops": "auto"
 	});
+	new HoverOnInformationAgent({
+		containerSelector:'#example',
+		hoverAttribute:'data-hover-agent',
+		modalClass:'info-agent-modal',
+	}); // Для агентів
 });

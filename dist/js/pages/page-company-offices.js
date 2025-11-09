@@ -1,3 +1,5 @@
+import {HoverOnInformationAgent} from "./info-agent-or-contact-modal.js";
+
 $(document).ready(function () {
 	const table = $('#example').DataTable({
 		searching: false,
@@ -163,7 +165,9 @@ $(document).ready(function () {
                         </td>
                          <td>
                              <div class="tbody-wrapper responsible">
-                                <a href="#" class="link-name" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Длинное имя Добровольский">Длинное имя Добровольский</a>
+                                <p class="link-name" data-hover-agent>
+									Федотов Василий
+								</p>
 								<span>Менеджер</span>
 								<a href="tel:380968796542">+380968796542</a>
                             </div>
@@ -427,5 +431,11 @@ $(document).ready(function () {
 	// Викликаємо ініціалізацію Tooltip після оновлення таблиці
 	table.on('draw', function () {
 		initPhotoHoverPreview();
+	});
+	
+	new HoverOnInformationAgent({
+		containerSelector:'#example',
+		hoverAttribute:'data-hover-agent',
+		modalClass:'info-agent-modal',
 	});
 });
