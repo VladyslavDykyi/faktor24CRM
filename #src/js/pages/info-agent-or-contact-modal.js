@@ -482,9 +482,9 @@ class HoverOnInformationContact extends HoverInformationBase {
 		</div>
 	</div>
 	<div class="modal-body-l modal-body-btn mb-0">
-		<a class="btn btn-primary" href="#">Создать сделку</a>
-		<a class="btn btn-outline-primary" href="#">Добавить задачу</a>
-		<a class="btn btn-outline-primary" href="#">Добавить объект</a>
+		<a class="btn btn-primary" href="#" target="_blank">Создать сделку</a>
+		<a class="btn btn-outline-primary" href="#" target="_blank">Добавить задачу</a>
+		<a class="btn btn-outline-primary" href="./page-create.html" target="_blank">Добавить объект</a>
 	</div>
 </div>`;
 	}

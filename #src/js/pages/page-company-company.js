@@ -102,7 +102,7 @@ $(document).ready(function () {
         <tr class="dop-info-row">
             <td colspan="12">
                 <div class="table-for-others-info">
-                    <p class="paragraph">Объекты</p>
+                    <p class="paragraph">Офисы</p>
                     <div>
 						<div class="thead-wrapper command">
 							<p>

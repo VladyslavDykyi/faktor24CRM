@@ -1,4 +1,5 @@
 .filter-header {
+	& > .item,
 	& label:not(.input-search) {
 		width: 100%;
 		max-width: 176px;
@@ -10,7 +11,7 @@
 .input-search {
 	width: 100%;
 	display: block;
-	max-width: 332px;
+	max-width: 262px;
 	position: relative;
 	&:after {
 		content: "";

@@ -306,7 +306,7 @@ $(document).ready(function () {
                             </td>
                             <td>
                                 <div class="tbody-wrapper contact">
-                                    <p data-hover-contact>Фамилия Имя</p>
+                                    <p data-hover-agent>Фамилия Имя</p>
                                     <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Real Estate Name">Real Estate Name</p>
                                     <a href="tel:380968796542">+380968796542</a>
                                 </div>
@@ -403,7 +403,7 @@ $(document).ready(function () {
                             </td>
                             <td>
                                 <div class="tbody-wrapper contact">
-                                    <p data-hover-contact>Фамилия Имя</p>
+                                    <p data-hover-agent>Фамилия Имя</p>
                                     <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Real Estate Name">Real Estate Name</p>
                                     <a href="tel:380968796542">+380968796542</a>
                                 </div>
