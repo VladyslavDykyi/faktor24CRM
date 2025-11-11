@@ -218,7 +218,7 @@ $(document).ready(function () {
                             <td>
                                 <div class="tbody-wrapper contact">
                                     <div>
-	                                    <p class="link-name" data-hover-agent>
+	                                    <p class="link-name" data-hover-contact>
 											Федотов Василий
 										</p>
 	                                    <p data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Компания">Компания</p>
