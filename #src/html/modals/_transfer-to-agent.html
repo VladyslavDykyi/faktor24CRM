@@ -1,10 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="modal fade transfer-to-agent" id="transfer-to-agent" tabindex="-1" aria-labelledby="transfer-to-agent" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="modal-body-l d-flex align-items-center mb-0 justify-content-between">
+					<h2 class="modal-title" id="exampleInfoAgentModalLabel">
+						<span>Передача агенту</span>
+					</h2>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body-l mt-2 info-user">
+					<h3 class="modal-body-title">
+						<span>Новый агент</span>
+					</h3>
+					<div class="d-flex wrapper-modal-row">
+						<div class="item selects w-50">
+							<label class="item-label" for="transfer-to-agent-office">Офис</label>
+							<select id="transfer-to-agent-office" class="js-example-responsive3 my-select2" autocomplete="off">
+								<option value=""></option>
+								<option value="company">
+									Название офиса предыдущего агента
+								</option>
+							</select>
+						</div>
+						<div class="item selects w-50">
+							<label class="item-label" for="transfer-to-agent-name">ФИО</label>
+							<select id="transfer-to-agent-name" class="js-example-responsive3 my-select2" autocomplete="off">
+								<option value=""></option>
+								<option value="company">
+									Длинное имя Добровольский
+								</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="info-user-item">
+						<ul class="block-info">
+							<li class="block-info-item">
+								<div class="info-avatar">
+									<img src="./img/icon/default-avatar-table.svg" alt="">
+								</div>
+								<div class="info-contacts">
+									<p class="info-contacts-name">Василий Федотов</p>
+									<p class="info-description">Представитель девелопера</p>
+									<a href="tel:+381231257869" class="info-contacts-tel">+38 (123) 125 - 78 - 69</a>
+								</div>
+								<div class="info-links">
+									<a href="https://wa.me/380XXXXXXXXX">
+										<img src="./img/icon/icon-table/cnapchat.svg" alt="">
+									</a>
+									<a href="viber://chat?number=%2B380XXXXXXXXX">
+										<img src="./img/icon/icon-table/viber.svg" alt="">
+									</a>
+									<a href="https://t.me/+380XXXXXXXXX">
+										<img src="./img/icon/icon-table/tg.svg" alt="">
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="comments-row">
+						<div class="item">
+							<label for="plot-area">Комментарий</label>
+							<div class="item-inputText-wrapper">
+								<input class="item-inputText" id="plot-area" type="text" autocomplete="off"
+									   placeholder="Введите текст">
+							</div>
+						</div>
+						<div class="item">
+							<label class="my-custom-input">
+								<input type="checkbox" name="penthouse">
+								<span class="my-custom-box"></span>
+								<span class="my-custom-text">Перенести активные задачи</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-body-l d-flex justify-content-between mb-0">
+					<a class="btn btn-outline-primary" href="#">Отменить</a>
+					<a class="btn btn-primary" href="#">Передать</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

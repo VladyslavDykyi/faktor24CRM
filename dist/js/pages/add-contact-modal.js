@@ -1,5 +1,8 @@
 import {PhotoLoaderMini, PhoneInputManager} from "./function_on_pages-create.js";
 
+(function() {
+
+
 let phoneManager = null;
 let select2Initialized = false;
 
@@ -198,3 +201,4 @@ style.textContent = `
 `;
 
 document.head.appendChild(style);
+})();

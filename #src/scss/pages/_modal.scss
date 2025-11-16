@@ -110,3 +110,27 @@
 		text-decoration: underline;
 	}
 }
+
+.transfer-to-agent {
+	@media (min-width: 576px) {
+		.modal-dialog {
+			--bs-modal-width: 610px;
+		}
+	}
+}
+.comments-row,
+.wrapper-modal-row {
+	grid-gap: 16px;
+	& .item {
+		margin-bottom: 16px;
+	}
+	& .my-custom-input {
+		display: flex;
+	}
+}
+.comments-row {
+	border: 1px solid #D5DBE3;
+	border-right: none;
+	border-left: none;
+	padding-top: 15px;
+}

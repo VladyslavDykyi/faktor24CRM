@@ -103,6 +103,9 @@
 		width: calc(16.66667% - 13.4px);
 		display: flex;
 		flex-direction: column;
+		&.w12-5 {
+			width: calc(12.5% - 13.4px);
+		}
 		&.filter-btn-outline,
 		&.filter-btn {
 			margin-top: auto;

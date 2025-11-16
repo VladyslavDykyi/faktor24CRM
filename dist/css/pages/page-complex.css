@@ -1918,6 +1918,10 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
           flex-direction: column;
 }
 
+.full-filter .item.w12-5 {
+  width: calc(12.5% - 13.4px);
+}
+
 .full-filter .item.filter-btn-outline,
 .full-filter .item.filter-btn {
   margin-top: auto;
@@ -2916,10 +2920,38 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   text-decoration: underline;
 }
 
+.comments-row,
+.wrapper-modal-row {
+  grid-gap: 16px;
+}
+
+.comments-row .item,
+.wrapper-modal-row .item {
+  margin-bottom: 16px;
+}
+
+.comments-row .my-custom-input,
+.wrapper-modal-row .my-custom-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.comments-row {
+  border: 1px solid #D5DBE3;
+  border-right: none;
+  border-left: none;
+  padding-top: 15px;
+}
+
 @media (min-width: 576px) {
   .info-contact-modal .modal-dialog,
   .info-agent-modal .modal-dialog {
     --bs-modal-width: 340px;
+  }
+
+  .transfer-to-agent .modal-dialog {
+    --bs-modal-width: 610px;
   }
 }
 
