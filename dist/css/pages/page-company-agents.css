@@ -3732,8 +3732,9 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   position: absolute;
   top: 30px;
   left: 0;
-  z-index: 100;
+  z-index: 401;
   background-color: #fff;
+  border-radius: 0 0 8px 8px;
 }
 
 .multiple-menu-wrapper > label {
