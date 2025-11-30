@@ -1,0 +1,57 @@
+.block-location__wrapper {
+	& .location__wrapper {
+		&-item {
+			display: flex;
+			align-items: baseline;
+			grid-gap: 16px;
+			margin-bottom: 16px;
+			@media screen and (max-width: 768px) {
+				flex-wrap: wrap;
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		&-input {
+			width: 100%;
+			max-width: 274px;
+			@media screen and (max-width: 768px) {
+				max-width: 60%;
+			}
+			& label {
+				display: block;
+			}
+			& input {
+				border-radius: 6px;
+				background: #fff;
+				font-weight: 700;
+				font-size: 14px;
+				color: #111;
+				padding: 6px 10px;
+				border: none;
+				width: 100%;
+				max-width: 274px;
+				outline: none;
+				@media screen and (max-width: 768px) {
+					max-width: 100%;
+				}
+			}
+		}
+		&-counter {
+			@media screen and (max-width: 768px) {
+				max-width: 40%;
+			}
+		}
+		&-export {
+		
+		}
+		&-import {
+			flex-direction: row;
+			flex-wrap: nowrap;
+		}
+	}
+}
+.document-item.badge [aria-label=eye] path, .loading-plan .document-item.badge [aria-label=eye] path {
+	fill: transparent;
+	stroke: #111;
+}

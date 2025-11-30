@@ -10,6 +10,8 @@ class FileUploader {
 		this.checkImageSize = options.checkImageSize !== false;
 		// Максимальна кількість фото (якщо не вказано - без обмежень)
 		this.maxCountPhoto = options.maxCountPhoto || null;
+		// Параметр для завантаження файлів замість перегляду в Fancybox
+		this.eyeLink = options.eyeLink || false;
 		
 		// Мінімальні розміри тільки якщо перевірка увімкнена
 		if (this.checkImageSize) {
@@ -225,16 +227,28 @@ class FileUploader {
 			const fancyboxType = isPDF ? 'iframe' : 'image';
 			const fileURL = URL.createObjectURL(item.file);
 			
+			// Генеруємо кнопку перегляду або посилання для завантаження
+			const eyeButton = this.eyeLink
+				? `<a href="${fileURL}" download="${item.name}" class="fancybox-button" data-id="${item.id}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z"
+						  stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
+						<path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
+						  stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
+					</svg>
+				  </a>`
+				: `<button type="button" class="fancybox-button" data-fancybox data-type="${fancyboxType}" data-src="${fileURL}" aria-label="eye" data-id="${item.id}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z"
+						  stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
+						<path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
+						  stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
+					</svg>
+				  </button>`;
+			
 			documentItem.innerHTML = `
                 <span>${item.name}</span>
-                <button type="button" class="fancybox-button" data-fancybox data-type="${fancyboxType}" data-src="${fileURL}" aria-label="eye" data-id="${item.id}">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M14.5 8C14.5 8 11.6 12 8 12C4.4 12 1.5 8 1.5 8C1.5 8 4.4 4 8 4C11.6 4 14.5 8 14.5 8Z"
-                      stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
-                    <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
-                      stroke="#111111" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
-                  </svg>
-                </button>
+                ${eyeButton}
                 <button type="button" aria-label="Close" class="remove-document" data-id="${item.id}">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.932895 9.93359C0.708205 9.93359 0.483405 9.84787 0.311951 9.67641C-0.0310669 9.3334 -0.0310669 8.77754 0.311951 8.43452L8.43461 0.311868C8.77763 -0.0310395 9.33348 -0.0310395 9.67649 0.311868C10.0194 0.654776 10.0194 1.21074 9.67649 1.55365L1.55384 9.6763C1.38239 9.84787 1.15759 9.93359 0.932895 9.93359Z"
@@ -251,8 +265,10 @@ class FileUploader {
 		// Додаємо обробники подій для кнопок видалення
 		this.addRemoveHandlers();
 		
-		// Ініціалізуємо Fancybox для нових елементів
-		this.initFancybox();
+		// Ініціалізуємо Fancybox тільки якщо eyeLink вимкнено
+		if (!this.eyeLink) {
+			this.initFancybox();
+		}
 	}
 	
 	addRemoveHandlers() {

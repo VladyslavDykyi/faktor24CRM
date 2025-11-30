@@ -312,3 +312,42 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		display: flex;
 	}
 }
+
+.link-icon-text {
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	
+	&[data-disable] {
+		& path {
+			fill: #AAAAAA;
+		}
+		& > .text {
+			color: #AAAAAA;
+			border-color: #AAAAAA;
+		}
+	}
+	&>.text {
+		text-wrap: nowrap;
+		margin-left: 10px;
+		font-weight: 700;
+		font-size: 14px;
+		color: #3585f5;
+		display: inline-block;
+		border-bottom: 1px dashed #3585f5;
+	}
+}
+.data-list {
+	display: flex;
+	align-items: center;
+	grid-gap: 8px;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 107%;
+	& > span {
+		color: #111;
+	}
+	&-counter {
+		color: #3585f5;
+	}
+}

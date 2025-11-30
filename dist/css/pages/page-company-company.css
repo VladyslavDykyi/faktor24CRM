@@ -411,6 +411,56 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
           transform: translateX(-50%);
 }
 
+.link-icon-text {
+  text-decoration: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.link-icon-text[data-disable] path {
+  fill: #AAAAAA;
+}
+
+.link-icon-text[data-disable] > .text {
+  color: #AAAAAA;
+  border-color: #AAAAAA;
+}
+
+.link-icon-text > .text {
+  text-wrap: nowrap;
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #3585f5;
+  display: inline-block;
+  border-bottom: 1px dashed #3585f5;
+}
+
+.data-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 107%;
+}
+
+.data-list > span {
+  color: #111;
+}
+
+.data-list-counter {
+  color: #3585f5;
+}
+
 .header-wrapper {
   padding: 10px 0;
   display: -webkit-box;
