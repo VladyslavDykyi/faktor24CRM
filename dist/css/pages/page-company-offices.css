@@ -2017,6 +2017,30 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   position: relative;
 }
 
+.item-error-container {
+  position: absolute;
+  bottom: -12px;
+  display: none;
+}
+
+.item-error-container[data-error] {
+  display: block;
+}
+
+.item-error-container ul {
+  margin-bottom: 0;
+}
+
+.item-error-container ul li {
+  font-size: 10px;
+  line-height: 10px;
+  color: #f97474;
+}
+
+.item-error-container ul li:first-letter {
+  text-transform: uppercase;
+}
+
 .item.selects .select2-container {
   display: block;
   width: 100% !important;
@@ -3560,6 +3584,26 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 
   #example tbody tr.dop-info-row td .table-for-others-info .wrapper-btn-collapse {
     width: 27%;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  div.with-error {
+    grid-gap: 22px 16px;
+  }
+
+  div.with-error .item-error-container {
+    bottom: -20px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  div.with-error {
+    grid-gap: 16px;
+  }
+
+  div.with-error .item-error-container {
+    bottom: -12px;
   }
 }
 

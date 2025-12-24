@@ -4,6 +4,25 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	position: relative;
+	&-error-container {
+		position: absolute;
+		bottom: -12px;
+		display: none;
+		&[data-error] {
+			display: block;
+		}
+		& ul {
+			margin-bottom: 0;
+			& li {
+				font-size: 10px;
+				line-height: 10px;
+				color: #f97474;
+				&:first-letter {
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
 	&.selects .select2-container {
 		display: block;
 		width: 100% !important;

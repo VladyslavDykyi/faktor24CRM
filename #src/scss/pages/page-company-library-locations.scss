@@ -1,0 +1,15 @@
+@import "_default";
+@import "_header";
+@import "_side-bar";
+@import "_my-dropdown";
+@import "./page-company-library-locations/_page-company-library-locations";
+@import "./page-company-library-locations/_page-company-library-locations-filter";
+@import "./page-company-library-locations/_page-company-library-locations-header";
+@import "_loading-documents";
+@import "_inputs-textareas";
+@import "_modal";
+
+
+.container-fluid {
+	width: calc(100% - 70px);
+}

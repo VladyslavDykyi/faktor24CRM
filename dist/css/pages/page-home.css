@@ -2622,7 +2622,7 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
       -ms-flex-align: center;
           align-items: center;
   grid-gap: 10px;
-  padding-top: 6px;
+  padding-top: 10px;
 }
 
 .block-info .info-links > a {
@@ -2711,6 +2711,30 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
       -ms-flex-pack: end;
           justify-content: flex-end;
   position: relative;
+}
+
+.item-error-container {
+  position: absolute;
+  bottom: -12px;
+  display: none;
+}
+
+.item-error-container[data-error] {
+  display: block;
+}
+
+.item-error-container ul {
+  margin-bottom: 0;
+}
+
+.item-error-container ul li {
+  font-size: 10px;
+  line-height: 10px;
+  color: #f97474;
+}
+
+.item-error-container ul li:first-letter {
+  text-transform: uppercase;
 }
 
 .item.selects .select2-container {
@@ -4188,6 +4212,26 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   .full-filter .item.filter-btn-outline,
   .full-filter .item.filter-btn {
     min-width: 11%;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  div.with-error {
+    grid-gap: 22px 16px;
+  }
+
+  div.with-error .item-error-container {
+    bottom: -20px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  div.with-error {
+    grid-gap: 16px;
+  }
+
+  div.with-error .item-error-container {
+    bottom: -12px;
   }
 }
 

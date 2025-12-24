@@ -30,7 +30,7 @@
 		<div class="create-filter">
 			
 			<div class="create-filter-data">
-				<div class="create-filter-row row0">
+				<div class="create-filter-row row0 with-error">
 					<div class="left">
 						<ul class="block-info">
 							<li class="block-info-item">
@@ -88,6 +88,12 @@
 								<label for="link-on-the-ad">Ссылка на объявление</label>
 								<div class="item-inputText-wrapper">
 									<input class="item-inputText" type="url" id="link-on-the-ad" autocomplete="off" placeholder="Вставьте ссылку" />
+									<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+									<div class="item-error-container" data-error>
+										<ul>
+											<li>тестуваня помилки великого розміру </li>
+										</ul>
+									</div>
 								</div>
 							</div>
 							<div class="item">
@@ -137,6 +143,12 @@
 							<label for="personal-notes">Заметки</label>
 							<div class="item-inputText-wrapper">
 								<textarea class="item-textareaText " id="personal-notes" autocomplete="off" placeholder="Введите текст"></textarea>
+								<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+								<div class="item-error-container" data-error>
+									<ul>
+										<li>тестуваня помилки великого розміру </li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -144,7 +156,7 @@
 				<h3 class="create-filter-title">
 					<span>Подробно</span>
 				</h3>
-				<div class="create-filter-row">
+				<div class="create-filter-row with-error">
 					<div class="item selects blue-select2">
 						<label class="item-label" for="type-deal">Тип сделки</label>
 						<select id="type-deal" class="js-example-responsive2" autocomplete="off">
@@ -173,6 +185,12 @@
 								Аренда коммерции
 							</option>
 						</select>
+<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+						<div class="item-error-container" data-error>
+							<ul>
+								<li>тестуваня помилки великого розміру </li>
+							</ul>
+						</div>
 					</div>
 					<div class="item selects">
 						<label class="item-label" for="view-deal">Вид сделки</label>
@@ -213,6 +231,11 @@
 					<div class="item w50">
 						<label>Локация</label>
 						@@include('../elements/_element.html')
+						<div class="item-error-container">
+							<ul>
+								<li>тестуваня помилки великого розміру </li>
+							</ul>
+						</div>
 					</div>
 					<div class="item selects">
 						<label class="item-label" for="street">Улица</label>
@@ -476,7 +499,7 @@
 				<span>Описание и фото</span>
 			</h3>
 			<div class="create-filter-documents">
-				<div class="create-filter-row advertising-wrapper">
+				<div class="create-filter-row advertising-wrapper with-error">
 					<div class="left">
 						<div class="title_advertising-wrapper">
 							<label for="title_advertising-ua">Заголовок для рекламы</label>
@@ -484,6 +507,12 @@
 								<input class="item-inputText" id="title_advertising-ua" type="text"
 									   autocomplete="off" name="title_advertising-ua"
 									   placeholder="Введите заголовок">
+								<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+								<div class="item-error-container" data-error>
+									<ul>
+										<li>тестуваня помилки великого розміру </li>
+									</ul>
+								</div>
 							</div>
 						</div>
 						<div class="note_advertising-wrapper">
@@ -492,6 +521,12 @@
 									<textarea class="item-textareaText" id="note_advertising-ua" autocomplete="off"
 											  name="note_advertising-ua"
 											  placeholder="Введите текст"></textarea>
+								<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+								<div class="item-error-container" data-error>
+									<ul>
+										<li>тестуваня помилки великого розміру </li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -535,6 +570,12 @@
 														  data-input-lang="ua" id="description-advertising-ua" autocomplete="off"
 														  name="text_advertising-ua"
 														  placeholder="Введіть текст"></textarea>
+												<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+												<div class="item-error-container" data-error>
+													<ul>
+														<li>тестуваня помилки великого розміру </li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -550,6 +591,12 @@
 														  data-input-lang="ru" id="description-advertising-ru" autocomplete="off"
 														  name="text_advertising-ru"
 														  placeholder="Введите текст"></textarea>
+												<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+												<div class="item-error-container" data-error>
+													<ul>
+														<li>тестуваня помилки великого розміру </li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -565,6 +612,12 @@
 														  data-input-lang="en" id="description-advertising-en" autocomplete="off"
 														  name="text_advertising-en"
 														  placeholder="Enter text"></textarea>
+												<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+												<div class="item-error-container" data-error>
+													<ul>
+														<li>тестуваня помилки великого розміру </li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>

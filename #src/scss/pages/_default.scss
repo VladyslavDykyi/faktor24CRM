@@ -351,3 +351,17 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
 		color: #3585f5;
 	}
 }
+div.with-error {
+	@media screen and (max-width: 1180px) {
+		grid-gap: 22px 16px;
+		& .item-error-container {
+			bottom: -20px;
+		}
+	}
+	@media screen and (max-width: 992px) {
+		grid-gap: 16px;
+		& .item-error-container {
+			bottom: -12px;
+		}
+	}
+}

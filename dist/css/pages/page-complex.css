@@ -3033,6 +3033,26 @@ div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   }
 }
 
+@media screen and (max-width: 1180px) {
+  div.with-error {
+    grid-gap: 22px 16px;
+  }
+
+  div.with-error .item-error-container {
+    bottom: -20px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  div.with-error {
+    grid-gap: 16px;
+  }
+
+  div.with-error .item-error-container {
+    bottom: -12px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   div.dt-container div.dt-layout-row:not(.dt-layout-table) {
     display: -webkit-box;
