@@ -28,7 +28,6 @@
 			</div>
 		</header>
 		<div class="create-filter">
-			
 			<div class="create-filter-data">
 				<div class="create-filter-row row0 with-error">
 					<div class="left">
@@ -139,16 +138,25 @@
 								</div>
 							</li>
 						</ul>
-						<div class="item">
-							<label for="personal-notes">Заметки</label>
-							<div class="item-inputText-wrapper">
-								<textarea class="item-textareaText " id="personal-notes" autocomplete="off" placeholder="Введите текст"></textarea>
-								<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
-								<div class="item-error-container" data-error>
-									<ul>
-										<li>тестуваня помилки великого розміру </li>
-									</ul>
+						<div class="right-items-wrapper">
+							<div class="item">
+								<label for="personal-notes">Заметки</label>
+								<div class="item-inputText-wrapper">
+									<textarea class="item-textareaText " id="personal-notes" autocomplete="off" placeholder="Введите текст"></textarea>
+									<!--						якщо треба відобразити помилку то треба додати атрибут data-error, якщо його немає блок буде невидимий-->
+									<div class="item-error-container" data-error>
+										<ul>
+											<li>тестуваня помилки великого розміру </li>
+										</ul>
+									</div>
 								</div>
+							</div>
+							<div class="item">
+								<label class="my-custom-input">
+									<input type="checkbox" name="is_advertised" value="1" checked="">
+									<span class="my-custom-box"></span>
+									<span class="my-custom-text">Рекламировать объект</span>
+								</label>
 							</div>
 						</div>
 					</div>

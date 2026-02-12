@@ -208,13 +208,16 @@
 							align-items: flex-start;
 							padding-right: 0;
 							margin-bottom: 16px;
-							&:last-child {
-								margin-bottom: 0;
+							&:nth-child(1n + 2) {
+								margin-bottom: 8px;
 								& label {
 									margin-bottom: 0;
 									display: flex;
-									align-items: flex-start;
+									align-items: center;
 								}
+							}
+							&:last-child {
+								margin-bottom: 0;
 							}
 							& .item-inputText-wrapper {
 								width: 100%;
@@ -227,7 +230,7 @@
 				}
 				& .right {
 					display: flex;
-					& > .item {
+					& .right-items-wrapper {
 						border-top: 1px solid #d5dbe3;
 						margin-top: 9px;
 						padding-top: 15px;
@@ -238,6 +241,19 @@
 							margin-top: 0;
 							padding-top: 0;
 							width: 100%;
+						}
+						& > .item {
+							width: 100%;
+							padding-right: 0;
+							margin-bottom: 16px;
+							&:nth-child(1n + 2) {
+								margin-bottom: 8px;
+								& label {
+									margin-bottom: 0;
+									display: flex;
+									align-items: center;
+								}
+							}
 						}
 					}
 				}
